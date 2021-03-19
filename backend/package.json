@@ -1,0 +1,43 @@
+{
+  "name": "psycheing-backend",
+  "version": "1.0.0",
+  "description": "Backend of PSYCHE-ing project",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "preserve": "npm run build",
+    "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q dist/index.js\"",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solify-IT/psyche-ing.git"
+  },
+  "author": "solify-it",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Solify-IT/psyche-ing/issues"
+  },
+  "homepage": "https://github.com/Solify-IT/psyche-ing#readme",
+  "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.35",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "pg": "^8.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
