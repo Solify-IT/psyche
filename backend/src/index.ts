@@ -1,12 +1,22 @@
 import express from 'express';
 import cors from 'cors';
+import Router from './infraestructure/router/router';
+import Datastore from './infraestructure/datastore/datastore';
+import Registry from './registry';
 
 const portNumber: number = 8000;
 const app: express.Application = express();
 
 const initServer = () => {
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(cors());
+};
+
+const setupRoutes = () => {
+  const datastore = new Datastore();
+  const registry = new Registry(datastore);
+  new Router(app, registry.newAppController());
 };
 
 app.listen(portNumber, async () => {
@@ -14,4 +24,6 @@ app.listen(portNumber, async () => {
     portNumber}`);
 
   initServer();
+  setupRoutes();
+
 });
