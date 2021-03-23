@@ -7,7 +7,7 @@
     "clean": "rimraf dist/*",
     "lint": "eslint . --ext .ts",
     "typecheck": "tsc",
-    "dev": "tsnd --respawn -r tsconfig-paths/register ./src",
+    "start": "tsnd --respawn -r tsconfig-paths/register ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
