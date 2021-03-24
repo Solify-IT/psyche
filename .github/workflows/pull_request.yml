@@ -32,9 +32,8 @@ jobs:
         run: |
           npm test
       - uses: actions/upload-artifact@v2
-      - name: 
+      - name: Upload test coverage
         with:
-          name: Upload test coverage
           path: coverage
   verify-backend:
     runs-on: ubuntu-latest
@@ -60,7 +59,6 @@ jobs:
         run: |
           npm test
       - uses: actions/upload-artifact@v2
-      - name: 
+      - name: Upload test coverage
         with:
-          name: Upload test coverage
           path: coverage
