@@ -1,5 +1,5 @@
-import { Patient } from 'src/domain/model';
+import { Patient } from 'domain/model';
 
 export interface IPatientRepository {
-    findAll(): Promise<Patient[]>;
+  findAll(): Promise<Patient[]>;
 }

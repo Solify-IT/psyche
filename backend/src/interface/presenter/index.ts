@@ -1,3 +1,3 @@
 import PatientPresenter from './patientPresenter';
 
-export {PatientPresenter };
+export { PatientPresenter };

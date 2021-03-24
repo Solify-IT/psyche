@@ -16,7 +16,8 @@ const initServer = () => {
 const setupRoutes = () => {
   const datastore = new Datastore();
   const registry = new Registry(datastore);
-  new Router(app, registry.newAppController());
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const router = new Router(app, registry.newAppController());
 };
 
 app.listen(portNumber, async () => {
@@ -25,5 +26,4 @@ app.listen(portNumber, async () => {
 
   initServer();
   setupRoutes();
-
 });

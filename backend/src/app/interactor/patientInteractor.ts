@@ -1,26 +1,24 @@
-import { wrapError } from 'src/@types';
-import { Patient } from 'src/domain/model';
+import { wrapError } from '@types';
+import { Patient } from 'domain/model';
 import { IPatientPresenter, IPatientRepository } from '..';
 
 export default class PatientInteractor {
-    patientRepository: IPatientRepository;
-    patientPresenter: IPatientPresenter;
+  patientRepository: IPatientRepository;
 
-    constructor(patientRepository: IPatientRepository, patientPresenter : IPatientPresenter)
-    {
-        this.patientPresenter = patientPresenter;
-        this.patientRepository = patientRepository;
+  patientPresenter: IPatientPresenter;
+
+  constructor(patientRepository: IPatientRepository, patientPresenter : IPatientPresenter) {
+    this.patientPresenter = patientPresenter;
+    this.patientRepository = patientRepository;
+  }
+
+  async getAll(): Promise<Patient[]> {
+    const [patients, error] = await wrapError(this.patientRepository.findAll());
+
+    if (error) {
+      throw error;
     }
 
-    async getAll(): Promise<Patient[]> {
-        const [patients, error] = await wrapError(this.patientRepository.findAll());
-
-        if (error)
-        {
-            throw error;
-        }
-
-        return this.patientPresenter.findAll(patients);
-    }
-
+    return this.patientPresenter.findAll(patients);
+  }
 }

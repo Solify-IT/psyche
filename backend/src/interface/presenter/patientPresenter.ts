@@ -1,5 +1,5 @@
-import { Patient } from 'src/domain/model';
-import { IPatientPresenter } from 'src/app';
+import { Patient } from 'domain/model';
+import { IPatientPresenter } from 'app';
 
 export default class PatientPresenter implements IPatientPresenter {
   findAll(patients: Patient[]): Patient[] {

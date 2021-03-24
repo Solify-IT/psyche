@@ -1,7 +1,7 @@
-import {IAppController,  PatientController } from 'src/interface/controller';
-import { PatientPresenter } from 'src/interface/presenter';
-import { PatientRepository, IDatastore } from 'src/interface/repository';
-import PatientInteractor from 'src/app/interactor/patientInteractor';
+import { IAppController, PatientController } from 'interface/controller';
+import { PatientPresenter } from 'interface/presenter';
+import { PatientRepository, IDatastore } from 'interface/repository';
+import PatientInteractor from 'app/interactor/patientInteractor';
 
 export default class Registry {
   datastore: IDatastore;

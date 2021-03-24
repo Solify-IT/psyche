@@ -1,6 +1,6 @@
-import { wrapError } from 'src/@types';
-import { Patient } from 'src/domain/model';
-import { IPatientRepository } from 'src/app';
+import { wrapError } from '@types';
+import { Patient } from 'domain/model';
+import { IPatientRepository } from 'app';
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
