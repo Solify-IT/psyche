@@ -1,5 +1,5 @@
 import { wrapError } from '@types';
-import { Patient } from 'domain/model';
+import Patient from 'domain/model';
 import { IPatientPresenter, IPatientRepository } from '..';
 
 export default class PatientInteractor {
