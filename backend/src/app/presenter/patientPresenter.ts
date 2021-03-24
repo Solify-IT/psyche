@@ -1,5 +1,5 @@
-import { Patient } from 'src/domain/model';
+import { Patient } from 'domain/model';
 
 export interface IPatientPresenter {
-    findAll(patients: Patient[]) : Patient[];
+  findAll(patients: Patient[]) : Patient[];
 }
