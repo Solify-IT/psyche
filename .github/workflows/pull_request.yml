@@ -24,7 +24,7 @@ jobs:
           npm install
       - name: Typescript Compilation Check
         run: |
-          npm tsc
+          npm typecheck
       - name: ESLinting Check
         run: |
           npm lint
@@ -51,7 +51,7 @@ jobs:
           npm install
       - name: Typescript Compilation Check
         run: |
-          npm tsc
+          npm typecheck
       - name: ESLinting Check
         run: |
           npm lint

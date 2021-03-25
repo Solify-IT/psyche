@@ -29,7 +29,8 @@
     "build": "react-scripts build",
     "test": "jest src/test --coverage=true",
     "lint": "eslint --ext .ts,.tsx ./ --fix",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "typecheck": "tsc"
   },
   "eslintConfig": {
     "extends": [
