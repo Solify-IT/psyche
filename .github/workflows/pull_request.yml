@@ -22,11 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Typescript Compilation Check
-        run: npm typecheck
+        run: yarn typecheck
       - name: ESLinting Check
-        run: npm lint
+        run: yarn lint
       - name: Tests Check
-        run: npm test
+        run: yarn test
       - uses: actions/upload-artifact@v2
         with:
           name: Upload test coverage
@@ -45,11 +45,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Typescript Compilation Check
-        run: npm typecheck
+        run: yarn typecheck
       - name: ESLinting Check
-        run: npm lint
+        run: yarn lint
       - name: Tests Check
-        run: npm test
+        run: yarn test
       - uses: actions/upload-artifact@v2
         with:
           name: Upload test coverage
