@@ -1,5 +1,5 @@
 import { IAppController, PatientController } from 'interface/controller';
-import { PatientPresenter } from 'interface/presenter';
+import PatientPresenter from 'interface/presenter';
 import { PatientRepository, IDatastore } from 'interface/repository';
 import PatientInteractor from 'app/interactor/patientInteractor';
 

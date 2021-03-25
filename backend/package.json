@@ -8,7 +8,7 @@
     "lint": "eslint --ext .ts,.tsx ./ --fix",
     "typecheck": "tsc",
     "start": "tsnd --respawn -r tsconfig-paths/register ./src",
-    "test": "jest src/test"
+    "test": "jest src/test --coverage=true"
   },
   "repository": {
     "type": "git",

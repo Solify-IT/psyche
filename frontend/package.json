@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -26,9 +27,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest src/test",
+    "test": "jest src/test --coverage=true",
     "lint": "eslint --ext .ts,.tsx ./ --fix",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "typecheck": "tsc"
   },
   "eslintConfig": {
     "extends": [

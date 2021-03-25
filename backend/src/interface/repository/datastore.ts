@@ -1,4 +1,4 @@
-import { Patient } from 'domain/model';
+import Patient from 'domain/model';
 
 export default interface IDatastore {
   get<T>(queryText: string, values?: any[]): Promise<T[]>;

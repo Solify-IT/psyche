@@ -1,4 +1,4 @@
-import { Patient } from 'domain/model';
+import Patient from 'domain/model';
 import { IPatientPresenter } from 'app';
 
 export default class PatientPresenter implements IPatientPresenter {
