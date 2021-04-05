@@ -6,6 +6,7 @@ import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
 
 let portNumber = '8000';
+
 const app: express.Application = express();
 
 const initServer = () => {
@@ -31,7 +32,8 @@ const setupEnvironment = () => {
   console.log(result.parsed);
 };
 
-app.listen(process.env.PORT || 8000, async () => {
+
+app.listen(process.env.PORT || 3000, async () => {
   setupEnvironment();
   initServer();
   setupRoutes();
