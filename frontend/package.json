@@ -12,6 +12,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "dotenv": "^8.2.0",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-plugin-import": "^2.22.0",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.13.0",
+    "@types/aria-query": "^4.2.1",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-react-app": "^6.0.0",
@@ -59,7 +61,6 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "jest": "^26.6.3",
     "ts-jest": "^26.5.4"
   }
 }

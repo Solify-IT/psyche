@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
 
-const portNumber: number = 8000;
 const app: express.Application = express();
 
 const initServer = () => {
@@ -20,10 +20,18 @@ const setupRoutes = () => {
   const router = new Router(app, registry.newAppController());
 };
 
-app.listen(portNumber, async () => {
-  console.log(`Backend server running on port ${
-    portNumber}`);
+const setupEnvironment = () => {
+  const result = dotenv.config();
+  if (result.error) {
+    console.error('An error ocurred attempting to open .env file. Make sure it is created properly on the project root.');
+    return;
+  }
+  console.log(result.parsed);
+};
 
+app.listen(process.env.PORT || 3000, async () => {
+  setupEnvironment();
   initServer();
   setupRoutes();
+  console.log('Backend service started.');
 });
