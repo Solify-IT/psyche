@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+console.log(`Server running with API URL: ${process.env.REACT_APP_API_URL}`);
 ReactDOM.render(
   <React.StrictMode>
     <App />
