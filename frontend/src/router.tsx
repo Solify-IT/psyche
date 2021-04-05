@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './views/home';
-import TestHome from './views/testApi';
+import PatientsList from './views/patients';
 
 const AppRouter = () => (
   <div>
     <Route path="/" exact component={Home} />
-    <Route path="/test" component={TestHome} />
+    <Route path="/pacientes" component={PatientsList} />
   </div>
 );
 

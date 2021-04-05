@@ -1,13 +1,14 @@
 import React from 'react';
 import '../App.css';
 
-function TestHome() {
+// Temporary view for test purposes
+function PatientsList() {
   return (
     <div>
-      <h1>Tests</h1>
+      <h1>Pacientes</h1>
       <div className="content" />
     </div>
   );
 }
 
-export default TestHome;
+export default PatientsList;
