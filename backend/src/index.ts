@@ -5,7 +5,6 @@ import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
 
-let portNumber = '8000';
 const app: express.Application = express();
 
 const initServer = () => {
@@ -27,11 +26,10 @@ const setupEnvironment = () => {
     console.error('An error ocurred attempting to open .env file. Make sure it is created properly on the project root.');
     return;
   }
-  portNumber = process.env.PORT || '8000';
   console.log(result.parsed);
 };
 
-app.listen(process.env.PORT || 8000, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   setupEnvironment();
   initServer();
   setupRoutes();
