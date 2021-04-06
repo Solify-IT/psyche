@@ -1,3 +1,3 @@
-import { Patient } from './patient';
+import Patient from './patient';
 
 export default Patient;

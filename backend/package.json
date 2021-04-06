@@ -8,7 +8,12 @@
     "lint": "eslint --ext .ts,.tsx ./ --fix",
     "typecheck": "tsc",
     "start": "tsnd --respawn -r tsconfig-paths/register ./src",
-    "test": "jest src/test --coverage=true"
+    "test": "jest src/test --coverage=true",
+    "verify": "tsc && eslint --ext .ts,.tsx ./ --fix && jest src/test --coverage=true",
+    "orm-generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/infraestructure/orm/ormconfig.ts --connection  --name",
+    "orm-create": "ts-node ./node_modules/typeorm/cli.js migration:create --config src/infraestructure/orm/ormconfig.ts --connection  --name",
+    "orm-revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --config src/infraestructure/orm/ormconfig.ts --connection  --name",
+    "orm-run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/infraestructure/orm/ormconfig.ts --connection  --name"
   },
   "repository": {
     "type": "git",
@@ -28,6 +33,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.32",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
