@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import morgan from 'morgan';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
+import sequelize from './infraestructure/orm/sequelize';
 import Registry from './registry';
 
 const app: express.Application = express();
+
+const port : number = 8000;
 
 const initServer = () => {
   app.use(express.json());
@@ -15,6 +17,15 @@ const initServer = () => {
   app.use(morgan('dev'));
 };
 
+async function initDatabase() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection to database has been established succesfully');
+  } catch (error) {
+    console.error('Unabble to connect to database: ', error);
+  }
+}
+
 const setupRoutes = () => {
   const datastore = new Datastore();
   const registry = new Registry(datastore);
@@ -22,18 +33,9 @@ const setupRoutes = () => {
   const router = new Router(app, registry.newAppController());
 };
 
-const setupEnvironment = () => {
-  const result = dotenv.config();
-  if (result.error) {
-    console.error('An error ocurred attempting to open .env file. Make sure it is created properly on the project root.');
-    return;
-  }
-  console.log(result.parsed);
-};
-
-app.listen(8000, async () => {
-  setupEnvironment();
+app.listen(port, async () => {
   initServer();
+  initDatabase();
   setupRoutes();
-  console.log('Backend service started on port 8000.');
+  console.log(`Backend service started on port ${port}.`);
 });
