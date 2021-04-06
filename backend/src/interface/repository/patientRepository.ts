@@ -1,5 +1,5 @@
 import { wrapError } from '@types';
-import Patient from 'domain/model';
+import { Patient } from 'domain/model';
 import { IPatientRepository } from 'app';
 import IDatastore from './datastore';
 

@@ -1,4 +1,4 @@
-import Patient from 'domain/model';
+import { Patient } from 'domain/model';
 
 import { IPatientRepository } from 'app';
 
