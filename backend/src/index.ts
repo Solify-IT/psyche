@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import { createConnection } from 'typeorm';
+import ormConfig from 'infraestructure/orm/ormconfig';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
-import sequelize from './infraestructure/orm/sequelize';
 import Registry from './registry';
+import 'reflect-metadata';
 
 const app: express.Application = express();
 
@@ -19,10 +21,10 @@ const initServer = () => {
 
 async function initDatabase() {
   try {
-    await sequelize.authenticate();
-    console.log('Connection to database has been established succesfully');
-  } catch (error) {
-    console.error('Unabble to connect to database: ', error);
+    await createConnection(ormConfig);
+    console.log('Database connection established succesfully');
+  } catch (e) {
+    console.error('An error occured when establishing a connection to the database');
   }
 }
 

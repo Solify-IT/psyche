@@ -5,6 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
+  ignorePatterns: ['**/migration/*.ts'],
   rules: {
     'class-methods-use-this': 'off',
   },

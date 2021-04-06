@@ -12,7 +12,7 @@ export default class PatientRepository implements IPatientRepository {
 
   async findAll(): Promise<Patient[]> {
     const [books, error] = await wrapError(
-      this.datastore.patients.query(),
+      this.datastore.patients.getAll(),
     );
 
     if (error) {
