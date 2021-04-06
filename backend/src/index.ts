@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -11,6 +12,7 @@ const initServer = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
+  app.use(morgan('dev'));
 };
 
 const setupRoutes = () => {
@@ -29,9 +31,9 @@ const setupEnvironment = () => {
   console.log(result.parsed);
 };
 
-app.listen(process.env.PORT || 3000, async () => {
+app.listen(8000, async () => {
   setupEnvironment();
   initServer();
   setupRoutes();
-  console.log('Backend service started.');
+  console.log('Backend service started on port 8000.');
 });
