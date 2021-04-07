@@ -1,6 +1,5 @@
 import { Patient } from 'domain/model';
-
-import { IPatientRepository } from 'app';
+import IPatientRepository from 'app/repository/patientRepository';
 
 export default class MockPatientRepository implements IPatientRepository {
   async findAll(): Promise<Patient[]> {

@@ -83,7 +83,7 @@ export interface ILogger {
   notice: LeveledLogMethod;
 }
 
-  type LogCallback = (error?: any, level?: string, message?: string, meta?: any) => void;
+    type LogCallback = (error?: any, level?: string, message?: string, meta?: any) => void;
 
 interface LogMethod {
   (level: string, message: string, callback: LogCallback): ILogger;
