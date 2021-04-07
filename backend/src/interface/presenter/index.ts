@@ -1,3 +1,4 @@
 import PatientPresenter from './patientPresenter';
+import DoctorPresenter from './doctorPresenter';
 
-export default PatientPresenter;
+export { PatientPresenter, DoctorPresenter };

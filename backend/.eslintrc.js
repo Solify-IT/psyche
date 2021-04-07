@@ -8,6 +8,7 @@ module.exports = {
   ignorePatterns: ['**/migration/*.ts'],
   rules: {
     'class-methods-use-this': 'off',
+    'linebreak-style': 0,
   },
 
 };
