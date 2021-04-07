@@ -7,8 +7,7 @@ module.exports = {
   },
   rules: {
     'class-methods-use-this': 'off',
-    'linebreak-style': ['error', 'unix'],
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': 0,
     'no-console': 'off',
   },
 
