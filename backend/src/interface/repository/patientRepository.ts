@@ -11,7 +11,7 @@ export default class PatientRepository implements IPatientRepository {
   }
 
   async findAll(): Promise<Patient[]> {
-    const [books, error] = await wrapError(
+    const [patients, error] = await wrapError(
       this.datastore.fetchAll<Patient>('Patient'),
     );
 
@@ -19,6 +19,6 @@ export default class PatientRepository implements IPatientRepository {
       throw error;
     }
 
-    return books;
+    return patients;
   }
 }

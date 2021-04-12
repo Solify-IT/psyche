@@ -4,6 +4,9 @@ import IAppController from 'interface/controller/appController';
 
 export default class Router {
   constructor(app: Application, controller: IAppController) {
+    app.post('/login', async (request, response, next) => {
+      await wrapError(controller.users.login({ request, response, next }));
+    });
     app.get('/patients', async (request, response, next) => {
       await wrapError(controller.patients.getPatients({ request, response, next }));
     });
