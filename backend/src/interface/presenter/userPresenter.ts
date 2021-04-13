@@ -6,7 +6,7 @@ import jwtConfig from 'utils/jwtConfig';
 
 export default class UserPresenter implements IUserPresenter {
   login(user: User): LoginResult {
-    const token = jwt.sign({ user: user.username }, jwtConfig.secret);
+    const token = jwt.sign({ user: user.username }, jwtConfig.secret, { expiresIn: '30 days' });
     const userLoginResult = {
       id: user.id, username: user.username, email: user.email, role: user.role,
     };
