@@ -11,16 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="App">
-        <header>
-          <h1>PSYCHE-ING</h1>
-        </header>
-        <div className="main-content">
-          <AppRouter />
-        </div>
-      </div>
+      <AppRouter />
       <Footer />
-
     </BrowserRouter>
 
   );
