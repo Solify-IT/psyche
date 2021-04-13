@@ -5,10 +5,10 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
+  ignorePatterns: ['**/migration/*.ts'],
   rules: {
     'class-methods-use-this': 'off',
-    'linebreak-style': ['error', 'windows'],
-    'no-console': 'off',
+    'linebreak-style': 0,
   },
 
 };

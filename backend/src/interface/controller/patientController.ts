@@ -1,6 +1,6 @@
 import { wrapError } from '@types';
 import PatientInteractor from 'app/interactor/patientInteractor';
-import { IContext } from './context';
+import { IContext } from 'utils/context';
 
 export default class PatientController {
   patientInteractor: PatientInteractor;

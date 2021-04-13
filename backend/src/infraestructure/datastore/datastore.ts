@@ -1,41 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { wrapError } from '@types';
-import Patient from 'domain/model';
+import { Doctor, Patient } from 'domain/model';
 import { IDatastore } from 'interface/repository';
+import { Entity, getConnection } from 'typeorm';
 
 export default class Datastore implements IDatastore {
-  get<T>(queryText: string, values?: any[]): Promise<T[]> {
-    throw new Error('Method not implemented.');
-  }
+  async fetchAll<T>(tableName: string): Promise<T[]> {
+    const connection = getConnection();
+    const repository = connection.manager.getRepository<T>(tableName);
+    const items: T[] = await repository.find();
 
-  getById<T>(tablenName: string, id: string): Promise<T> {
-    throw new Error('Method not implemented.');
-  }
-
-  getOne<T>(queryText: string, values?: any[]): Promise<T> {
-    throw new Error('Method not implemented.');
-  }
-
-  getOneOrNull<T>(queryText: string, values?: any[]): Promise<T> {
-    throw new Error('Method not implemented.');
-  }
-
-  patients: {
-    query(queryText?: string): Promise<Patient[]>;
-  };
-
-  constructor() {
-    const query = async (): Promise<Patient[]> => {
-      const patients: Patient[] = [];
-
-      // TODO: Remove hardcoded value and communicate with database
-      patients.push({
-        name: 'Test',
-      });
-
-      return patients;
-    };
-
-    this.patients = { query };
+    return items;
   }
 }

@@ -1,6 +1,6 @@
 import { wrapError } from '@types';
-import Patient from 'domain/model';
-import { IPatientRepository } from 'app';
+import { Patient } from 'domain/model';
+import IPatientRepository from 'app/repository/patientRepository';
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
@@ -12,7 +12,7 @@ export default class PatientRepository implements IPatientRepository {
 
   async findAll(): Promise<Patient[]> {
     const [books, error] = await wrapError(
-      this.datastore.patients.query(),
+      this.datastore.fetchAll<Patient>('Patient'),
     );
 
     if (error) {

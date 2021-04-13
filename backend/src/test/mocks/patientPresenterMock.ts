@@ -1,4 +1,4 @@
-import { IPatientPresenter } from 'app';
+import IPatientPresenter from 'app/presenter/patientPresenter';
 
 export default class MockPatientPresenter implements IPatientPresenter {
   findAll(patients: any[]): any[] {
