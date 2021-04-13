@@ -28,7 +28,7 @@ async function initDatabase() {
     await createConnection(ormConfig);
     console.log('Database connection established succesfully');
   } catch (e) {
-    console.error('An error occured when establishing a connection to the database');
+    console.error(`An error occured when establishing a connection to the database: ${e}`);
   }
 }
 

@@ -1,7 +1,7 @@
 import { wrapError } from '@types';
 import IUserPresenter from 'app/presenter/userPresenter';
 import IUserRepository from 'app/repository/userRepository';
-import LoginResult from 'domain/model/loginResult';
+import LoginResult from 'domain/model/user/loginResult';
 
 export default class UserInteractor {
   userRepository: IUserRepository;
@@ -19,7 +19,6 @@ export default class UserInteractor {
     if (error) {
       throw error;
     }
-
     return this.userPresenter.login(user);
   }
 }

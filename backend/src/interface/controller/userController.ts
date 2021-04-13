@@ -18,10 +18,6 @@ export default class UserController {
       return;
     }
 
-    if (loginResult.user) {
-      context.response.status(200).json(loginResult);
-    } else {
-      context.response.status(404).json({ error: 'No se encontro el usuario' });
-    }
+    context.response.status(200).json(loginResult);
   }
 }

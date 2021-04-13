@@ -1,6 +1,7 @@
 import { wrapError } from '@types';
 import { User } from 'domain/model';
 import IUserRepository from 'app/repository/userRepository';
+import NotFoundError from 'utils/errors/NotFoundError';
 import IDatastore from './datastore';
 
 export default class UserRepository implements IUserRepository {
@@ -11,17 +12,18 @@ export default class UserRepository implements IUserRepository {
   }
 
   async login(username: string, password: string): Promise<User> {
-    console.log(username, password);
     const [user, error] = await wrapError(
       this.datastore.fetchOne<User>('User', {
         username,
         password,
       }),
     );
-    console.log(`Repository: ${user}`);
     if (error) {
       throw error;
     }
-    return user;
+    if (user) {
+      return user;
+    }
+    throw new NotFoundError('No se encontro al usuario');
   }
 }

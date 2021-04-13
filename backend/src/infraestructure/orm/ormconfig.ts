@@ -11,6 +11,7 @@ export = {
   password: process.env.DB_PASS || '',
   database: process.env.DB_NAME || 'localhost',
   synchronize: true,
+  logging: false,
   migrationsTableName: 'migration',
   entities: [
     'src/domain/model/**/*.ts',
