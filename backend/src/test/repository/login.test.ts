@@ -26,21 +26,21 @@ describe('User repository', () => {
   const user : User = {
     id: 1, username, password, email: 'test@mail.com', role: 'role',
   };
-  it('should return user if found', async () => {
+  test('should return user if found', async () => {
     await getConnection().getRepository<User>(User).insert(user);
-    userRepository.login(username, password).then((result) => {
-      expect(result.username === 'testuser');
-    });
+    const result = await userRepository.login(username, password);
+    expect(result.username).toEqual(username);
+    expect(result.password).toEqual(password);
   });
 
-  it('should return error if username not found', async () => {
+  test('should return error if username not found', async () => {
     await getConnection().getRepository<User>(User).insert(user);
     const [result, error] = await wrapError(userRepository.login('notMyUser', password));
     expect(error).toBeDefined();
     expect(result).toBeNull();
   });
 
-  it('should return error if password not found', async () => {
+  test('should return error if password not found', async () => {
     await getConnection().getRepository<User>(User).insert(user);
     const [result, error] = await wrapError(userRepository.login(username, 'notmypass'));
     expect(error).toBeDefined();
