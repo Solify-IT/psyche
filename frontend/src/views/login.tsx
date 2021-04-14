@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
-import { login } from '../api/authenticationService';
+import { authenticationService, login } from '../api/authenticationService';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +53,10 @@ export default function SignInSide() {
     password: '',
   });
   const { email, password } = { ...formFields };
+  const currentUser = authenticationService.currentUserValue;
+  if (currentUser) {
+    history.replace('/patients');
+  }
 
   const handleChange = (event: React.ChangeEvent<any>) => {
     setFormFields({ ...formFields, [event.target.name]: event.target.value });
@@ -62,9 +67,11 @@ export default function SignInSide() {
     login(email, password)
       .then((response) => {
         console.log(response);
-        history.replace('/select-host');
+        toast.success('Se ha iniciado sesión 😃');
+        history.replace('/patients');
       })
       .catch((error) => {
+        toast.warning('¡Usuario y/o contraseña incorrectos!');
         console.log(error);
       });
   };
