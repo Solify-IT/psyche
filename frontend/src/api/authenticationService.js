@@ -10,7 +10,7 @@ export const authenticationService = {
 };
 
 export async function login(username, password) {
-  const result = await server.post('http://127.0.0.1:8000/login', { username, password });
+  const result = await server.post('/login', { username, password });
 
   localStorage.setItem('currentUser', JSON.stringify(result.data));
   currentUserSubject.next(result.data);
