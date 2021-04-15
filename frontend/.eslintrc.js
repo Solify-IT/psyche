@@ -10,5 +10,7 @@ module.exports = {
     'linebreak-style': 0,
     'no-console': 'off',
   },
-
+  env: {
+    browser: true,
+  },
 };

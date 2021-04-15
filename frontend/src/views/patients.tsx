@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import getPatients from 'src/redux/controllers/patientController';
-import { Patient } from 'src/redux/interfaces/patient';
-import { AppState } from '../redux/store';
+import React, { useEffect, useState } from 'react';
+import Patient from 'src/interfaces';
+import server from 'src/utils/server';
+import handleResponse from '../utils/handleResponse';
 import '../App.css';
 
 // Temporary view for test purposes
 function PatientsList() {
-  const dispatch = useDispatch();
+  const [patients, setPatients] = useState<Patient[]>([]);
   useEffect(() => {
-    dispatch(getPatients());
-  }, [dispatch]);
-
-  const patients = useSelector((state: AppState) => state.patients);
-  const patientsList = patients.patients.map((patient: Patient) => (
-    <h3 key={patient.name}>{patient.name}</h3>
-  ));
+    const fetchData = async () => {
+      const results = await server.get<Patient[]>('/patients').then(handleResponse).catch(handleResponse);
+      setPatients(results);
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <h1>Pacientes</h1>
       <div className="content" />
-      { patientsList }
+      { patients.map((patient) => (<h1 key={patient.name}>{patient.name}</h1>))}
     </div>
   );
 }

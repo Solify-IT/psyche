@@ -3,6 +3,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
+import jwt from 'express-jwt';
+import jwtConfig from 'utils/jwtConfig';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -17,6 +19,8 @@ const initServer = () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
   app.use(morgan('dev'));
+
+  app.use(jwt(jwtConfig).unless({ path: '/login' }));
 };
 
 async function initDatabase() {
@@ -24,7 +28,7 @@ async function initDatabase() {
     await createConnection(ormConfig);
     console.log('Database connection established succesfully');
   } catch (e) {
-    console.error('An error occured when establishing a connection to the database');
+    console.error(`An error occured when establishing a connection to the database: ${e}`);
   }
 }
 

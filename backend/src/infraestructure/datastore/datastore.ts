@@ -5,6 +5,14 @@ import { IDatastore } from 'interface/repository';
 import { Entity, getConnection } from 'typeorm';
 
 export default class Datastore implements IDatastore {
+  async fetchOne<T>(tableName: string, condition: any): Promise<T> {
+    const connection = getConnection();
+    const repository = connection.manager.getRepository<T>(tableName);
+    const item: T = await repository.findOne(condition);
+
+    return item;
+  }
+
   async fetchAll<T>(tableName: string): Promise<T[]> {
     const connection = getConnection();
     const repository = connection.manager.getRepository<T>(tableName);
