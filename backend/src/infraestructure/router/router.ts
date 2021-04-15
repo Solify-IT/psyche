@@ -16,5 +16,8 @@ export default class Router {
     app.get('/doctors/old', async (request, response, next) => {
       await wrapError(controller.doctors.getDoctorsOld({ request, response, next }));
     });
+    app.post('/forms', async (request, response, next) => {
+      await wrapError(controller.forms.registerForm({ request, response, next }));
+    });
   }
 }

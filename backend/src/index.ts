@@ -20,7 +20,7 @@ const initServer = () => {
   app.use(cors());
   app.use(morgan('dev'));
 
-  app.use(jwt(jwtConfig).unless({ path: '/login' }));
+  // app.use(jwt(jwtConfig).unless({ path: '/login' }));
 };
 
 async function initDatabase() {
