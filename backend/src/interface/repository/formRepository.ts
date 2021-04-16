@@ -20,21 +20,21 @@ export default class FormRepository implements IFormRepository {
 
     if (error) {
       throw error;
-    } if (result) {
+    }
+    if (result) {
       return result;
     }
     throw new NotFoundError('No se enccontró el form');
   }
 
   async register(form: Form): Promise<Form> {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [result, error] = await wrapError(
-      this.datastore.insert<Form>('Form', form),
+      this.datastore.save<Form>('Form', form),
     );
 
     if (error) {
       throw error;
     }
-    return form;
+    return result;
   }
 }

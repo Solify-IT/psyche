@@ -3,7 +3,8 @@ import ormconfigTest from './ormconfigTest';
 
 const testConnection = {
   async create() {
-    await createConnection(ormconfigTest);
+    const connection = await createConnection(ormconfigTest);
+    await connection.query('PRAGMA foreign_keys=OFF');
   },
 
   async close() {
