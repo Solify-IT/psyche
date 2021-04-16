@@ -21,4 +21,13 @@ export default class FormInteractor {
     }
     return this.formPresenter.register(results);
   }
+
+  async detail(id: number): Promise<Form> {
+    const [result, error] = await wrapError(this.formRepository.detail(id));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.detail(result);
+  }
 }
