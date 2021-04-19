@@ -24,14 +24,13 @@ export default class FormRepository implements IFormRepository {
     if (result) {
       return result;
     }
-    throw new NotFoundError('No se enccontró el form');
+    throw new NotFoundError('No se encontró el form');
   }
 
   async register(form: Form): Promise<Form> {
     const [result, error] = await wrapError(
       this.datastore.save<Form>('Form', form),
     );
-
     if (error) {
       throw error;
     }
