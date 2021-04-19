@@ -10,7 +10,7 @@ function PatientsList() {
   useEffect(() => {
     const fetchData = async () => {
       const results = await server.get<Patient[]>('/patients').then(handleResponse).catch(handleResponse);
-      setPatients(results);
+      setPatients(results.data);
     };
     fetchData();
   }, []);
