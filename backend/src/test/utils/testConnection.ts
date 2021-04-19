@@ -5,7 +5,6 @@ const testConnection = {
   async create() {
     const connection = await createConnection(ormconfigTest);
     await connection.query('PRAGMA foreign_keys=OFF');
-    await createConnection(ormconfigTest);
   },
 
   async close() {
