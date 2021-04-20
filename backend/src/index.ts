@@ -3,8 +3,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
-import jwt from 'express-jwt';
-import jwtConfig from 'utils/jwtConfig';
+// import jwt from 'express-jwt';
+// import jwtConfig from 'utils/jwtConfig';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -19,7 +19,7 @@ const initServer = () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
   app.use(morgan('dev'));
-  app.use(jwt(jwtConfig).unless({ path: '/login' }));
+  // app.use(jwt(jwtConfig).unless({ path: '/login' }));
 };
 
 async function initDatabase() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   withStyles, Theme, createStyles, makeStyles,
 } from '@material-ui/core/styles';
@@ -9,6 +9,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
@@ -28,62 +31,76 @@ const StyledTableRow = withStyles((theme: Theme) => createStyles({
   },
 }))(TableRow);
 
-function createData(id: string, name: string, doctor: string) {
-  return { id, name, doctor };
-}
-const rows = [
-  createData('1', 'Marcela', 'Lalito'),
-  createData('2', 'Daniela', 'Luci'),
-  createData('3', 'Omar', 'Lalito'),
-  createData('4', 'Jorge', 'Dani'),
-  createData('5', 'Luci', 'Gus Gus'),
-];
-
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    width: '80%',
+    width: '100%',
     marginTop: theme.spacing(3),
     marginLeft: '140px',
     overflowX: 'auto',
+    margin: theme.spacing(1),
   },
   table: {
     minWidth: 500,
   },
   paper: {
-    maxWidth: 800,
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  button: {
+    margin: theme.spacing(1),
   },
 }));
 
 export default function CustomizedTables() {
+  const [patient, setPatient] = useState<any[]>([]);
+  const getPatients = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/patients');
+      const jsonData = await response.json();
+
+      setPatient(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  useEffect(() => {
+    getPatients();
+  }, []);
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid item xs={12} alignItems="center">
-          <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
-        </Grid>
-      </Paper>
+    <div>
       <Paper className={classes.paper}>
         <Grid container>
-          <Grid item xs={12} alignItems="center">
+          <Grid item xs={3}>
+            <TextField
+              id="outlined-basic"
+              label="Nombre del paciente"
+              variant="outlined"
+            />
+            <IconButton aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
             <Table className={classes.table}>
               <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.name}>
+                {patient.map((r) => (
+                  <StyledTableRow key={r.name}>
                     <StyledTableCell align="left" color="textPrimary">
-                      {row.name}
+                      {r.name}
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
-                          {row.doctor}
+                          {r.doctor}
                         </Typography>
                       </>
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
                           Folio:
                           {' '}
-                          {row.id}
+                          {r.id}
                         </Typography>
                       </>
                     </StyledTableCell>
