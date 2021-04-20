@@ -59,41 +59,41 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 export default function CustomizedTables() {
   const classes = useStyles();
   return (
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid item xs={12} alignItems="center">
+          <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
+        </Grid>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Grid container>
           <Grid item xs={12} alignItems="center">
-            <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
+            <Table className={classes.table}>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell align="left" color="textPrimary">
+                      {row.name}
+                      <>
+                        <Typography color="textSecondary" variant="subtitle2">
+                          {row.doctor}
+                        </Typography>
+                      </>
+                      <>
+                        <Typography color="textSecondary" variant="subtitle2">
+                          Folio:
+                          {' '}
+                          {row.id}
+                        </Typography>
+                      </>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
           </Grid>
-        </Paper>
-        <Paper className={classes.paper}>
-          <Grid container>
-            <Grid item xs={12} alignItems="center">
-              <Table className={classes.table}>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell align="left" color="textPrimary">
-                        {row.name}
-                        <>
-                          <Typography color="textSecondary" variant="subtitle2">
-                            {row.doctor}
-                          </Typography>
-                        </>
-                        <>
-                          <Typography color="textSecondary" variant="subtitle2">
-                            Folio:
-                            {' '}
-                            {row.id}
-                          </Typography>
-                        </>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Grid>
-          </Grid>
-        </Paper>
-      </div>
+        </Grid>
+      </Paper>
+    </div>
   );
 }
