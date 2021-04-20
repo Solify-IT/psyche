@@ -1,13 +1,15 @@
 export default interface Patient {
   id: number;
   name: string;
-  type: string;
-  costPerSession: number;
-  age: number;
+  middleName: string;
+  lastName: string;
   startDate: Date;
+  type: string;
+  age: number;
   gender: string;
   telephone: string;
   address: string;
-  civilStatus: string;
-  notes: string;
+  birthPlace: string;
+  birthDate: string;
+  postalCode: string;
 }
