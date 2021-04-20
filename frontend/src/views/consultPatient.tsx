@@ -130,7 +130,7 @@ export default function CustomizedTables() {
                       {r.name}
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
-                          {r.doctor}
+                          {r.type}
                         </Typography>
                       </>
                       <>
