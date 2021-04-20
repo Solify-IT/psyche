@@ -1,6 +1,4 @@
-import {
-  Entity, Column, PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export default class Patient {
@@ -9,37 +7,4 @@ export default class Patient {
 
   @Column()
   name: string;
-
-  @Column()
-  middleName: string;
-
-  @Column()
-  lastName: string;
-
-  @Column({ type: 'date' })
-  startDate: Date;
-
-  @Column()
-  type: string;
-
-  @Column()
-  age: number;
-
-  @Column()
-  gender: string;
-
-  @Column()
-  telephone: string;
-
-  @Column()
-  address: string;
-
-  @Column()
-  birthPlace: string;
-
-  @Column()
-  birthDate: string;
-
-  @Column()
-  postalCode: string;
 }

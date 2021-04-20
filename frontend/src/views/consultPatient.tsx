@@ -12,6 +12,11 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
@@ -51,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   button: {
     margin: theme.spacing(1),
   },
+  frm: {
+    margin: theme.spacing(2),
+  },
 }));
 
 export default function CustomizedTables() {
@@ -68,7 +76,12 @@ export default function CustomizedTables() {
   useEffect(() => {
     getPatients();
   }, []);
+  const [value, setValue] = React.useState('female');
   const classes = useStyles();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
+  };
+
   return (
     <div>
       <Paper className={classes.paper}>
@@ -82,6 +95,30 @@ export default function CustomizedTables() {
             <IconButton aria-label="search">
               <SearchIcon />
             </IconButton>
+            <FormControl component="fieldset" className={classes.frm}>
+              <FormLabel component="legend">Área</FormLabel>
+              <RadioGroup aria-label="pacient" name="pacient" value={value} onChange={handleChange}>
+                <FormControlLabel value="ps" control={<Radio />} label="Psicología" />
+                <FormControlLabel value="psi" control={<Radio />} label="Psiquiatría" />
+                <FormControlLabel value="aj" control={<Radio />} label="Área jurídica" />
+              </RadioGroup>
+            </FormControl>
+            <TextField
+              id="outlined-basic"
+              label="Nombre del psicólogo"
+              variant="outlined"
+            />
+            <IconButton aria-label="search">
+              <SearchIcon />
+            </IconButton>
+            <FormControl component="fieldset" className={classes.frm}>
+              <FormLabel component="legend">Tipo</FormLabel>
+              <RadioGroup aria-label="doctor" name="doctor" value={value} onChange={handleChange}>
+                <FormControlLabel value="adult" control={<Radio />} label="Adulto" />
+                <FormControlLabel value="couple" control={<Radio />} label="Pareja" />
+                <FormControlLabel value="child" control={<Radio />} label="Menor" />
+              </RadioGroup>
+            </FormControl>
           </Grid>
           <Grid item xs={8}>
             <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
