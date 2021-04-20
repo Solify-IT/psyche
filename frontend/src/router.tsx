@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Form from './views/form';
 import GenerateForm from './views/generateForm';
+import ConsultPatient from './views/consultPatient';
 
 const AppRouter = () => (
   <div>
@@ -13,6 +14,7 @@ const AppRouter = () => (
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/patients" exact component={PatientsList} />
+    <Route path="/consult-patient" exact component={ConsultPatient} />
   </div>
 );
 
