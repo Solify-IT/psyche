@@ -10,6 +10,9 @@ export default class Router {
     app.get('/patients', async (request, response, next) => {
       await wrapError(controller.patients.getPatients({ request, response, next }));
     });
+    app.get('/patients/:id', async (request, response, next) => {
+      await wrapError(controller.patients.getPatientDetail({ request, response, next }));
+    });
     app.get('/doctors', async (request, response, next) => {
       await wrapError(controller.doctors.getDoctors({ request, response, next }));
     });

@@ -22,4 +22,13 @@ export default class PatientInteractor {
 
     return this.patientPresenter.findAll(patients);
   }
+
+  async getPatientDetail(id: number) : Promise<Patient> {
+    const [patient, error] = await wrapError(this.patientRepository.findPatient(id));
+
+    if (error) {
+      throw error;
+    }
+    return this.patientPresenter.patientDetail(patient);
+  }
 }
