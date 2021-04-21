@@ -1,5 +1,5 @@
-// import {API_AUTH} from '../routes/serverRoutes';
 import { BehaviorSubject } from 'rxjs';
+// import { API_AUTH } from '../routes/serverRoutes';
 import server from '../utils/server';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
