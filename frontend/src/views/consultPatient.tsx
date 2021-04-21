@@ -125,7 +125,7 @@ export default function CustomizedTables() {
             <Table className={classes.table}>
               <TableBody>
                 {patient.map((r) => (
-                  <StyledTableRow key={r.name}>
+                  <StyledTableRow>
                     <StyledTableCell align="left" color="textPrimary">
                       {r.name}
                       <>
