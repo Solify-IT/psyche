@@ -13,6 +13,18 @@ export default class UserInteractor {
     this.userRepository = userRepository;
   }
 
+  async register(user: User): Promise<User> {
+    if (!this.isValidForm(user)) {
+      throw new InvalidDataError('El usuario no es valido.');
+    }
+    const [results, error] = await wrapError(this.userRepository.register(user));
+
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.register(results);
+  }
+
   async login(username: string, password: string): Promise<LoginResult> {
     const [user, error] = await wrapError(this.userRepository.login(username, password));
 

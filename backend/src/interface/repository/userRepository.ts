@@ -26,4 +26,14 @@ export default class UserRepository implements IUserRepository {
     }
     throw new NotFoundError('No se encontro al usuario');
   }
+
+  async register(user: User): Promise<User> {
+    const [result, error] = await wrapError(
+      this.datastore.save<User>('User', user),
+    );
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
 }
