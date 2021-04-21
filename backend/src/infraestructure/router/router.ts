@@ -9,7 +9,7 @@ export default class Router {
     });
     app.post('/register', async (request, response, next) => {
       await wrapError(controller.users.registerUser({ request, response, next }));
-    })
+    });
     app.get('/patients', async (request, response, next) => {
       await wrapError(controller.patients.getPatients({ request, response, next }));
     });

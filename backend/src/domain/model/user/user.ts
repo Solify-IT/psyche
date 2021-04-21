@@ -15,6 +15,9 @@ export default class User {
   address: string;
 
   @Column()
+  zipCode: string;
+
+  @Column()
   password: string;
 
   @Column()
