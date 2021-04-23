@@ -7,11 +7,11 @@ import Home from './views/Dashboard/home';
 import Form from './views/form';
 import GenerateForm from './views/generateForm';
 import DashboardArea from './views/Dashboard/dashboardArea';
+import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
 import DashboardAtPsiq from './views/Dashboard/dashboardAtPsiq';
 import DashboardEvaluacion from './views/Dashboard/dashboardEvaluacion';
 import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import DasboarPsic from './views/Dashboard/dashboardAsPsic';
-
 
 const AppRouter = () => (
   <div>
@@ -22,6 +22,7 @@ const AppRouter = () => (
     <PrivateRoute path="/patients" exact component={PatientsList} />
     <PrivateRoute path="/home" exact component={Home} />
     <PrivateRoute path="/dashboard-area" exact component={DashboardArea} />
+    <PrivateRoute path="/dashboard-atencion-psicologica" exact component={DashboardAtPsic} />
     <PrivateRoute path="/dashboard-psiquiatrica" exact component={DashboardAtPsiq} />
     <PrivateRoute path="/dashboard-evaluacion" exact component={DashboardEvaluacion} />
     <PrivateRoute path="/dashboard-asesoria" exact component={DashboardAsesoria} />
