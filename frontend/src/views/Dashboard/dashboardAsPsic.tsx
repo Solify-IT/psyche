@@ -61,7 +61,7 @@ function DasboarPsic() {
               </Grid>
 
               <Grid item xs={12} sm={3}>
-                <Link to="/app/land-hb-divisions" className={classes.option}>
+                <Link to="/dashboard-atencion-psicologica" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
@@ -72,7 +72,7 @@ function DasboarPsic() {
               </Grid>
 
               <Grid item xs={12} sm={3}>
-                <Link to="/app/land-divisions" className={classes.option}>
+                <Link to="/dashboard-psiquiatrica" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
@@ -83,7 +83,7 @@ function DasboarPsic() {
               </Grid>
 
               <Grid item xs={12} sm={3}>
-                <Link to="/app/land-hb-divisions" className={classes.option}>
+                <Link to="/dashboard-evaluacion" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
@@ -94,7 +94,7 @@ function DasboarPsic() {
               </Grid>
 
               <Grid item xs={12} sm={3}>
-                <Link to="/app/land-divisions" className={classes.option}>
+                <Link to="/dashboard-asesoria" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>

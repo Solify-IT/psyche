@@ -64,7 +64,7 @@ function Home() {
               <Grid item xs={false} sm={6} />
 
               <Grid item xs={12} sm={4}>
-                <Link to="/app/land-hb-divisions" className={classes.option}>
+                <Link to="/dashboard-area" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
