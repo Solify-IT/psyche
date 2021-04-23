@@ -63,7 +63,7 @@ function DasboardArea() {
               <Grid item xs={12} sm={6} lg={4}>
                 <Link to="/dashboard-as-psic" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Asistencia Psicológica
                     </Typography>
@@ -74,7 +74,7 @@ function DasboardArea() {
               <Grid item xs={12} sm={6} lg={4}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                    <img src="/images/prevsoc.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Prevención Social
                     </Typography>
@@ -85,7 +85,7 @@ function DasboardArea() {
               <Grid item xs={12} sm={6} lg={4}>
                 <Link to="/app/home-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/reporte.png" alt="Logo" className={classes.image} />
+                    <img src="/images/formacioncont.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Formación Continua
                     </Typography>

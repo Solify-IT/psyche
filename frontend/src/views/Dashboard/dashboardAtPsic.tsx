@@ -68,7 +68,7 @@ function DasboardAtPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-hb-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.subtitles}>
                       Individual Menor de Edad
                     </Typography>
@@ -79,7 +79,7 @@ function DasboardAtPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                    <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>
                       Individual Adulto
                     </Typography>
@@ -90,7 +90,7 @@ function DasboardAtPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-hb-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>
                       Pareja
                     </Typography>
@@ -101,7 +101,7 @@ function DasboardAtPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                    <img src="/images/familia.png" alt="Logo" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>
                       Familia
                     </Typography>

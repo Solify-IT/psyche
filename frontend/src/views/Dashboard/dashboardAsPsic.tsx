@@ -67,7 +67,7 @@ function DasboarPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-atencion-psicologica" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Atención Psicológica
                     </Typography>
@@ -78,7 +78,7 @@ function DasboarPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-psiquiatrica" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                    <img src="/images/psiq.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Atención Psiquiátrica
                     </Typography>
@@ -89,7 +89,7 @@ function DasboarPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-evaluacion" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/pericial.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.textPadding}>
                       Evaluación
                     </Typography>
@@ -100,7 +100,7 @@ function DasboarPsic() {
               <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-asesoria" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                    <img src="/images/asesoria.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
                       Asesoría Jurídica
                     </Typography>
