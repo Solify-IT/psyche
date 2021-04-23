@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     margin: theme.spacing(1),
   },
   table: {
-    minWidth: 500,
+    minWidth: 280,
   },
   paper: {
     margin: `${theme.spacing(1)}px auto`,
@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   frm: {
     margin: theme.spacing(2),
+    marginTop: '16px',
+    marginLeft: '15px',
+    minWidth: 280,
+    fontSize: 5,
   },
 }));
 
@@ -84,75 +88,79 @@ export default function CustomizedTables() {
 
   return (
     <div>
-      <Paper className={classes.paper}>
-        <Grid container>
-          <Grid item xs={3}>
-            <TextField
-              id="outlined-basic"
-              label="Nombre del paciente"
-              variant="outlined"
-            />
-            <IconButton aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <FormControl component="fieldset" className={classes.frm}>
-              <FormLabel component="legend">Área</FormLabel>
-              <RadioGroup aria-label="pacient" name="pacient" value={value} onChange={handleChange}>
-                <FormControlLabel value="ps" control={<Radio />} label="Psicología" />
-                <FormControlLabel value="psi" control={<Radio />} label="Psiquiatría" />
-                <FormControlLabel value="aj" control={<Radio />} label="Área jurídica" />
-              </RadioGroup>
-            </FormControl>
-            <TextField
-              id="outlined-basic"
-              label="Nombre del psicólogo"
-              variant="outlined"
-            />
-            <IconButton aria-label="search">
-              <SearchIcon />
-            </IconButton>
-            <FormControl component="fieldset" className={classes.frm}>
-              <FormLabel component="legend">Tipo</FormLabel>
-              <RadioGroup aria-label="doctor" name="doctor" value={value} onChange={handleChange}>
-                <FormControlLabel value="adult" control={<Radio />} label="Adulto" />
-                <FormControlLabel value="couple" control={<Radio />} label="Pareja" />
-                <FormControlLabel value="child" control={<Radio />} label="Menor" />
-              </RadioGroup>
-            </FormControl>
+      <main>
+        <Paper className={classes.paper}>
+          <Grid container>
+            <Grid item xs={3}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                id="outlined-basic"
+                label="Nombre del paciente"
+              />
+              <IconButton aria-label="search">
+                <SearchIcon />
+              </IconButton>
+              <FormControl component="fieldset" className={classes.frm}>
+                <FormLabel component="legend">Área</FormLabel>
+                <RadioGroup aria-label="pacient" name="pacient" value={value} onChange={handleChange}>
+                  <FormControlLabel value="ps" control={<Radio />} label="Psicología" />
+                  <FormControlLabel value="psi" control={<Radio />} label="Psiquiatría" />
+                  <FormControlLabel value="aj" control={<Radio />} label="Área jurídica" />
+                </RadioGroup>
+              </FormControl>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                id="outlined-basic"
+                label="Nombre del psicólogo"
+              />
+              <IconButton aria-label="search">
+                <SearchIcon />
+              </IconButton>
+              <FormControl component="fieldset" className={classes.frm}>
+                <FormLabel component="legend">Tipo</FormLabel>
+                <RadioGroup aria-label="doctor" name="doctor" value={value} onChange={handleChange}>
+                  <FormControlLabel value="adult" control={<Radio />} label="Adulto" />
+                  <FormControlLabel value="couple" control={<Radio />} label="Pareja" />
+                  <FormControlLabel value="child" control={<Radio />} label="Menor" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item xs={8}>
+              <Typography color="primary" variant="h2" align="center">Pacientes</Typography>
+              <Table className={classes.table}>
+                <TableBody>
+                  {patient.map((r) => (
+                    <StyledTableRow>
+                      <StyledTableCell align="left" color="textPrimary">
+                        {r.name}
+                        {' '}
+                        {r.middleName}
+                        {' '}
+                        {r.lastName}
+                        <>
+                          <Typography color="textSecondary" variant="subtitle2">
+                            {' '}
+                            {r.type}
+                          </Typography>
+                        </>
+                        <>
+                          <Typography color="textSecondary" variant="subtitle2">
+                            Folio:
+                            {' '}
+                            {r.id}
+                          </Typography>
+                        </>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Grid>
           </Grid>
-          <Grid item xs={8}>
-            <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
-            <Table className={classes.table}>
-              <TableBody>
-                {patient.map((r) => (
-                  <StyledTableRow>
-                    <StyledTableCell align="left" color="textPrimary">
-                      {r.name}
-                      {' '}
-                      {r.middleName}
-                      {' '}
-                      {r.lastName}
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          {' '}
-                          {r.type}
-                        </Typography>
-                      </>
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          Folio:
-                          {' '}
-                          {r.id}
-                        </Typography>
-                      </>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </main>
     </div>
   );
 }
