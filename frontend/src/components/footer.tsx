@@ -11,7 +11,7 @@ function Footer() {
       </Typography>
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        Soolers
+        {'Soolers '}
         {new Date().getFullYear()}
         .
       </Typography>

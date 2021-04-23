@@ -30,11 +30,16 @@ function DasboardAtPsic() {
       color: theme.palette.text.secondary,
     },
     image: {
-      width: '60%',
-      height: 'auto',
+      height: '130px',
+      width: 'auto',
     },
     option: {
       textDecoration: 'none',
+    },
+    textPadding: {
+      color: '#000000',
+      paddingBottom: '21px',
+      paddingTop: '21px',
     },
 
   }));
@@ -60,10 +65,10 @@ function DasboardAtPsic() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-hb-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                    <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.subtitles}>
                       Individual Menor de Edad
                     </Typography>
@@ -71,33 +76,33 @@ function DasboardAtPsic() {
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.subtitles}>
+                    <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
+                    <Typography variant="h5" align="center" className={classes.textPadding}>
                       Individual Adulto
                     </Typography>
                   </Paper>
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-hb-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.subtitles}>
+                    <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />
+                    <Typography variant="h5" align="center" className={classes.textPadding}>
                       Pareja
                     </Typography>
                   </Paper>
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
-                    <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.subtitles}>
+                    <img src="/images/familia.png" alt="Logo" className={classes.image} />
+                    <Typography variant="h5" align="center" className={classes.textPadding}>
                       Familia
                     </Typography>
                   </Paper>

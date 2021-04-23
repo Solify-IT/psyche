@@ -30,8 +30,8 @@ function DashboardAsesoria() {
       color: theme.palette.text.secondary,
     },
     image: {
-      width: '60%',
-      height: 'auto',
+      height: '130px',
+      width: 'auto',
     },
     option: {
       textDecoration: 'none',
@@ -60,20 +60,20 @@ function DashboardAsesoria() {
                 </Typography>
               </Grid>
               <Grid container alignItems="center" justify="center" spacing={10}>
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={12} sm={6} lg={5}>
                   <Link to="/app/land-hb-divisions" className={classes.option}>
                     <Paper className={classes.paper}>
-                      <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
+                      <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>
                         Menor de Edad
                       </Typography>
                     </Paper>
                   </Link>
                 </Grid>
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={12} sm={6} lg={5}>
                   <Link to="/app/land-divisions" className={classes.option}>
                     <Paper className={classes.paper}>
-                      <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
+                      <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>
                         Adulto
                       </Typography>
