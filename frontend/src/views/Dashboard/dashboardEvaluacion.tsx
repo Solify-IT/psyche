@@ -10,7 +10,7 @@ import {
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
 
-function DashboardAtPsiq() {
+function DashboardEvaluacion() {
   const useStyles = makeStyles((theme) => ({
     heroContent: {
       padding: theme.spacing(6, 0, 6),
@@ -50,7 +50,7 @@ function DashboardAtPsiq() {
 
               <Grid item xs={12}>
                 <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Atención psiquiátrica
+                  Evaluación
                 </Typography>
               </Grid>
               <Grid item xs={false} sm={1} />
@@ -65,7 +65,7 @@ function DashboardAtPsiq() {
                     <Paper className={classes.paper}>
                       <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>
-                        Individual Menor de Edad
+                        Clinica
                       </Typography>
                     </Paper>
                   </Link>
@@ -75,7 +75,7 @@ function DashboardAtPsiq() {
                     <Paper className={classes.paper}>
                       <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>
-                        Individual Adulto
+                        Forense
                       </Typography>
                     </Paper>
                   </Link>
@@ -91,4 +91,4 @@ function DashboardAtPsiq() {
   );
 }
 
-export default DashboardAtPsiq;
+export default DashboardEvaluacion;
