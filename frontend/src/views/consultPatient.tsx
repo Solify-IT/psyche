@@ -128,8 +128,13 @@ export default function CustomizedTables() {
                   <StyledTableRow>
                     <StyledTableCell align="left" color="textPrimary">
                       {r.name}
+                      {' '}
+                      {r.middleName}
+                      {' '}
+                      {r.lastName}
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
+                          {' '}
                           {r.type}
                         </Typography>
                       </>
