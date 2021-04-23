@@ -7,6 +7,7 @@ import Home from './views/Dashboard/home';
 import Form from './views/form';
 import GenerateForm from './views/generateForm';
 import DashboardArea from './views/Dashboard/dashboardArea';
+import DasboarPsic from './views/Dashboard/dashboardAsPsic';
 
 const AppRouter = () => (
   <div>
@@ -17,6 +18,7 @@ const AppRouter = () => (
     <PrivateRoute path="/patients" exact component={PatientsList} />
     <PrivateRoute path="/home" exact component={Home} />
     <PrivateRoute path="/dashboard-area" exact component={DashboardArea} />
+    <PrivateRoute path="/dashboard-as-psic" exact component={DasboarPsic} />
   </div>
 );
 
