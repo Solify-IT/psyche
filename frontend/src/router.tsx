@@ -11,7 +11,7 @@ import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
 import DashboardAtPsiq from './views/Dashboard/dashboardAtPsiq';
 import DashboardEvaluacion from './views/Dashboard/dashboardEvaluacion';
 import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
-import DasboarPsic from './views/Dashboard/dashboardAsPsic';
+import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 
 const AppRouter = () => (
   <div>
@@ -26,7 +26,7 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-psiquiatrica" exact component={DashboardAtPsiq} />
     <PrivateRoute path="/dashboard-evaluacion" exact component={DashboardEvaluacion} />
     <PrivateRoute path="/dashboard-asesoria" exact component={DashboardAsesoria} />
-    <PrivateRoute path="/dashboard-as-psic" exact component={DasboarPsic} />
+    <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
   </div>
 );
 

@@ -30,13 +30,17 @@ function DasboarPsic() {
       color: theme.palette.text.secondary,
     },
     image: {
-      width: '60%',
-      height: 'auto',
+      height: '130px',
+      width: 'auto',
     },
     option: {
       textDecoration: 'none',
     },
-
+    textPadding: {
+      color: '#000000',
+      paddingBottom: '26px',
+      paddingTop: '26px',
+    },
   }));
 
   const classes = useStyles();
@@ -60,7 +64,7 @@ function DasboarPsic() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-atencion-psicologica" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
@@ -71,7 +75,7 @@ function DasboarPsic() {
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-psiquiatrica" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
@@ -82,18 +86,18 @@ function DasboarPsic() {
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-evaluacion" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
+                    <Typography variant="h4" align="center" className={classes.textPadding}>
                       Evaluación
                     </Typography>
                   </Paper>
                 </Link>
               </Grid>
 
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <Link to="/dashboard-asesoria" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
