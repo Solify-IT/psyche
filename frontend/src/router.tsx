@@ -6,11 +6,14 @@ import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import Form from './views/form';
 import GenerateForm from './views/generateForm';
+// Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
 import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
 import DashboardAtPsiq from './views/Dashboard/dashboardAtPsiq';
 import DashboardEvaluacion from './views/Dashboard/dashboardEvaluacion';
 import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
+// Patient Views
+import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 
 const AppRouter = () => (
@@ -20,6 +23,7 @@ const AppRouter = () => (
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/patients" exact component={PatientsList} />
+    <PrivateRoute path="/register-patient" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />
     <PrivateRoute path="/dashboard-area" exact component={DashboardArea} />
     <PrivateRoute path="/dashboard-atencion-psicologica" exact component={DashboardAtPsic} />
