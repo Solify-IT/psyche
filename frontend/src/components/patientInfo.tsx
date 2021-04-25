@@ -48,108 +48,120 @@ type PatientInfoProps = {
   patient: Patient
 };
 
+type PatientInfoSlotProps = {
+  label: string,
+  value: string,
+};
+
+type FormSectionProps = {
+  title: string,
+  forms: IPatientForm[],
+};
+
+function PatientInfoSlot(infoProps: PatientInfoSlotProps) {
+  return (
+    <Grid item>
+      <Typography variant="body2">
+        <strong>
+          {infoProps.label}
+          :
+          {' '}
+        </strong>
+        {infoProps.value}
+      </Typography>
+    </Grid>
+  );
+}
+function FormSection(props: FormSectionProps) {
+  const classes = useStyles();
+  const { forms, title } = props;
+  return (
+    <Paper key={title} variant="outlined" className={classes.patientSection}>
+      <Grid container spacing={2} justify="space-between">
+        <Grid item>
+          <Typography component="h2" variant="h5" className={classes.patientSectionTitle}>
+            <strong>
+              { title }
+            </strong>
+          </Typography>
+        </Grid>
+      </Grid>
+      { forms.map((form) => (
+        <Grid justify="space-between" key={form.id} container spacing={2} className={classes.patientFileRow}>
+          <Grid item md={6}>
+            <Typography component="h3" variant="h5">
+              {form.name}
+            </Typography>
+          </Grid>
+          <Grid item md={4}>
+            <Typography component="h4" variant="h5">
+              { Moment(form.createdDate).format('DD-MM-YYYY')}
+            </Typography>
+          </Grid>
+          <Grid item md={1}>
+            <Button variant="contained" color="primary">
+              Consultar
+            </Button>
+          </Grid>
+          <Grid item md={1}>
+            <Button variant="contained" color="secondary">
+              Modificar
+            </Button>
+          </Grid>
+        </Grid>
+      ))}
+    </Paper>
+  );
+}
+
 function PatientInfo(props: PatientInfoProps) {
   const classes = useStyles();
   const { patient } = props;
+  const formsGrouped = groupBy(patient.forms, (form) => form.name);
+  const formKeys = Object.keys(formsGrouped);
 
-  function createInfoSlot(label: string, value: string) {
+  function PatientGeneralInfo() {
     return (
-      <Grid item>
-        <Typography variant="body2">
-          <strong>
-            {label}
-            :
-            {' '}
-          </strong>
-          {value}
+      <Paper variant="outlined" className={classes.patientSection}>
+        <Typography component="h3" variant="h5" className={classes.patientSectionTitle}>
+          <strong>Informacion general:</strong>
         </Typography>
-      </Grid>
-    );
-  }
-
-  function createFormSection(title: string, forms: IPatientForm[]) {
-    return (
-      <Paper key={title} variant="outlined" className={classes.patientSection}>
-        <Grid container spacing={2} justify="space-between">
-          <Grid item>
-            <Typography component="h2" variant="h5" className={classes.patientSectionTitle}>
-              <strong>
-                { title }
-              </strong>
-            </Typography>
-          </Grid>
+        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
+          <PatientInfoSlot label="Nombre" value={patient.name} />
+          <PatientInfoSlot label="Apellido Paterno" value={patient.middleName} />
+          <PatientInfoSlot label="Apellido Materno" value={patient.lastName} />
         </Grid>
-        { forms.map((form) => (
-          <Grid justify="space-between" key={form.id} container spacing={2} className={classes.patientFileRow}>
-            <Grid item md={6}>
-              <Typography component="h3" variant="h5">
-                {form.name}
-              </Typography>
-            </Grid>
-            <Grid item md={4}>
-              <Typography component="h4" variant="h5">
-                { Moment(form.createdDate).format('DD-MM-YYYY')}
-              </Typography>
-            </Grid>
-            <Grid item md={1}>
-              <Button variant="contained" color="primary">
-                Consultar
-              </Button>
-            </Grid>
-            <Grid item md={1}>
-              <Button variant="contained" color="secondary">
-                Modificar
-              </Button>
-            </Grid>
-          </Grid>
-        ))}
+        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
+          <PatientInfoSlot label="Folio" value={patient.id.toString()} />
+          <PatientInfoSlot label="Edad" value={patient.age.toString()} />
+          <PatientInfoSlot label="Genero" value={patient.gender} />
+        </Grid>
+        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
+          <PatientInfoSlot label="Tipo de paciente" value={patient.type} />
+          <PatientInfoSlot label="Fecha de inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
+          <PatientInfoSlot label="Telefono" value={patient.telephone} />
+        </Grid>
+        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
+          <PatientInfoSlot label="Lugar de nacimiento" value={patient.birthPlace} />
+          <PatientInfoSlot label="Direccion" value={patient.address} />
+          <PatientInfoSlot label="Codigo Postal" value={patient.postalCode} />
+        </Grid>
       </Paper>
     );
-  }
-
-  function createFormsGroup(forms: IPatientForm[]) {
-    const groupedForms = groupBy(forms, (form) => form.name);
-    const formElements : JSX.Element[] = [];
-    Object.keys(groupedForms).forEach((key) => {
-      formElements.push(createFormSection(key, groupedForms[key]));
-    });
-    return formElements;
   }
 
   return (
     <FadeIn>
       <Grid container component="main" className={classes.root}>
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
             Expediente de:
             { ` ${patient.name} ${patient.middleName} ${patient.lastName}` }
           </Typography>
-          <Paper variant="outlined" className={classes.patientSection}>
-            <Typography component="h3" variant="h5" className={classes.patientSectionTitle}>
-              <strong>Informacion general:</strong>
-            </Typography>
-            <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-              { createInfoSlot('Nombre', patient.name) }
-              { createInfoSlot('Apellido Paterno', patient.middleName) }
-              { createInfoSlot('Nombre', patient.lastName) }
-            </Grid>
-            <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-              { createInfoSlot('Folio', patient.id.toString()) }
-              { createInfoSlot('Edad', patient.age.toString()) }
-              { createInfoSlot('Genero', patient.gender) }
-            </Grid>
-            <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-              { createInfoSlot('Tipo de paciente', patient.type) }
-              { createInfoSlot('Fecha de inicio', Moment(patient.startDate).format('DD-MM-YYYY')) }
-              { createInfoSlot('Telefono', patient.telephone) }
-            </Grid>
-            <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-              { createInfoSlot('Lugar de nacimiento', patient.birthPlace) }
-              { createInfoSlot('Direccion', patient.address) }
-              { createInfoSlot('Codigo Postal', patient.postalCode) }
-            </Grid>
-          </Paper>
-          { createFormsGroup(patient.forms) }
+          <PatientGeneralInfo />
+          { formKeys.map((key) => (
+            <FormSection key={key} title={key} forms={formsGrouped[key]} />
+          ))}
         </Grid>
       </Grid>
       <CornerFab extended text="Agregar formato" link="" />

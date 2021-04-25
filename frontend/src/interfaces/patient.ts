@@ -12,7 +12,7 @@ export default interface Patient {
   telephone: string;
   address: string;
   birthPlace: string;
-  birthDate: string;
+  birthDate: Date;
   postalCode: string;
   forms: IPatientForm[];
 }
