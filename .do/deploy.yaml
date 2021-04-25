@@ -1,0 +1,21 @@
+spec:
+  name: psyque-ing-monorepo
+
+  services:
+  - name: backend
+    environment_slug: node-js
+    git:
+      branch: master
+      repo_clone_url: https://github.com/albertcastaned/psyche-ing.git
+    source_dir: backend
+    routes:
+    - path: /backennd
+
+  - name: frontend
+    environment_slug: node-js
+    git:
+      branch: master
+      repo_clone_url: https://github.com/albertcastaned/psyche-ing.git
+    source_dir: frontend
+    routes:
+    - path: /frontend
