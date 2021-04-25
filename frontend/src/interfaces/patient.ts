@@ -1,3 +1,5 @@
+import IPatientForm from './patientForm';
+
 export default interface Patient {
   id: number;
   name: string;
@@ -12,4 +14,5 @@ export default interface Patient {
   birthPlace: string;
   birthDate: string;
   postalCode: string;
+  forms: IPatientForm[];
 }

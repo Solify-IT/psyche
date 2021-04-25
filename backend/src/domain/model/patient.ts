@@ -1,18 +1,28 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn,
+} from 'typeorm';
+import { Form } from '.';
+import PatientForm from './patientForm';
 
 @Entity()
 export default class Patient {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
-  @Column({ type: 'date' })
-  startDate: Date;
+  @Column()
+  name: string;
+
+  @Column()
+  middleName: string;
+
+  @Column()
+  lastName: string;
+
+  @CreateDateColumn({ type: 'date' })
+  startDate?: Date;
 
   @Column()
   type: string;
-
-  @Column()
-  costPerSession: number;
 
   @Column()
   age: number;
@@ -27,11 +37,16 @@ export default class Patient {
   address: string;
 
   @Column()
-  civilStatus: string;
+  birthPlace: string;
+
+  @Column({
+    nullable: true,
+  })
+  birthDate: Date;
 
   @Column()
-  notes: string;
+  postalCode: string;
 
-//  @Column()
-//  person: Person;
+  @OneToMany(() => PatientForm, (form) => form.patient, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  forms?: Form[];
 }
