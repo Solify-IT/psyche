@@ -10,16 +10,15 @@ import PatientInfo from 'src/components/patientInfo';
 function PatientDetail() {
   const { id } : any = useParams();
   const mPromise = server.get<Patient>(`/patients/${id}`);
-
   const content = PromiseLoader<Patient>(
     mPromise,
     (patient) => <PatientInfo patient={patient} />,
     (error) => {
       switch (error.response?.status) {
         case 404:
-          return <h2>No se encontro al paciente</h2>;
+          return <h2>No se encontró al paciente</h2>;
         default:
-          return <h2>Ocurrio un error de conexion.</h2>;
+          return <h2>Ocurrió un error de conexión.</h2>;
       }
     },
   );

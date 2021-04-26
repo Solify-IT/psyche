@@ -1,4 +1,4 @@
-export default interface IPatientForm {
+export default interface PatientForm {
   id: number;
   name: string;
   createdDate: Date;

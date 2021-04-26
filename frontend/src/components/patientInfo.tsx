@@ -7,7 +7,7 @@ import Moment from 'moment';
 import FadeIn from 'react-fade-in';
 import Patient from 'src/interfaces';
 import CornerFab from 'src/components/cornerFab';
-import IPatientForm from 'src/interfaces/patientForm';
+import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +55,7 @@ type PatientInfoSlotProps = {
 
 type FormSectionProps = {
   title: string,
-  forms: IPatientForm[],
+  forms: PatientForm[],
 };
 
 function PatientInfoSlot(infoProps: PatientInfoSlotProps) {
@@ -125,7 +125,7 @@ function PatientInfo(props: PatientInfoProps) {
     return (
       <Paper variant="outlined" className={classes.patientSection}>
         <Typography component="h3" variant="h5" className={classes.patientSectionTitle}>
-          <strong>Informacion general:</strong>
+          <strong>Información general:</strong>
         </Typography>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <PatientInfoSlot label="Nombre" value={patient.name} />

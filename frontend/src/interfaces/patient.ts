@@ -1,4 +1,4 @@
-import IPatientForm from './patientForm';
+import PatientForm from './patientForm';
 
 export default interface Patient {
   id: number;
@@ -14,5 +14,5 @@ export default interface Patient {
   birthPlace: string;
   birthDate: Date;
   postalCode: string;
-  forms: IPatientForm[];
+  forms: PatientForm[];
 }
