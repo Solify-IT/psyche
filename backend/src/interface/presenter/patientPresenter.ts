@@ -5,4 +5,8 @@ export default class PatientPresenter implements IPatientPresenter {
   findAll(patients: Patient[]): Patient[] {
     return patients;
   }
+
+  register(patient: Patient): Patient {
+    return patient;
+  }
 }

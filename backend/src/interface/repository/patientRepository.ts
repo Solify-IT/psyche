@@ -10,6 +10,16 @@ export default class PatientRepository implements IPatientRepository {
     this.datastore = datastore;
   }
 
+  async register(patient: Patient): Promise<Patient> {
+    const [result, error] = await wrapError(
+      this.datastore.save<Patient>('Patient', patient),
+    );
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
+
   async findAll(): Promise<Patient[]> {
     const [patients, error] = await wrapError(
       this.datastore.fetchAll<Patient>('Patient'),
