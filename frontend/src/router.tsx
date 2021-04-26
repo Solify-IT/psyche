@@ -13,8 +13,8 @@ const AppRouter = () => (
     <Route path="/login" exact component={Login} />
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
-    <PrivateRoute path="/patients" exact component={PatientsList} />
-    <PrivateRoute path="/patients/:id(\d+)" exact component={PatientDetail} />
+    <PrivateRoute path="/pacientes" exact component={PatientsList} />
+    <PrivateRoute path="/pacientes/:id(\d+)" exact component={PatientDetail} />
   </div>
 );
 
