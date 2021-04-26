@@ -66,7 +66,7 @@ function DasboardAtPsic() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/app/land-hb-divisions" className={classes.option}>
+                <Link to="/register-patient/psicologia/Psicología Menor de Edad" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.subtitles}>
@@ -77,7 +77,7 @@ function DasboardAtPsic() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/app/land-divisions" className={classes.option}>
+                <Link to="/register-patient/psicologia/Psicología Adulto" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>
@@ -88,7 +88,7 @@ function DasboardAtPsic() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/app/land-hb-divisions" className={classes.option}>
+                <Link to="/register-patient/psicologia/Psicología Pareja" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>
@@ -99,7 +99,7 @@ function DasboardAtPsic() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/app/land-divisions" className={classes.option}>
+                <Link to="/register-patient/psicologia/Psicología Familia" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/familia.png" alt="Logo" className={classes.image} />
                     <Typography variant="h5" align="center" className={classes.textPadding}>

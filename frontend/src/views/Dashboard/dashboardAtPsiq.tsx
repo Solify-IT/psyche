@@ -61,7 +61,7 @@ function DashboardAtPsiq() {
               </Grid>
               <Grid container alignItems="center" justify="center" spacing={10}>
                 <Grid item xs={12} sm={6} lg={5}>
-                  <Link to="/app/land-hb-divisions" className={classes.option}>
+                  <Link to="/register-patient/psiquiatrica/Psiquiatría Menor de Edad" className={classes.option}>
                     <Paper className={classes.paper}>
                       <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>
@@ -71,7 +71,7 @@ function DashboardAtPsiq() {
                   </Link>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={5}>
-                  <Link to="/app/land-divisions" className={classes.option}>
+                  <Link to="/register-patient/psiquiatrica/Psiquiatría Adulto" className={classes.option}>
                     <Paper className={classes.paper}>
                       <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
                       <Typography variant="h4" align="center" className={classes.subtitles}>

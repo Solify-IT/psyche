@@ -1,10 +1,8 @@
 export default interface Patient {
   name: string;
-  middleName: string;
   lastName: string;
   startDate: Date;
   type: string;
-  age: number;
   gender: string;
   telephone: string;
   address: string;
