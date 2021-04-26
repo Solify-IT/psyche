@@ -59,15 +59,16 @@ type FormSectionProps = {
 };
 
 function PatientInfoSlot(infoProps: PatientInfoSlotProps) {
+  const { label, value } = infoProps;
   return (
     <Grid item>
       <Typography variant="body2">
         <strong>
-          {infoProps.label}
+          { label}
           :
           {' '}
         </strong>
-        {infoProps.value}
+        { value}
       </Typography>
     </Grid>
   );
