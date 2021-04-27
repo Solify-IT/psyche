@@ -21,7 +21,7 @@ export default class PatientInteractor {
     if (error) {
       throw error;
     }
-    return this.patientPresenter.register(result);
+    return this.patientPresenter.record(result);
   }
 
   async getAll(): Promise<Patient[]> {
@@ -34,12 +34,12 @@ export default class PatientInteractor {
     return this.patientPresenter.findAll(patients);
   }
 
-  async getPatientDetail(id: number) : Promise<Patient> {
-    const [patient, error] = await wrapError(this.patientRepository.findPatient(id));
+  async getRecord(id: number) : Promise<Record> {
+    const [record, error] = await wrapError(this.patientRepository.findRecord(id));
 
     if (error) {
       throw error;
     }
-    return this.patientPresenter.patientDetail(patient);
+    return this.patientPresenter.record(record);
   }
 }

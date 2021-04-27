@@ -79,8 +79,8 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
-    postalCode: '',
+    postalCode: 2222,
+    birthDate: new Date(),
   });
   const {
     name, lastName, type, gender,

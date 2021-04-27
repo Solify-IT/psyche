@@ -30,15 +30,15 @@ export default class PatientController {
     context.response.status(200).json(patients);
   }
 
-  async getPatientDetail(context: IContext): Promise<void> {
+  async getRecordDetail(context: IContext): Promise<void> {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
-    const [patient, error] = await wrapError(this.patientInteractor.getPatientDetail(id));
+    const [record, error] = await wrapError(this.patientInteractor.getRecord(id));
 
     if (error) {
       context.next(error);
       return;
     }
-    context.response.status(200).json(patient);
+    context.response.status(200).json(record);
   }
 }

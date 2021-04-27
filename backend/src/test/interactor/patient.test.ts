@@ -1,6 +1,7 @@
 import { wrapError } from '@types';
 import PatientInteractor from 'app/interactor/patientInteractor';
 import patientFixture from 'fixtures/patient';
+import recordFixture from 'fixtures/record';
 import Datastore from 'infraestructure/datastore/datastore';
 import { PatientPresenter } from 'interface/presenter';
 import { PatientRepository } from 'interface/repository';
@@ -13,6 +14,9 @@ const datastore = new Datastore();
 const patientRepository = new PatientRepository(datastore);
 const patientPresenter = new PatientPresenter();
 const interactor = new PatientInteractor(patientRepository, patientPresenter);
+
+const record = recordFixture;
+const patients = patientFixture;
 
 describe('Patient detail', () => {
   beforeAll(async () => {
@@ -27,21 +31,66 @@ describe('Patient detail', () => {
     await testConnection.clear();
   });
 
-  test('should return patient info when patient is found', async () => {
+  test('should return record when record is found', async () => {
     jest.spyOn(
-      patientRepository, 'findPatient',
-    ).mockImplementation(async () => patientFixture);
-    const [result, error] = await wrapError(interactor.getPatientDetail(1));
+      patientRepository, 'findRecord',
+    ).mockImplementation(async () => record);
+    const [result, error] = await wrapError(interactor.getRecord(1));
 
     expect(error).toBe(null);
-    expect(result).toEqual(patientFixture);
+    expect(result).toEqual(record);
   });
 
   test('should catch error from repository', async () => {
     jest.spyOn(
-      patientRepository, 'findPatient',
+      patientRepository, 'findRecord',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.getPatientDetail(1));
+    const [result, error] = await wrapError(interactor.getRecord(1));
+
+    expect(error).toBeInstanceOf(Error);
+    expect(result).toBe(null);
+  });
+});
+
+describe('Patient register', () => {
+  beforeAll(async () => {
+    await testConnection.create();
+  });
+
+  afterAll(async () => {
+    await testConnection.close();
+  });
+
+  beforeEach(async () => {
+    await testConnection.clear();
+  });
+
+  test('should return record when single patient is passed', async () => {
+    jest.spyOn(
+      patientRepository, 'register',
+    ).mockImplementation(async () => record);
+    const [result, error] = await wrapError(interactor.register(patientFixture));
+
+    expect(error).toBe(null);
+    expect(result).toBeDefined();
+    expect(result.patients[0].name).toEqual(patientFixture.name);
+  });
+
+  test('should return record when list of patients is passed', async () => {
+    jest.spyOn(
+      patientRepository, 'register',
+    ).mockImplementation(async () => record);
+    const [result, error] = await wrapError(interactor.register(patients));
+
+    expect(error).toBe(null);
+    expect(result).toEqual(record);
+  });
+
+  test('should catch error from repository', async () => {
+    jest.spyOn(
+      patientRepository, 'register',
+    ).mockImplementation(async () => { throw new Error('An error occured'); });
+    const [result, error] = await wrapError(interactor.register(patients));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);

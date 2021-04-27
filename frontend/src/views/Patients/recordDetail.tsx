@@ -1,22 +1,22 @@
 import React from 'react';
 
 import server from 'src/utils/server';
-import '../App.css';
-import Patient from 'src/interfaces';
+import 'src/App.css';
+import Record from 'src/interfaces/record';
 import { useParams } from 'react-router-dom';
 import PromiseLoader from 'src/utils/promiseLoader';
-import PatientInfo from 'src/components/patientInfo';
+import RecordInfo from 'src/components/recordInfo';
 
-function PatientDetail() {
+function RecordDetail() {
   const { id } : any = useParams();
-  const mPromise = server.get<Patient>(`/patients/${id}`);
-  const content = PromiseLoader<Patient>(
+  const mPromise = server.get<Record>(`/records/${id}`);
+  const content = PromiseLoader<Record>(
     mPromise,
-    (patient) => <PatientInfo patient={patient} />,
+    (record) => <RecordInfo record={record} />,
     (error) => {
       switch (error.response?.status) {
         case 404:
-          return <h2>No se encontró al paciente</h2>;
+          return <h2>No se encontró el expediente</h2>;
         default:
           return <h2>Ocurrió un error de conexión.</h2>;
       }
@@ -25,4 +25,4 @@ function PatientDetail() {
   return content;
 }
 
-export default PatientDetail;
+export default RecordDetail;

@@ -5,10 +5,12 @@ import {
 } from '@material-ui/core';
 import Moment from 'moment';
 import FadeIn from 'react-fade-in';
-import Patient from 'src/interfaces';
+import Record from 'src/interfaces/record';
 import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
+import Patient from 'src/interfaces';
+import calculateAge from 'src/utils/calculateAge';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,11 +46,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type PatientInfoProps = {
-  patient: Patient
+type RecordInfoProps = {
+  record: Record
 };
 
-type PatientInfoSlotProps = {
+type PatientGeneralInfoProps = {
+  patient: Patient;
+};
+
+type RecordInfoSlotProps = {
   label: string,
   value: string,
 };
@@ -58,7 +64,7 @@ type FormSectionProps = {
   forms: PatientForm[],
 };
 
-function PatientInfoSlot(infoProps: PatientInfoSlotProps) {
+function RecordInfoSlot(infoProps: RecordInfoSlotProps) {
   const { label, value } = infoProps;
   return (
     <Grid item>
@@ -115,54 +121,58 @@ function FormSection(props: FormSectionProps) {
   );
 }
 
-function PatientInfo(props: PatientInfoProps) {
+function RecordInfo(props: RecordInfoProps) {
   const classes = useStyles();
-  const { patient } = props;
-  const formsGrouped = groupBy(patient.forms, (form) => form.name);
-  const formKeys = Object.keys(formsGrouped);
+  const { record } = props;
+  const formsGrouped = groupBy(record.forms, (form) => form.name);
 
-  function PatientGeneralInfo() {
+  function PatientGeneralInfo(patientProps: PatientGeneralInfoProps) {
+    const { patient } = patientProps;
     return (
       <Paper variant="outlined" className={classes.patientSection}>
         <Typography component="h3" variant="h5" className={classes.patientSectionTitle}>
-          <strong>Información general:</strong>
+          <strong>
+            {`Paciente #${patient.id}`}
+          </strong>
         </Typography>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-          <PatientInfoSlot label="Nombre" value={patient.name} />
-          <PatientInfoSlot label="Apellido Paterno" value={patient.middleName} />
-          <PatientInfoSlot label="Apellido Materno" value={patient.lastName} />
+          <RecordInfoSlot label="Nombre" value={patient.name} />
+          <RecordInfoSlot label="Apellidos" value={patient.lastName} />
+          <RecordInfoSlot label="Edad" value={calculateAge(patient.birthDate).toString()} />
         </Grid>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-          <PatientInfoSlot label="Folio" value={patient.id.toString()} />
-          <PatientInfoSlot label="Edad" value={patient.age.toString()} />
-          <PatientInfoSlot label="Genero" value={patient.gender} />
+          <RecordInfoSlot label="Genero" value={patient.gender} />
+          <RecordInfoSlot label="Lugar de nacimiento" value={patient.birthPlace} />
+          <RecordInfoSlot label="Fecha de inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
         </Grid>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-          <PatientInfoSlot label="Tipo de paciente" value={patient.type} />
-          <PatientInfoSlot label="Fecha de inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
-          <PatientInfoSlot label="Telefono" value={patient.telephone} />
+          <RecordInfoSlot label="Tipo de paciente" value={patient.type} />
+          <RecordInfoSlot label="Telefono" value={patient.telephone} />
+          <RecordInfoSlot label="Direccion" value={patient.address} />
         </Grid>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-          <PatientInfoSlot label="Lugar de nacimiento" value={patient.birthPlace} />
-          <PatientInfoSlot label="Direccion" value={patient.address} />
-          <PatientInfoSlot label="Codigo Postal" value={patient.postalCode} />
+          <RecordInfoSlot label="Codigo Postal" value={patient.postalCode.toString()} />
         </Grid>
       </Paper>
     );
   }
+  console.log(record);
 
   return (
     <FadeIn>
       <Grid container component="main" className={classes.root}>
         <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
-            Expediente de:
-            { ` ${patient.name} ${patient.middleName} ${patient.lastName}` }
+            Expediente
+            {' '}
+            {record.id}
           </Typography>
-          <PatientGeneralInfo />
-          { formKeys.map((key) => (
-            <FormSection key={key} title={key} forms={formsGrouped[key]} />
+          { record.patients.map((patient) => (
+            <PatientGeneralInfo patient={patient} key={patient.id} />
           ))}
+          {formsGrouped ? Object.keys(formsGrouped).map((key) => (
+            <FormSection key={key} title={key} forms={formsGrouped[key]} />
+          )) : false}
         </Grid>
       </Grid>
       <CornerFab extended text="Agregar formato" link="" />
@@ -170,4 +180,4 @@ function PatientInfo(props: PatientInfoProps) {
   );
 }
 
-export default PatientInfo;
+export default RecordInfo;

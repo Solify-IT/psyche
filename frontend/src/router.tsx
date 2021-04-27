@@ -6,7 +6,7 @@ import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import Form from './views/form';
 import GenerateForm from './views/generateForm';
-import PatientDetail from './views/patientDetail';
+import RecordDetail from './views/Patients/recordDetail';
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
 import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
@@ -24,8 +24,7 @@ const AppRouter = () => (
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/pacientes" exact component={PatientsList} />
-    <PrivateRoute path="/pacientes/:id(\d+)" exact component={PatientDetail} />
-    <PrivateRoute path="/patients" exact component={PatientsList} />
+    <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />
     <PrivateRoute path="/dashboard-area" exact component={DashboardArea} />

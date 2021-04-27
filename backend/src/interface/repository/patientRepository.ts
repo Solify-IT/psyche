@@ -1,11 +1,8 @@
 import { wrapError } from '@types';
 import { Patient } from 'domain/model';
 import IPatientRepository from 'app/repository/patientRepository';
-<<<<<<< HEAD
 import NotFoundError from 'utils/errors/NotFoundError';
-=======
 import Record from 'domain/model/record';
->>>>>>> feat/registerPatients
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
@@ -15,21 +12,21 @@ export default class PatientRepository implements IPatientRepository {
     this.datastore = datastore;
   }
 
-<<<<<<< HEAD
-  async findPatient(id: number): Promise<Patient> {
-    const [patient, error] = await wrapError(
-      this.datastore.fetchOne<Patient>('Patient', { id }),
+  async findRecord(id: number): Promise<Record> {
+    const [record, error] = await wrapError(
+      this.datastore.fetchOne<Record>('Record', { id }),
     );
 
     if (error) {
       throw error;
     }
 
-    if (patient) {
-      return patient;
+    if (record) {
+      return record;
     }
-    throw new NotFoundError('No se encontro al paciente solicitado');
-=======
+    throw new NotFoundError('No se encontro el expediente del paciente solicitado');
+  }
+
   async register(patients: Patient[]): Promise<Record> {
     const record = {
       patients,
@@ -42,7 +39,6 @@ export default class PatientRepository implements IPatientRepository {
       throw error;
     }
     return result;
->>>>>>> feat/registerPatients
   }
 
   async findAll(): Promise<Patient[]> {

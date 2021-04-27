@@ -18,6 +18,6 @@ export default class Record {
   @OneToMany(() => Patient, (patient) => patient.record, { cascade: true, eager: true, onDelete: 'CASCADE' })
   patients: Patient[];
 
-  @OneToMany(() => PatientForm, (form) => form.record)
-  forms: PatientForm[];
+  @OneToMany(() => PatientForm, (form) => form.record, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  forms?: PatientForm[];
 }
