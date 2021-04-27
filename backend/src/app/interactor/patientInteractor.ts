@@ -15,7 +15,8 @@ export default class PatientInteractor {
   }
 
   async register(data: Patient[] | Patient) : Promise<Record> {
-    const patients : Patient[] = (data instanceof Patient) ? [data] : data;
+    const patients : Patient[] = (!Array.isArray(data)) ? [data] : data;
+    console.log(patients);
     const [result, error] = await wrapError(this.patientRepository.register(patients));
 
     if (error) {
