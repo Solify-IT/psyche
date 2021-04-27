@@ -11,13 +11,20 @@ import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option: FilmOptionType) => option.name,
+});
+interface FilmOptionType {
+  name: string;
+}
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
@@ -69,7 +76,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 export default function CustomizedTables() {
   const [searchData, setSearchData] = useState('');
   const [patients, setPatients] = useState<any[]>([]);
+  const [doctor, setDoctor] = useState<any[]>([]);
   const [patientsData, setPatientsData] = useState<any[]>([]);
+  const [doctorData, setDoctorData] = useState<any[]>([]);
   const getPatients = async () => {
     try {
       const response = await fetch('http://localhost:8000/patients');
@@ -81,11 +90,18 @@ export default function CustomizedTables() {
       console.error(err.message);
     }
   };
-
-  useEffect(() => {
-    getPatients();
-  }, []);
-  const [value, setValue] = React.useState('Adulto');
+  const getDoctors = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/doctors');
+      const jsonData = await response.json();
+      console.log(jsonData);
+      setDoctor(jsonData);
+      setDoctorData(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  const [value, setValue] = useState('Adulto');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
@@ -100,21 +116,34 @@ export default function CustomizedTables() {
   };
 */
   useEffect(() => {
-    const pat = Object.values(patientsData);
+    getDoctors();
+    getPatients();
+    const patientFilter = Object.values(patientsData);
+    const doctorFilter = Object.values(doctorData);
     console.log(value);
-    const filteredUsers = pat.filter(
-      (ptn) => (ptn.name.toLowerCase()
+    const filteredUsers = patientFilter.filter(
+      (patientConverter) => (patientConverter.name.toLowerCase()
         .includes(searchData.toLowerCase())
-       && ptn.type.toLowerCase() === value.toLowerCase())
-       || (ptn.name.toLowerCase()
+       && patientConverter.type.toLowerCase() === value.toLowerCase())
+       || (patientConverter.name.toLowerCase()
          .includes(searchData.toLowerCase())
-      && ptn.area.toLowerCase() === value.toLowerCase())
-      || (ptn.type.toLowerCase() === value.toLowerCase()
-      && ptn.area.toLowerCase() === value.toLowerCase()),
+      && patientConverter.area.toLowerCase() === value.toLowerCase())
+      || (patientConverter.type.toLowerCase() === value.toLowerCase()
+      && patientConverter.area.toLowerCase() === value.toLowerCase())
+      || ((patientConverter.name.toLowerCase()
+        .includes(searchData.toLowerCase())
+      && patientConverter.type.toLowerCase() === value.toLowerCase()
+      && patientConverter.area.toLowerCase() === value.toLowerCase())),
     );
-
+    const filteredDoctors = doctorFilter.filter(
+      (doctorConverter) => (doctorConverter.name.toLowerCase()
+        .includes(searchData.toLowerCase())
+      ),
+    );
+    setPatients(patients);
     setPatients(filteredUsers);
-  }, [searchData, value, patientsData]);
+    setDoctor(filteredDoctors);
+  }, [searchData, value, patientsData, doctorData]);
 
   const handleSearch = (event: React.ChangeEvent<any>) => {
     setSearchData(event.target.value);
@@ -132,9 +161,6 @@ export default function CustomizedTables() {
             value={searchData}
             onChange={handleSearch}
           />
-          <IconButton aria-label="search">
-            <SearchIcon />
-          </IconButton>
           <FormControl component="fieldset" className={classes.frm}>
             <FormLabel component="legend">Área</FormLabel>
             <RadioGroup aria-label="area" name="area" value={value} onChange={handleChange}>
@@ -143,16 +169,15 @@ export default function CustomizedTables() {
               <FormControlLabel value="Área jurídica" control={<Radio />} label="Área jurídica" />
             </RadioGroup>
           </FormControl>
-          <TextField
-            id="outlined-basic"
-            label="Nombre del psicólogo"
-            variant="outlined"
-            value={searchData}
-            onChange={handleSearch}
+          <Autocomplete
+            id="filter-demo"
+            options={doctor}
+            getOptionLabel={(option) => option.name}
+            filterOptions={filterOptions}
+            style={{ width: 220 }}
+            /* eslint-disable react/jsx-props-no-spreading */
+            renderInput={(params) => <TextField {...params} label="Nombre del doctor" variant="outlined" />}
           />
-          <IconButton aria-label="search">
-            <SearchIcon />
-          </IconButton>
           <FormControl className={classes.frm}>
             <FormLabel component="legend">Tipo</FormLabel>
             <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
