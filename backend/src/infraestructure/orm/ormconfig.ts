@@ -5,13 +5,12 @@ dotenv.config();
 
 export = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
+  host: process.env.DATABASE_URL || 'postgres',
+  port: process.env.DB_PORT || 5000,
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || '',
   database: process.env.DB_NAME || 'localhost',
   synchronize: true,
-  logging: false,
   migrationsTableName: 'migration',
   entities: [
     'src/domain/model/**/*.ts',
@@ -20,4 +19,7 @@ export = {
   cli: {
     migrationsDir: 'src/infraestructure/orm/migration',
   },
+  ssl: process.env.SSL_CERT ? {
+    ca: process.env.SSL_CERT,
+  } : null,
 } as ConnectionOptions;

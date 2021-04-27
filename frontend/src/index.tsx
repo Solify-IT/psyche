@@ -9,6 +9,16 @@ const theme = createMuiTheme({
     primary: {
       main: '#C94B72',
     },
+    secondary: {
+      main: '#6EA84F',
+      contrastText: '#fff',
+    },
+  },
+  typography: {
+    body2: {
+      fontSize: 21,
+      main: '#3f4238',
+    },
   },
 });
 
