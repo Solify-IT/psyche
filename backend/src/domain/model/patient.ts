@@ -42,4 +42,10 @@ export default class Patient {
 
   @Column()
   postalCode: string;
+
+  @Column()
+  area: string;
+
+  @Column()
+  doctor_id: number;
 }

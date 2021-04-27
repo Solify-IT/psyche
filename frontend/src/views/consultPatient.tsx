@@ -7,6 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     margin: theme.spacing(1),
   },
   table: {
-    minWidth: 280,
+    width: 940,
   },
   paper: {
     margin: `${theme.spacing(1)}px auto`,
@@ -58,109 +59,138 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   frm: {
     margin: theme.spacing(2),
-    marginTop: '16px',
-    marginLeft: '15px',
-    minWidth: 280,
-    fontSize: 5,
+  },
+  gridList: {
+    width: 950,
+    height: 400,
   },
 }));
 
 export default function CustomizedTables() {
-  const [patient, setPatient] = useState<any[]>([]);
+  const [searchData, setSearchData] = useState('');
+  const [patients, setPatients] = useState<any[]>([]);
+  const [patientsData, setPatientsData] = useState<any[]>([]);
   const getPatients = async () => {
     try {
       const response = await fetch('http://localhost:8000/patients');
       const jsonData = await response.json();
-
-      setPatient(jsonData);
+      console.log(jsonData);
+      setPatients(jsonData);
+      setPatientsData(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
+
   useEffect(() => {
     getPatients();
   }, []);
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState('Adulto');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
+  /* const [selectPat, setSelectPat] = useState({
+    id: '',
+    name: '',
+  });
+  const selectPatient = (patient:any, any:any) => {
+    setSelectPat(patient);
+    window.location.href = `http://localhost:3000/consult-patient/${patient.id}`;
+  };
+*/
+  useEffect(() => {
+    const pat = Object.values(patientsData);
+    console.log(value);
+    const filteredUsers = pat.filter(
+      (ptn) => (ptn.name.toLowerCase()
+        .includes(searchData.toLowerCase())
+       && ptn.type.toLowerCase() === value.toLowerCase())
+       || (ptn.name.toLowerCase()
+         .includes(searchData.toLowerCase())
+      && ptn.area.toLowerCase() === value.toLowerCase())
+      || (ptn.type.toLowerCase() === value.toLowerCase()
+      && ptn.area.toLowerCase() === value.toLowerCase()),
+    );
+
+    setPatients(filteredUsers);
+  }, [searchData, value, patientsData]);
+
+  const handleSearch = (event: React.ChangeEvent<any>) => {
+    setSearchData(event.target.value);
+  };
 
   return (
     <div>
-      <main>
-        <Paper className={classes.paper}>
-          <Grid container>
-            <Grid item xs={3}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                id="outlined-basic"
-                label="Nombre del paciente"
-              />
-              <IconButton aria-label="search">
-                <SearchIcon />
-              </IconButton>
-              <FormControl component="fieldset" className={classes.frm}>
-                <FormLabel component="legend">Área</FormLabel>
-                <RadioGroup aria-label="pacient" name="pacient" value={value} onChange={handleChange}>
-                  <FormControlLabel value="ps" control={<Radio />} label="Psicología" />
-                  <FormControlLabel value="psi" control={<Radio />} label="Psiquiatría" />
-                  <FormControlLabel value="aj" control={<Radio />} label="Área jurídica" />
-                </RadioGroup>
-              </FormControl>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                id="outlined-basic"
-                label="Nombre del psicólogo"
-              />
-              <IconButton aria-label="search">
-                <SearchIcon />
-              </IconButton>
-              <FormControl component="fieldset" className={classes.frm}>
-                <FormLabel component="legend">Tipo</FormLabel>
-                <RadioGroup aria-label="doctor" name="doctor" value={value} onChange={handleChange}>
-                  <FormControlLabel value="adult" control={<Radio />} label="Adulto" />
-                  <FormControlLabel value="couple" control={<Radio />} label="Pareja" />
-                  <FormControlLabel value="child" control={<Radio />} label="Menor" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            <Grid item xs={8}>
-              <Typography color="primary" variant="h2" align="center">Pacientes</Typography>
-              <Table className={classes.table}>
-                <TableBody>
-                  {patient.map((r) => (
-                    <StyledTableRow>
-                      <StyledTableCell align="left" color="textPrimary">
-                        {r.name}
-                        {' '}
-                        {r.middleName}
-                        {' '}
-                        {r.lastName}
-                        <>
-                          <Typography color="textSecondary" variant="subtitle2">
-                            {' '}
-                            {r.type}
-                          </Typography>
-                        </>
-                        <>
-                          <Typography color="textSecondary" variant="subtitle2">
-                            Folio:
-                            {' '}
-                            {r.id}
-                          </Typography>
-                        </>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Grid>
+      <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
+      <Paper className={classes.paper}>
+        <Grid item xs={3}>
+          <TextField
+            id="outlined-basic"
+            label="Nombre del paciente"
+            variant="outlined"
+            value={searchData}
+            onChange={handleSearch}
+          />
+          <IconButton aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <FormControl component="fieldset" className={classes.frm}>
+            <FormLabel component="legend">Área</FormLabel>
+            <RadioGroup aria-label="area" name="area" value={value} onChange={handleChange}>
+              <FormControlLabel value="Psicología" control={<Radio />} label="Psicología" />
+              <FormControlLabel value="Psiquiatría" control={<Radio />} label="Psiquiatría" />
+              <FormControlLabel value="Área jurídica" control={<Radio />} label="Área jurídica" />
+            </RadioGroup>
+          </FormControl>
+          <TextField
+            id="outlined-basic"
+            label="Nombre del psicólogo"
+            variant="outlined"
+            value={searchData}
+            onChange={handleSearch}
+          />
+          <IconButton aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <FormControl className={classes.frm}>
+            <FormLabel component="legend">Tipo</FormLabel>
+            <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
+              <FormControlLabel value="Adulto" control={<Radio />} label="Adulto" />
+              <FormControlLabel value="Menor" control={<Radio />} label="Menor" />
+              <FormControlLabel value="Pareja" control={<Radio />} label="Pareja" />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <GridList className={classes.gridList}>
+          <Grid item xs={8}>
+            <Table className={classes.table}>
+              <TableBody>
+                {patients.map((r) => (
+                  <StyledTableRow>
+                    <StyledTableCell align="left" color="textPrimary">
+                      {r.name}
+                      <>
+                        <Typography color="textSecondary" variant="subtitle2">
+                          {r.type}
+                        </Typography>
+                      </>
+                      <>
+                        <Typography color="textSecondary" variant="subtitle2">
+                          Folio:
+                          {' '}
+                          {r.id}
+                        </Typography>
+                      </>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
           </Grid>
-        </Paper>
-      </main>
+        </GridList>
+      </Paper>
     </div>
+
   );
 }
