@@ -8,5 +8,5 @@ export default interface Patient {
   address: string;
   birthPlace: string;
   birthDate: string;
-  postalCode: string;
+  postalCode: number;
 }

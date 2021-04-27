@@ -189,6 +189,7 @@ const RegisterCouple: FC<PatientProps> = (props): JSX.Element => {
               id="postalCode"
               label="Código Postal"
               name="postalCode"
+              type="number"
               value={patient.postalCode}
               onChange={handlePatient}
             />
