@@ -1,6 +1,7 @@
 import { wrapError } from '@types';
 import { Patient } from 'domain/model';
 import IPatientRepository from 'app/repository/patientRepository';
+import Record from 'domain/model/record';
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
@@ -10,9 +11,13 @@ export default class PatientRepository implements IPatientRepository {
     this.datastore = datastore;
   }
 
-  async register(patient: Patient): Promise<Patient> {
+  async register(patients: Patient[]): Promise<Record> {
+    const record = {
+      patients,
+    };
+
     const [result, error] = await wrapError(
-      this.datastore.save<Patient>('Patient', patient),
+      this.datastore.save<Record>('Record', record),
     );
     if (error) {
       throw error;
