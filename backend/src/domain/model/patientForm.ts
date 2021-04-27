@@ -1,8 +1,8 @@
 import {
   Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Patient } from '.';
 import PatientFormField from './patientFormField';
+import Record from './record';
 
 @Entity()
 export default class PatientForm {
@@ -18,6 +18,6 @@ export default class PatientForm {
   @OneToMany(() => PatientFormField, (field) => field.form, { cascade: true, eager: true, onDelete: 'CASCADE' })
   fields?: PatientFormField[];
 
-  @ManyToOne(() => Patient, (patient) => patient.forms)
-  patient?: Patient;
+  @ManyToOne(() => Record, (record) => record.forms)
+  record?: Record;
 }

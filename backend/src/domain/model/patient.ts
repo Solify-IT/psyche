@@ -1,52 +1,43 @@
+import Record from 'domain/model/record';
 import {
-  Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn,
+  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne,
 } from 'typeorm';
-import { Form } from '.';
-import PatientForm from './patientForm';
 
 @Entity()
 export default class Patient {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
-  middleName: string;
-
-  @Column()
+  @Column({ nullable: false })
   lastName: string;
 
   @CreateDateColumn({ type: 'date' })
   startDate?: Date;
 
-  @Column()
+  @Column({ nullable: false })
   type: string;
 
-  @Column()
-  age: number;
-
-  @Column()
+  @Column({ nullable: false })
   gender: string;
 
-  @Column()
+  @Column({ nullable: false })
   telephone: string;
 
-  @Column()
+  @Column({ nullable: false })
   address: string;
 
-  @Column()
+  @Column({ nullable: false })
   birthPlace: string;
 
-  @Column({
-    nullable: true,
-  })
+  @Column({ nullable: false })
   birthDate: Date;
 
-  @Column()
-  postalCode: string;
+  @Column({ nullable: false })
+  postalCode: number;
 
-  @OneToMany(() => PatientForm, (form) => form.patient, { cascade: true, eager: true, onDelete: 'CASCADE' })
-  forms?: Form[];
+  @ManyToOne(() => Record, (record) => record.patients)
+  record?: Record;
 }

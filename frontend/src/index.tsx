@@ -17,6 +17,7 @@ const theme = createMuiTheme({
   typography: {
     body2: {
       fontSize: 21,
+      main: '#3f4238',
     },
   },
 });
