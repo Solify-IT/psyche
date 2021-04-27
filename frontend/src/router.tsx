@@ -23,7 +23,7 @@ const AppRouter = () => (
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/patients" exact component={PatientsList} />
-    <PrivateRoute path="/register-patient" exact component={RegisterPatient} />
+    <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />
     <PrivateRoute path="/dashboard-area" exact component={DashboardArea} />
     <PrivateRoute path="/dashboard-atencion-psicologica" exact component={DashboardAtPsic} />
