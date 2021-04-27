@@ -13,6 +13,15 @@ export default class PatientInteractor {
     this.patientRepository = patientRepository;
   }
 
+  async register(patient: Patient): Promise<Patient> {
+    const [result, error] = await wrapError(this.patientRepository.register(patient));
+
+    if (error) {
+      throw error;
+    }
+    return this.patientPresenter.register(result);
+  }
+
   async getAll(): Promise<Patient[]> {
     const [patients, error] = await wrapError(this.patientRepository.findAll());
 

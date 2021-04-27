@@ -9,6 +9,16 @@ export default class PatientController {
     this.patientInteractor = patientInteractor;
   }
 
+  async registerPatient(context: IContext): Promise<void> {
+    const [patient, error] = await wrapError(this.patientInteractor.register(context.request.body));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(patient);
+  }
+
   async getPatients(context: IContext): Promise<void> {
     const [patients, error] = await wrapError(this.patientInteractor.getAll());
     if (error) {
