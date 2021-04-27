@@ -13,13 +13,13 @@ export = {
   synchronize: true,
   migrationsTableName: 'migration',
   entities: [
-    'src/domain/model/**/*.ts',
+    'src/domain/model/*/.ts',
   ],
   migrations: ['src/infraestructure/orm/migration/*.js'],
   cli: {
     migrationsDir: 'src/infraestructure/orm/migration',
   },
-  ssl: {
-    ca: process.env.SSL_CERT || '',
-  },
+  ssl: process.env.SSL_CERT ? {
+    ca: process.env.SSL_CERT,
+  } : null,
 } as ConnectionOptions;
