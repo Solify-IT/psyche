@@ -13,7 +13,7 @@ export = {
   synchronize: true,
   migrationsTableName: 'migration',
   entities: [
-    'src/domain/model/**/*.ts',
+    'src/domain/model/*/.ts',
   ],
   migrations: ['src/infraestructure/orm/migration/*.js'],
   cli: {
