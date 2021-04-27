@@ -80,7 +80,7 @@ function RegisterPatient() {
     address: '',
     birthPlace: '',
     birthDate: '',
-    postalCode: '',
+    postalCode: NaN,
   });
   const {
     name, lastName, type, gender,
@@ -147,7 +147,7 @@ function RegisterPatient() {
     address: '',
     birthPlace: '',
     birthDate: '',
-    postalCode: '',
+    postalCode: NaN,
   });
   const [patientTwo, setPatientTwo] = useState<Patient>({
     name: '',
@@ -159,7 +159,7 @@ function RegisterPatient() {
     address: '',
     birthPlace: '',
     birthDate: '',
-    postalCode: '',
+    postalCode: NaN,
   });
   const handlePatientOne = (event: React.ChangeEvent<any>) => {
     setPatientOne({ ...patientOne, [event.target.name]: event.target.value });
@@ -366,6 +366,7 @@ function RegisterPatient() {
                             id="postalCode"
                             label="Código Postal"
                             name="postalCode"
+                            type="number"
                             value={postalCode}
                             onChange={handleChange}
                           />
