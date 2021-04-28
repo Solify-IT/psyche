@@ -3,11 +3,12 @@ import server from '../utils/server';
 import handleResponse from '../utils/handleResponse';
 
 export async function createPatient(patient:Patient) {
-  const result = await server.post('/patients', { ...patient }).then(handleResponse).catch(handleResponse);
+  console.log(localStorage.getItem('currentUser'));
+  const result = await server.post('/patients', { ...patient }).then(handleResponse);
   return result.data;
 }
 
 export async function createCouple(patient:Array<Patient>) {
-  const result = await server.post('/patients', patient).then(handleResponse).catch(handleResponse);
+  const result = await server.post('/patients', patient).then(handleResponse);
   return result.data;
 }

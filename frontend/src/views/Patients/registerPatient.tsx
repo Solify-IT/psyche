@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   Container,
@@ -23,6 +23,7 @@ import {
 import { createPatient, createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
 import RegisterCouple from './registerCouple';
+import RegisterFamily from './registerFamily';
 import ViewCouple from './viewCouple';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +71,7 @@ interface Option {
 function RegisterPatient() {
   const { area, group } = useParams<ParamTypes>();
   const today = new Date();
+  const history = useHistory();
   const [formFields, setFormFields] = useState<Patient>({
     name: '',
     lastName: '',
@@ -121,6 +123,7 @@ function RegisterPatient() {
       .then((response:any) => {
         console.log(response);
         toast.success('¡Se ha registrado el paciente! 😃');
+        history.replace('/home');
       })
       .catch((error:any) => {
         toast.warning('Algo ha salido mal!');
@@ -176,6 +179,7 @@ function RegisterPatient() {
       .then((response:any) => {
         console.log(response);
         toast.success('¡Se han registrado los pacientes! 😃');
+        history.replace('/home');
       })
       .catch((error:any) => {
         toast.warning('Algo ha salido mal!');
@@ -183,6 +187,7 @@ function RegisterPatient() {
       });
   };
   function renderPatient() {
+    if (type === 'Psicología Familia') { return (<RegisterFamily />); }
     switch (step) {
       case 1:
         return (
