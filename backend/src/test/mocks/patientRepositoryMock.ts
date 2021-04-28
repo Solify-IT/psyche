@@ -1,4 +1,4 @@
-import { Patient } from 'domain/model';
+/* import { Patient } from 'domain/model';
 import IPatientRepository from 'app/repository/patientRepository';
 
 export default class MockPatientRepository implements IPatientRepository {
@@ -11,20 +11,21 @@ export default class MockPatientRepository implements IPatientRepository {
         {
           id: 1,
           name: `Test patient #${index}`,
-          middleName: `Middlename #${index}`,
           lastName: `Lastname #${index}`,
           startDate: date,
           type: 'Adulto',
-          age: 22,
           telephone: '1234567643',
           address: `Address #${index}`,
           gender: 'femenino',
           birthPlace: 'Guanajuato',
-          birthDate: '02/02/1998',
-          postalCode: '76148',
+          birthDate: date,
+          postalCode: 76148,
+          area: 'Psiquiatrica',
+          recordId: 1,
         },
       );
     }
     return patients;
   }
 }
+*/
