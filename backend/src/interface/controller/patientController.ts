@@ -37,7 +37,6 @@ export default class PatientController {
 
     if (error) {
       context.next(error);
-      return;
     }
     context.response.status(200).json(record);
   }

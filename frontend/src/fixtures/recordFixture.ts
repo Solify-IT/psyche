@@ -14,6 +14,8 @@ const patients : Patient[] = [patientFixture, {
   birthPlace: 'test',
   birthDate: new Date(),
   postalCode: 832032,
+  area: 'Psiquiatría',
+  recordId: 1,
 }];
 
 const recordFixture : Record = {

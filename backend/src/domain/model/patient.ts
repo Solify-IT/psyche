@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import {
-  Entity, Column, PrimaryGeneratedColumn,
-=======
 import Record from 'domain/model/record';
 import {
-  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne,
->>>>>>> feat/patientDetail
+  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -16,46 +11,6 @@ export default class Patient {
   @Column({ nullable: false })
   name: string;
 
-<<<<<<< HEAD
-  @Column()
-  middleName: string;
-
-  @Column()
-  lastName: string;
-
-  @Column({ type: 'date' })
-  startDate: Date;
-
-  @Column()
-  type: string;
-
-  @Column()
-  age: number;
-
-  @Column()
-  gender: string;
-
-  @Column()
-  telephone: string;
-
-  @Column()
-  address: string;
-
-  @Column()
-  birthPlace: string;
-
-  @Column()
-  birthDate: string;
-
-  @Column()
-  postalCode: string;
-
-  @Column()
-  area: string;
-
-  @Column()
-  doctor_id: number;
-=======
   @Column({ nullable: false })
   lastName: string;
 
@@ -83,7 +38,13 @@ export default class Patient {
   @Column({ nullable: false })
   postalCode: number;
 
+  @Column({ nullable: false })
+  area: string;
+
+  @Column({ name: 'record_id' })
+  recordId: number;
+
   @ManyToOne(() => Record, (record) => record.patients)
+  @JoinColumn({ name: 'record_id' })
   record?: Record;
->>>>>>> feat/patientDetail
 }

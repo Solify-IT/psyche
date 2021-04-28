@@ -5,7 +5,7 @@ import path from 'path';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
 // import jwt from 'express-jwt';
-// import jwtConfig from 'utils/jwtConfig';
+import jwtConfig from 'utils/jwtConfig';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -21,16 +21,12 @@ const initServer = () => {
   app.use(cors());
   app.use(express.static(path.join(__dirname, '../public')));
   app.use(morgan('dev'));
-<<<<<<< HEAD
-  // app.use(jwt(jwtConfig).unless({ path: '/login' }));
-=======
   if (jwtConfig.authenticationEnabled) {
     console.log('Authentication with JWT enabled');
-    app.use(jwt(jwtConfig).unless({ path: '/login' }));
+    // app.use(jwt(jwtConfig).unless({ path: '/login' }));
   } else {
     console.log('Authentication with JWT disabled');
   }
->>>>>>> feat/patientDetail
 };
 
 async function initDatabase() {

@@ -16,6 +16,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { Link } from 'react-router-dom';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 const filterOptions = createFilterOptions({
@@ -106,18 +107,13 @@ export default function CustomizedTables() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
-  /* const [selectPat, setSelectPat] = useState({
-    id: '',
-    name: '',
-  });
-  const selectPatient = (patient:any, any:any) => {
-    setSelectPat(patient);
-    window.location.href = `http://localhost:3000/consult-patient/${patient.id}`;
-  };
-*/
+
   useEffect(() => {
     getDoctors();
     getPatients();
+  });
+
+  useEffect(() => {
     const patientFilter = Object.values(patientsData);
     const doctorFilter = Object.values(doctorData);
     console.log(value);
@@ -192,9 +188,12 @@ export default function CustomizedTables() {
             <Table className={classes.table}>
               <TableBody>
                 {patients.map((r) => (
-                  <StyledTableRow>
+                  <StyledTableRow key={r.id}>
                     <StyledTableCell align="left" color="textPrimary">
-                      {r.name}
+                      <Link to={`/expediente/${r.recordId}`}>
+                        {r.name}
+                      </Link>
+
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
                           {r.type}
@@ -204,7 +203,7 @@ export default function CustomizedTables() {
                         <Typography color="textSecondary" variant="subtitle2">
                           Folio:
                           {' '}
-                          {r.id}
+                          {r.recordId}
                         </Typography>
                       </>
                     </StyledTableCell>

@@ -81,6 +81,8 @@ function RegisterPatient() {
     birthPlace: '',
     postalCode: 2222,
     birthDate: new Date(),
+    area: '',
+    recordId: 1,
   });
   const {
     name, lastName, type, gender,
