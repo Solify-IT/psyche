@@ -23,7 +23,7 @@ const initServer = () => {
   app.use(morgan('dev'));
   if (jwtConfig.authenticationEnabled) {
     console.log('Authentication with JWT enabled');
-    // app.use(jwt(jwtConfig).unless({ path: '/login' }));
+    app.use(jwt(jwtConfig).unless({ path: '/login' }));
   } else {
     console.log('Authentication with JWT disabled');
   }
