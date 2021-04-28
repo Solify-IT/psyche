@@ -19,7 +19,7 @@ import {
   optionsPsiquiatria,
   optionsClinica,
   optionsAsesoria,
-} from '../../interfaces/options';
+} from 'src/interfaces/options';
 import createPatient from '../../api/patient';
 import Patient from '../../interfaces/patient';
 
