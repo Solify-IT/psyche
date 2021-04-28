@@ -1,5 +1,6 @@
 import Patient from 'src/interfaces';
 import Record from 'src/interfaces/record';
+/* eslint-disable react/jsx-props-no-spreading */
 import patientFixture from './patientFixture';
 
 const patients : Patient[] = [patientFixture, {
