@@ -53,12 +53,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     textAlign: 'center',
   },
-  type: {
-    textAlign: 'right',
-  },
-  next: {
-    marginLeft: '10px',
-  },
   title: {
     fontSize: 14,
   },
