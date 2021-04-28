@@ -10,13 +10,15 @@ export default class PatientController {
   }
 
   async registerPatient(context: IContext): Promise<void> {
-    const [patient, error] = await wrapError(this.patientInteractor.register(context.request.body));
+    const [patients, error] = await wrapError(
+      this.patientInteractor.register(context.request.body),
+    );
 
     if (error) {
       context.next(error);
       return;
     }
-    context.response.status(200).json(patient);
+    context.response.status(200).json(patients);
   }
 
   async getPatients(context: IContext): Promise<void> {
@@ -26,5 +28,17 @@ export default class PatientController {
       return;
     }
     context.response.status(200).json(patients);
+  }
+
+  async getRecordDetail(context: IContext): Promise<void> {
+    // eslint-disable-next-line radix
+    const id = parseInt(context.request.params.id);
+    const [record, error] = await wrapError(this.patientInteractor.getRecord(id));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(record);
   }
 }

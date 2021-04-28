@@ -1,4 +1,5 @@
 export default interface Patient {
+  id?: number;
   name: string;
   lastName: string;
   startDate: Date;
@@ -7,6 +8,6 @@ export default interface Patient {
   telephone: string;
   address: string;
   birthPlace: string;
-  birthDate: string;
-  postalCode: string;
+  birthDate: Date;
+  postalCode: number;
 }

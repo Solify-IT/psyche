@@ -1,11 +1,12 @@
+import Record from 'domain/model/record';
 import {
-  Entity, Column, PrimaryGeneratedColumn,
+  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne,
 } from 'typeorm';
 
 @Entity()
 export default class Patient {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ nullable: false })
   name: string;
@@ -13,8 +14,8 @@ export default class Patient {
   @Column({ nullable: false })
   lastName: string;
 
-  @Column({ type: 'date', nullable: false })
-  startDate: Date;
+  @CreateDateColumn({ type: 'date' })
+  startDate?: Date;
 
   @Column({ nullable: false })
   type: string;
@@ -32,8 +33,11 @@ export default class Patient {
   birthPlace: string;
 
   @Column({ nullable: false })
-  birthDate: string;
+  birthDate: Date;
 
   @Column({ nullable: false })
   postalCode: number;
+
+  @ManyToOne(() => Record, (record) => record.patients)
+  record?: Record;
 }

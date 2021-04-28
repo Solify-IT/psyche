@@ -13,12 +13,12 @@ function PatientsList() {
       setPatients(results.data);
     };
     fetchData();
+    console.log(patients);
   }, []);
   return (
     <div>
       <h1>Pacientes</h1>
       <div className="content" />
-      { patients.map((patient) => (<h1 key={patient.name}>{patient.name}</h1>))}
     </div>
   );
 }
