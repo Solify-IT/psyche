@@ -24,7 +24,10 @@ const AppRouter = () => (
     <Route path="/login" exact component={Login} />
     <Route path="/form" exact component={Form} />
     <Route path="/read-form" exact component={GenerateForm} />
+<<<<<<< HEAD
     <Route path="/consult-patient" exact component={ConsultPatient} />
+=======
+>>>>>>> 1a9c2461eca4897b210f72933d4ca584f51258c3
     <PrivateRoute path="/pacientes" exact component={PatientsList} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
