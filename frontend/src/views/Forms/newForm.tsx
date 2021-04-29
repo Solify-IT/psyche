@@ -102,7 +102,7 @@ function NewForm() {
       await registerForm(form);
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrio un error al intentar registar el form');
+      toast.error('Ocurrió un error al intentar registrar el form');
     } finally {
       setLoading(false);
     }
@@ -157,45 +157,51 @@ function NewForm() {
 
   function FormTable() {
     return (
-      <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
-        <div className={classes.table}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell> Tipo de Campo </TableCell>
-                <TableCell> Etiqueta </TableCell>
-                <TableCell> Opciones </TableCell>
-                <TableCell> Eliminar </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {fieldList.map(
-                (value, index) => (
-                  <FieldRow
-                    key={value.label}
-                    field={value}
-                    index={index}
-                    removeField={removeField}
-                  />
-                ),
-              )}
-            </TableBody>
-          </Table>
-        </div>
+      <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
+        <Grid item xs={12}>
+          <div className={classes.table}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell> Tipo de Campo </TableCell>
+                  <TableCell> Etiqueta </TableCell>
+                  <TableCell> Opciones </TableCell>
+                  <TableCell> Eliminar </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {fieldList.map(
+                  (value, index) => (
+                    <FieldRow
+                      key={value.label}
+                      field={value}
+                      index={index}
+                      removeField={removeField}
+                    />
+                  ),
+                )}
+              </TableBody>
+            </Table>
+          </div>
+
+        </Grid>
         {loading
           ? <CircularProgress />
           : (
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={submit}
-              className={classes.submit}
-              disabled={fieldList.length === 0 || loading}
-            >
-              REGISTRAR
-            </Button>
+            <Grid item xs={6}>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={submit}
+                className={classes.submit}
+                disabled={fieldList.length === 0 || loading}
+              >
+                REGISTRAR
+              </Button>
+            </Grid>
           )}
       </Grid>
     );
@@ -207,7 +213,7 @@ function NewForm() {
           <Typography variant="h2" align="center">
             Crear Nuevo Form
           </Typography>
-          <Grid container>
+          <Grid container justify="center">
             <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
               <TextField
                 margin="normal"
@@ -259,7 +265,7 @@ function NewForm() {
                 </Grid>
               </Grid>
               {renderCustomForm()}
-              <Grid container spacing={3}>
+              <Grid container spacing={3} justify="center">
                 <Grid item xs={6}>
                   <Button
                     type="submit"
@@ -274,8 +280,9 @@ function NewForm() {
                 </Grid>
               </Grid>
             </Grid>
-            <FormTable />
           </Grid>
+          <FormTable />
+
         </Container>
       </main>
     </div>
