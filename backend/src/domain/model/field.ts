@@ -1,23 +1,26 @@
 import {
-  Column, Entity, ManyToOne, PrimaryGeneratedColumn,
+  Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
-// eslint-disable-next-line import/no-cycle
+import FieldOption from './fieldOption';
 import Form from './form';
 
 @Entity()
 export default class Field {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   label: string;
 
-  @Column()
-  name: string;
+  @Column({ default: '' })
+  value?: string;
 
   @Column()
   type: string;
 
   @ManyToOne(() => Form, (form) => form.fields)
-  form: Form;
+  form?: Form;
+
+  @OneToMany(() => FieldOption, (options) => options.field, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  options: FieldOption[];
 }
