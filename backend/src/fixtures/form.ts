@@ -11,6 +11,13 @@ const formFixture : Form = {
         label: 'Etiqueta',
       }],
     },
+    {
+      label: 'Campo nuevo',
+      type: 'text',
+      options: [{
+        label: 'Etiqueta',
+      }],
+    },
   ],
 };
 
