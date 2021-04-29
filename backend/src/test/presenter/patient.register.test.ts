@@ -10,7 +10,7 @@ describe('Patient presenter', () => {
     active: true,
   };
   test('should return patient detail', () => {
-    const result = patientPresenter.register(record);
+    const result = patientPresenter.record(record);
     expect(result.patients).toEqual(record.patients);
     expect(result.id).toEqual(record.id);
     expect(result.active).toEqual(record.active);
