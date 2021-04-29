@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,11 +20,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "typeRoots" : ["./node_modules/@types", "./src/@types"],
   },
   "include": [
     "src",
     ".eslintrc.js",
     "jest.config.js"
   ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }
