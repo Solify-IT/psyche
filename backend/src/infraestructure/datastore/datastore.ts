@@ -5,6 +5,17 @@ import { IDatastore } from 'interface/repository';
 import { Entity, getConnection } from 'typeorm';
 
 export default class Datastore implements IDatastore {
+  async bulkInsert<T>(tableName: string, data: T[]): Promise<T[]> {
+    const connection = getConnection();
+    let results : T[] = [];
+    await connection.transaction(async (transactionalEntityManager) => {
+      const repository = transactionalEntityManager.getRepository<T>(tableName);
+      const saveReturn = await repository.save<T>(data);
+      results = saveReturn;
+    });
+    return results;
+  }
+
   async save<T>(tableName: string, data: T): Promise<T> {
     const connection = getConnection();
     const repository = connection.manager.getRepository<T>(tableName);
