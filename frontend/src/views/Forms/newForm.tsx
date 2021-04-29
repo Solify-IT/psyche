@@ -17,6 +17,7 @@ import {
   FormControl,
   Select,
   CircularProgress,
+  Divider,
 }
   from '@material-ui/core';
 
@@ -28,6 +29,9 @@ import { v4 as uuid4 } from 'uuid';
 import registerForm from 'src/api/forms';
 import Form from 'src/interfaces/form';
 import { toast } from 'react-toastify';
+import {
+  optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
+} from 'src/interfaces/options';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -76,12 +80,17 @@ function NewForm() {
 
   const [titleValid, setTitleValid] = useState<boolean>(true);
 
-  const [title, setTitle] = useState<string>('true');
+  const [title, setTitle] = useState<string>('');
+  const [formType, setFormType] = useState<string>('');
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleNewField = (event: React.ChangeEvent<any>) => {
     setNewField({ ...newField, [event.target.name]: event.target.value });
+  };
+
+  const handleNewType = (event: React.ChangeEvent<any>) => {
+    setFormType(event.target.value);
   };
 
   const handleTitle = (event: React.ChangeEvent<any>) => {
@@ -95,11 +104,13 @@ function NewForm() {
     }
 
     setTitleValid(true);
-    const form : Form = { name: title, fields: fieldList };
+    const form : Form = { name: title, fields: fieldList, type: formType };
     setLoading(true);
 
     try {
       await registerForm(form);
+      toast.success('Se ha registrado la nueva encuesta exitosamente.');
+      // TODO: Redireccionar a el detail de la pagina
     } catch (error) {
       console.error(error);
       toast.error('Ocurrió un error al intentar registrar el form');
@@ -116,6 +127,9 @@ function NewForm() {
     const newFieldList = fieldList.filter((element) => element.key !== field.key);
     setList(newFieldList);
   }
+  const createSelect = (option:any) => (
+    <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+  );
 
   function addField() {
     if (label === '') {
@@ -215,20 +229,50 @@ function NewForm() {
           </Typography>
           <Grid container justify="center">
             <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
-              <TextField
-                margin="normal"
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                label="Nombre de formato"
-                onChange={handleTitle}
-                value={title}
-                className={classes.formControl}
-                name="name"
-                error={!titleValid}
-                helperText={!titleValid && 'Este campo no puede estar vació.'}
-              />
+              <Grid container spacing={8}>
+
+                <Grid item xs={6}>
+                  <TextField
+                    margin="normal"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Nombre de formato"
+                    onChange={handleTitle}
+                    value={title}
+                    className={classes.formControl}
+                    name="name"
+                    error={!titleValid}
+                    helperText={!titleValid && 'Este campo no puede estar vació.'}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <InputLabel id="type">Tipo</InputLabel>
+
+                  <Select
+                    labelId="type"
+                    required
+                    fullWidth
+                    label="Clasificación"
+                    name="type"
+                    value={formType}
+                    onChange={handleNewType}
+                  >
+                    {optionsPsiquiatria.map(createSelect)}
+                    <Divider />
+                    {optionsAsesoria.map(createSelect)}
+                    <Divider />
+                    {optionsClinica.map(createSelect)}
+                    <Divider />
+                    {optionsPsicologia.map(createSelect)}
+                    <Divider />
+
+                  </Select>
+                </Grid>
+              </Grid>
+
               <Grid container spacing={3}>
                 <Grid item xs={3}>
                   <FormControl className={classes.formControl}>
