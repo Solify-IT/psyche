@@ -138,7 +138,7 @@ function RecordInfo(props: RecordInfoProps) {
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Nombre" value={patient.name} />
           <RecordInfoSlot label="Apellidos" value={patient.lastName} />
-          <RecordInfoSlot label="Edad" value={calculateAge(patient.birthDate).toString()} />
+          <RecordInfoSlot label="Edad" value={patient.birthDate} />
         </Grid>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Genero" value={patient.gender} />
