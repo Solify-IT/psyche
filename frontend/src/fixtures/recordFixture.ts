@@ -12,7 +12,7 @@ const patients : Patient[] = [patientFixture, {
   telephone: '2126427',
   address: 'Temp',
   birthPlace: 'test',
-  birthDate: new Date(),
+  birthDate: '01/12/2021',
   postalCode: 832032,
 }];
 

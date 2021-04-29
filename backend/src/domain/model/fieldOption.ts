@@ -1,10 +1,10 @@
 import {
   Column, Entity, ManyToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Field } from '.';
+import Field from './field';
 
 @Entity()
-class FieldOption {
+export default class FieldOption {
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -20,4 +20,3 @@ class FieldOption {
   @ManyToOne(() => Field, (field) => field.options)
   field?: Field;
 }
-export default FieldOption;
