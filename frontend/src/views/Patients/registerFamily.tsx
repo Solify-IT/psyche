@@ -98,19 +98,24 @@ function RegisterFamily() {
   };
 
   function addField() {
-    setFamily((prevFields) => [...prevFields, formFields]);
-    setFormFields({
-      name: '',
-      lastName: '',
-      startDate: today,
-      type: 'Psicología Familia',
-      gender: '',
-      telephone: '',
-      address: '',
-      birthPlace: '',
-      birthDate: '',
-      postalCode: NaN,
-    });
+    if (name === '' || lastName === '' || gender === ''
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || !Number.isNaN(Number(postalCode))) {
+      toast.warning('¡Completar todos los campos!');
+    } else {
+      setFamily((prevFields) => [...prevFields, formFields]);
+      setFormFields({
+        name: '',
+        lastName: '',
+        startDate: today,
+        type: 'Psicología Familia',
+        gender: '',
+        telephone: '',
+        address: '',
+        birthPlace: '',
+        birthDate: '',
+        postalCode: NaN,
+      });
+    }
   }
 
   function updateMember(event: React.ChangeEvent<any>) {

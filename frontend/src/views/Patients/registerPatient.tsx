@@ -118,17 +118,21 @@ function RegisterPatient() {
   const [step, setStep] = useState(1);
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
-    setStep(step + 1);
-    createPatient(formFields)
-      .then((response:any) => {
-        console.log(response);
-        toast.success('¡Se ha registrado el paciente! 😃');
-        history.replace('/home');
-      })
-      .catch((error:any) => {
-        toast.warning('Algo ha salido mal!');
-        console.log(error);
-      });
+    if (name === '' || lastName === '' || type === '' || gender === ''
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || Number.isNaN(Number(postalCode))) {
+      toast.warning('¡Completar todos los campos!');
+    } else {
+      createPatient(formFields)
+        .then((response:any) => {
+          console.log(response);
+          toast.success('¡Se ha registrado el paciente! 😃');
+          history.replace('/home');
+        })
+        .catch((error:any) => {
+          toast.warning('Algo ha salido mal!');
+          console.log(error);
+        });
+    }
   };
 
   function nextStep() {
@@ -172,19 +176,27 @@ function RegisterPatient() {
   };
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
-    const array = Array<Patient>();
-    array.push(patientOne);
-    array.push(patientTwo);
-    createCouple(array)
-      .then((response:any) => {
-        console.log(response);
-        toast.success('¡Se han registrado los pacientes! 😃');
-        history.replace('/home');
-      })
-      .catch((error:any) => {
-        toast.warning('Algo ha salido mal!');
-        console.log(error);
-      });
+    if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || !Number.isNaN(Number(patientOne.postalCode))) {
+      toast.warning('¡Completar datos del paciente uno!');
+    } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || !Number.isNaN(Number(patientTwo.postalCode))) {
+      toast.warning('¡Completar datos del paciente dos!');
+    } else {
+      const array = Array<Patient>();
+      array.push(patientOne);
+      array.push(patientTwo);
+      createCouple(array)
+        .then((response:any) => {
+          console.log(response);
+          toast.success('¡Se han registrado los pacientes! 😃');
+          history.replace('/home');
+        })
+        .catch((error:any) => {
+          toast.warning('Algo ha salido mal!');
+          console.log(error);
+        });
+    }
   };
   function renderPatient() {
     if (type === 'Psicología Familia') { return (<RegisterFamily />); }
