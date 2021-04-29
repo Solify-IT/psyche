@@ -24,14 +24,17 @@ describe('Form repository', () => {
     name: 'New Form',
     fields: [
       {
-        name: 'Field 1',
         label: 'Label 1',
         type: 'Type 1',
       },
       {
-        name: 'Field 2',
         label: 'Label 2',
         type: 'Type 2',
+        options: [
+          {
+            label: 'Opcion',
+          },
+        ],
       },
     ],
   };
@@ -54,5 +57,7 @@ describe('Form repository', () => {
     const [result, error] = await wrapError(formRepository.register(form as Form));
     expect(error).toBeNull();
     expect(result).toBeDefined();
+    expect(result.fields.length).toEqual(2);
+    expect(result.fields[1].options).toBeDefined();
   });
 });
