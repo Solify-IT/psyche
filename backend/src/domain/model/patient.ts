@@ -39,5 +39,5 @@ export default class Patient {
   postalCode: number;
 
   @ManyToOne(() => Record, (record) => record.patients)
-  record: Record;
+  record?: Record;
 }

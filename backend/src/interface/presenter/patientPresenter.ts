@@ -7,7 +7,7 @@ export default class PatientPresenter implements IPatientPresenter {
     return patients;
   }
 
-  register(record: Record): Record {
+  record(record: Record): Record {
     return record;
   }
 }
