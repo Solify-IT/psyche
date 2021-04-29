@@ -10,7 +10,6 @@ import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
-import calculateAge from 'src/utils/calculateAge';
 
 const useStyles = makeStyles((theme) => ({
   root: {
