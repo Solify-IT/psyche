@@ -1,5 +1,6 @@
 import { wrapError } from '@types';
 import { Form } from 'domain/model';
+import formFixture from 'fixtures/form';
 import Datastore from 'infraestructure/datastore/datastore';
 import FormRepository from 'interface/repository/formRepository';
 import testConnection from 'test/utils/testConnection';
@@ -20,24 +21,7 @@ describe('Form repository', () => {
 
   const datastore: Datastore = new Datastore();
   const formRepository : FormRepository = new FormRepository(datastore);
-  const form = {
-    name: 'New Form',
-    fields: [
-      {
-        label: 'Label 1',
-        type: 'Type 1',
-      },
-      {
-        label: 'Label 2',
-        type: 'Type 2',
-        options: [
-          {
-            label: 'Opcion',
-          },
-        ],
-      },
-    ],
-  };
+  const form : Form = formFixture;
   test('should return form if found', async () => {
     await getConnection().getRepository<Form>(Form).save(form);
     const result = await formRepository.detail(1);
