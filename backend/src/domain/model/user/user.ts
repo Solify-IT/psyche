@@ -5,7 +5,7 @@ export default class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
@@ -14,7 +14,7 @@ export default class User {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ unique: true })
   zipCode: string;
 
   @Column()

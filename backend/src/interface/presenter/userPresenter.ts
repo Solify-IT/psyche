@@ -20,4 +20,8 @@ export default class UserPresenter implements IUserPresenter {
   register(user: User): User {
     return user;
   }
+
+  findAll(users: User[]): User[] {
+    return users;
+  }
 }

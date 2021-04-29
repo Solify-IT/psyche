@@ -36,4 +36,16 @@ export default class UserRepository implements IUserRepository {
     }
     return result;
   }
+
+  async findAll(): Promise<User[]> {
+    const [users, error] = await wrapError(
+      this.datastore.fetchAll<User>('User'),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    return users;
+  }
 }

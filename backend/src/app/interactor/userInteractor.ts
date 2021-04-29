@@ -17,6 +17,7 @@ export default class UserInteractor {
 
   async register(user: User): Promise<User> {
     if (!this.isValidUser(user)) {
+      console.log(user);
       throw new InvalidDataError('El usuario no es valido.');
     }
     const [results, error] = await wrapError(this.userRepository.register(user));
@@ -25,6 +26,16 @@ export default class UserInteractor {
       throw error;
     }
     return this.userPresenter.register(results);
+  }
+
+  async getAll(): Promise<User[]> {
+    const [users, error] = await wrapError(this.userRepository.findAll());
+
+    if (error) {
+      throw error;
+    }
+
+    return this.userPresenter.findAll(users);
   }
 
   async login(username: string, password: string): Promise<LoginResult> {
