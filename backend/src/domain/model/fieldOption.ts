@@ -2,20 +2,22 @@ import {
   Column, Entity, ManyToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Field } from '.';
-// eslint-disable-next-line import/no-cycle
 
 @Entity()
 class FieldOption {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   label: string;
 
-  @Column()
-  value: string;
+  @Column({ default: '' })
+  value?: string;
+
+  @Column({ default: false })
+  checked?: boolean;
 
   @ManyToOne(() => Field, (field) => field.options)
-  field: Field;
+  field?: Field;
 }
 export default FieldOption;

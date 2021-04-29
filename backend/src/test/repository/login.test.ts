@@ -24,24 +24,24 @@ describe('User repository', () => {
   const datastore: Datastore = new Datastore();
   const userRepository : UserRepository = new UserRepository(datastore);
   const user : User = {
-    id: 1, username, password, email: 'test@mail.com', role: 'role',
+    username, password, email: 'test@mail.com', role: 'role',
   };
   test('should return user if found', async () => {
-    await getConnection().getRepository<User>(User).insert(user);
+    await getConnection().getRepository<User>(User).save(user);
     const result = await userRepository.login(username, password);
     expect(result.username).toEqual(username);
     expect(result.password).toEqual(password);
   });
 
   test('should return error if username not found', async () => {
-    await getConnection().getRepository<User>(User).insert(user);
+    await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login('notMyUser', password));
     expect(error).toBeDefined();
     expect(result).toBeNull();
   });
 
   test('should return error if password not found', async () => {
-    await getConnection().getRepository<User>(User).insert(user);
+    await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login(username, 'notmypass'));
     expect(error).toBeDefined();
     expect(result).toBeNull();
