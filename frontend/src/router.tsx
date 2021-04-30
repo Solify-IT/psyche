@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Login from './views/login';
+import ConsultPatient from './views/consultPatient';
 import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
@@ -24,7 +25,7 @@ const AppRouter = () => (
     <Route path="/registerUser" exact component={RegisterUser} />
     <Route path="/new-form" exact component={NewForm} />
     <Route path="/read-form" exact component={GenerateForm} />
-    <PrivateRoute path="/" exact component={Home} />
+    <Route path="/consult-patient" exact component={ConsultPatient} />
     <PrivateRoute path="/pacientes" exact component={PatientsList} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />

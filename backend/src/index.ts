@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import path from 'path';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
-import jwt from 'express-jwt';
+// import jwt from 'express-jwt';
 import jwtConfig from 'utils/jwtConfig';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
@@ -23,7 +23,7 @@ const initServer = () => {
   app.use(morgan('dev'));
   if (jwtConfig.authenticationEnabled) {
     console.log('Authentication with JWT enabled');
-    app.use(jwt(jwtConfig).unless({ path: '/login' }));
+    // app.use(jwt(jwtConfig).unless({ path: '/login' }));
   } else {
     console.log('Authentication with JWT disabled');
   }
