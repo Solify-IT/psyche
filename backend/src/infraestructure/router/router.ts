@@ -10,6 +10,9 @@ export default class Router {
     app.get('/patients', async (request, response, next) => {
       await wrapError(controller.patients.getPatients({ request, response, next }));
     });
+    app.get('/records/:id/forms', async (request, response, next) => {
+      await wrapError(controller.forms.getFormsWithRecordId({ request, response, next }));
+    });
     app.get('/records/:id', async (request, response, next) => {
       await wrapError(controller.patients.getRecordDetail({ request, response, next }));
     });
@@ -27,6 +30,9 @@ export default class Router {
     });
     app.get('/forms/:id', async (request, response, next) => {
       await wrapError(controller.forms.detailForm({ request, response, next }));
+    });
+    app.post('/records/:id/patientForms', async (request, response, next) => {
+      await wrapError(controller.forms.registerPatientForm({ request, response, next }));
     });
   }
 }

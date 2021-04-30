@@ -1,5 +1,5 @@
 import {
-  Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
+  Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 import PatientFormField from './patientFormField';
 import Record from './record';
@@ -12,6 +12,9 @@ export default class PatientForm {
   @Column()
   name: string;
 
+  @Column()
+  type: string;
+
   @CreateDateColumn({ type: 'date' })
   createdDate?: Date;
 
@@ -19,5 +22,9 @@ export default class PatientForm {
   fields?: PatientFormField[];
 
   @ManyToOne(() => Record, (record) => record.forms)
+  @JoinColumn()
   record?: Record;
+
+  @Column()
+  recordId: number;
 }

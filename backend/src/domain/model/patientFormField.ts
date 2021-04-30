@@ -1,12 +1,12 @@
 import {
   Column, Entity, ManyToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
-import PatientForm from './form';
+import PatientForm from './patientForm';
 
 @Entity()
 export default class PatientFormField {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   label: string;
@@ -17,6 +17,9 @@ export default class PatientFormField {
   @Column()
   type: string;
 
+  @Column()
+  value: string;
+
   @ManyToOne(() => PatientForm, (form) => form.fields)
-  form: PatientForm;
+  form?: PatientForm;
 }
