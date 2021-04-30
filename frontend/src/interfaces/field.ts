@@ -1,6 +1,7 @@
 import FieldOption from './fieldOptions';
 
 export default interface Field {
+  id?: number;
   key: string;
   label: string;
   type: string;

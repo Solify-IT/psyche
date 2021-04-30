@@ -5,7 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import NewForm from './views/Forms/newForm';
-import GenerateForm from './views/generateForm';
+import NewPatientForm from './views/Forms/newPatientForm';
 import RecordDetail from './views/Patients/recordDetail';
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
@@ -16,12 +16,14 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 // Patient Views
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
+import PatientAvailableForms from './views/Forms/patientAvailableForms';
 
 const AppRouter = () => (
   <div>
     <Route path="/login" exact component={Login} />
     <Route path="/new-form" exact component={NewForm} />
-    <Route path="/read-form" exact component={GenerateForm} />
+    <PrivateRoute path="/expediente/:id(\d+)/encuestas/:formId(\d+)" exact component={NewPatientForm} />
+    <PrivateRoute path="/expediente/:id(\d+)/encuestas" exact component={PatientAvailableForms} />
     <PrivateRoute path="/" exact component={Home} />
     <PrivateRoute path="/pacientes" exact component={PatientsList} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />

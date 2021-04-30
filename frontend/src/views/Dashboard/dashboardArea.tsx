@@ -47,7 +47,6 @@ function DasboardArea() {
         <div className={classes.heroContent}>
           <Container>
             <Grid container spacing={3}>
-
               <Grid item xs={12}>
                 <Typography variant="h2" align="center" className={classes.subtitles}>
                   Registrar Paciente

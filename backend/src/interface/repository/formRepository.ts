@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { wrapError } from '@types';
 import { Form } from 'domain/model';
 import IFormRepository from 'app/repository/formRepository';
@@ -32,6 +33,16 @@ export default class FormRepository implements IFormRepository {
   }
 
   async registerPatientForm(form: PatientForm): Promise<PatientForm> {
+    // Remove id of form, fields and options if received
+
+    delete form.id;
+    form.fields.forEach((field) => {
+      delete field.id;
+      field.options.forEach((option) => {
+        delete option.id;
+      });
+    });
+    console.log(form);
     const [result, error] = await wrapError(
       this.datastore.save<PatientForm>('PatientForm', form),
     );
