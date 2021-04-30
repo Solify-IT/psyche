@@ -5,9 +5,7 @@ import ConsultPatient from './views/consultPatient';
 import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
-import NewForm from './views/Forms/newForm';
 import NewPatientForm from './views/Forms/newPatientForm';
-import GenerateForm from './views/generateForm';
 import RegisterUser from './views/registerUser';
 import RecordDetail from './views/Patients/recordDetail';
 // Dashboard Views
@@ -20,6 +18,9 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientAvailableForms from './views/Forms/patientAvailableForms';
+// Form views
+import GenerateForm from './components/Forms/NewPatientForm/generateForm';
+import NewForm from './views/Forms/newForm';
 
 const AppRouter = () => (
   <div>

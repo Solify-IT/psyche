@@ -38,9 +38,6 @@ export default class Patient {
   @Column({ nullable: false })
   postalCode: number;
 
-  @Column({ nullable: false })
-  area: string;
-
   @Column({ name: 'record_id' })
   recordId: number;
 
