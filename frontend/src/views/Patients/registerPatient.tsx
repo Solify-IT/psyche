@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   Container,
@@ -20,8 +20,11 @@ import {
   optionsClinica,
   optionsAsesoria,
 } from '../../interfaces/options';
-import createPatient from '../../api/patient';
+import { createPatient, createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
+import RegisterCouple from './registerCouple';
+import RegisterFamily from './registerFamily';
+import ViewCouple from './viewCouple';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -67,9 +70,8 @@ interface Option {
 }
 function RegisterPatient() {
   const { area, group } = useParams<ParamTypes>();
-  console.log(area);
-  console.log(group);
   const today = new Date();
+  const history = useHistory();
   const [formFields, setFormFields] = useState<Patient>({
     name: '',
     lastName: '',
@@ -79,8 +81,8 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    postalCode: 2222,
-    birthDate: new Date(),
+    birthDate: '',
+    postalCode: NaN,
   });
   const {
     name, lastName, type, gender,
@@ -113,19 +115,128 @@ function RegisterPatient() {
   const handleChange = (event: React.ChangeEvent<any>) => {
     setFormFields({ ...formFields, [event.target.name]: event.target.value });
   };
-
+  const [step, setStep] = useState(1);
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
-    createPatient(formFields)
-      .then((response:any) => {
-        console.log(response);
-        toast.success('¡Se ha registrado el paciente! 😃');
-      })
-      .catch((error:any) => {
-        toast.warning('Algo ha salido mal!');
-        console.log(error);
-      });
+    if (name === '' || lastName === '' || type === '' || gender === ''
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || Number.isNaN(Number(postalCode))) {
+      toast.warning('¡Completar todos los campos!');
+    } else {
+      createPatient(formFields)
+        .then((response:any) => {
+          console.log(response);
+          toast.success('¡Se ha registrado el paciente! 😃');
+          history.replace('/home');
+        })
+        .catch((error:any) => {
+          toast.warning('Algo ha salido mal!');
+          console.log(error);
+        });
+    }
   };
+
+  function nextStep() {
+    setStep(step + 1);
+  }
+  function previousStep() {
+    setStep(step - 1);
+  }
+  function prevPreviousStep() {
+    setStep(step - 2);
+  }
+  const [patientOne, setPatientOne] = useState<Patient>({
+    name: '',
+    lastName: '',
+    startDate: today,
+    type: group,
+    gender: '',
+    telephone: '',
+    address: '',
+    birthPlace: '',
+    birthDate: '',
+    postalCode: NaN,
+  });
+  const [patientTwo, setPatientTwo] = useState<Patient>({
+    name: '',
+    lastName: '',
+    startDate: today,
+    type: group,
+    gender: '',
+    telephone: '',
+    address: '',
+    birthPlace: '',
+    birthDate: '',
+    postalCode: NaN,
+  });
+  const handlePatientOne = (event: React.ChangeEvent<any>) => {
+    setPatientOne({ ...patientOne, [event.target.name]: event.target.value });
+  };
+  const handlePatientTwo = (event: React.ChangeEvent<any>) => {
+    setPatientTwo({ ...patientTwo, [event.target.name]: event.target.value });
+  };
+  const submitPatients = (event: React.ChangeEvent<any>) => {
+    event.preventDefault();
+    if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || !Number.isNaN(Number(patientOne.postalCode))) {
+      toast.warning('¡Completar datos del paciente uno!');
+    } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || !Number.isNaN(Number(patientTwo.postalCode))) {
+      toast.warning('¡Completar datos del paciente dos!');
+    } else {
+      const array = Array<Patient>();
+      array.push(patientOne);
+      array.push(patientTwo);
+      createCouple(array)
+        .then((response:any) => {
+          console.log(response);
+          toast.success('¡Se han registrado los pacientes! 😃');
+          history.replace('/home');
+        })
+        .catch((error:any) => {
+          toast.warning('Algo ha salido mal!');
+          console.log(error);
+        });
+    }
+  };
+  function renderPatient() {
+    if (type === 'Psicología Familia') { return (<RegisterFamily />); }
+    switch (step) {
+      case 1:
+        return (
+          <RegisterCouple
+            previousStep={previousStep}
+            nextStep={nextStep}
+            step={step}
+            patient={patientOne}
+            handlePatient={handlePatientOne}
+          />
+        );
+      case 2:
+        return (
+          <RegisterCouple
+            previousStep={previousStep}
+            nextStep={nextStep}
+            step={step}
+            patient={patientTwo}
+            handlePatient={handlePatientTwo}
+          />
+        );
+      case 3:
+        return (
+          <ViewCouple
+            previousStep={previousStep}
+            prevPreviousStep={prevPreviousStep}
+            patientOne={patientOne}
+            patientTwo={patientTwo}
+            submitPatients={submitPatients}
+          />
+        );
+      default:
+        return (
+          <div>Wrong Step bitch</div>
+        );
+    }
+  }
 
   return (
     <div className={classes.heroContent}>
@@ -135,7 +246,11 @@ function RegisterPatient() {
             Registrar Paciente
           </Typography>
           {type === 'Psicología Familia' || type === 'Psicología Pareja'
-            ? <div>Trabajando en ello 😎</div>
+            ? (
+              <>
+                {renderPatient()}
+              </>
+            )
             : (
               <>
                 <form method="POST" onSubmit={handleSubmit}>
@@ -268,6 +383,7 @@ function RegisterPatient() {
                             id="postalCode"
                             label="Código Postal"
                             name="postalCode"
+                            type="number"
                             value={postalCode}
                             onChange={handleChange}
                           />

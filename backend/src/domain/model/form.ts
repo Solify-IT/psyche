@@ -11,6 +11,9 @@ export default class Form {
   @Column()
   name: string;
 
+  @Column()
+  type: string;
+
   @OneToMany(() => Field, (field) => field.form, { cascade: true, eager: true, onDelete: 'CASCADE' })
   fields?: Field[];
 }
