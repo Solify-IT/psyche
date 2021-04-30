@@ -24,10 +24,10 @@ describe('User repository', () => {
   const datastore: Datastore = new Datastore();
   const userRepository : UserRepository = new UserRepository(datastore);
   const user : User = {
-    username, password, email: 'test@mail.com', role: 'role',
+    id: 1, username, password, email: 'test@mail.com', role: 'role', address: 'Av Luz 93', name: 'carlos', zipCode: '66777',
   };
-  test('should return user if found', async () => {
-    await getConnection().getRepository<User>(User).save(user);
+  test('should return user i found', async () => {
+    await getConnection().getRepository<User>(User).insert(user);
     const result = await userRepository.login(username, password);
     expect(result.username).toEqual(username);
     expect(result.password).toEqual(password);
