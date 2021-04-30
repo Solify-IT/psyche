@@ -22,7 +22,6 @@ const AppRouter = () => (
   <div>
     <Route path="/login" exact component={Login} />
     <Route path="/registerUser" exact component={RegisterUser} />
-    <Route path="/form" exact component={Form} />
     <Route path="/new-form" exact component={NewForm} />
     <Route path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/" exact component={Home} />
