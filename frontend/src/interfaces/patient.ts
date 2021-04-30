@@ -13,3 +13,4 @@ export default interface Patient {
   area: string;
   recordId: number,
 }
+

@@ -10,7 +10,6 @@ import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
-import calculateAge from 'src/utils/calculateAge';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -138,7 +137,7 @@ function RecordInfo(props: RecordInfoProps) {
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Nombre" value={patient.name} />
           <RecordInfoSlot label="Apellidos" value={patient.lastName} />
-          <RecordInfoSlot label="Edad" value={calculateAge(patient.birthDate).toString()} />
+          <RecordInfoSlot label="Edad" value={patient.birthDate} />
         </Grid>
         <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Genero" value={patient.gender} />
