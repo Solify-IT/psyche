@@ -68,7 +68,7 @@ export default function SignInSide() {
       .then((response) => {
         console.log(response);
         toast.success('Se ha iniciado sesión 😃');
-        history.replace('/patients');
+        history.replace('/home');
       })
       .catch((error) => {
         toast.warning('¡Usuario y/o contraseña incorrectos!');

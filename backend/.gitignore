@@ -14,7 +14,7 @@ results
 tmp
 
 # Build
-public/css/main.css
+public/*
 
 # Coverage reports
 coverage
@@ -36,6 +36,3 @@ Thumbs.db
 
 # Ignore built ts files
 dist/**/*
-
-# ignore yarn.lock
-yarn.lock

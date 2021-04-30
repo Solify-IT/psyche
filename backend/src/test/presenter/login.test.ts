@@ -5,7 +5,7 @@ import UserPresenter from 'interface/presenter/userPresenter';
 describe('User presenter', () => {
   const userPresenter : UserPresenter = new UserPresenter();
   const user : User = {
-    id: 1, username: 'test', password: 'test', email: 'test@mail.com', role: 'role', name: 'carlos', address: 'Av La Luz 97', zipCode: '35689',
+    id: 1, username: 'test', password: 'test', email: 'test@mail.com', role: 'role', address: 'Av Luz 93', name: 'carlos', zipCode: '66777',
   };
   test('should return token and user data', () => {
     const result = userPresenter.login(user);
