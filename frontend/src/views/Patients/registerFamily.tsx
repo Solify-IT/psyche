@@ -84,8 +84,10 @@ function RegisterFamily() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
+    birthDate: new Date(),
     postalCode: NaN,
+    area: ' ',
+    recordId: 1,
   });
 
   const {
@@ -99,7 +101,7 @@ function RegisterFamily() {
 
   function addField() {
     if (name === '' || lastName === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || !Number.isNaN(Number(postalCode))) {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === new Date() || !Number.isNaN(Number(postalCode))) {
       toast.warning('¡Completar todos los campos!');
     } else {
       setFamily((prevFields) => [...prevFields, formFields]);
@@ -112,8 +114,10 @@ function RegisterFamily() {
         telephone: '',
         address: '',
         birthPlace: '',
-        birthDate: '',
+        birthDate: new Date(),
         postalCode: NaN,
+        area: ' ',
+        recordId: 1,
       });
     }
   }
