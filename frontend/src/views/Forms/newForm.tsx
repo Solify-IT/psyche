@@ -105,6 +105,7 @@ function NewForm() {
 
     setTitleValid(true);
     const form : Form = { name: title, fields: fieldList, type: formType };
+    console.log(form);
     setLoading(true);
 
     try {
