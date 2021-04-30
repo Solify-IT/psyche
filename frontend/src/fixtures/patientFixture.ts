@@ -10,10 +10,7 @@ const patientFixture : Patient = {
   telephone: '2126427',
   address: 'Temp',
   birthPlace: 'test',
-  birthDate: new Date(),
+  birthDate: '01/10/2021',
   postalCode: 832032,
-  area: 'Psicología',
-  recordId: 1,
 };
 export default patientFixture;
-

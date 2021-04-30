@@ -8,8 +8,6 @@ export default interface Patient {
   telephone: string;
   address: string;
   birthPlace: string;
-  birthDate: Date;
+  birthDate: string;
   postalCode: number;
-  area: string;
-  recordId: number,
 }

@@ -81,10 +81,8 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    postalCode: 2222,
-    birthDate: new Date(),
-    area: '',
-    recordId: 1,
+    birthDate: '',
+    postalCode: NaN,
   });
   const {
     name, lastName, type, gender,
@@ -121,7 +119,7 @@ function RegisterPatient() {
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (name === '' || lastName === '' || type === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === new Date() || Number.isNaN(Number(postalCode))) {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || Number.isNaN(Number(postalCode))) {
       toast.warning('¡Completar todos los campos!');
     } else {
       createPatient(formFields)
@@ -155,10 +153,8 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: new Date(),
+    birthDate: '',
     postalCode: NaN,
-    area: ' ',
-    recordId: 1,
   });
   const [patientTwo, setPatientTwo] = useState<Patient>({
     name: '',
@@ -169,10 +165,8 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: new Date(),
+    birthDate: '',
     postalCode: NaN,
-    area: ' ',
-    recordId: 1,
   });
   const handlePatientOne = (event: React.ChangeEvent<any>) => {
     setPatientOne({ ...patientOne, [event.target.name]: event.target.value });
@@ -183,10 +177,10 @@ function RegisterPatient() {
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
-      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === new Date() || !Number.isNaN(Number(patientOne.postalCode))) {
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || !Number.isNaN(Number(patientOne.postalCode))) {
       toast.warning('¡Completar datos del paciente uno!');
     } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
-    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === new Date() || !Number.isNaN(Number(patientTwo.postalCode))) {
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || !Number.isNaN(Number(patientTwo.postalCode))) {
       toast.warning('¡Completar datos del paciente dos!');
     } else {
       const array = Array<Patient>();
