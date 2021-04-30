@@ -34,14 +34,14 @@ describe('User repository', () => {
   });
 
   test('should return error if username not found', async () => {
-    await getConnection().getRepository<User>(User).insert(user);
+    await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login('notMyUser', password));
     expect(error).toBeDefined();
     expect(result).toBeNull();
   });
 
   test('should return error if password not found', async () => {
-    await getConnection().getRepository<User>(User).insert(user);
+    await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login(username, 'notmypass'));
     expect(error).toBeDefined();
     expect(result).toBeNull();
