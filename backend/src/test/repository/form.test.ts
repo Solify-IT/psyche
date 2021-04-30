@@ -1,5 +1,6 @@
 import { wrapError } from '@types';
 import { Form } from 'domain/model';
+import formFixture from 'fixtures/form';
 import Datastore from 'infraestructure/datastore/datastore';
 import FormRepository from 'interface/repository/formRepository';
 import testConnection from 'test/utils/testConnection';
@@ -20,21 +21,7 @@ describe('Form repository', () => {
 
   const datastore: Datastore = new Datastore();
   const formRepository : FormRepository = new FormRepository(datastore);
-  const form = {
-    name: 'New Form',
-    fields: [
-      {
-        name: 'Field 1',
-        label: 'Label 1',
-        type: 'Type 1',
-      },
-      {
-        name: 'Field 2',
-        label: 'Label 2',
-        type: 'Type 2',
-      },
-    ],
-  };
+  const form : Form = formFixture;
   test('should return form if found', async () => {
     await getConnection().getRepository<Form>(Form).save(form);
     const result = await formRepository.detail(1);
@@ -54,5 +41,7 @@ describe('Form repository', () => {
     const [result, error] = await wrapError(formRepository.register(form as Form));
     expect(error).toBeNull();
     expect(result).toBeDefined();
+    expect(result.fields.length).toEqual(2);
+    expect(result.fields[1].options).toBeDefined();
   });
 });
