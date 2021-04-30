@@ -7,6 +7,9 @@ export default class Router {
     app.post('/login', async (request, response, next) => {
       await wrapError(controller.users.login({ request, response, next }));
     });
+    app.post('/users', async (request, response, next) => {
+      await wrapError(controller.users.registerUser({ request, response, next }));
+    });
     app.get('/patients', async (request, response, next) => {
       await wrapError(controller.patients.getPatients({ request, response, next }));
     });

@@ -10,6 +10,7 @@ const patientFixture : Patient = {
   birthPlace: 'test',
   birthDate: new Date(),
   postalCode: 832032,
+  recordId: 1,
 };
 
 export default patientFixture;

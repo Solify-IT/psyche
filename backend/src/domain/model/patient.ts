@@ -1,6 +1,6 @@
 import Record from 'domain/model/record';
 import {
-  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne,
+  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -38,6 +38,13 @@ export default class Patient {
   @Column({ nullable: false })
   postalCode: number;
 
+  @Column({ nullable: false })
+  area: string;
+
+  @Column({ name: 'record_id' })
+  recordId: number;
+
   @ManyToOne(() => Record, (record) => record.patients)
+  @JoinColumn({ name: 'record_id' })
   record?: Record;
 }

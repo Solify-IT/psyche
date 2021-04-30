@@ -1,5 +1,6 @@
 import Patient from 'src/interfaces';
 import Record from 'src/interfaces/record';
+/* eslint-disable react/jsx-props-no-spreading */
 import patientFixture from './patientFixture';
 
 const patients : Patient[] = [patientFixture, {
@@ -12,8 +13,10 @@ const patients : Patient[] = [patientFixture, {
   telephone: '2126427',
   address: 'Temp',
   birthPlace: 'test',
-  birthDate: '01/12/2021',
+  birthDate: new Date(),
   postalCode: 832032,
+  area: 'Psiquiatría',
+  recordId: 1,
 }];
 
 const recordFixture : Record = {
