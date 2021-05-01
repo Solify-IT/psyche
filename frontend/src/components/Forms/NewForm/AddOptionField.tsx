@@ -48,6 +48,7 @@ function AddOptionField(props: AddSelectFieldProps) {
       label: optionText,
       value: '',
       key: uuid4(),
+      checked: false,
     });
     setOptionsInForm(newOptions);
     setOptions([...newOptions]);

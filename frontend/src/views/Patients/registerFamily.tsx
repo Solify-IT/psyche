@@ -84,10 +84,8 @@ function RegisterFamily() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: new Date(),
-    postalCode: NaN,
-    area: ' ',
-    recordId: 1,
+    birthDate: '',
+    postalCode: 0,
   });
 
   const {
@@ -96,12 +94,12 @@ function RegisterFamily() {
   } = { ...formFields };
 
   const handleChange = (event: React.ChangeEvent<any>) => {
-    setFormFields({ ...formFields, [event.target.name]: event.target.value });
+    setFormFields({ ...formFields, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
   };
 
   function addField() {
     if (name === '' || lastName === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === new Date() || !Number.isNaN(Number(postalCode))) {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === '') {
       toast.warning('¡Completar todos los campos!');
     } else {
       setFamily((prevFields) => [...prevFields, formFields]);
@@ -114,10 +112,8 @@ function RegisterFamily() {
         telephone: '',
         address: '',
         birthPlace: '',
-        birthDate: new Date(),
-        postalCode: NaN,
-        area: ' ',
-        recordId: 1,
+        birthDate: '',
+        postalCode: 0,
       });
     }
   }

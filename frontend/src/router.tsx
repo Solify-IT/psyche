@@ -5,8 +5,7 @@ import ConsultPatient from './views/consultPatient';
 import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
-import NewForm from './views/Forms/newForm';
-import GenerateForm from './views/generateForm';
+import NewPatientForm from './views/Forms/newPatientForm';
 import RegisterUser from './views/registerUser';
 import RecordDetail from './views/Patients/recordDetail';
 // Dashboard Views
@@ -18,14 +17,21 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 // Patient Views
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
+import PatientAvailableForms from './views/Forms/patientAvailableForms';
+// Form views
+import GenerateForm from './components/Forms/NewPatientForm/generateForm';
+import NewForm from './views/Forms/newForm';
 
 const AppRouter = () => (
   <div>
     <Route path="/login" exact component={Login} />
-    <Route path="/registerUser" exact component={RegisterUser} />
-    <Route path="/new-form" exact component={NewForm} />
-    <Route path="/read-form" exact component={GenerateForm} />
-    <Route path="/consult-patient" exact component={ConsultPatient} />
+    <PrivateRoute path="/registerUser" exact component={RegisterUser} />
+    <PrivateRoute path="/new-form" exact component={NewForm} />
+    <PrivateRoute path="/expediente/:id(\d+)/encuestas/:formId(\d+)" exact component={NewPatientForm} />
+    <PrivateRoute path="/expediente/:id(\d+)/encuestas" exact component={PatientAvailableForms} />
+    <PrivateRoute path="/" exact component={Home} />
+    <PrivateRoute path="/read-form" exact component={GenerateForm} />
+    <PrivateRoute path="/consult-patient" exact component={ConsultPatient} />
     <PrivateRoute path="/pacientes" exact component={PatientsList} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
