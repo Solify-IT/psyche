@@ -9,13 +9,16 @@ import Footer from './components/footer';
 import AppRouter from './router';
 
 import 'react-toastify/dist/ReactToastify.css';
+import AppMain from './components/appMain';
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <ToastContainer className="foo" style={{ top: '6em', right: '1.5em ' }} position="top-right" />
-      <AppRouter />
+      <AppMain>
+        <AppRouter />
+      </AppMain>
       <Footer />
     </BrowserRouter>
 

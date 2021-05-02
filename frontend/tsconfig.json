@@ -25,11 +25,9 @@
   },
   "include": [
     "src",
-    ".eslintrc.js",
-    "jest.config.js"
   ],
   "exclude": [
-    "node_modules",
-    "build"
+    "**/node_modules",
+    "**/.*/"
   ]
 }

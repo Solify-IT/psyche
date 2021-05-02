@@ -11,7 +11,6 @@ import {
   from '@material-ui/core';
 
 import Form from 'src/interfaces/form';
-import FadeIn from 'react-fade-in';
 import { Link } from 'react-router-dom';
 
 type FormProps = {
@@ -37,67 +36,57 @@ function Forms(props: FormProps) {
   const classes = useStyles();
 
   if (forms.length === 0) {
-    <FadeIn>
-      <main>
-        <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
-          <Grid container>
-            <Typography variant="h5">
-              No se encontraron encuestas disponibles para este expediente.
-            </Typography>
-          </Grid>
-        </Grid>
-        {' '}
-
-      </main>
-    </FadeIn>;
+    <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
+      <Grid container>
+        <Typography variant="h5">
+          No se encontraron encuestas disponibles para este expediente.
+        </Typography>
+      </Grid>
+    </Grid>;
   }
   return (
-    <FadeIn>
-      <main>
-        <div className={classes.heroContent}>
-          <Container>
-            <Grid container justify="center" xs={12} component={Paper} className={classes.paper} elevation={6} square>
-              <Grid container justify="center">
-                <Typography variant="h5" className={classes.title}>
-                  Encuestas disponibles para:
+    <div className={classes.heroContent}>
+      <Container>
+        <Grid container justify="center" xs={12} component={Paper} className={classes.paper} elevation={6} square>
+          <Grid container justify="center">
+            <Typography variant="h5" className={classes.title}>
+              Encuestas disponibles para:
+              {' '}
+              {forms[0].type}
+            </Typography>
+          </Grid>
+          {forms.map((form) => (
+            <Container>
+              <Divider />
+
+              <Grid container className={classes.formRow}>
+                <Grid item xs={6}>
+                  {form.name}
+                </Grid>
+                <Grid item xs={3}>
+                  Creado en:
                   {' '}
-                  {forms[0].type}
-                </Typography>
+                  {form.startDate}
+                </Grid>
+                <Grid item xs={1}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component={Link}
+                    to={`/expediente/${recordId}/encuestas/${form.id}`}
+                  >
+                    Elegir
+                  </Button>
+                </Grid>
               </Grid>
-              {forms.map((form) => (
-                <Container>
-                  <Divider />
+              <Divider />
 
-                  <Grid container className={classes.formRow}>
-                    <Grid item xs={6}>
-                      {form.name}
-                    </Grid>
-                    <Grid item xs={3}>
-                      Creado en:
-                      {' '}
-                      {form.startDate}
-                    </Grid>
-                    <Grid item xs={1}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        component={Link}
-                        to={`/expediente/${recordId}/encuestas/${form.id}`}
-                      >
-                        Elegir
-                      </Button>
-                    </Grid>
-                  </Grid>
-                  <Divider />
+            </Container>
 
-                </Container>
-
-              ))}
-            </Grid>
-          </Container>
-        </div>
-      </main>
-    </FadeIn>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 }
 

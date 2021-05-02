@@ -4,7 +4,6 @@ import {
   Grid, makeStyles, Paper, Typography,
 } from '@material-ui/core';
 import Moment from 'moment';
-import FadeIn from 'react-fade-in';
 import Record from 'src/interfaces/record';
 import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
@@ -12,9 +11,6 @@ import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '80vh',
-  },
   patientSection: {
     margin: theme.spacing(8, 4),
     display: 'flex',
@@ -157,8 +153,8 @@ function RecordInfo(props: RecordInfoProps) {
   console.log(record);
 
   return (
-    <FadeIn>
-      <Grid container component="main" className={classes.root}>
+    <div>
+      <Grid container>
         <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
             Expediente
@@ -174,7 +170,7 @@ function RecordInfo(props: RecordInfoProps) {
         </Grid>
       </Grid>
       <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
-    </FadeIn>
+    </div>
   );
 }
 

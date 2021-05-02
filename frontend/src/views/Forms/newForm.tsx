@@ -223,113 +223,111 @@ function NewForm() {
   }
   return (
     <div className={classes.heroContent}>
-      <main>
-        <Container>
-          <Typography variant="h2" align="center">
-            Crear Nuevo Form
-          </Typography>
-          <Grid container justify="center">
-            <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
-              <Grid container spacing={8}>
+      <Container>
+        <Typography variant="h2" align="center">
+          Crear Nuevo Form
+        </Typography>
+        <Grid container justify="center">
+          <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
+            <Grid container spacing={8}>
 
-                <Grid item xs={6}>
-                  <TextField
-                    margin="normal"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Nombre de formato"
-                    onChange={handleTitle}
-                    value={title}
-                    className={classes.formControl}
-                    name="name"
-                    error={!titleValid}
-                    helperText={!titleValid && 'Este campo no puede estar vació.'}
-                  />
-                </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  margin="normal"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Nombre de formato"
+                  onChange={handleTitle}
+                  value={title}
+                  className={classes.formControl}
+                  name="name"
+                  error={!titleValid}
+                  helperText={!titleValid && 'Este campo no puede estar vació.'}
+                />
+              </Grid>
 
-                <Grid item xs={6}>
-                  <InputLabel id="type">Tipo</InputLabel>
+              <Grid item xs={6}>
+                <InputLabel id="type">Tipo</InputLabel>
 
+                <Select
+                  labelId="type"
+                  required
+                  fullWidth
+                  label="Clasificación"
+                  name="type"
+                  value={formType}
+                  onChange={handleNewType}
+                >
+                  {optionsPsiquiatria.map(createSelect)}
+                  <Divider />
+                  {optionsAsesoria.map(createSelect)}
+                  <Divider />
+                  {optionsClinica.map(createSelect)}
+                  <Divider />
+                  {optionsPsicologia.map(createSelect)}
+                  <Divider />
+
+                </Select>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={3}>
+              <Grid item xs={3}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel>Tipo de Dato</InputLabel>
                   <Select
-                    labelId="type"
-                    required
-                    fullWidth
-                    label="Clasificación"
+                    labelId="demo-simple-select-label"
+                    id="type"
                     name="type"
-                    value={formType}
-                    onChange={handleNewType}
-                  >
-                    {optionsPsiquiatria.map(createSelect)}
-                    <Divider />
-                    {optionsAsesoria.map(createSelect)}
-                    <Divider />
-                    {optionsClinica.map(createSelect)}
-                    <Divider />
-                    {optionsPsicologia.map(createSelect)}
-                    <Divider />
-
-                  </Select>
-                </Grid>
-              </Grid>
-
-              <Grid container spacing={3}>
-                <Grid item xs={3}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel>Tipo de Dato</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="type"
-                      name="type"
-                      value={type}
-                      onChange={handleNewField}
-                    >
-                      <MenuItem value="text">Text Field</MenuItem>
-                      <MenuItem value="number">Number Field</MenuItem>
-                      <MenuItem value="select">Select</MenuItem>
-                      <MenuItem value="checkbox">Checkbox</MenuItem>
-                      <MenuItem value="datepicker">Date Picker</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={9}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="label"
-                    label="Etiqueta"
-                    name="label"
-                    value={label}
+                    value={type}
                     onChange={handleNewField}
-                    error={!labelValid}
-                    helperText={!labelValid && 'Este campo no puede estar vació.'}
-                  />
-                </Grid>
-              </Grid>
-              {renderCustomForm()}
-              <Grid container spacing={3} justify="center">
-                <Grid item xs={6}>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={addField}
                   >
-                    Agregar
-                  </Button>
-                </Grid>
+                    <MenuItem value="text">Text Field</MenuItem>
+                    <MenuItem value="number">Number Field</MenuItem>
+                    <MenuItem value="select">Select</MenuItem>
+                    <MenuItem value="checkbox">Checkbox</MenuItem>
+                    <MenuItem value="datepicker">Date Picker</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={9}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="label"
+                  label="Etiqueta"
+                  name="label"
+                  value={label}
+                  onChange={handleNewField}
+                  error={!labelValid}
+                  helperText={!labelValid && 'Este campo no puede estar vació.'}
+                />
+              </Grid>
+            </Grid>
+            {renderCustomForm()}
+            <Grid container spacing={3} justify="center">
+              <Grid item xs={6}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={addField}
+                >
+                  Agregar
+                </Button>
               </Grid>
             </Grid>
           </Grid>
-          <FormTable />
+        </Grid>
+        <FormTable />
 
-        </Container>
-      </main>
+      </Container>
     </div>
 
   );

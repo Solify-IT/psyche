@@ -252,7 +252,7 @@ function GenerateForm(props: GenerateFormProps) {
   }
 
   return (
-    <main>
+    <div>
       <Typography variant="h2" align="center">
         Llenar Formato del Paciente
       </Typography>
@@ -288,7 +288,7 @@ function GenerateForm(props: GenerateFormProps) {
           </Grid>
         </Container>
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -8,7 +8,6 @@ import {
   Paper,
 }
   from '@material-ui/core';
-import FadeIn from 'react-fade-in';
 
 function DasboardArea() {
   const useStyles = makeStyles((theme) => ({
@@ -42,60 +41,56 @@ function DasboardArea() {
   const classes = useStyles();
 
   return (
-    <FadeIn>
-      <main>
-        <div className={classes.heroContent}>
-          <Container>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Registrar Paciente
+    <div className={classes.heroContent}>
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h2" align="center" className={classes.subtitles}>
+              Registrar Paciente
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography align="justify" className={classes.description}>
+              Selecciona el area correspondiente a la que pertenece el paciente:
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={6} lg={4}>
+            <Link to="/dashboard-as-psic" className={classes.option}>
+              <Paper className={classes.paper}>
+                <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
+                <Typography variant="h4" align="center" className={classes.subtitles}>
+                  Asistencia Psicológica
                 </Typography>
-              </Grid>
+              </Paper>
+            </Link>
+          </Grid>
 
-              <Grid item xs={12}>
-                <Typography align="justify" className={classes.description}>
-                  Selecciona el area correspondiente a la que pertenece el paciente:
+          <Grid item xs={12} sm={6} lg={4}>
+            <Link to="/app/land-divisions" className={classes.option}>
+              <Paper className={classes.paper}>
+                <img src="/images/prevsoc.png" alt="Logo" className={classes.image} />
+                <Typography variant="h4" align="center" className={classes.subtitles}>
+                  Prevención Social
                 </Typography>
-              </Grid>
+              </Paper>
+            </Link>
+          </Grid>
 
-              <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/dashboard-as-psic" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Asistencia Psicológica
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-
-              <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/land-divisions" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/prevsoc.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Prevención Social
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-
-              <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/home-divisions" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/formacioncont.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Formación Continua
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-      </main>
-    </FadeIn>
+          <Grid item xs={12} sm={6} lg={4}>
+            <Link to="/app/home-divisions" className={classes.option}>
+              <Paper className={classes.paper}>
+                <img src="/images/formacioncont.png" alt="Logo" className={classes.image} />
+                <Typography variant="h4" align="center" className={classes.subtitles}>
+                  Formación Continua
+                </Typography>
+              </Paper>
+            </Link>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
   );
 }
 

@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
 import { authenticationService, login } from '../api/authenticationService';
 
@@ -76,68 +75,66 @@ export default function SignInSide() {
       });
   };
   return (
-    <FadeIn>
-      <Grid container component="main" className={classes.root}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={6} className={classes.image} />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}>
-          <div className={classes.paper}>
-            <Typography component="h1" variant="h3">
-              Inicia Sesión
-            </Typography>
-            <form className={classes.form} method="POST" onSubmit={handleSubmit}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
-                value={email}
-                onChange={handleChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                value={password}
-                onChange={handleChange}
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordarme"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Ingresar
-              </Button>
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={6} className={classes.image} />
+      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}>
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h3">
+            Inicia Sesión
+          </Typography>
+          <form className={classes.form} method="POST" onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Correo Electrónico"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Contraseña"
+              type="password"
+              id="password"
+              value={password}
+              onChange={handleChange}
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Recordarme"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Ingresar
+            </Button>
 
-              <Grid container>
-                <Grid item xs />
-                <Grid item>
-                  <Link href="/#" variant="body2">
-                    Olvide mi contraseña
-                  </Link>
-                </Grid>
+            <Grid container>
+              <Grid item xs />
+              <Grid item>
+                <Link href="/#" variant="body2">
+                  Olvide mi contraseña
+                </Link>
               </Grid>
+            </Grid>
 
-            </form>
-          </div>
-        </Grid>
+          </form>
+        </div>
       </Grid>
-    </FadeIn>
+    </Grid>
   );
 }
