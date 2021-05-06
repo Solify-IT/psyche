@@ -83,7 +83,6 @@ function RegisterPatient() {
     birthPlace: '',
     postalCode: 2222,
     birthDate: new Date(),
-    area: '',
     recordId: 1,
   });
   const {
@@ -157,7 +156,6 @@ function RegisterPatient() {
     birthPlace: '',
     birthDate: new Date(),
     postalCode: NaN,
-    area: ' ',
     recordId: 1,
   });
   const [patientTwo, setPatientTwo] = useState<Patient>({
@@ -171,7 +169,6 @@ function RegisterPatient() {
     birthPlace: '',
     birthDate: new Date(),
     postalCode: NaN,
-    area: ' ',
     recordId: 1,
   });
   const handlePatientOne = (event: React.ChangeEvent<any>) => {

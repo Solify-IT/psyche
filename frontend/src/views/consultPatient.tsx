@@ -17,15 +17,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Link } from 'react-router-dom';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+// import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Patient from 'src/interfaces';
+import {
+  optionsPsicologia, optionsPsiquiatria, optionsClinica, optionsAsesoria,
+} from 'src/interfaces/options';
+import server from 'src/utils/server';
+import handleResponse from '../utils/handleResponse';
+import '../App.css';
 
-const filterOptions = createFilterOptions({
+/* const filterOptions = createFilterOptions({
   matchFrom: 'start',
   stringify: (option: FilmOptionType) => option.name,
 });
 interface FilmOptionType {
   name: string;
-}
+} */
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
@@ -75,23 +82,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 export default function CustomizedTables() {
+  const [fields, setFields] = useState(optionsPsicologia);
+  const [fieldsPs, setFieldsPs] = useState(optionsPsiquiatria);
+  const [fieldsCl, setFieldsCl] = useState(optionsClinica);
+  const [fieldsAs, setFieldsAs] = useState(optionsAsesoria);
   const [searchData, setSearchData] = useState('');
   const [patients, setPatients] = useState<any[]>([]);
-  const [doctor, setDoctor] = useState<any[]>([]);
+  // const [doctor, setDoctor] = useState<any[]>([]);
   const [patientsData, setPatientsData] = useState<any[]>([]);
-  const [doctorData, setDoctorData] = useState<any[]>([]);
-  const getPatients = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/patients');
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setPatients(jsonData);
-      setPatientsData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-  const getDoctors = async () => {
+  // const [doctorData, setDoctorData] = useState<any[]>([]);
+
+  /* const getDoctors = async () => {
     try {
       const response = await fetch('http://localhost:8000/doctors');
       const jsonData = await response.json();
@@ -101,45 +102,61 @@ export default function CustomizedTables() {
     } catch (err) {
       console.error(err.message);
     }
-  };
-  const [value, setValue] = useState('Adulto');
+  }; */
+  const [value, setValue] = useState(' ');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
   useEffect(() => {
-    getDoctors();
+    // getDoctors();
+    const getPatients = async () => {
+      const results = await server.get<Patient[]>('/patients').then(handleResponse).catch(handleResponse);
+      setPatients(results);
+      setPatientsData(results);
+    };
     getPatients();
-  });
+  }, []);
 
   useEffect(() => {
-    const patientFilter = Object.values(patientsData);
-    const doctorFilter = Object.values(doctorData);
-    console.log(value);
-    const filteredUsers = patientFilter.filter(
-      (patientConverter) => (patientConverter.name.toLowerCase()
-        .includes(searchData.toLowerCase())
-       && patientConverter.type.toLowerCase() === value.toLowerCase())
-       || (patientConverter.name.toLowerCase()
-         .includes(searchData.toLowerCase())
-      && patientConverter.area.toLowerCase() === value.toLowerCase())
-      || (patientConverter.type.toLowerCase() === value.toLowerCase()
-      && patientConverter.area.toLowerCase() === value.toLowerCase())
-      || ((patientConverter.name.toLowerCase()
-        .includes(searchData.toLowerCase())
-      && patientConverter.type.toLowerCase() === value.toLowerCase()
-      && patientConverter.area.toLowerCase() === value.toLowerCase())),
-    );
-    const filteredDoctors = doctorFilter.filter(
-      (doctorConverter) => (doctorConverter.name.toLowerCase()
-        .includes(searchData.toLowerCase())
-      ),
-    );
-    setPatients(patients);
-    setPatients(filteredUsers);
-    setDoctor(filteredDoctors);
-  }, [searchData, value, patientsData, doctorData]);
+    if (optionsPsicologia !== []) {
+      setFields(optionsPsicologia);
+    }
+    if (optionsPsiquiatria !== []) {
+      setFieldsPs(optionsPsiquiatria);
+    }
+    if (optionsClinica !== []) {
+      setFieldsCl(optionsClinica);
+    }
+    if (optionsAsesoria !== []) {
+      setFieldsAs(optionsAsesoria);
+    }
+    if (value === (' ')) {
+      setPatients(patients);
+    } else {
+      const patientFilter = Object.values(patientsData);
+      // const doctorFilter = Object.values(doctorData);
+      const filteredUsers = patientFilter.filter(
+        (patientConverter) => (patientConverter.name.toLowerCase()
+          .includes(searchData.toLowerCase())
+         && patientConverter.type.toLowerCase() === value.toLowerCase())
+         || (patientConverter.type.toLowerCase() === value.toLowerCase()
+         && patientConverter.name.toLowerCase()
+           .includes(searchData.toLowerCase()))
+         || (patientConverter.name.toLowerCase()
+           .includes(searchData.toLowerCase())),
+      );
+      /* const filteredDoctors = doctorFilter.filter(
+        (doctorConverter) => (doctorConverter.name.toLowerCase()
+          .includes(searchData.toLowerCase())
+        ),
+      ); */
+
+      setPatients(filteredUsers);
+      // setDoctor(filteredDoctors);
+    }
+  }, [searchData, value, patientsData]);
 
   const handleSearch = (event: React.ChangeEvent<any>) => {
     setSearchData(event.target.value);
@@ -157,30 +174,37 @@ export default function CustomizedTables() {
             value={searchData}
             onChange={handleSearch}
           />
-          <FormControl component="fieldset" className={classes.frm}>
-            <FormLabel component="legend">Área</FormLabel>
-            <RadioGroup aria-label="area" name="area" value={value} onChange={handleChange}>
-              <FormControlLabel value="Psicología" control={<Radio />} label="Psicología" />
-              <FormControlLabel value="Psiquiatría" control={<Radio />} label="Psiquiatría" />
-              <FormControlLabel value="Área jurídica" control={<Radio />} label="Área jurídica" />
-            </RadioGroup>
-          </FormControl>
-          <Autocomplete
-            id="filter-demo"
-            options={doctor}
-            getOptionLabel={(option) => option.name}
-            filterOptions={filterOptions}
-            style={{ width: 220 }}
-            /* eslint-disable react/jsx-props-no-spreading */
-            renderInput={(params) => <TextField {...params} label="Nombre del doctor" variant="outlined" />}
-          />
           <FormControl className={classes.frm}>
-            <FormLabel component="legend">Tipo</FormLabel>
-            <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
-              <FormControlLabel value="Adulto" control={<Radio />} label="Adulto" />
-              <FormControlLabel value="Menor" control={<Radio />} label="Menor" />
-              <FormControlLabel value="Pareja" control={<Radio />} label="Pareja" />
-            </RadioGroup>
+            <FormLabel component="legend">Psicología</FormLabel>
+            {fields.map((r) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
+                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.frm}>
+            <FormLabel component="legend">Psiquiatría</FormLabel>
+            {fieldsPs.map((r) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
+                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.frm}>
+            <FormLabel component="legend">Clínica</FormLabel>
+            {fieldsCl.map((r) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
+                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.frm}>
+            <FormLabel component="legend">Asesoría</FormLabel>
+            {fieldsAs.map((r) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
+                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
+              </RadioGroup>
+            ))}
           </FormControl>
         </Grid>
         <GridList className={classes.gridList}>
@@ -192,6 +216,8 @@ export default function CustomizedTables() {
                     <StyledTableCell align="left" color="textPrimary">
                       <Link to={`/expediente/${r.recordId}`}>
                         {r.name}
+                        {' '}
+                        {r.lastName}
                       </Link>
 
                       <>
@@ -201,7 +227,7 @@ export default function CustomizedTables() {
                       </>
                       <>
                         <Typography color="textSecondary" variant="subtitle2">
-                          Folio:
+                          Expediente:
                           {' '}
                           {r.recordId}
                         </Typography>

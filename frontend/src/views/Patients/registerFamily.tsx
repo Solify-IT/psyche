@@ -86,7 +86,6 @@ function RegisterFamily() {
     birthPlace: '',
     birthDate: new Date(),
     postalCode: NaN,
-    area: ' ',
     recordId: 1,
   });
 
@@ -116,7 +115,6 @@ function RegisterFamily() {
         birthPlace: '',
         birthDate: new Date(),
         postalCode: NaN,
-        area: ' ',
         recordId: 1,
       });
     }
