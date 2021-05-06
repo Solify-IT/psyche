@@ -19,10 +19,35 @@ export default class FormController {
     context.response.status(200).json(form);
   }
 
+  async registerPatientForm(context: IContext): Promise<void> {
+    // eslint-disable-next-line radix
+    const recordId = parseInt(context.request.params.id);
+    const [form, error] = await
+    wrapError(this.formInteractor.registerPatientForm({ ...context.request.body, recordId }));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(form);
+  }
+
   async detailForm(context: IContext): Promise<void> {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
     const [form, error] = await wrapError(this.formInteractor.detail(id));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(form);
+  }
+
+  async getFormsWithRecordId(context: IContext): Promise<void> {
+    // eslint-disable-next-line radix
+    const id = parseInt(context.request.params.id);
+    const [form, error] = await wrapError(this.formInteractor.getFormsByRecordId(id));
 
     if (error) {
       context.next(error);

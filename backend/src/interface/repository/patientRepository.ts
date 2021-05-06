@@ -24,7 +24,7 @@ export default class PatientRepository implements IPatientRepository {
     if (record) {
       return record;
     }
-    throw new NotFoundError('No se encontro el expediente del paciente solicitado');
+    throw new NotFoundError('No se encontró el expediente del paciente solicitado');
   }
 
   async register(patients: Patient[]): Promise<Record> {

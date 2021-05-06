@@ -10,7 +10,7 @@ const patientFixture : Patient = {
   telephone: '2126427',
   address: 'Temp',
   birthPlace: 'test',
-  birthDate: new Date(),
+  birthDate: '',
   postalCode: 832032,
   recordId: 1,
 };

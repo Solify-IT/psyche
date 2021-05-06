@@ -2,6 +2,7 @@ import { wrapError } from '@types';
 import IFormPresenter from 'app/presenter/formPresenter';
 import IFormRepository from 'app/repository/formRepository';
 import { Form } from 'domain/model';
+import PatientForm from 'domain/model/patientForm';
 
 export default class FormInteractor {
   formRepository: IFormRepository;
@@ -29,5 +30,23 @@ export default class FormInteractor {
       throw error;
     }
     return this.formPresenter.detail(result);
+  }
+
+  async registerPatientForm(form: PatientForm): Promise<PatientForm> {
+    const [result, error] = await wrapError(this.formRepository.registerPatientForm(form));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.detailPatientForm(result);
+  }
+
+  async getFormsByRecordId(id: number): Promise<Form[]> {
+    const [result, error] = await wrapError(this.formRepository.getFormsWithReportId(id));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.forms(result);
   }
 }

@@ -3,7 +3,7 @@ import { Patient } from 'domain/model';
 const patientFixture : Patient = {
   name: 'Carlos',
   lastName: 'Del Rio',
-  type: 'Joven',
+  type: 'Jovenes',
   gender: 'Hombre',
   telephone: '2126427',
   address: 'Temp',
