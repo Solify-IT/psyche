@@ -84,7 +84,7 @@ function RegisterFamily() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: new Date(),
+    birthDate: ' ',
     postalCode: NaN,
     recordId: 1,
   });
@@ -113,7 +113,7 @@ function RegisterFamily() {
         telephone: '',
         address: '',
         birthPlace: '',
-        birthDate: new Date(),
+        birthDate: ' ',
         postalCode: NaN,
         recordId: 1,
       });
