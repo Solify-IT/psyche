@@ -44,6 +44,19 @@ export default class FormController {
     context.response.status(200).json(form);
   }
 
+  async detailField(context: IContext): Promise<void> {
+    // eslint-disable-next-line radix
+    const id = parseInt(context.request.params.id);
+    const [form, error] = await wrapError(this.formInteractor.detailField(id));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(form);
+  }
+  
+
   async getFormsWithRecordId(context: IContext): Promise<void> {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
