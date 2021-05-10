@@ -10,5 +10,5 @@ export default interface Patient {
   birthPlace: string;
   birthDate: string;
   postalCode: number;
-  recordId?: number,
+  recordId: number,
 }

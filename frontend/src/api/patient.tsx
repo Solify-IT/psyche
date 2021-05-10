@@ -12,3 +12,9 @@ export async function createCouple(patient:Array<Patient>) {
   const result = await server.post('/patients', patient).then(handleResponse).catch(handleResponse);
   return result.data;
 }
+
+export async function getPatients() {
+  const result = await server.get('/patients').then(handleResponse).catch(handleResponse);
+  console.log(result);
+  return result;
+}

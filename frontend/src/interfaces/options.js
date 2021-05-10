@@ -46,3 +46,15 @@ export const optionsAsesoria = [
     name: 'Asesoría Juridica Adulto',
   },
 ];
+
+export const todos = [
+
+  optionsPsicologia,
+
+  optionsPsiquiatria,
+
+  optionsClinica,
+
+  optionsAsesoria,
+
+];
