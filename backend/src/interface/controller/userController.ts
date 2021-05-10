@@ -19,6 +19,18 @@ export default class UserController {
     context.response.status(200).json(user);
   }
 
+  async registerProfile(context: IContext): Promise<void> {
+    const [user, error] = await wrapError(
+      this.userInteractor.registerProfile(context.request.body),
+    );
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(user);
+  }
+
   async getUsers(context: IContext): Promise<void> {
     const [users, error] = await wrapError(this.userInteractor.getAll());
     if (error) {

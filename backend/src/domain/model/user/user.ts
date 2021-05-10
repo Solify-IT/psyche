@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity, Column, PrimaryGeneratedColumn, OneToMany,
+} from 'typeorm';
+import PatientArea from './patientArea';
 
 @Entity()
 export default class User {
@@ -25,4 +28,13 @@ export default class User {
 
   @Column()
   role: string;
+
+  @Column({ default: true })
+  active: boolean;
+
+  @Column({ nullable: true })
+  professionalLicense: string;
+
+  @OneToMany(() => PatientArea, (areas) => areas.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  patientAreas?: PatientArea[];
 }
