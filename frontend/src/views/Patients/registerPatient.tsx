@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   Container,
-  makeStyles,
   Typography,
   Grid,
   Paper,
@@ -14,6 +13,7 @@ import {
   FormControl,
   Button,
 } from '@material-ui/core';
+import makeStyles from '@material-ui/core/styles';
 import {
   optionsPsicologia,
   optionsPsiquiatria,

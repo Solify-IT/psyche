@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   Container,
-  makeStyles,
   Grid,
   Typography,
   Card,
@@ -10,15 +9,23 @@ import {
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import PrintIcon from '@material-ui/icons/Print';
-import dataForm from '../dataForm';
+import makeStyles from '@material-ui/core/styles';
+import Form from 'src/interfaces/form';
+import { toast } from 'react-toastify';
+import getFormField from '../api/forms';
 
 function ConsultPatientForm() {
-  const [field, setField] = useState(dataForm);
+  const [field, setField] = useState<Form[]>([]);
   useEffect(() => {
-    // Aqui vamos a mandar a llamar el endpoint de get
-    if (dataForm !== []) {
-      setField(dataForm);
-    }
+    getFormField(field)
+      .then((response:any) => {
+        console.log(response);
+        toast.success('¡Se ha registrado el paciente! 😃');
+      })
+      .catch((error:any) => {
+        toast.warning('Algo ha salido mal!');
+        console.log(error);
+      });
   }, []);
   const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -104,11 +111,6 @@ function ConsultPatientForm() {
                 <Card className={classes.card}>
                   <p className={classes.label}>
                     Folio: PPQ-AP-001
-                  </p>
-                  <p className={classes.label}>
-                    Fecha de registro:
-                    {' '}
-                    { fieldPatiente.date}
                   </p>
                   <p className={classes.label}>
                     Tipo de paciente:
