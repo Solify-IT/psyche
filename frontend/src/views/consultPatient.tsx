@@ -100,7 +100,7 @@ export default function CustomizedTables() {
       console.error(err.message);
     }
   }; */
-  const [value, setValue] = useState(' ');
+  const [value, setValue] = useState('Psicología Adulto');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
