@@ -12,9 +12,6 @@ import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '80vh',
-  },
   patientSection: {
     margin: theme.spacing(8, 4),
     display: 'flex',
@@ -154,11 +151,10 @@ function RecordInfo(props: RecordInfoProps) {
       </Paper>
     );
   }
-  console.log(record);
 
   return (
     <FadeIn>
-      <Grid container component="main" className={classes.root}>
+      <Grid container component="main">
         <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
             Expediente
