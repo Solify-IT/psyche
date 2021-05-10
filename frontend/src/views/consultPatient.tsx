@@ -17,14 +17,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Link } from 'react-router-dom';
-// import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import Patient from 'src/interfaces';
 import {
   optionsPsicologia, optionsPsiquiatria, optionsClinica, optionsAsesoria,
 } from 'src/interfaces/options';
-import server from 'src/utils/server';
-import handleResponse from '../utils/handleResponse';
 import '../App.css';
+import { getPatients } from '../api/patient';
 
 /* const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -87,11 +85,10 @@ export default function CustomizedTables() {
   const [fieldsCl, setFieldsCl] = useState(optionsClinica);
   const [fieldsAs, setFieldsAs] = useState(optionsAsesoria);
   const [searchData, setSearchData] = useState('');
-  const [patients, setPatients] = useState<any[]>([]);
+  const [patients, setPatients] = useState<Patient[]>([]);
+  const [patientsData, setPatientsData] = useState<Patient[]>([]);
   // const [doctor, setDoctor] = useState<any[]>([]);
-  const [patientsData, setPatientsData] = useState<any[]>([]);
   // const [doctorData, setDoctorData] = useState<any[]>([]);
-
   /* const getDoctors = async () => {
     try {
       const response = await fetch('http://localhost:8000/doctors');
@@ -110,13 +107,14 @@ export default function CustomizedTables() {
   };
 
   useEffect(() => {
-    // getDoctors();
-    const getPatients = async () => {
-      const results = await server.get<Patient[]>('/patients').then(handleResponse).catch(handleResponse);
-      setPatients(results);
-      setPatientsData(results);
-    };
-    getPatients();
+    getPatients().then((response:any) => {
+      console.log(response);
+      setPatients(response);
+      setPatientsData(response);
+    })
+      .catch((error:any) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
@@ -143,8 +141,6 @@ export default function CustomizedTables() {
          && patientConverter.type.toLowerCase() === value.toLowerCase())
          || (patientConverter.type.toLowerCase() === value.toLowerCase()
          && patientConverter.name.toLowerCase()
-           .includes(searchData.toLowerCase()))
-         || (patientConverter.name.toLowerCase()
            .includes(searchData.toLowerCase())),
       );
       /* const filteredDoctors = doctorFilter.filter(
