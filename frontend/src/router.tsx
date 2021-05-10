@@ -21,6 +21,7 @@ import PatientAvailableForms from './views/Forms/patientAvailableForms';
 // Form views
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import NewForm from './views/Forms/newForm';
+import ConsultPatientForm from './views/Forms/consultPatientForm';
 
 const AppRouter = () => (
   <div>
@@ -42,6 +43,7 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-evaluacion" exact component={DashboardEvaluacion} />
     <PrivateRoute path="/dashboard-asesoria" exact component={DashboardAsesoria} />
     <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
+    <PrivateRoute path="/patient-form" exact component={ConsultPatientForm} />
   </div>
 );
 
