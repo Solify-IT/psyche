@@ -4,11 +4,10 @@ import PatientForm from 'domain/model/patientForm';
 import PatientFormField from 'domain/model/patientFormField';
 
 export default class FormPresenter implements IFormPresenter {
-  
   updatePatientForm(form: Form): Form {
     return form;
   }
-  
+
   forms(forms: Form[]): Form[] {
     return forms;
   }
