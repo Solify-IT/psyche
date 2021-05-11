@@ -4,29 +4,32 @@ import {
   Grid,
   Typography,
   Card,
+  makeStyles,
   Button,
 }
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import PrintIcon from '@material-ui/icons/Print';
-import makeStyles from '@material-ui/core/styles';
 import Form from 'src/interfaces/form';
-import { toast } from 'react-toastify';
-import getFormField from '../api/forms';
+import { useParams } from 'react-router-dom';
+import { getFormField } from '../../api/forms';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<Form[]>([]);
+
   useEffect(() => {
-    getFormField(field)
-      .then((response:any) => {
-        console.log(response);
-        toast.success('¡Se ha registrado el paciente! 😃');
-      })
+    const { id } : any = useParams();
+    console.log(id);
+    getFormField(id).then((response:any) => {
+      console.log('hola');
+      console.log(response);
+      setField(response);
+    })
       .catch((error:any) => {
-        toast.warning('Algo ha salido mal!');
         console.log(error);
       });
   }, []);
+
   const useStyles = makeStyles((theme) => ({
     heroContent: {
       padding: theme.spacing(6, 0, 6),
