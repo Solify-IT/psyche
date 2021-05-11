@@ -6,4 +6,5 @@ export default interface IFormPresenter {
   register(form: Form) : Form;
   detailPatientForm(form: PatientForm) : PatientForm;
   forms(forms: Form[]) : Form[];
+  updatePatientForm(form: Form): Form;
 }

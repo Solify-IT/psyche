@@ -13,6 +13,12 @@ export async function registerPatientForm(id: number, form: Form) {
   return result;
 }
 
+export async function updatePatientForm(id: number, form: Form) {
+  const result = await server.put(`/patientFormField/${id}`, form);
+  console.log(result);
+  return result;
+}
+
 export async function listFormsWithRecordId(id: number) {
   const result = await server.get(`/records/${id}/forms`);
   console.log(result);

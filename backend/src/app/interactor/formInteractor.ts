@@ -32,6 +32,15 @@ export default class FormInteractor {
     return this.formPresenter.detail(result);
   }
 
+  async updatePatientForm(form: PatientForm): Promise<Form> {
+    const [result, error] = await wrapError(this.formRepository.updatePatientForm(form));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.detail(result);
+  }
+
   async registerPatientForm(form: PatientForm): Promise<PatientForm> {
     const [result, error] = await wrapError(this.formRepository.registerPatientForm(form));
 

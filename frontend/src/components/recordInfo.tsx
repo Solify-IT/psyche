@@ -10,6 +10,7 @@ import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   patientSection: {
@@ -78,6 +79,13 @@ function RecordInfoSlot(infoProps: RecordInfoSlotProps) {
 function FormSection(props: FormSectionProps) {
   const classes = useStyles();
   const { forms, title } = props;
+  const history = useHistory();
+
+  function updateRecord(event: React.ChangeEvent<any>) {
+    const { id } = event.currentTarget.dataset;
+    history.push(`/update-form/${id}`);
+  }
+
   return (
     <Paper key={title} variant="outlined" className={classes.patientSection}>
       <Grid container spacing={2} justify="space-between">
@@ -107,7 +115,7 @@ function FormSection(props: FormSectionProps) {
             </Button>
           </Grid>
           <Grid item md={1}>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" data-id={form.id.toString()} onClick={updateRecord}>
               Modificar
             </Button>
           </Grid>
