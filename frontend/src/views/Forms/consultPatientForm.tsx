@@ -1,241 +1,157 @@
 import React, { useEffect, useState } from 'react';
 import {
-  withStyles, Theme, createStyles, makeStyles,
-} from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import { Link } from 'react-router-dom';
-import Patient from 'src/interfaces';
-import {
-  optionsPsicologia, optionsPsiquiatria, optionsClinica, optionsAsesoria,
-} from 'src/interfaces/options';
-import { getPatients } from '../../api/patient';
+  Container,
+  makeStyles,
+  Grid,
+  Typography,
+  Card,
+  Button,
+}
+  from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import PrintIcon from '@material-ui/icons/Print';
+import { getFormField } from 'src/api/forms';
+import { useParams } from 'react-router';
+import PatientFormField from 'src/interfaces/patientFormField';
+import PatientForms from 'src/interfaces/patientForms';
 
-/* const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option: FilmOptionType) => option.name,
-});
-interface FilmOptionType {
-  name: string;
-} */
-
-const StyledTableCell = withStyles((theme: Theme) => createStyles({
-  head: {
-    backgroundColor: theme.palette.success.light,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-}))(TableRow);
-
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    marginLeft: '140px',
-    overflowX: 'auto',
-    margin: theme.spacing(1),
-  },
-  table: {
-    width: 940,
-  },
-  paper: {
-    margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2),
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  frm: {
-    margin: theme.spacing(2),
-  },
-  gridList: {
-    width: 950,
-    height: 400,
-  },
-}));
-
-export default function CustomizedTables() {
-  const [fields, setFields] = useState(optionsPsicologia);
-  const [fieldsPs, setFieldsPs] = useState(optionsPsiquiatria);
-  const [fieldsCl, setFieldsCl] = useState(optionsClinica);
-  const [fieldsAs, setFieldsAs] = useState(optionsAsesoria);
-  const [searchData, setSearchData] = useState('');
-  const [patients, setPatients] = useState<Patient[]>([]);
-  const [patientsData, setPatientsData] = useState<Patient[]>([]);
-  // const [doctor, setDoctor] = useState<any[]>([]);
-  // const [doctorData, setDoctorData] = useState<any[]>([]);
-  /* const getDoctors = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/doctors');
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setDoctor(jsonData);
-      setDoctorData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }; */
-  const [value, setValue] = useState('Psicología Adulto');
-  const classes = useStyles();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-  };
-
+function ConsultPatientForm() {
+  const [f, setField] = useState<PatientFormField>({
+    id: 1,
+    name: '',
+    type: '',
+    createdDate: '',
+    recordId: 1,
+    fields: Array<PatientForms>(),
+  });
+  const { id } : any = useParams();
   useEffect(() => {
-    getPatients().then((response:any) => {
-      console.log(response);
-      setPatients(response);
-      setPatientsData(response);
-    })
+    getFormField(id)
+      .then((response:any) => {
+        console.log(response.data);
+        setField(response.data);
+        console.log(f);
+        console.log('dsfdss');
+      })
       .catch((error:any) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
-  useEffect(() => {
-    if (optionsPsicologia !== []) {
-      setFields(optionsPsicologia);
-    }
-    if (optionsPsiquiatria !== []) {
-      setFieldsPs(optionsPsiquiatria);
-    }
-    if (optionsClinica !== []) {
-      setFieldsCl(optionsClinica);
-    }
-    if (optionsAsesoria !== []) {
-      setFieldsAs(optionsAsesoria);
-    }
-    if (value === (' ')) {
-      setPatients(patients);
-    } else {
-      const patientFilter = Object.values(patientsData);
-      // const doctorFilter = Object.values(doctorData);
-      const filteredUsers = patientFilter.filter(
-        (patientConverter) => (patientConverter.name.toLowerCase()
-          .includes(searchData.toLowerCase())
-         && patientConverter.type.toLowerCase() === value.toLowerCase())
-         || (patientConverter.type.toLowerCase() === value.toLowerCase()
-         && patientConverter.name.toLowerCase()
-           .includes(searchData.toLowerCase())),
-      );
-      /* const filteredDoctors = doctorFilter.filter(
-        (doctorConverter) => (doctorConverter.name.toLowerCase()
-          .includes(searchData.toLowerCase())
-        ),
-      ); */
+  const useStyles = makeStyles((theme) => ({
+    heroContent: {
+      padding: theme.spacing(6, 0, 6),
+    },
+    subtitles: {
+      marginTop: '0px',
+      padding: '10px',
+      paddingBottom: '0px',
+      color: '#000000',
+    },
+    label: {
+      padding: theme.spacing(2),
+    },
+    description: {
+      textAlign: 'left',
+      color: theme.palette.text.secondary,
+    },
+    image: {
+      height: '130px',
+      width: 'auto',
+    },
+    option: {
+      textDecoration: 'none',
+    },
+    textPadding: {
+      color: '#000000',
+      paddingBottom: '26px',
+      paddingTop: '26px',
+    },
+    card: {
+      marginTop: '60px',
+    },
+    button: {
+      marginTop: '30px',
+      float: 'right',
+      marginLeft: '15px',
+      textTransform: 'none',
+    },
+    icon: {
+      paddingLeft: '5px',
+    },
+  }));
 
-      setPatients(filteredUsers);
-      // setDoctor(filteredDoctors);
-    }
-  }, [searchData, value, patientsData]);
-
-  const handleSearch = (event: React.ChangeEvent<any>) => {
-    setSearchData(event.target.value);
-  };
+  const classes = useStyles();
 
   return (
-    <div>
-      <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
-      <Paper className={classes.paper}>
-        <Grid item xs={3}>
-          <TextField
-            id="outlined-basic"
-            label="Nombre del paciente"
-            variant="outlined"
-            value={searchData}
-            onChange={handleSearch}
-          />
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Psicología</FormLabel>
-            {fields.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Psiquiatría</FormLabel>
-            {fieldsPs.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Clínica</FormLabel>
-            {fieldsCl.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Asesoría</FormLabel>
-            {fieldsAs.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-        </Grid>
-        <GridList className={classes.gridList}>
-          <Grid item xs={8}>
-            <Table className={classes.table}>
-              <TableBody>
-                {patients.map((r) => (
-                  <StyledTableRow key={r.id}>
-                    <StyledTableCell align="left" color="textPrimary">
-                      <Link to={`/expediente/${r.recordId}`}>
-                        {r.name}
-                        {' '}
-                        {r.lastName}
-                      </Link>
+    <main>
+      <div className={classes.heroContent}>
+        <Container>
+          <Grid>
+            <Grid item xs={12}>
+              <Typography variant="h2" align="center" className={classes.subtitles}>
 
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          {r.type}
-                        </Typography>
-                      </>
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          Expediente:
-                          {' '}
-                          {r.recordId}
-                        </Typography>
-                      </>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
+                { f.name}
+                {' '}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Imprimir
+                <PrintIcon className={classes.icon} />
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Editar
+                {'     '}
+                <EditIcon className={classes.icon} />
+              </Button>
+            </Grid>
+            <br />
+            <Grid item xs={12} lg={12}>
+              <Card className={classes.card}>
+                <p className={classes.label}>
+                  Folio: PPQ-AP-
+                  {f.recordId}
+                </p>
+                <p className={classes.label}>
+                  Fecha de registro:
+                  {' '}
+                  { f.createdDate}
+                </p>
+                <p className={classes.label}>
+                  Tipo de paciente:
+                  {' '}
+                  { f.type}
+                  {' '}
+                </p>
+                { f.fields.map((fields:any) => (
+                  <p className={classes.label}>
+                    { fields.label}
+                    {': '}
+                    { fields.value}
+                  </p>
+
+                )) }
+              </Card>
+              <p>
+                {' '}
+              </p>
+            </Grid>
           </Grid>
-        </GridList>
-      </Paper>
-    </div>
-
+        </Container>
+      </div>
+    </main>
   );
 }
+
+export default ConsultPatientForm;
