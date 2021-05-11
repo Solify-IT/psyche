@@ -16,7 +16,7 @@ import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 
 function ConsultPatientForm() {
-  const [f, setField] = useState<PatientFormField>({
+  const [field, setField] = useState<PatientFormField>({
     id: 1,
     name: '',
     type: '',
@@ -28,10 +28,7 @@ function ConsultPatientForm() {
   useEffect(() => {
     getFormField(id)
       .then((response:any) => {
-        console.log(response.data);
         setField(response.data);
-        console.log(f);
-        console.log('dsfdss');
       })
       .catch((error:any) => {
         console.log(error);
@@ -91,7 +88,7 @@ function ConsultPatientForm() {
             <Grid item xs={12}>
               <Typography variant="h2" align="center" className={classes.subtitles}>
 
-                { f.name}
+                { field.name}
                 {' '}
               </Typography>
             </Grid>
@@ -121,20 +118,20 @@ function ConsultPatientForm() {
               <Card className={classes.card}>
                 <p className={classes.label}>
                   Folio: PPQ-AP-
-                  {f.recordId}
+                  {field.recordId}
                 </p>
                 <p className={classes.label}>
                   Fecha de registro:
                   {' '}
-                  { f.createdDate}
+                  { field.createdDate}
                 </p>
                 <p className={classes.label}>
                   Tipo de paciente:
                   {' '}
-                  { f.type}
+                  { field.type}
                   {' '}
                 </p>
-                { f.fields.map((fields:any) => (
+                { field.fields.map((fields:any) => (
                   <p className={classes.label}>
                     { fields.label}
                     {': '}
