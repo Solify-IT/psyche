@@ -71,7 +71,7 @@ export default class FormRepository implements IFormRepository {
 
   async detailField(id: number): Promise<PatientFormField> {
     const [result, error] = await wrapError(
-      this.datastore.fetchOne<PatientFormField>('Form', {
+      this.datastore.fetchOne<PatientFormField>('PatientForm', {
         id,
       }),
     );
