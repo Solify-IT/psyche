@@ -15,6 +15,16 @@ export default class FormRepository implements IFormRepository {
     this.datastore = datastore;
   }
 
+  async updatePatientForm(form: PatientForm): Promise<Form> {
+    const [result, error] = await wrapError(
+      this.datastore.save<PatientForm>('PatientForm', form),
+    );
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
+
   async getFormsWithReportId(id: number): Promise<Form[]> {
     const [record, recordError] = await wrapError(this.datastore.fetchOne<Record>('Record', id));
     if (recordError) {
