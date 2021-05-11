@@ -18,9 +18,9 @@ export default class PatientFormField {
   @Column({ default: '' })
   value: string;
 
-  @OneToMany(() => PatientFieldOption, (options) => options.field, { cascade: true, eager: true, onDelete: 'CASCADE' })
-  options: PatientFieldOption[];
-
   @ManyToOne(() => PatientForm, (form) => form.fields)
   form?: PatientForm;
+
+  @OneToMany(() => PatientFieldOption, (options) => options.field, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  options: PatientFieldOption[];
 }

@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { wrapError } from '@types';
 import { Form } from 'domain/model';
+import PatientFormField from 'domain/model/patientFormField';
 import IFormRepository from 'app/repository/formRepository';
 import NotFoundError from 'utils/errors/NotFoundError';
 import PatientForm from 'domain/model/patientForm';
@@ -55,6 +56,22 @@ export default class FormRepository implements IFormRepository {
   async detail(id: number): Promise<Form> {
     const [result, error] = await wrapError(
       this.datastore.fetchOne<Form>('Form', {
+        id,
+      }),
+    );
+
+    if (error) {
+      throw error;
+    }
+    if (result) {
+      return result;
+    }
+    throw new NotFoundError('No se encontró el form');
+  }
+
+  async detailField(id: number): Promise<PatientFormField> {
+    const [result, error] = await wrapError(
+      this.datastore.fetchOne<PatientFormField>('PatientForm', {
         id,
       }),
     );

@@ -18,3 +18,8 @@ export async function listFormsWithRecordId(id: number) {
   console.log(result);
   return result;
 }
+
+export async function getFormField(id: number) {
+  const result = await server.get(`/patientFormField/${id}`);
+  return result;
+}
