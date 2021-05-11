@@ -3,6 +3,7 @@ import IFormPresenter from 'app/presenter/formPresenter';
 import IFormRepository from 'app/repository/formRepository';
 import { Form } from 'domain/model';
 import PatientForm from 'domain/model/patientForm';
+import PatientFormField from 'domain/model/patientFormField';
 
 export default class FormInteractor {
   formRepository: IFormRepository;
@@ -30,6 +31,15 @@ export default class FormInteractor {
       throw error;
     }
     return this.formPresenter.detail(result);
+  }
+
+  async detailField(id: number): Promise<PatientFormField> {
+    const [result, error] = await wrapError(this.formRepository.detailField(id));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.detailField(result);
   }
 
   async updatePatientForm(form: PatientForm): Promise<Form> {

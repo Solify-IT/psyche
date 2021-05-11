@@ -18,10 +18,10 @@ import {
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
 import Field from 'src/interfaces/field';
-import { updatePatientForm } from 'src/api/forms';
+import { updatePatientForm, getFormField } from 'src/api/forms';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
-import { useHistory,useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -43,23 +43,23 @@ function UpdatePatientForm() {
   const { formId } : any = useParams();
   const classes = useStyles();
   const history = useHistory();
-  let formInformation = {
+  const [formInformation, setFormInformation] = useState({
     id: 0,
-    createdDate: '',
     name: '',
     recordId: 0,
-    type: ''
-  };
+    type: '',
+    createdData: '',
+  });
   const [fields, setFields] = useState<Field[]>([]);
 
-  // useEffect(() => {
-  //   getPatientForm(formId)
-  //   .then((response:any) => {
-  //     setFields(Object.values(response.data.fields))
-  //     { ...formInformation } = { ...response.data}
-  //   })
-  //   .catch((error:any) => console.log(error));
-  // }, [formId]);
+  useEffect(() => {
+    getFormField(formId)
+      .then((response:any) => {
+        setFields(Object.values(response.data.fields));
+        setFormInformation(response.data);
+      })
+      .catch((error:any) => console.log(error));
+  }, [formId]);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -112,16 +112,17 @@ function UpdatePatientForm() {
 
   const handleSubmit = async () => {
     const patientForm = {
-      ...formInformation,
+      id: formInformation.id,
+      name: formInformation.name,
+      recordId: formInformation.recordId,
+      type: formInformation.type,
+      createdData: formInformation.createdData,
       fields,
     };
-    console.log(patientForm);
     setLoading(true);
     try {
       await updatePatientForm(formId, patientForm);
-      // TODO: Redireccionar a el detail de la pagina
       toast.success('Se ha modificado el formato del paciente.');
-      // Nota esto no va a funcionar
       history.replace(`/expediente/${formInformation.recordId}`);
     } catch (error) {
       console.error(error);

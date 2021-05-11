@@ -76,14 +76,22 @@ function RecordInfoSlot(infoProps: RecordInfoSlotProps) {
     </Grid>
   );
 }
+
 function FormSection(props: FormSectionProps) {
+  const history = useHistory();
   const classes = useStyles();
   const { forms, title } = props;
-  const history = useHistory();
 
   function updateRecord(event: React.ChangeEvent<any>) {
     const { id } = event.currentTarget.dataset;
-    history.push(`/update-form/${id}`);
+    history.push(`/update-patient-form/${id}`);
+  }
+
+  function consultForm(event: React.ChangeEvent<any>) {
+    const { id } = event.currentTarget.dataset;
+    console.log(id);
+    // eslint-disable-next-line no-restricted-globals
+    history.push(`/patient-form/${id}`);
   }
 
   return (
@@ -110,7 +118,12 @@ function FormSection(props: FormSectionProps) {
             </Typography>
           </Grid>
           <Grid item md={1}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              data-id={form.id.toString()}
+              onClick={consultForm}
+            >
               Consultar
             </Button>
           </Grid>
