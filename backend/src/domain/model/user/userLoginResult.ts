@@ -6,4 +6,6 @@ export default class UserLoginResult {
   email: string;
 
   role: string;
+
+  firstTime: boolean;
 }

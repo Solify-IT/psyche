@@ -19,6 +19,11 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
         return <Redirect to={{ pathname: '/' }} />;
       }
 
+      // check if user is first time logged in
+      if (props.location.pathname !== '/register-profile' && currentUser.user.firstTime) {
+        return <Redirect to={{ pathname: '/register-profile' }} />;
+      }
+
       // the user is authorized so return component
       return <Component {...props} />;
     }}

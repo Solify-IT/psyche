@@ -1,6 +1,9 @@
 import { wrapError } from '@types';
 import UserInteractor from 'app/interactor/userInteractor';
+import PatientArea from 'domain/model/user/patientArea';
+import UserLoginResult from 'domain/model/user/userLoginResult';
 import { IContext } from 'utils/context';
+import getRequestUser from 'utils/getRequestUser';
 
 export default class UserController {
   userInteractor: UserInteractor;
@@ -20,19 +23,38 @@ export default class UserController {
   }
 
   async registerProfile(context: IContext): Promise<void> {
-    const [user, error] = await wrapError(
-      this.userInteractor.registerProfile(context.request.body),
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const request : PatientArea[] = Object.values(context.request.body);
+    const areas : PatientArea[] = [];
+    request.forEach((area) => {
+      areas.push({
+        name: area.name,
+        userId: user.id,
+        checked: area.checked,
+      });
+    });
+    const [, error] = await wrapError(
+      this.userInteractor.registerProfile(areas),
     );
-
     if (error) {
       context.next(error);
       return;
     }
-    context.response.status(200).json(user);
+
+    const [userProfileSet, userError] = await wrapError(
+      this.userInteractor.userProfileSet(user.id),
+    );
+    if (userError) {
+      context.next(userError);
+      return;
+    }
+    context.response.status(200).json(userProfileSet);
   }
 
   async getUsers(context: IContext): Promise<void> {
     const [users, error] = await wrapError(this.userInteractor.getAll());
+
     if (error) {
       context.next(error);
       return;

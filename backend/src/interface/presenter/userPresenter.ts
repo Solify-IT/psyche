@@ -14,7 +14,12 @@ export default class UserPresenter implements IUserPresenter {
 
   login(user: User): LoginResult {
     const userLoginResult = {
-      id: user.id, username: user.username, email: user.email, role: user.role,
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      firstTime: user.firstTime,
+      areas: user.patientAreas,
     };
     const token = jwt.sign({ user: userLoginResult },
       jwtConfig.secret, { expiresIn: this.expiresIn });

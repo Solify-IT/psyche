@@ -30,6 +30,9 @@ export default class User {
   role: string;
 
   @Column({ default: true })
+  firstTime?: boolean;
+
+  @Column({ default: true })
   active: boolean;
 
   @Column({ nullable: true })

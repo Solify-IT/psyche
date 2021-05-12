@@ -42,7 +42,6 @@ export default class FormRepository implements IFormRepository {
         delete option.id;
       });
     });
-    console.log(form);
     const [result, error] = await wrapError(
       this.datastore.save<PatientForm>('PatientForm', form),
     );

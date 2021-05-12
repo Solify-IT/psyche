@@ -6,4 +6,5 @@ export default interface IUserRepository {
   findAll(): Promise<User[]>;
   login(username: string, password: string) : Promise<User>;
   registerProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
+  setUserFirstTime(id: number, firstTime: boolean) : Promise<User>;
 }

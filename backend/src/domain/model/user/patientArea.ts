@@ -11,6 +11,9 @@ export default class PatientArea {
   @Column()
   name: string;
 
+  @Column()
+  checked: boolean;
+
   @ManyToOne(() => User, (user) => user.patientAreas)
   @JoinColumn()
   user?: User;
