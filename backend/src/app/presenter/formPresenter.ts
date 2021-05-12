@@ -8,4 +8,5 @@ export default interface IFormPresenter {
   detailPatientForm(form: PatientForm) : PatientForm;
   detailField(form: PatientFormField) : PatientFormField;
   forms(forms: Form[]) : Form[];
+  updatePatientForm(form: Form): Form;
 }
