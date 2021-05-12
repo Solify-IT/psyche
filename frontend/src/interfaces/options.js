@@ -43,7 +43,7 @@ export const optionsAsesoria = [
   },
   {
     id: 2,
-    name: 'Asesoría Juridica Adulto',
+    name: 'Asesoría Jurídica Adulto',
   },
 ];
 

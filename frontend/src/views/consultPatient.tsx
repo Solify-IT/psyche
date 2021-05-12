@@ -16,36 +16,54 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Patient from 'src/interfaces';
 import {
   optionsPsicologia, optionsPsiquiatria, optionsClinica, optionsAsesoria,
 } from 'src/interfaces/options';
-import '../App.css';
-import { getPatients } from '../api/patient';
+import 'src/App.css';
+import { CSVLink } from 'react-csv';
+import { getPatients } from 'src/api/patient';
+import Container from '@material-ui/core/Container';
 
-/* const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option: FilmOptionType) => option.name,
-});
-interface FilmOptionType {
-  name: string;
-} */
+function getFileName() {
+  const d = new Date();
+  return `Pacientes_activos_${d.toLocaleDateString()}.csv`;
+}
+
+const headers = [
+  { label: 'ID', key: 'id' },
+  { label: 'Nombre', key: 'name' },
+  { label: 'Apellidos', key: 'lastName' },
+  { label: 'Fecha de inicio', key: 'startDate' },
+  { label: 'Tipo de paciente', key: 'type' },
+  { label: 'Género', key: 'gender' },
+  { label: 'Teléfono', key: 'telephone' },
+  { label: 'Dirección', key: 'address' },
+  { label: 'Lugar de nacimiento', key: 'birthPlace' },
+  { label: 'Fecha de nacimiento', key: 'birthDate' },
+  { label: 'Código postal', key: 'postalCode' },
+  { label: 'Número de expediente', key: 'recordId' },
+];
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
-    backgroundColor: theme.palette.success.light,
+    backgroundColor: theme.palette.common.white,
     color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14,
+    fontSize: 16,
   },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme: Theme) => createStyles({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 16,
     },
   },
 }))(TableRow);
@@ -57,9 +75,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginLeft: '140px',
     overflowX: 'auto',
     margin: theme.spacing(1),
+    fontSize: 16,
   },
   table: {
-    width: 940,
+    width: '70%',
+    fontSize: 16,
+  },
+  heroContent: {
+    padding: theme.spacing(4, 0, 2),
   },
   paper: {
     margin: `${theme.spacing(1)}px auto`,
@@ -70,12 +93,36 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   button: {
     margin: theme.spacing(1),
   },
-  frm: {
+  formPatient: {
     margin: theme.spacing(2),
+    fontSize: 16,
   },
   gridList: {
-    width: 950,
+    width: '70%',
     height: 400,
+    fontSize: 16,
+  },
+  grid: {
+    textAlign: 'right',
+    marginRight: '70px',
+    fontSize: 16,
+  },
+  buttonCSV: {
+    textDecoration: 'none',
+    marginLeft: '30px',
+    fontSize: 16,
+  },
+  subtitles: {
+    marginTop: '10px',
+    padding: '10px',
+    paddingBottom: '0px',
+  },
+  subtitle: {
+    fontSize: 16,
+  },
+  link: {
+    textDecoration: 'none',
+    fontSize: 16,
   },
 }));
 
@@ -87,20 +134,7 @@ export default function CustomizedTables() {
   const [searchData, setSearchData] = useState('');
   const [patients, setPatients] = useState<Patient[]>([]);
   const [patientsData, setPatientsData] = useState<Patient[]>([]);
-  // const [doctor, setDoctor] = useState<any[]>([]);
-  // const [doctorData, setDoctorData] = useState<any[]>([]);
-  /* const getDoctors = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/doctors');
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setDoctor(jsonData);
-      setDoctorData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }; */
-  const [value, setValue] = useState('Psicología Adulto');
+  const [value, setValue] = useState('');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
@@ -130,11 +164,24 @@ export default function CustomizedTables() {
     if (optionsAsesoria !== []) {
       setFieldsAs(optionsAsesoria);
     }
-    if (value === (' ')) {
+    if (value === ('')) {
       setPatients(patients);
+      const patientFilter = Object.values(patientsData);
+      const filteredUsers = patientFilter.filter(
+        (patientConverter) => (patientConverter.name.toLowerCase()
+          .includes(searchData.toLowerCase())),
+      );
+      setPatients(filteredUsers);
+    } else if (value === ('todos')) {
+      setPatients(patients);
+      const patientFilter = Object.values(patientsData);
+      const filteredUsers = patientFilter.filter(
+        (patientConverter) => (patientConverter.name.toLowerCase()
+          .includes(searchData.toLowerCase())),
+      );
+      setPatients(filteredUsers);
     } else {
       const patientFilter = Object.values(patientsData);
-      // const doctorFilter = Object.values(doctorData);
       const filteredUsers = patientFilter.filter(
         (patientConverter) => (patientConverter.name.toLowerCase()
           .includes(searchData.toLowerCase())
@@ -143,14 +190,7 @@ export default function CustomizedTables() {
          && patientConverter.name.toLowerCase()
            .includes(searchData.toLowerCase())),
       );
-      /* const filteredDoctors = doctorFilter.filter(
-        (doctorConverter) => (doctorConverter.name.toLowerCase()
-          .includes(searchData.toLowerCase())
-        ),
-      ); */
-
       setPatients(filteredUsers);
-      // setDoctor(filteredDoctors);
     }
   }, [searchData, value, patientsData]);
 
@@ -159,84 +199,103 @@ export default function CustomizedTables() {
   };
 
   return (
-    <div>
-      <Typography color="primary" variant="h4" align="center">Pacientes</Typography>
-      <Paper className={classes.paper}>
-        <Grid item xs={3}>
-          <TextField
-            id="outlined-basic"
-            label="Nombre del paciente"
-            variant="outlined"
-            value={searchData}
-            onChange={handleSearch}
-          />
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Psicología</FormLabel>
-            {fields.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Psiquiatría</FormLabel>
-            {fieldsPs.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Clínica</FormLabel>
-            {fieldsCl.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-          <FormControl className={classes.frm}>
-            <FormLabel component="legend">Asesoría</FormLabel>
-            {fieldsAs.map((r) => (
-              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={r.id}>
-                <FormControlLabel value={r.name} control={<Radio />} label={r.name} />
-              </RadioGroup>
-            ))}
-          </FormControl>
-        </Grid>
-        <GridList className={classes.gridList}>
-          <Grid item xs={8}>
-            <Table className={classes.table}>
-              <TableBody>
-                {patients.map((r) => (
-                  <StyledTableRow key={r.id}>
-                    <StyledTableCell align="left" color="textPrimary">
-                      <Link to={`/expediente/${r.recordId}`}>
-                        {r.name}
-                        {' '}
-                        {r.lastName}
-                      </Link>
-
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          {r.type}
-                        </Typography>
-                      </>
-                      <>
-                        <Typography color="textSecondary" variant="subtitle2">
-                          Expediente:
-                          {' '}
-                          {r.recordId}
-                        </Typography>
-                      </>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
+    <div className={classes.heroContent}>
+      <main>
+        <Container>
+          <Grid item xs={12} className={classes.grid}>
+            <Typography component="h2" variant="h3" align="center" color="primary" className={classes.subtitles}>Pacientes</Typography>
+            <CSVLink
+              data={patients}
+              filename={getFileName()}
+              headers={headers}
+              className={classes.buttonCSV}
+            >
+              <Button variant="contained" color="secondary" className={classes.buttonCSV}>
+                Exportar a CSV
+              </Button>
+            </CSVLink>
           </Grid>
-        </GridList>
-      </Paper>
+          <Paper className={classes.paper}>
+            <Grid item xs={3}>
+              <TextField
+                id="outlined-basic"
+                label="Nombre del paciente"
+                variant="outlined"
+                value={searchData}
+                onChange={handleSearch}
+              />
+              <FormControl className={classes.formPatient}>
+                <FormLabel component="legend">Todos los pacientes</FormLabel>
+                <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
+                  <FormControlLabel value="todos" control={<Radio />} label="Todos" />
+                </RadioGroup>
+              </FormControl>
+              <FormControl className={classes.formPatient}>
+                <FormLabel component="legend">Psicología</FormLabel>
+                {fields.map((field) => (
+                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+                  </RadioGroup>
+                ))}
+              </FormControl>
+              <FormControl className={classes.formPatient}>
+                <FormLabel component="legend">Psiquiatría</FormLabel>
+                {fieldsPs.map((field) => (
+                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+                  </RadioGroup>
+                ))}
+              </FormControl>
+              <FormControl className={classes.formPatient}>
+                <FormLabel component="legend">Clínica</FormLabel>
+                {fieldsCl.map((field) => (
+                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+                  </RadioGroup>
+                ))}
+              </FormControl>
+              <FormControl className={classes.formPatient}>
+                <FormLabel component="legend">Asesoría</FormLabel>
+                {fieldsAs.map((field) => (
+                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+                  </RadioGroup>
+                ))}
+              </FormControl>
+            </Grid>
+            <GridList className={classes.gridList}>
+              <Grid item xs={5}>
+                <Table className={classes.table}>
+                  <TableBody>
+                    {patients.map((field) => (
+                      <StyledTableRow key={field.id}>
+                        <StyledTableCell align="left" color="textPrimary">
+                          <Link to={`/expediente/${field.recordId}`} className={classes.link}>
+                            {field.name}
+                            {' '}
+                            {field.lastName}
+                          </Link>
+                          <>
+                            <Typography color="textSecondary" className={classes.subtitle}>
+                              {field.type}
+                            </Typography>
+                          </>
+                          <>
+                            <Typography color="textSecondary" className={classes.subtitle}>
+                              Folio:
+                              {field.recordId}
+                            </Typography>
+                          </>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Grid>
+            </GridList>
+          </Paper>
+        </Container>
+      </main>
     </div>
-
   );
 }
