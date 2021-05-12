@@ -11,6 +11,7 @@ import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 import { useHistory } from 'react-router-dom';
+import createRecordId from 'src/utils/createRecordId';
 
 const useStyles = makeStyles((theme) => ({
   patientSection: {
@@ -64,7 +65,7 @@ type FormSectionProps = {
 function RecordInfoSlot(infoProps: RecordInfoSlotProps) {
   const { label, value } = infoProps;
   return (
-    <Grid item>
+    <Grid item xs={12} md={4}>
       <Typography variant="body2">
         <strong>
           { label}
@@ -106,29 +107,36 @@ function FormSection(props: FormSectionProps) {
         </Grid>
       </Grid>
       { forms.map((form) => (
-        <Grid justify="space-between" key={form.id} container spacing={2} className={classes.patientFileRow}>
-          <Grid item md={6}>
+        <Grid justify="space-between" key={form.id} container spacing={4} className={classes.patientFileRow}>
+          <Grid item xs={6} md={4}>
             <Typography component="h3" variant="h5">
               {form.name}
             </Typography>
           </Grid>
-          <Grid item md={4}>
+          <Grid item xs={6} md={4}>
             <Typography component="h4" variant="h5">
               { Moment(form.createdDate).format('DD-MM-YYYY')}
             </Typography>
           </Grid>
-          <Grid item md={1}>
+          <Grid item xs={6} md={2}>
             <Button
               variant="contained"
               color="primary"
               data-id={form.id.toString()}
               onClick={consultForm}
+              fullWidth
             >
               Consultar
             </Button>
           </Grid>
-          <Grid item md={1}>
-            <Button variant="contained" color="secondary" data-id={form.id.toString()} onClick={updateRecord}>
+          <Grid item xs={6} md={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              data-id={form.id.toString()}
+              fullWidth
+              onClick={updateRecord}
+            >
               Modificar
             </Button>
           </Grid>
@@ -152,21 +160,19 @@ function RecordInfo(props: RecordInfoProps) {
             {`Paciente #${patient.id}`}
           </strong>
         </Typography>
-        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
+        <Grid container spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Nombre" value={patient.name} />
           <RecordInfoSlot label="Apellidos" value={patient.lastName} />
-        </Grid>
-        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Genero" value={patient.gender} />
+        </Grid>
+        <Grid container spacing={2} className={classes.patientSectionRow}>
+          <RecordInfoSlot label="Tipo de paciente" value={patient.type} />
           <RecordInfoSlot label="Lugar de nacimiento" value={patient.birthPlace} />
           <RecordInfoSlot label="Fecha de inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
         </Grid>
-        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
-          <RecordInfoSlot label="Tipo de paciente" value={patient.type} />
+        <Grid container spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Telefono" value={patient.telephone} />
           <RecordInfoSlot label="Direccion" value={patient.address} />
-        </Grid>
-        <Grid container justify="space-between" spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Codigo Postal" value={patient.postalCode.toString()} />
         </Grid>
       </Paper>
@@ -179,8 +185,8 @@ function RecordInfo(props: RecordInfoProps) {
         <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
             Expediente
-            {' '}
-            {record.id}
+            { ' ' }
+            { createRecordId(record.id)}
           </Typography>
           { record.patients.map((patient) => (
             <PatientGeneralInfo patient={patient} key={patient.id} />
