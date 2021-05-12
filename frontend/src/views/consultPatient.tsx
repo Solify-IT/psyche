@@ -26,13 +26,11 @@ import 'src/App.css';
 import { CSVLink } from 'react-csv';
 import { getPatients } from 'src/api/patient';
 import Container from '@material-ui/core/Container';
-/* const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option: FilmOptionType) => option.name,
-});
-interface FilmOptionType {
-  name: string;
-} */
+
+function getFileName() {
+  const d = new Date();
+  return `Pacientes_activos_${d.toLocaleDateString()}.csv`;
+}
 
 const headers = [
   { label: 'ID', key: 'id' },
@@ -136,20 +134,6 @@ export default function CustomizedTables() {
   const [searchData, setSearchData] = useState('');
   const [patients, setPatients] = useState<Patient[]>([]);
   const [patientsData, setPatientsData] = useState<Patient[]>([]);
-
-  // const [doctor, setDoctor] = useState<any[]>([]);
-  // const [doctorData, setDoctorData] = useState<any[]>([]);
-  /* const getDoctors = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/doctors');
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setDoctor(jsonData);
-      setDoctorData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }; */
   const [value, setValue] = useState('');
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -198,7 +182,6 @@ export default function CustomizedTables() {
       setPatients(filteredUsers);
     } else {
       const patientFilter = Object.values(patientsData);
-      // const doctorFilter = Object.values(doctorData);
       const filteredUsers = patientFilter.filter(
         (patientConverter) => (patientConverter.name.toLowerCase()
           .includes(searchData.toLowerCase())
@@ -207,14 +190,7 @@ export default function CustomizedTables() {
          && patientConverter.name.toLowerCase()
            .includes(searchData.toLowerCase())),
       );
-      /* const filteredDoctors = doctorFilter.filter(
-        (doctorConverter) => (doctorConverter.name.toLowerCase()
-          .includes(searchData.toLowerCase())
-        ),
-      ); */
-
       setPatients(filteredUsers);
-      // setDoctor(filteredDoctors);
     }
   }, [searchData, value, patientsData]);
 
@@ -230,7 +206,7 @@ export default function CustomizedTables() {
             <Typography component="h2" variant="h3" align="center" color="primary" className={classes.subtitles}>Pacientes</Typography>
             <CSVLink
               data={patients}
-              filename="Pacientes_activos.csv"
+              filename={getFileName()}
               headers={headers}
               className={classes.buttonCSV}
             >
