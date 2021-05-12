@@ -37,19 +37,31 @@ function Forms(props: FormProps) {
   const classes = useStyles();
 
   if (forms.length === 0) {
-    <FadeIn>
-      <main>
-        <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
-          <Grid container>
-            <Typography variant="h5">
-              No se encontraron encuestas disponibles para este expediente.
-            </Typography>
-          </Grid>
-        </Grid>
-        {' '}
+    return (
+      <FadeIn>
+        <main>
+          <div className={classes.heroContent}>
 
-      </main>
-    </FadeIn>;
+            <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
+              <Grid container justify="center">
+                <Typography variant="h5" className={classes.title}>
+                  No se encontraron encuestas disponibles para este expediente.
+                </Typography>
+
+              </Grid>
+              <Grid container justify="center">
+
+                <Button variant="contained" color="primary" component={Link} to="/new-form">
+                  Registrar una nueva encuesta
+                </Button>
+              </Grid>
+
+            </Grid>
+            {' '}
+          </div>
+        </main>
+      </FadeIn>
+    );
   }
   return (
     <FadeIn>

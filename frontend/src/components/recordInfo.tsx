@@ -10,11 +10,9 @@ import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '80vh',
-  },
   patientSection: {
     margin: theme.spacing(8, 4),
     display: 'flex',
@@ -78,9 +76,24 @@ function RecordInfoSlot(infoProps: RecordInfoSlotProps) {
     </Grid>
   );
 }
+
 function FormSection(props: FormSectionProps) {
+  const history = useHistory();
   const classes = useStyles();
   const { forms, title } = props;
+
+  function updateRecord(event: React.ChangeEvent<any>) {
+    const { id } = event.currentTarget.dataset;
+    history.push(`/update-patient-form/${id}`);
+  }
+
+  function consultForm(event: React.ChangeEvent<any>) {
+    const { id } = event.currentTarget.dataset;
+    console.log(id);
+    // eslint-disable-next-line no-restricted-globals
+    history.push(`/patient-form/${id}`);
+  }
+
   return (
     <Paper key={title} variant="outlined" className={classes.patientSection}>
       <Grid container spacing={2} justify="space-between">
@@ -105,12 +118,17 @@ function FormSection(props: FormSectionProps) {
             </Typography>
           </Grid>
           <Grid item md={1}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              data-id={form.id.toString()}
+              onClick={consultForm}
+            >
               Consultar
             </Button>
           </Grid>
           <Grid item md={1}>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" data-id={form.id.toString()} onClick={updateRecord}>
               Modificar
             </Button>
           </Grid>
@@ -154,11 +172,10 @@ function RecordInfo(props: RecordInfoProps) {
       </Paper>
     );
   }
-  console.log(record);
 
   return (
     <FadeIn>
-      <Grid container component="main" className={classes.root}>
+      <Grid container component="main">
         <Grid item md={12}>
           <Typography component="h1" variant="h3" className={classes.title}>
             Expediente
