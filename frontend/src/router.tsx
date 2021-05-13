@@ -1,13 +1,18 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Login from './views/login';
 import ConsultPatient from './views/consultPatient';
 import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import NewPatientForm from './views/Forms/newPatientForm';
-import RegisterUser from './views/Users/registerUser';
 import RecordDetail from './views/Patients/recordDetail';
+
+// User Views
+import RegisterUser from './views/Users/registerUser';
+import Login from './views/login';
+import ModifyProfile from './views/Users/modifyProfile';
+import RegisterProfile from './views/Users/registerProfile';
+
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
 import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
@@ -21,10 +26,8 @@ import PatientAvailableForms from './views/Forms/patientAvailableForms';
 // Form views
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import NewForm from './views/Forms/newForm';
-import RegisterProfile from './views/Users/registerProfile';
 import UpdatePatientForm from './views/Forms/updatePatientForm';
 import ConsultPatientForm from './views/Forms/consultPatientForm';
-import ModifyProfile from './views/Users/modifyProfile';
 
 const AppRouter = () => (
   <div>

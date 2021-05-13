@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import UserRole from 'src/fixtures/roles';
 import {
   authenticationService, logout, profileSet,
-} from '../api/authenticationService';
+} from 'src/api/authenticationService';
 
 const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
   /* eslint-disable react/jsx-props-no-spreading */

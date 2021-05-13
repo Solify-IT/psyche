@@ -98,7 +98,7 @@ function RegisterProfile() {
       <div className={classes.heroContent}>
         <Container>
           <Typography variant="h2" align="center">
-            Registrar Perfil de Usuario
+            Registrar areas de tratamiento
           </Typography>
           <Container>
             <Grid

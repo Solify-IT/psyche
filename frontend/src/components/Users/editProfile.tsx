@@ -88,7 +88,7 @@ function EditProfile(props: ProfileSetProps) {
       <div className={classes.heroContent}>
         <Container>
           <Typography variant="h2" align="center">
-            Modificar Perfil de Usuario
+            Modificar areas de tratamiento
           </Typography>
           <Container>
             <Grid
