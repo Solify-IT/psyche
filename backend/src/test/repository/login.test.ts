@@ -1,14 +1,12 @@
 import { wrapError } from '@types';
 import { User } from 'domain/model';
+import userFixture from 'fixtures/user';
 import Datastore from 'infraestructure/datastore/datastore';
 import UserRepository from 'interface/repository/userRepository';
 import testConnection from 'test/utils/testConnection';
 import { getConnection } from 'typeorm';
 
 describe('User repository', () => {
-  const username = 'testuser';
-  const password = 'testpass';
-
   beforeAll(async () => {
     await testConnection.create();
   });
@@ -23,10 +21,11 @@ describe('User repository', () => {
 
   const datastore: Datastore = new Datastore();
   const userRepository : UserRepository = new UserRepository(datastore);
-  const user : User = {
-    id: 1, username, password, email: 'test@mail.com', role: 'role', address: 'Av Luz 93', name: 'carlos', zipCode: '66777',
-  };
-  test('should return user i found', async () => {
+  const user : User = userFixture;
+  const { username } = user;
+  const { password } = user;
+
+  test('should return user if found', async () => {
     await getConnection().getRepository<User>(User).insert(user);
     const result = await userRepository.login(username, password);
     expect(result.username).toEqual(username);
