@@ -51,7 +51,7 @@ function DasboardAtPsic() {
     const componentList = [];
     if (hasPatientArea('Psicología Menor de Edad', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={3} key="Psicología Menor de Edad">
           <Link to="/register-patient/psicologia/Psicología Menor de Edad" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
@@ -66,7 +66,7 @@ function DasboardAtPsic() {
 
     if (hasPatientArea('Psicología Adulto', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={3} key="Psicología Adulto">
           <Link to="/register-patient/psicologia/Psicología Adulto" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
@@ -81,7 +81,7 @@ function DasboardAtPsic() {
 
     if (hasPatientArea('Psicología Familia', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={3} key="Psicología Familia">
           <Link to="/register-patient/psicologia/Psicología Familia" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/familia.png" alt="Logo" className={classes.image} />
@@ -96,7 +96,7 @@ function DasboardAtPsic() {
 
     if (hasPatientArea('Psicología Pareja', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={3} key="Psicología Pareja">
           <Link to="/register-patient/psicologia/Psicología Pareja" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />

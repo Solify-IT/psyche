@@ -8,6 +8,4 @@ export default class UserLoginResult {
   role: string;
 
   firstTime: boolean;
-
-  name: string;
 }

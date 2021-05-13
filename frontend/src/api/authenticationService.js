@@ -33,6 +33,13 @@ export function profileUnset() {
   currentUserSubject.next(newUser);
 }
 
+export function setPatientAreas(areas) {
+  const user = { ...authenticationService.currentUserValue.user, areas };
+  const newUser = { ...authenticationService.currentUserValue, user };
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUserSubject.next(newUser);
+}
+
 export function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('currentUser');

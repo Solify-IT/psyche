@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   makeStyles,
@@ -14,14 +14,11 @@ import {
   FormHelperText,
 }
   from '@material-ui/core';
-import {
-  todos,
-} from 'src/interfaces/options';
 import PatientArea from 'src/interfaces/patientArea';
-import { createProfile } from 'src/api/user';
+import { modifyProfile } from 'src/api/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
-import { authenticationService, profileSet, setPatientAreas } from 'src/api/authenticationService';
+import { setPatientAreas } from 'src/api/authenticationService';
 import { useHistory } from 'react-router';
 import FadeIn from 'react-fade-in';
 
@@ -47,39 +44,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function RegisterProfile() {
+type ProfileSetProps = {
+  areas : PatientArea[];
+};
+
+function EditProfile(props: ProfileSetProps) {
   const classes = useStyles();
   const history = useHistory();
+  const { areas } = props;
 
-  const [patientAreas, setNewPatientAreas] = useState<PatientArea[]>(() => {
-    const initialArray : PatientArea[] = [];
-    todos.forEach((category) => {
-      category.forEach((area) => {
-        initialArray.push({ name: area.name, checked: false });
-      });
-    });
-    return initialArray;
-  });
-
-  useEffect(() => {
-    if (!authenticationService.currentUserValue.user.firstTime) {
-      history.replace('/');
-      toast.warning('Ya ha registrado su perfil anteriormente.');
-    }
-  });
+  const [patientAreas, setNewPatientAreas] = useState<PatientArea[]>(areas.sort((a, b) => {
+    if (a.name < b.name) { return -1; }
+    if (a.name > b.name) { return 1; }
+    return 0;
+  }));
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await createProfile(patientAreas);
+      await modifyProfile(patientAreas);
       setPatientAreas(patientAreas);
-      profileSet();
-      history.replace('/');
-      toast.success('Se ha registrado su perfil de usuario exitosamente');
+      toast.success('Se ha modificado su perfil de usuario exitosamente');
+      history.push('/');
     } catch (error) {
-      toast.error('Ocurrió un error al intentar registrar el perfil.');
+      toast.error('Ocurrió un error al intentar modificar el perfil.');
       console.error(error);
     } finally {
       setLoading(false);
@@ -89,16 +79,16 @@ function RegisterProfile() {
   const handleChange = (event: React.ChangeEvent<any>) => {
     const newArray = [...patientAreas];
     newArray[event.target.id].checked = event.target.checked;
-    console.log(newArray);
     setNewPatientAreas(newArray);
   };
+
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
   return (
     <FadeIn>
       <div className={classes.heroContent}>
         <Container>
           <Typography variant="h2" align="center">
-            Registrar Perfil de Usuario
+            Modificar Perfil de Usuario
           </Typography>
           <Container>
             <Grid
@@ -122,7 +112,7 @@ function RegisterProfile() {
                     <FormHelperText>Elige por lo menos una opción</FormHelperText>
                     <FormGroup>
                       { patientAreas.map((area, index) => (
-                        <div className={classes.checkboxRow} key={area.name}>
+                        <div className={classes.checkboxRow} key={area.id}>
                           <FormControlLabel
                             control={(
                               <Checkbox
@@ -167,4 +157,4 @@ function RegisterProfile() {
 
   );
 }
-export default RegisterProfile;
+export default EditProfile;

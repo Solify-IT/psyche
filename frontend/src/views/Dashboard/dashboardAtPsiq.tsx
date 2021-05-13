@@ -46,7 +46,7 @@ function DashboardAtPsiq() {
     const componentList = [];
     if (hasPatientArea('Psiquiatría Menor de Edad', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Psiquiatría Menor de Edad">
           <Link to="/register-patient/psiquiatrica/Psiquiatría Menor de Edad" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
@@ -61,7 +61,7 @@ function DashboardAtPsiq() {
 
     if (hasPatientArea('Psiquiatría Adulto', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Psiquiatría Adulto">
           <Link to="/register-patient/psiquiatrica/Psiquiatría Adulto" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/adulto2.png" alt="Logo" className={classes.image} />

@@ -46,7 +46,7 @@ function DashboardEvaluacion() {
     const componentList = [];
     if (hasPatientArea('Clínica', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Clínica">
           <Link to="/register-patient/evaluacion/Clínica" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/clinica2.png" alt="registrarPaciente" className={classes.image} />
@@ -61,7 +61,7 @@ function DashboardEvaluacion() {
 
     if (hasPatientArea('Forense', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Forense">
           <Link to="/register-patient/evaluacion/Forense" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/forense.png" alt="Logo" className={classes.image} />

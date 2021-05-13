@@ -46,7 +46,7 @@ function DashboardAsesoria() {
     const componentList = [];
     if (hasPatientArea('Asesoría Jurídica Adulto', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Asesoría Jurídica Adulto">
           <Link to="/register-patient/asesoria/Asesoría Juridica Adulto" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
@@ -61,7 +61,7 @@ function DashboardAsesoria() {
 
     if (hasPatientArea('Asesoría Jurídica Menor de Edad', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
-        <Grid item xs={12} sm={6} lg={5}>
+        <Grid item xs={12} sm={6} lg={5} key="Asesoría Jurídica Menor de Edad">
           <Link to="/register-patient/asesoria/Asesoría Jurídica Menor de Edad" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
