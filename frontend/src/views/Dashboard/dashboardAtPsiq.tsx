@@ -9,6 +9,8 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import hasPatientArea from 'src/utils/hasPatientArea';
+import { authenticationService } from 'src/api/authenticationService';
 
 function DashboardAtPsiq() {
   const useStyles = makeStyles((theme) => ({
@@ -40,14 +42,45 @@ function DashboardAtPsiq() {
   }));
 
   const classes = useStyles();
+  function areaList() {
+    const componentList = [];
+    if (hasPatientArea('Psiquiatría Menor de Edad', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={5}>
+          <Link to="/register-patient/psiquiatrica/Psiquiatría Menor de Edad" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.subtitles}>
+                Individual Menor de Edad
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
 
+    if (hasPatientArea('Psiquiatría Adulto', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={5}>
+          <Link to="/register-patient/psiquiatrica/Psiquiatría Adulto" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.subtitles}>
+                Individual Adulto
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
+    return componentList;
+  }
   return (
     <FadeIn>
       <main>
         <div className={classes.heroContent}>
           <Container>
             <Grid container spacing={3}>
-
               <Grid item xs={12}>
                 <Typography variant="h2" align="center" className={classes.subtitles}>
                   Atención psiquiátrica
@@ -56,31 +89,15 @@ function DashboardAtPsiq() {
               <Grid item xs={false} sm={1} />
               <Grid item xs={11}>
                 <Typography className={classes.description}>
-                  Selecciona el grupo al que pertenece el paciente:
+                  {
+                  areaList().length !== 0
+                    ? 'Selecciona el grupo al que pertenece el paciente:'
+                    : 'No se encontraron areas en las que pueda manejar.'
+                }
                 </Typography>
               </Grid>
               <Grid container alignItems="center" justify="center" spacing={10}>
-                <Grid item xs={12} sm={6} lg={5}>
-                  <Link to="/register-patient/psiquiatrica/Psiquiatría Menor de Edad" className={classes.option}>
-                    <Paper className={classes.paper}>
-                      <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
-                      <Typography variant="h4" align="center" className={classes.subtitles}>
-                        Individual Menor de Edad
-                      </Typography>
-                    </Paper>
-                  </Link>
-                </Grid>
-                <Grid item xs={12} sm={6} lg={5}>
-                  <Link to="/register-patient/psiquiatrica/Psiquiatría Adulto" className={classes.option}>
-                    <Paper className={classes.paper}>
-                      <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
-                      <Typography variant="h4" align="center" className={classes.subtitles}>
-                        Individual Adulto
-                      </Typography>
-                    </Paper>
-                  </Link>
-                </Grid>
-
+                { areaList() }
               </Grid>
 
             </Grid>

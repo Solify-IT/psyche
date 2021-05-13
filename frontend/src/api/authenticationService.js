@@ -26,6 +26,13 @@ export function profileSet() {
   currentUserSubject.next(newUser);
 }
 
+export function profileUnset() {
+  const user = { ...authenticationService.currentUserValue.user, firstTime: true };
+  const newUser = { ...authenticationService.currentUserValue, user };
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUserSubject.next(newUser);
+}
+
 export function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('currentUser');

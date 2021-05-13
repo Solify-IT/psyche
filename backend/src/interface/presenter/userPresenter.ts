@@ -20,6 +20,7 @@ export default class UserPresenter implements IUserPresenter {
       role: user.role,
       firstTime: user.firstTime,
       areas: user.patientAreas,
+      name: user.name,
     };
     const token = jwt.sign({ user: userLoginResult },
       jwtConfig.secret, { expiresIn: this.expiresIn });

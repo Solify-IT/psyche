@@ -58,7 +58,6 @@ function DasboardArea() {
                   Selecciona el area correspondiente a la que pertenece el paciente:
                 </Typography>
               </Grid>
-
               <Grid item xs={12} sm={6} lg={4}>
                 <Link to="/dashboard-as-psic" className={classes.option}>
                   <Paper className={classes.paper}>
@@ -69,7 +68,6 @@ function DasboardArea() {
                   </Paper>
                 </Link>
               </Grid>
-
               <Grid item xs={12} sm={6} lg={4}>
                 <Link to="/app/land-divisions" className={classes.option}>
                   <Paper className={classes.paper}>

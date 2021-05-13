@@ -6,7 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import NewPatientForm from './views/Forms/newPatientForm';
-import RegisterUser from './views/registerUser';
+import RegisterUser from './views/Users/registerUser';
 import RecordDetail from './views/Patients/recordDetail';
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';

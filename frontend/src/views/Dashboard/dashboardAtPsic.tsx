@@ -9,6 +9,8 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import hasPatientArea from 'src/utils/hasPatientArea';
+import { authenticationService } from 'src/api/authenticationService';
 
 function DasboardAtPsic() {
   const useStyles = makeStyles((theme) => ({
@@ -45,7 +47,69 @@ function DasboardAtPsic() {
   }));
 
   const classes = useStyles();
+  function areaList() {
+    const componentList = [];
+    if (hasPatientArea('Psicología Menor de Edad', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/register-patient/psicologia/Psicología Menor de Edad" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
+              <Typography variant="h5" align="center" className={classes.subtitles}>
+                Individual Menor de Edad
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
 
+    if (hasPatientArea('Psicología Adulto', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/register-patient/psicologia/Psicología Adulto" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
+              <Typography variant="h5" align="center" className={classes.textPadding}>
+                Individual Adulto
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
+
+    if (hasPatientArea('Psicología Familia', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/register-patient/psicologia/Psicología Familia" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/familia.png" alt="Logo" className={classes.image} />
+              <Typography variant="h5" align="center" className={classes.textPadding}>
+                Familia
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
+
+    if (hasPatientArea('Psicología Pareja', authenticationService.currentUserValue.user.areas)) {
+      componentList.push(
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/register-patient/psicologia/Psicología Pareja" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />
+              <Typography variant="h5" align="center" className={classes.textPadding}>
+                Pareja
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>,
+      );
+    }
+    return componentList;
+  }
   return (
     <FadeIn>
       <main>
@@ -61,53 +125,14 @@ function DasboardAtPsic() {
 
               <Grid item xs={12}>
                 <Typography align="justify" className={classes.description}>
-                  Selecciona el grupo al que pertenece el paciente:
+                  {
+                  areaList().length !== 0
+                    ? 'Selecciona el grupo al que pertenece el paciente:'
+                    : 'No se encontraron areas en las que pueda manejar.'
+                }
                 </Typography>
               </Grid>
-
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/register-patient/psicologia/Psicología Menor de Edad" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.subtitles}>
-                      Individual Menor de Edad
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/register-patient/psicologia/Psicología Adulto" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.textPadding}>
-                      Individual Adulto
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/register-patient/psicologia/Psicología Pareja" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/pareja.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.textPadding}>
-                      Pareja
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
-
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/register-patient/psicologia/Psicología Familia" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/familia.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h5" align="center" className={classes.textPadding}>
-                      Familia
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
+              { areaList() }
             </Grid>
           </Container>
         </div>

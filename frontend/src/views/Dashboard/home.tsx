@@ -9,6 +9,7 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import { authenticationService } from 'src/api/authenticationService';
 
 function Home() {
   const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,9 @@ function Home() {
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
                   <Typography variant="h2" gutterBottom>
-                    Hola, Carolina
+                    Hola,
+                    {' '}
+                    { authenticationService.currentUserValue.user.name }
                   </Typography>
                 </Grid>
 
@@ -75,7 +78,7 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/land-divisions" className={classes.option}>
+                <Link to="/consult-patient" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
