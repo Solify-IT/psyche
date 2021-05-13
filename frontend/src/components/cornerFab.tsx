@@ -11,11 +11,13 @@ const useStyles = makeStyles((theme) => ({
     height: 80,
     width: 300,
     padding: theme.spacing(2),
+    zIndex: 10,
   },
   cornerFab: {
     position: 'fixed',
     bottom: theme.spacing(5),
     right: theme.spacing(5),
+    zIndex: 10,
   },
   cornerFabText: {
     marginLeft: theme.spacing(2),
