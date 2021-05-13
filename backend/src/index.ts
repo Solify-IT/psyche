@@ -4,8 +4,8 @@ import morgan from 'morgan';
 import path from 'path';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
-// import jwt from 'express-jwt';
 import jwtConfig from 'utils/jwtConfig';
+import jwt from 'express-jwt';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -23,7 +23,7 @@ const initServer = () => {
   app.use(morgan('dev'));
   if (jwtConfig.authenticationEnabled) {
     console.log('Authentication with JWT enabled');
-    // app.use(jwt(jwtConfig).unless({ path: '/login' }));
+    app.use(jwt({ secret: jwtConfig.secret, algorithms: jwtConfig.algorithms }).unless({ path: ['/login'] }));
   } else {
     console.log('Authentication with JWT disabled');
   }
@@ -41,8 +41,7 @@ async function initDatabase() {
 const setupRoutes = () => {
   const datastore = new Datastore();
   const registry = new Registry(datastore);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const router = new Router(app, registry.newAppController());
+  return new Router(app, registry.newAppController());
 };
 
 app.listen(port, async () => {

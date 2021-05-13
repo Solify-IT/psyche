@@ -9,11 +9,15 @@ import {
   TextField,
   Paper,
   Button,
+  Select,
+  MenuItem,
+  InputLabel,
 }
   from '@material-ui/core';
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import CreateUser from 'src/api/user';
+import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginTop: '20px',
-    padding: '20px',
+    padding: theme.spacing(12, 12),
   },
   submit: {
     marginTop: '25px',
@@ -60,12 +64,11 @@ function RegisterUser() {
   };
 
   const handleChange = (event: React.ChangeEvent<any>) => {
-    console.log(password);
-    console.log(password2);
     setNewUser({
       ...newUser,
       [event.target.name]: event.target.value,
     });
+
     // eslint-disable-next-line @typescript-eslint/no-shadow
     const { errors } = newUser;
     if (newUser.password !== newUser.password2) {
@@ -111,6 +114,7 @@ function RegisterUser() {
           <Grid
             container
             justify="center"
+            spacing={2}
           >
             <Grid
               item
@@ -119,7 +123,6 @@ function RegisterUser() {
               className={classes.paper}
               elevation={6}
               square
-              spacing={2}
             >
               <Grid item xs={8}>
                 <TextField
@@ -236,6 +239,26 @@ function RegisterUser() {
                   name="password2"
                   onChange={handleChange}
                 />
+              </Grid>
+              <Grid container>
+                <Grid item xs={12}>
+                  <InputLabel id="role-label">Rol</InputLabel>
+                  <Select
+                    required
+                    fullWidth
+                    labelId="role-select"
+                    id="role-select"
+                    name="role"
+                    value={role}
+                    onChange={handleChange}
+                  >
+                    { Object.keys(roles).map((roleOption) => (
+                      <MenuItem value={roleOption} key={roleOption}>
+                        {roleOption}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
               </Grid>
               <Grid item xs={3}>
                 <Button

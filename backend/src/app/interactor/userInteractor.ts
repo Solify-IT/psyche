@@ -3,6 +3,7 @@ import IUserPresenter from 'app/presenter/userPresenter';
 import IUserRepository from 'app/repository/userRepository';
 import { User } from 'domain/model';
 import LoginResult from 'domain/model/user/loginResult';
+import PatientArea from 'domain/model/user/patientArea';
 import InvalidDataError from 'utils/errors/InvalidDataError';
 
 export default class UserInteractor {
@@ -17,7 +18,6 @@ export default class UserInteractor {
 
   async register(user: User): Promise<User> {
     if (!this.isValidUser(user)) {
-      console.log(user);
       throw new InvalidDataError('El usuario no es valido.');
     }
     const [results, error] = await wrapError(this.userRepository.register(user));
@@ -26,6 +26,42 @@ export default class UserInteractor {
       throw error;
     }
     return this.userPresenter.register(results);
+  }
+
+  async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(this.userRepository.registerProfile(areas));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.patientAreas(results);
+  }
+
+  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(this.userRepository.modifyProfile(areas));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.patientAreas(results);
+  }
+
+  async getUserAreas(id: number): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(this.userRepository.getUserPatientAreas(id));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.patientAreas(results);
+  }
+
+  async userProfileSet(id: number) : Promise<User> {
+    const [result, error] = await wrapError(this.userRepository.setUserFirstTime(id, false));
+    if (error) {
+      throw error;
+    }
+
+    if (result) {
+      return result;
+    }
+    throw new InvalidDataError('User not found.');
   }
 
   async getAll(): Promise<User[]> {

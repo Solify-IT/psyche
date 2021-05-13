@@ -18,6 +18,7 @@ export interface IRequest {
   param(name: string, defaultValue?: any): string;
   is(type: string | string[]): string | false;
   body: any;
+  headers: any;
 }
 
 export interface IResponse {

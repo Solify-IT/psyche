@@ -19,6 +19,27 @@ export async function login(username, password) {
   return result.data;
 }
 
+export function profileSet() {
+  const user = { ...authenticationService.currentUserValue.user, firstTime: false };
+  const newUser = { ...authenticationService.currentUserValue, user };
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUserSubject.next(newUser);
+}
+
+export function profileUnset() {
+  const user = { ...authenticationService.currentUserValue.user, firstTime: true };
+  const newUser = { ...authenticationService.currentUserValue, user };
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUserSubject.next(newUser);
+}
+
+export function setPatientAreas(areas) {
+  const user = { ...authenticationService.currentUserValue.user, areas };
+  const newUser = { ...authenticationService.currentUserValue, user };
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  currentUserSubject.next(newUser);
+}
+
 export function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('currentUser');

@@ -2,5 +2,8 @@
 import PatientController from './patientController';
 import DoctorController from './doctorController';
 import IAppController from './appController';
+import UserController from './userController';
 
-export { PatientController, IAppController, DoctorController };
+export {
+  PatientController, IAppController, DoctorController, UserController,
+};
