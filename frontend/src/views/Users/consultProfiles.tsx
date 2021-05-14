@@ -17,7 +17,7 @@ import PatientArea from 'src/interfaces/patientArea';
 function ConsultProfiles() {
   const [field, setField] = useState<ConsultProfile>({
     id: 1,
-    username: '',
+    username: ' ',
     name: '',
     address: '',
     zipCode: '',
