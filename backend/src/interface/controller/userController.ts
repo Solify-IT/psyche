@@ -55,13 +55,53 @@ export default class UserController {
   async getUsers(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [users, error] = await wrapError(this.userInteractor.getOne(user.id));
+  }
 
+  async modifyProfile(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const request : PatientArea[] = Object.values(context.request.body);
+    const areas : PatientArea[] = [];
+    request.forEach((area) => {
+      areas.push({
+        id: area.id,
+        name: area.name,
+        userId: user.id,
+        checked: area.checked,
+      });
+    });
+    const [patientAreas, error] = await wrapError(
+      this.userInteractor.modifyProfile(areas),
+    );
     if (error) {
       context.next(error);
       return;
     }
-    context.response.status(200).json(users);
+    context.response.status(200).json(patientAreas);
+  }
+
+  async getUserPatientAreas(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const request : PatientArea[] = Object.values(context.request.body);
+    const areas : PatientArea[] = [];
+    request.forEach((area) => {
+      areas.push({
+        name: area.name,
+        userId: user.id,
+        checked: area.checked,
+      });
+    });
+    const [patientAreas, error] = await wrapError(
+      this.userInteractor.getUserAreas(user.id),
+    );
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(patientAreas);
   }
 
   async login(context: IContext): Promise<void> {

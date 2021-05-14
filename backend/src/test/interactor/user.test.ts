@@ -49,4 +49,28 @@ describe('User register profile', () => {
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
   });
+<<<<<<< HEAD
+=======
+
+  test('should modify profile', async () => {
+    jest.spyOn(
+      userRepository, 'modifyProfile',
+    ).mockImplementation(async () => patientAreaFixture);
+    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+
+    expect(error).toBe(null);
+    expect(result).toBeDefined();
+    expect(result[0].name).toEqual(patientAreas[0].name);
+  });
+
+  test('should catch error from repository', async () => {
+    jest.spyOn(
+      userRepository, 'modifyProfile',
+    ).mockImplementation(async () => { throw new Error('An error occured'); });
+    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+
+    expect(error).toBeInstanceOf(Error);
+    expect(result).toBe(null);
+  });
+>>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
 });

@@ -36,6 +36,22 @@ export default class UserInteractor {
     return this.userPresenter.patientAreas(results);
   }
 
+  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(this.userRepository.modifyProfile(areas));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.patientAreas(results);
+  }
+
+  async getUserAreas(id: number): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(this.userRepository.getUserPatientAreas(id));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.patientAreas(results);
+  }
+
   async userProfileSet(id: number) : Promise<User> {
     const [result, error] = await wrapError(this.userRepository.setUserFirstTime(id, false));
     if (error) {

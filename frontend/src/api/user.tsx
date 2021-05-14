@@ -22,5 +22,14 @@ export async function consultProfile(id: number) {
 export async function getPatients() {
   const result = await server.get('/patients').then(handleResponse).catch(handleResponse);
   console.log(result);
+}
+
+export async function modifyProfile(areas: Array<PatientArea>) : Promise<PatientArea[]> {
+  const result = await server.put('/profile', areas).then(handleResponse).catch(handleResponse);
+  return result.data;
+}
+
+export async function getUserAreas() {
+  const result = await server.get('/profile/areas');
   return result;
 }
