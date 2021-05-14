@@ -24,6 +24,8 @@ import NewForm from './views/Forms/newForm';
 import RegisterProfile from './views/Users/registerProfile';
 import UpdatePatientForm from './views/Forms/updatePatientForm';
 import ConsultPatientForm from './views/Forms/consultPatientForm';
+// Users
+import ConsultProfile from './views/Users/consultProfiles';
 
 const AppRouter = () => (
   <div>
@@ -48,6 +50,7 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
+    <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfile} />
   </div>
 );
 

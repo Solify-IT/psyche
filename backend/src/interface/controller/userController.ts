@@ -53,7 +53,9 @@ export default class UserController {
   }
 
   async getUsers(context: IContext): Promise<void> {
-    const [users, error] = await wrapError(this.userInteractor.getAll());
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const [users, error] = await wrapError(this.userInteractor.getOne(user.id));
 
     if (error) {
       context.next(error);

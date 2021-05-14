@@ -12,3 +12,15 @@ export async function createProfile(areas: Array<PatientArea>) {
   const result = await server.post('/profile', areas).then(handleResponse).catch(handleResponse);
   return result.data;
 }
+
+export async function consultProfile(id: number) {
+  const result = await server.get(`/profilePatient/${id}`);
+  console.log(result);
+  return result;
+}
+
+export async function getPatients() {
+  const result = await server.get('/patients').then(handleResponse).catch(handleResponse);
+  console.log(result);
+  return result;
+}

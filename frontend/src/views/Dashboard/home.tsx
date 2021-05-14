@@ -9,6 +9,7 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import { authenticationService } from 'src/api/authenticationService';
 
 function Home() {
   const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,8 @@ function Home() {
   }));
 
   const classes = useStyles();
+  const currentUser = authenticationService.currentUserValue;
+  console.log(currentUser.user);
 
   return (
     <FadeIn>
@@ -108,7 +111,7 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/home-divisions" className={classes.option}>
+                <Link to={`/patient-profile/${currentUser.user.id}`} className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/perfil.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
