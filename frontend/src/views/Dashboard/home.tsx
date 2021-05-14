@@ -41,7 +41,6 @@ function Home() {
 
   const classes = useStyles();
   const currentUser = authenticationService.currentUserValue;
-  console.log(currentUser.user);
 
   return (
     <FadeIn>

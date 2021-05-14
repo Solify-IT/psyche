@@ -35,7 +35,7 @@ function ConsultProfiles() {
     consultProfile(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response.data);
+        console.log(response);
       })
       .catch((error:any) => {
         console.log(error);

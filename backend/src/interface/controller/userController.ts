@@ -55,8 +55,13 @@ export default class UserController {
   async getUsers(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [users, error] = await wrapError(this.userInteractor.getOne(user.id));
+    if (error) {
+      context.next(error);
+      return;
+    }
+
+    context.response.status(200).json(users);
   }
 
   async modifyProfile(context: IContext): Promise<void> {
