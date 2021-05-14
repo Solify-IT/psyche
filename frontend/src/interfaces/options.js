@@ -1,3 +1,6 @@
+// WARNING: Al cambiar alguno de los campos de name, se deberá cambiar el manejo de opciones en
+// las vistas de views/Dashboard
+
 export const optionsPsicologia = [
   {
     id: 1,

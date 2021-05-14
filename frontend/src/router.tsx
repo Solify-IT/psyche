@@ -1,13 +1,18 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Login from './views/login';
 import ConsultPatient from './views/consultPatient';
 import PrivateRoute from './components/PrivateRoute';
 import PatientsList from './views/patients';
 import Home from './views/Dashboard/home';
 import NewPatientForm from './views/Forms/newPatientForm';
-import RegisterUser from './views/registerUser';
 import RecordDetail from './views/Patients/recordDetail';
+
+// User Views
+import RegisterUser from './views/Users/registerUser';
+import Login from './views/login';
+import ModifyProfile from './views/Users/modifyProfile';
+import RegisterProfile from './views/Users/registerProfile';
+
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
 import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
@@ -49,6 +54,7 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-asesoria" exact component={DashboardAsesoria} />
     <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} />
+    <PrivateRoute path="/modify-profile" exact component={ModifyProfile} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfile} />
   </div>

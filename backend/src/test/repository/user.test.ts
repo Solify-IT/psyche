@@ -32,6 +32,17 @@ describe('User repository', () => {
     expect(userResult.id).toEqual(result[0].userId);
   });
 
+  test('should modify patient areas', async () => {
+    await getConnection().getRepository<User>(User).save(user);
+    const newAreas = await getConnection().getRepository<PatientArea>(PatientArea).save(areas);
+    newAreas[0].checked = !newAreas[0].checked;
+    const result = await userRepository.modifyProfile(newAreas);
+    expect(result).toBeDefined();
+    expect(result.length).toEqual(newAreas.length);
+    expect(result[0].id).toEqual(newAreas[0].id);
+    expect(result[0].checked !== newAreas[0].checked);
+  });
+
   test('should modify user first time status', async () => {
     const userResult = await getConnection().getRepository<User>(User).save(user);
     expect(userResult.firstTime).toEqual(true);

@@ -53,7 +53,9 @@ function Home() {
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
                   <Typography variant="h2" gutterBottom>
-                    Hola, Carolina
+                    Hola,
+                    {' '}
+                    { authenticationService.currentUserValue.user.name }
                   </Typography>
                 </Grid>
 

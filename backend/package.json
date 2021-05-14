@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend of PSYCHE-ing project",
   "main": "src/index.js",
+  "license": "MIT",
   "scripts": {
     "clean": "rimraf dist/*",
     "lint": "eslint --ext .ts,.tsx ./ --fix",
@@ -20,7 +21,6 @@
     "url": "git+https://github.com/Solify-IT/psyche-ing.git"
   },
   "author": "solify-it",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Solify-IT/psyche-ing/issues"
   },

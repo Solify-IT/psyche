@@ -45,6 +45,11 @@ export default class Router {
     });
     app.get('/profilePatient/:id', async (request, response, next) => {
       await wrapError(controller.users.getUsers({ request, response, next }));
+    app.put('/profile', async (request, response, next) => {
+      await wrapError(controller.users.modifyProfile({ request, response, next }));
+    });
+    app.get('/profile/areas', async (request, response, next) => {
+      await wrapError(controller.users.getUserPatientAreas({ request, response, next }));
     });
     app.put('/patientFormField/:id', async (request, response, next) => {
       await wrapError(controller.forms.updatePatientForm({ request, response, next }));
