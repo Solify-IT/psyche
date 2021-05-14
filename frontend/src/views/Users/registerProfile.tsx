@@ -21,11 +21,7 @@ import PatientArea from 'src/interfaces/patientArea';
 import { createProfile } from 'src/api/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
-<<<<<<< HEAD
-import { authenticationService, profileSet } from 'src/api/authenticationService';
-=======
 import { authenticationService, profileSet, setPatientAreas } from 'src/api/authenticationService';
->>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
 import { useHistory } from 'react-router';
 import FadeIn from 'react-fade-in';
 
@@ -78,10 +74,7 @@ function RegisterProfile() {
     setLoading(true);
     try {
       await createProfile(patientAreas);
-<<<<<<< HEAD
-=======
       setPatientAreas(patientAreas);
->>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
       profileSet();
       history.replace('/');
       toast.success('Se ha registrado su perfil de usuario exitosamente');
@@ -99,23 +92,13 @@ function RegisterProfile() {
     console.log(newArray);
     setNewPatientAreas(newArray);
   };
-<<<<<<< HEAD
-
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
-
-=======
-  const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
->>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
   return (
     <FadeIn>
       <div className={classes.heroContent}>
         <Container>
           <Typography variant="h2" align="center">
-<<<<<<< HEAD
-            Registrar Perfil de Usuario
-=======
             Registrar areas de tratamiento
->>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
           </Typography>
           <Container>
             <Grid

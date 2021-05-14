@@ -29,15 +29,12 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
 
       // check if user is first time logged in
       if (props.location.pathname !== '/register-profile' && currentUser.user.firstTime) {
-<<<<<<< HEAD
         return <Redirect to={{ pathname: '/register-profile' }} />;
-=======
         if (currentUser.user.role === UserRole.Psicólogo || currentUser.user.role
           === UserRole.Administrador) {
           return <Redirect to={{ pathname: '/register-profile' }} />;
         }
         profileSet();
->>>>>>> f9094eeeb049b7730d9e1b6899ec56cf1c6ba9f8
       }
 
       // the user is authorized so return component
