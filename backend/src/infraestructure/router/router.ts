@@ -45,10 +45,7 @@ export default class Router {
     });
     app.get('/profilePatient/:id', async (request, response, next) => {
       await wrapError(controller.users.getUsers({ request, response, next }));
-<<<<<<< HEAD
     });
-=======
->>>>>>> 958db7952b3874ba933e992b8cf26d64316881cd
     app.put('/profile', async (request, response, next) => {
       await wrapError(controller.users.modifyProfile({ request, response, next }));
     });
