@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
@@ -93,9 +92,11 @@ function ConsultProfiles() {
     grid: {
       textAlign: 'left',
       fontSize: 16,
-      paddingLeft: '40px',
       paddingTop: '50px',
       paddingBottom: '50px',
+    },
+    box: {
+      paddingBottom: '10px',
     },
   }));
 
@@ -104,80 +105,81 @@ function ConsultProfiles() {
   return (
     <div className={classes.heroContent}>
       <main>
-        <Container>
+        <Grid container>
           <Grid item xs={12}>
             <Typography variant="h2" align="center" className={classes.subtitles}>
               Mi perfil
             </Typography>
           </Grid>
-          <Paper className={classes.paper}>
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
-                Editar
-                {'     '}
-                <EditIcon className={classes.icon} />
-              </Button>
-            </Grid>
-            <br />
-            <Grid container xs={12} lg={12}>
-              <Grid item xs={3} lg={3} className={classes.grid}>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Usuario:
-                </Box>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Nombre:
-                </Box>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Dirección:
-                </Box>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Código postal:
-                </Box>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Editar
+              {'     '}
+              <EditIcon className={classes.icon} />
+            </Button>
+          </Grid>
+          <Grid item lg={12} xs={12}>
+            <Paper className={classes.paper}>
+              <Grid container xs={12} lg={12}>
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Usuario:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Nombre:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Dirección:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Código postal:
+                  </Box>
+                </Grid>
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box className={classes.box}>
+                    {field.username}
+                  </Box>
+                  <Box className={classes.box}>
+                    {field.name}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.address}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.zipCode}
+                  </Box>
+                </Grid>
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Rol:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Correo electrónico:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Cédula profesional:
+                  </Box>
+                </Grid>
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box className={classes.box}>
+                    {field.role}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.email}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.professionalLicense}
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item xs={2} lg={2} className={classes.grid}>
-                <Box>
-                  {field.username}
-                </Box>
-                <Box>
-                  {field.name}
-                </Box>
-                <Box>
-                  { field.address}
-                </Box>
-                <Box>
-                  { field.zipCode}
-                </Box>
-              </Grid>
-              <Grid item xs={4} lg={4} className={classes.grid}>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Correo electrónico:
-                </Box>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Rol:
-                </Box>
-                <Box fontWeight="fontWeightBold" ml={15}>
-                  Cédula profesional:
-                </Box>
-              </Grid>
-              <Grid item xs={2} lg={2} className={classes.grid}>
-                <Box>
-                  {field.email}
-                </Box>
-                <Box>
-                  { field.role}
-                </Box>
-                <Box>
-                  { field.professionalLicense}
-                </Box>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Container>
+            </Paper>
+          </Grid>
+        </Grid>
       </main>
     </div>
   );
