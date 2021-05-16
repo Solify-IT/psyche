@@ -4,32 +4,38 @@ import {
   Grid,
   Typography,
   Button,
-  Box,
   Paper,
+  Box,
 }
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import PrintIcon from '@material-ui/icons/Print';
-import { getFormField } from 'src/api/forms';
+import { consultProfile } from 'src/api/user';
 import { useParams } from 'react-router';
-import PatientFormField from 'src/interfaces/patientFormField';
-import PatientForms from 'src/interfaces/patientForms';
+import ConsultProfile from 'src/interfaces/consultProfile';
+import PatientArea from 'src/interfaces/patientArea';
 
-function ConsultPatientForm() {
-  const [field, setField] = useState<PatientFormField>({
+function ConsultProfiles() {
+  const [field, setField] = useState<ConsultProfile>({
     id: 1,
+    username: ' ',
     name: '',
-    type: '',
-    createdDate: '',
-    recordId: 1,
-    fields: Array<PatientForms>(),
+    address: '',
+    zipCode: '',
+    password: '',
+    email: '',
+    role: '',
+    firstTime: true,
+    active: true,
+    professionalLicense: '',
+    patientAreas: Array<PatientArea>(),
+
   });
   const { id } : any = useParams();
   useEffect(() => {
-    getFormField(id)
+    consultProfile(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response.data);
+        console.log(response);
       })
       .catch((error:any) => {
         console.log(error);
@@ -38,7 +44,7 @@ function ConsultPatientForm() {
 
   const useStyles = makeStyles((theme) => ({
     heroContent: {
-      padding: theme.spacing(6, 0, 6),
+      padding: theme.spacing(4, 0, 2),
     },
     subtitles: {
       marginTop: '0px',
@@ -74,35 +80,23 @@ function ConsultPatientForm() {
       marginLeft: '15px',
       textTransform: 'none',
     },
-    icon: {
-      paddingLeft: '5px',
-    },
     paper: {
       margin: `${theme.spacing(1)}px auto`,
       padding: theme.spacing(2),
       display: 'flex',
       flexWrap: 'wrap',
     },
+    icon: {
+      paddingLeft: '5px',
+    },
     grid: {
       textAlign: 'left',
       fontSize: 16,
       paddingTop: '50px',
-      paddingBottom: '0px',
-    },
-    grid2: {
-      textAlign: 'left',
-      fontSize: 16,
-      paddingTop: '0px',
       paddingBottom: '50px',
-      marginLeft: '0px',
     },
     box: {
       paddingBottom: '10px',
-      marginLeft: '310px',
-    },
-    box2: {
-      paddingBottom: '10px',
-      marginLeft: '90px',
     },
   }));
 
@@ -114,20 +108,10 @@ function ConsultPatientForm() {
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="h2" align="center" className={classes.subtitles}>
-              { field.name}
-              {' '}
+              Mi perfil
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              Imprimir
-              <PrintIcon className={classes.icon} />
-            </Button>
             <Button
               type="submit"
               variant="contained"
@@ -139,46 +123,58 @@ function ConsultPatientForm() {
               <EditIcon className={classes.icon} />
             </Button>
           </Grid>
-          <Grid item xs={12} lg={12}>
+          <Grid item lg={12} xs={12}>
             <Paper className={classes.paper}>
               <Grid container xs={12} lg={12}>
-                <Grid item xs={6} lg={6} className={classes.grid}>
+                <Grid item xs={3} lg={3} className={classes.grid}>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Folio:
-                  </Box>
-                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Fecha de registro:
+                    Usuario:
                   </Box>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Tipo de paciente:
+                    Nombre:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Dirección:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Código postal:
                   </Box>
                 </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid}>
-                  <Box ml={15} className={classes.box2}>
-                    PPQ-AP-
-                    {field.recordId}
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box className={classes.box}>
+                    {field.username}
                   </Box>
-                  <Box ml={15} className={classes.box2}>
-                    { field.createdDate}
+                  <Box className={classes.box}>
+                    {field.name}
                   </Box>
-                  <Box ml={15} className={classes.box2}>
-                    { field.type}
+                  <Box className={classes.box}>
+                    { field.address}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.zipCode}
                   </Box>
                 </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid2}>
-                  { field.fields.map((fields:any) => (
-                    <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                      { fields.label}
-                      {': '}
-                    </Box>
-                  )) }
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Rol:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Correo electrónico:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Cédula profesional:
+                  </Box>
                 </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid2}>
-                  { field.fields.map((fields:any) => (
-                    <Box ml={15} className={classes.box2}>
-                      { fields.value}
-                    </Box>
-                  )) }
+                <Grid item xs={3} lg={3} className={classes.grid}>
+                  <Box className={classes.box}>
+                    {field.role}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.email}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.professionalLicense}
+                  </Box>
                 </Grid>
               </Grid>
             </Paper>
@@ -189,4 +185,4 @@ function ConsultPatientForm() {
   );
 }
 
-export default ConsultPatientForm;
+export default ConsultProfiles;

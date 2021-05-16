@@ -83,9 +83,9 @@ export default class UserRepository implements IUserRepository {
     return result;
   }
 
-  async findAll(): Promise<User[]> {
+  async findOne(id: number): Promise<User> {
     const [users, error] = await wrapError(
-      this.datastore.fetchAll<User>('User'),
+      this.datastore.fetchOne<User>('User', { id }),
     );
 
     if (error) {

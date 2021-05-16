@@ -64,14 +64,14 @@ export default class UserInteractor {
     throw new InvalidDataError('User not found.');
   }
 
-  async getAll(): Promise<User[]> {
-    const [users, error] = await wrapError(this.userRepository.findAll());
+  async getOne(id: number): Promise<User> {
+    const [users, error] = await wrapError(this.userRepository.findOne(id));
 
     if (error) {
       throw error;
     }
 
-    return this.userPresenter.findAll(users);
+    return users;
   }
 
   async login(username: string, password: string): Promise<LoginResult> {
