@@ -32,6 +32,7 @@ import { toast } from 'react-toastify';
 import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 function NewForm() {
 /* eslint-disable react/jsx-props-no-spreading */
   const classes = useStyles();
+  const history = useHistory();
   const [newField, setNewField] = useState<Field>({
     label: '',
     type: 'text',
@@ -112,6 +114,7 @@ function NewForm() {
       await registerForm(form);
       toast.success('Se ha registrado la nueva encuesta exitosamente.');
       // TODO: Redireccionar a el detail de la pagina
+      history.replace('/');
     } catch (error) {
       console.error(error);
       toast.error('Ocurrió un error al intentar registrar el form');
