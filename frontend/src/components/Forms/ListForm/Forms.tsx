@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 function Forms(props: FormProps) {
   const { forms, recordId } = props;
   const classes = useStyles();
+  console.log(forms);
 
   if (forms.length === 0) {
     return (
@@ -68,7 +69,7 @@ function Forms(props: FormProps) {
       <main>
         <div className={classes.heroContent}>
           <Container>
-            <Grid container justify="center" xs={12} component={Paper} className={classes.paper} elevation={6} square>
+            <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
               <Grid container justify="center">
                 <Typography variant="h5" className={classes.title}>
                   Encuestas disponibles para:
@@ -77,9 +78,8 @@ function Forms(props: FormProps) {
                 </Typography>
               </Grid>
               {forms.map((form) => (
-                <Container>
+                <Container key={form.id}>
                   <Divider />
-
                   <Grid container className={classes.formRow}>
                     <Grid item xs={6}>
                       {form.name}
