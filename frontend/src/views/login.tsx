@@ -49,10 +49,10 @@ export default function SignInSide() {
   const classes = useStyles();
   const history = useHistory();
   const [formFields, setFormFields] = useState({
-    email: '',
+    username: '',
     password: '',
   });
-  const { email, password } = { ...formFields };
+  const { username, password } = { ...formFields };
   const currentUser = authenticationService.currentUserValue;
   if (currentUser) {
     history.replace('/patients');
@@ -64,7 +64,7 @@ export default function SignInSide() {
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
 
-    login(email, password)
+    login(username, password)
       .then((response) => {
         console.log(response);
         toast.success('Se ha iniciado sesión 😃');
@@ -91,11 +91,10 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
-                value={email}
+                id="username"
+                label="Nombre de usuario"
+                name="username"
+                value={username}
                 onChange={handleChange}
               />
               <TextField

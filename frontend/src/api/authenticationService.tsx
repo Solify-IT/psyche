@@ -1,16 +1,15 @@
 import { BehaviorSubject } from 'rxjs';
-// import {API_AUTH} from '../routes/serverRoutes';
-
+import PatientArea from 'src/interfaces/patientArea';
 import server from '../utils/server';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
+const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser') as string));
 
 export const authenticationService = {
   currentUser: currentUserSubject.asObservable(),
   get currentUserValue() { return currentUserSubject.value; },
 };
 
-export async function login(username, password) {
+export async function login(username: string, password: string) {
   const result = await server.post('/login', { username, password });
 
   localStorage.setItem('currentUser', JSON.stringify(result.data));
@@ -33,7 +32,7 @@ export function profileUnset() {
   currentUserSubject.next(newUser);
 }
 
-export function setPatientAreas(areas) {
+export function setPatientAreas(areas: PatientArea[]) {
   const user = { ...authenticationService.currentUserValue.user, areas };
   const newUser = { ...authenticationService.currentUserValue, user };
   localStorage.setItem('currentUser', JSON.stringify(newUser));

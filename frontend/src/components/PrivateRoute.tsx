@@ -33,7 +33,19 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
           === UserRole.Administrador) {
           return <Redirect to={{ pathname: '/register-profile' }} />;
         }
+
+        // User does not need to set areas
         profileSet();
+      }
+
+      // invalid areas array
+      if (currentUser.user.areas === undefined || currentUser.user.areas.length === 0) {
+        if (currentUser.user.role === UserRole.Psicólogo || currentUser.user.role
+          === UserRole.Administrador) {
+          console.error('User patient areas field is invalid');
+          logout();
+          return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+        }
       }
 
       // the user is authorized so return component

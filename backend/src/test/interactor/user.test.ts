@@ -49,7 +49,6 @@ describe('User register profile', () => {
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
   });
-
   test('should modify profile', async () => {
     jest.spyOn(
       userRepository, 'modifyProfile',
