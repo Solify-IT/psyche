@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import './App.css';
 import { ToastContainer } from 'react-toastify';
@@ -12,12 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <ToastContainer className="foo" style={{ top: '6em', right: '1.5em ' }} position="top-right" />
       <AppRouter />
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
 
   );
 }

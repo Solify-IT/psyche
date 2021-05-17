@@ -2,8 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
-import ConsultPatient from './views/consultPatient';
-import PatientsList from './views/patients';
+import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import NewPatientForm from './views/Forms/newPatientForm';
 import RecordDetail from './views/Patients/recordDetail';
@@ -34,7 +33,7 @@ import ConsultProfiles from './views/Users/consultProfiles';
 const AppRouter = () => (
   <div>
     <Route path="/login" exact component={Login} />
-    <PrivateRoute path="/registerUser" exact component={RegisterUser} />
+    <PrivateRoute path="/register-user" exact component={RegisterUser} />
     <PrivateRoute path="/new-form" exact component={NewForm} />
     <PrivateRoute path="/update-patient-form/:formId(\d+)" exact component={UpdatePatientForm} />
     <PrivateRoute path="/expediente/:id(\d+)/encuestas/:formId(\d+)" exact component={NewPatientForm} />
@@ -42,7 +41,6 @@ const AppRouter = () => (
     <PrivateRoute path="/" exact component={Home} />
     <PrivateRoute path="/read-form" exact component={GenerateForm} />
     <PrivateRoute path="/consult-patient" exact component={ConsultPatient} />
-    <PrivateRoute path="/pacientes" exact component={PatientsList} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />

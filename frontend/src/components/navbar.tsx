@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import { makeStyles } from '@material-ui/core';
+import { logout } from 'src/api/authenticationService';
 
 function Navbar() {
   const useStyles = makeStyles((theme) => ({
@@ -55,9 +56,11 @@ function Navbar() {
                 <img src="/images/logo.png" alt="logo of Psyque" className={classes.logo} />
               </Link>
             </Typography>
-            <Link to="/" className={classes.button}><Button className={classes.button}>Opcion 1</Button></Link>
-            <Link to="/" className={classes.button}><Button className={classes.button}>Opcion 2</Button></Link>
-            <Link to="/" className={classes.button}><Button className={classes.button}>Opcion 3</Button></Link>
+            <Link to="/login" className={classes.button}>
+              <Button className={classes.button} onClick={logout}>
+                Cerrar sesión
+              </Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </div>

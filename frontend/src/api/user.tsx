@@ -15,7 +15,6 @@ export async function createProfile(areas: Array<PatientArea>) {
 
 export async function consultProfile(id: number) {
   const result = await server.get(`/profilePatient/${id}`);
-  console.log(result);
   return result;
 }
 
