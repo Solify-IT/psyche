@@ -16,7 +16,7 @@ import {
   from '@material-ui/core';
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
-import CreateUser from 'src/api/user';
+import CreateUser, { getUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +49,7 @@ function RegisterUser() {
     password2: '',
     errors: {
       password: '',
+      username: '',
     },
   });
   const {
@@ -58,31 +59,27 @@ function RegisterUser() {
 
   const classes = useStyles();
 
-  const isPasswordValid = () => {
-    if (!password || !password2) return false;
-    return password === password2;
-  };
-
   const handleChange = (event: React.ChangeEvent<any>) => {
-    setNewUser({
+    const newUserV: User = {
       ...newUser,
       [event.target.name]: event.target.value,
-    });
+    };
+    setNewUser(newUserV);
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { errors } = newUser;
-    if (newUser.password !== newUser.password2) {
+    if (event.target.name === 'username') {
+      getUser(event.target.value).then((response:any) => {
+        console.log('Not error');
+        errors.username = 'El usuario ya existe';
+      }).catch((error:any) => {
+        errors.username = '';
+      });
+    }
+
+    if (newUserV.password !== newUserV.password2) {
       errors.password = 'Las contraseñas no coinciden';
     } else {
       errors.password = '';
     }
-    setNewUser({
-      ...newUser,
-      [event.target.name]: event.target.value,
-      errors,
-    });
-
-    console.log(newUser);
   };
 
   const handleSubmit = (event: React.ChangeEvent<any>) => {
@@ -206,6 +203,8 @@ function RegisterUser() {
                   name="username"
                   value={username}
                   onChange={handleChange}
+                  error={Boolean(errors?.username)}
+                  helperText={(errors?.username)}
                 />
               </Grid>
               <Grid item xs={5}>
@@ -221,7 +220,7 @@ function RegisterUser() {
                   name="password"
                   error={Boolean(errors?.password)}
                   helperText={(errors?.password)}
-                  value={newUser.password}
+                  value={password}
                   onChange={handleChange}
                 />
               </Grid>
@@ -234,7 +233,7 @@ function RegisterUser() {
                   required
                   fullWidth
                   id="password2"
-                  value={newUser.password2}
+                  value={password2}
                   label="Repetir Contraseña"
                   name="password2"
                   onChange={handleChange}
