@@ -17,7 +17,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Patient from 'src/interfaces';
 import {
   optionsPsicologia, optionsPsiquiatria, optionsClinica, optionsAsesoria,
@@ -57,17 +57,6 @@ const StyledTableCell = withStyles((theme: Theme) => createStyles({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 16,
-    },
-  },
-}))(TableRow);
-
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     width: '100%',
@@ -78,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     fontSize: 16,
   },
   table: {
-    width: '70%',
+    width: '100%',
     fontSize: 16,
   },
   heroContent: {
@@ -124,6 +113,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     textDecoration: 'none',
     fontSize: 16,
   },
+  canal: {
+    textAlign: 'right',
+  },
 }));
 
 export default function CustomizedTables() {
@@ -135,6 +127,7 @@ export default function CustomizedTables() {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [patientsData, setPatientsData] = useState<Patient[]>([]);
   const [value, setValue] = useState('');
+  const history = useHistory();
   const classes = useStyles();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
@@ -196,6 +189,11 @@ export default function CustomizedTables() {
 
   const handleSearch = (event: React.ChangeEvent<any>) => {
     setSearchData(event.target.value);
+  };
+
+  const addUser = (event: React.ChangeEvent<any>) => {
+    const patientId = event.currentTarget.dataset.patientid;
+    history.push(`/patient-canalization/${patientId}`);
   };
 
   return (
@@ -264,11 +262,11 @@ export default function CustomizedTables() {
               </FormControl>
             </Grid>
             <GridList className={classes.gridList}>
-              <Grid item xs={5}>
+              <Grid item xs={12}>
                 <Table className={classes.table}>
                   <TableBody>
                     {patients.map((field) => (
-                      <StyledTableRow key={field.id}>
+                      <TableRow key={field.id}>
                         <StyledTableCell align="left" color="textPrimary">
                           <Link to={`/expediente/${field.recordId}`} className={classes.link}>
                             {field.name}
@@ -287,7 +285,12 @@ export default function CustomizedTables() {
                             </Typography>
                           </>
                         </StyledTableCell>
-                      </StyledTableRow>
+                        <TableCell className={classes.canal}>
+                          {field.userId
+                            ? <></>
+                            : <Button variant="contained" color="primary" className={classes.canal} data-patientId={field.id?.toString()} onClick={addUser}>Canalizar</Button>}
+                        </TableCell>
+                      </TableRow>
                     ))}
                   </TableBody>
                 </Table>
