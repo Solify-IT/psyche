@@ -11,7 +11,6 @@ export const authenticationService = {
 
 export async function login(username: string, password: string) {
   const result = await server.post('/login', { username, password });
-  console.log(result.data);
   localStorage.setItem('currentUser', JSON.stringify(result.data));
   currentUserSubject.next(result.data);
 
