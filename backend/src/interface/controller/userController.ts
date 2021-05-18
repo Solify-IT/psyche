@@ -104,7 +104,7 @@ export default class UserController {
       context.next(error);
       return;
     }
-    context.response.status(200).json(users);
+    context.response.status(200).json({ exist: true});
   }
 
   async login(context: IContext): Promise<void> {
@@ -117,5 +117,16 @@ export default class UserController {
     }
 
     context.response.status(200).json(loginResult);
+  }
+
+  async getUser(context: IContext): Promise<void> {
+    const { username } = context.request.params;
+    console.log(username);
+    const [userExist, error ] = await wrapError(this.userInteractor.getUser(username));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userExist)
   }
 }

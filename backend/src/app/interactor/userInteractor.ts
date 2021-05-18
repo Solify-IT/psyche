@@ -7,6 +7,7 @@ import PatientArea from 'domain/model/user/patientArea';
 import InvalidDataError from 'utils/errors/InvalidDataError';
 
 export default class UserInteractor {
+
   userRepository: IUserRepository;
 
   userPresenter: IUserPresenter;
@@ -26,6 +27,14 @@ export default class UserInteractor {
       throw error;
     }
     return this.userPresenter.register(results);
+  }
+
+  async getUser(username: string): Promise<User> {
+    const [results, error] = await wrapError(this.userRepository.getUser(username));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.getUser(results);
   }
 
   async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {

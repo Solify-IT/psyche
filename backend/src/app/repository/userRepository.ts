@@ -2,6 +2,7 @@ import { User } from 'domain/model';
 import PatientArea from 'domain/model/user/patientArea';
 
 export default interface IUserRepository {
+  getUser(username: string): Promise<User>;
   register(user: User) : Promise <User>;
   findAll(): Promise<User[]>;
   login(username: string, password: string) : Promise<User>;

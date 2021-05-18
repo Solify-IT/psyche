@@ -12,6 +12,7 @@ import Registry from './registry';
 import 'reflect-metadata';
 
 const app: express.Application = express();
+const bcrypt = require('bcrypt');
 
 const port : number = 8000;
 

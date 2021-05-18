@@ -5,11 +5,24 @@ import NotFoundError from 'utils/errors/NotFoundError';
 import PatientArea from 'domain/model/user/patientArea';
 import IDatastore from './datastore';
 
+const bcrypt = require('bcrypt');
+
 export default class UserRepository implements IUserRepository {
   datastore: IDatastore;
 
   constructor(datastore: IDatastore) {
     this.datastore = datastore;
+  }
+  async getUser(username: string): Promise<User> {
+    const [user, error] = await wrapError(
+      this.datastore.exists(`select exists(select 1 from contact where username=${username}`));
+    if (error) {
+      throw error;
+    }
+    if (user) {
+      return user;
+    }
+    throw new NotFoundError('El nombre esta disponible');
   }
 
   async getUserPatientAreas(id: number): Promise<PatientArea[]> {
@@ -74,6 +87,7 @@ export default class UserRepository implements IUserRepository {
   }
 
   async register(user: User): Promise<User> {
+    user.password = await bcrypt.hash(user.password,8)
     const [result, error] = await wrapError(
       this.datastore.save<User>('User', user),
     );
