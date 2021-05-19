@@ -36,7 +36,10 @@ export default class User {
   active: boolean;
 
   @Column({ nullable: true })
-  professionalLicense: string;
+  professionalLicense?: string;
+
+  @Column({ nullable: true })
+  workSchedule?: string;
 
   @OneToMany(() => PatientArea, (areas) => areas.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
   patientAreas?: PatientArea[];

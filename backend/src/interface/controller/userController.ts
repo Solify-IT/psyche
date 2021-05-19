@@ -34,8 +34,9 @@ export default class UserController {
         checked: area.checked,
       });
     });
+    const { workSchedule } = context.request.body;
     const [, error] = await wrapError(
-      this.userInteractor.registerProfile(areas),
+      this.userInteractor.registerProfile(user.id, areas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -77,8 +78,9 @@ export default class UserController {
         checked: area.checked,
       });
     });
+    const { workSchedule } = context.request.body;
     const [patientAreas, error] = await wrapError(
-      this.userInteractor.modifyProfile(areas),
+      this.userInteractor.modifyProfile(user.id, areas, workSchedule),
     );
     if (error) {
       context.next(error);
