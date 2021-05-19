@@ -50,14 +50,18 @@ function GenerateForm(props: GenerateFormProps) {
   const history = useHistory();
 
   const [fields, setFields] = useState(data.fields.sort((a, b) => {
-    if (a.type < b.type) {
-      return -1;
+    if (a.id && b.id) {
+      if (a.id < b.id!) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1;
+      }
+      return 0;
     }
-    if (a.type > b.type) {
-      return 1;
-    }
+    console.error('Form ids not obtained. Defaulting to standard order');
     return 0;
-  }).reverse());
+  }));
   useEffect(() => {
     setFields(data.fields);
   }, []);
@@ -116,11 +120,9 @@ function GenerateForm(props: GenerateFormProps) {
       type: data.type,
       fields,
     };
-    console.log(patientForm);
     setLoading(true);
     try {
       await registerPatientForm(id, patientForm);
-      // TODO: Redireccionar a el detail de la pagina
       toast.success('Se han llenado los datos de la encuesta exitosamente.');
       history.replace(`/expediente/${id}`);
     } catch (error) {
