@@ -33,7 +33,7 @@ describe('User register profile', () => {
     jest.spyOn(
       userRepository, 'registerProfile',
     ).mockImplementation(async () => patientAreaFixture);
-    const [result, error] = await wrapError(interactor.registerProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerProfile(1, patientAreaFixture, ''));
 
     expect(error).toBe(null);
     expect(result).toBeDefined();
@@ -44,7 +44,7 @@ describe('User register profile', () => {
     jest.spyOn(
       userRepository, 'registerProfile',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.registerProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerProfile(1, patientAreaFixture, ''));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
@@ -53,7 +53,7 @@ describe('User register profile', () => {
     jest.spyOn(
       userRepository, 'modifyProfile',
     ).mockImplementation(async () => patientAreaFixture);
-    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.modifyProfile(1, patientAreaFixture, ''));
 
     expect(error).toBe(null);
     expect(result).toBeDefined();
@@ -64,7 +64,7 @@ describe('User register profile', () => {
     jest.spyOn(
       userRepository, 'modifyProfile',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.modifyProfile(1, patientAreaFixture, ''));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
