@@ -6,6 +6,9 @@ import jwtConfig from 'utils/jwtConfig';
 import PatientArea from 'domain/model/user/patientArea';
 
 export default class UserPresenter implements IUserPresenter {
+  findOne(id: number): User {
+    throw new Error('Method not implemented.');
+  }
   expiresIn: string = '30 days';
 
   patientAreas(areas: PatientArea[]): PatientArea[] {
@@ -34,5 +37,8 @@ export default class UserPresenter implements IUserPresenter {
 
   findAll(users: User[]): User[] {
     return users;
+  }
+  updateProfile(user: User): User {
+    return user;
   }
 }

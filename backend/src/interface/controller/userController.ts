@@ -120,4 +120,16 @@ export default class UserController {
 
     context.response.status(200).json(loginResult);
   }
+
+  async updateProfile(context: IContext): Promise<void> {
+    const id = parseInt(context.request.params.id);
+    const [userProfile, error] = await
+    wrapError(this.userInteractor.updateProfile({ id, ...context.request.body }));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userProfile);
+  }
 }

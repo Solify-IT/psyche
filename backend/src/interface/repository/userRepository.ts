@@ -11,6 +11,15 @@ export default class UserRepository implements IUserRepository {
   constructor(datastore: IDatastore) {
     this.datastore = datastore;
   }
+  async updateProfile(user: User): Promise<User> {
+    const [result, error] = await wrapError(
+      this.datastore.save<User>('User', user),
+    );
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
 
   async getUserPatientAreas(id: number): Promise<PatientArea[]> {
     const [areas, error] = await wrapError(

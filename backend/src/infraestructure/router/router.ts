@@ -58,5 +58,8 @@ export default class Router {
     app.get('/patientFormField/:id', async (request, response, next) => {
       await wrapError(controller.forms.detailField({ request, response, next }));
     });
+    app.put('/User/:id', async (request, response, next) => {
+      await wrapError(controller.users.updateProfile({ request, response, next }));
+    });
   }
 }
