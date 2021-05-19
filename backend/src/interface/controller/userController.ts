@@ -25,18 +25,20 @@ export default class UserController {
   async registerProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
-    const request : PatientArea[] = Object.values(context.request.body);
-    const areas : PatientArea[] = [];
-    request.forEach((area) => {
-      areas.push({
+    const { areas } = context.request.body;
+
+    const finalAreas : PatientArea[] = [];
+    areas.forEach((area : PatientArea) => {
+      finalAreas.push({
         name: area.name,
         userId: user.id,
         checked: area.checked,
       });
     });
     const { workSchedule } = context.request.body;
+
     const [, error] = await wrapError(
-      this.userInteractor.registerProfile(user.id, areas, workSchedule),
+      this.userInteractor.registerProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -68,19 +70,21 @@ export default class UserController {
   async modifyProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
-    const request : PatientArea[] = Object.values(context.request.body);
-    const areas : PatientArea[] = [];
-    request.forEach((area) => {
-      areas.push({
-        id: area.id,
+
+    const { areas } = context.request.body;
+
+    const finalAreas : PatientArea[] = [];
+    areas.forEach((area : PatientArea) => {
+      finalAreas.push({
         name: area.name,
         userId: user.id,
         checked: area.checked,
       });
     });
     const { workSchedule } = context.request.body;
+
     const [patientAreas, error] = await wrapError(
-      this.userInteractor.modifyProfile(user.id, areas, workSchedule),
+      this.userInteractor.registerProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -108,7 +112,7 @@ export default class UserController {
       context.next(error);
       return;
     }
-    context.response.status(200).json(patientAreas);
+    context.response.status(200).json({ patientAreas, workSchedule: user.workSchedule });
   }
 
   async login(context: IContext): Promise<void> {
