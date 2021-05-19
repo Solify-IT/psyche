@@ -38,4 +38,35 @@ describe('Patient  profile repository', () => {
     expect(finalUserResult.workSchedule).toEqual(workSchedule);
     expect(finalUserResult.patientAreas.length).toEqual(areas.length);
   });
+
+  test('should modify patient profile', async () => {
+    const userResult = await getConnection().getRepository<User>(User).save(user);
+    const registerResult = await userRepository.registerProfile(userResult.id, areas, workSchedule);
+
+    const newWorkSchedule = '13:00 - 18:00';
+    const newPatientAreas : PatientArea[] = [
+      {
+        id: registerResult[0].id,
+        name: 'Prueba',
+        userId: 1,
+        checked: false,
+      },
+      {
+        id: registerResult[1].id,
+        name: 'Prueba 2',
+        userId: 1,
+        checked: true,
+      },
+    ];
+
+    const result = await userRepository.modifyProfile(
+      userResult.id, newPatientAreas, newWorkSchedule,
+    );
+    expect(result).toBeDefined();
+    const finalUserResult = await getConnection().getRepository<User>(User).findOneOrFail(
+      userResult.id,
+    );
+    expect(finalUserResult.workSchedule).toEqual(newWorkSchedule);
+    expect(finalUserResult.patientAreas[0]).toEqual(newPatientAreas[0]);
+  });
 });
