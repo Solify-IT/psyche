@@ -48,7 +48,7 @@ export default class FormController {
   async detailForm(context: IContext): Promise<void> {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
-    const [form, error] = await wrapError(this.formInteractor.detailField(id));
+    const [form, error] = await wrapError(this.formInteractor.detail(id));
 
     if (error) {
       context.next(error);

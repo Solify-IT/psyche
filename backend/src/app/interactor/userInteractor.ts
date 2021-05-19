@@ -82,6 +82,16 @@ export default class UserInteractor {
 
     return this.userPresenter.findAll(users);
   }
+  
+  async getOne(id: number): Promise<User> {
+    const [users, error] = await wrapError(this.userRepository.findOne(id));
+
+    if (error) {
+      throw error;
+    }
+
+    return users;
+  }
 
   async login(username: string, password: string): Promise<LoginResult> {
     const [user, error] = await wrapError(this.userRepository.login(username, password));

@@ -113,3 +113,16 @@ export default class UserRepository implements IUserRepository {
     return users;
   }
 }
+
+  async findOne(id: number): Promise<User> {
+    const [users, error] = await wrapError(
+      this.datastore.fetchOne<User>('User', { id }),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    return users;
+  }
+}

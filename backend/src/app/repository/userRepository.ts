@@ -2,12 +2,15 @@ import { User } from 'domain/model';
 import PatientArea from 'domain/model/user/patientArea';
 
 export default interface IUserRepository {
-  getUser(username: string): Promise<User>;
   register(user: User) : Promise <User>;
-  findAll(): Promise<User[]>;
+  findOne(id: number): Promise<User>;
   login(username: string, password: string) : Promise<User>;
   registerProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
   modifyProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
   setUserFirstTime(id: number, firstTime: boolean) : Promise<User>;
   getUserPatientAreas(id: number) : Promise<PatientArea[]>;
+  findAll(): Promise<User[]>;
+  getUser(username: string): Promise<User>;
+
+
 }

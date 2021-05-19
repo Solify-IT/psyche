@@ -52,6 +52,18 @@ export default class UserController {
     context.response.status(200).json(userProfileSet);
   }
 
+  async getUsers(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const [users, error] = await wrapError(this.userInteractor.getOne(user.id));
+    if (error) {
+      context.next(error);
+      return;
+    }
+
+    context.response.status(200).json(users);
+  }
+
   async modifyProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
@@ -97,16 +109,6 @@ export default class UserController {
     context.response.status(200).json(patientAreas);
   }
 
-  async getUsers(context: IContext): Promise<void> {
-    const [users, error] = await wrapError(this.userInteractor.getAll());
-
-    if (error) {
-      context.next(error);
-      return;
-    }
-    context.response.status(200).json({ exist: true});
-  }
-
   async login(context: IContext): Promise<void> {
     const { username, password } = context.request.body;
     const [loginResult, error] = await wrapError(this.userInteractor.login(username, password));
@@ -118,7 +120,7 @@ export default class UserController {
 
     context.response.status(200).json(loginResult);
   }
-
+}
   async getUser(context: IContext): Promise<void> {
     const { username } = context.request.params;
     console.log(username);

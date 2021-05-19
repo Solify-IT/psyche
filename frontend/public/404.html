@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1"/>
+    <title>PSYQUE-ing</title>
+  </head>
+  <body>
+    <noscript>Necesitas tener activado JavasScript para utilizar esta aplicación.</noscript>
+    <div id="root"></div>
+    <script>
+    var path = window.location.pathname;
+    path = path[0] + "#" + path;
+    var url = window.location.protocol + "//" + window.location.hostname + path;
+    //document.write("Redirecting To: "+url);
+    window.location.href=url;
+    </script>
+  </body>
+</html>

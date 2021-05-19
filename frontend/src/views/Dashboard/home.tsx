@@ -40,7 +40,9 @@ function Home() {
   }));
 
   const classes = useStyles();
-
+  const currentUser = authenticationService.currentUserValue;
+  const { name } = authenticationService.currentUserValue.user;
+  const greeting = (name === undefined) ? 'Hola' : `Hola, ${name}`;
   return (
     <FadeIn>
       <main>
@@ -51,9 +53,7 @@ function Home() {
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
                   <Typography variant="h2" gutterBottom>
-                    Hola,
-                    {' '}
-                    { authenticationService.currentUserValue.user.name }
+                    { greeting }
                   </Typography>
                 </Grid>
 
@@ -89,11 +89,11 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/home-divisions" className={classes.option}>
+                <Link to="/new-form" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/reporte.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Generar Reporte
+                      Crear nuevo formato
                     </Typography>
                   </Paper>
                 </Link>
@@ -111,7 +111,7 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to="/app/home-divisions" className={classes.option}>
+                <Link to={`/patient-profile/${currentUser.user.id}`} className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/perfil.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>

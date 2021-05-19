@@ -180,24 +180,31 @@ function RecordInfo(props: RecordInfoProps) {
   }
 
   return (
-    <FadeIn>
-      <Grid container component="main">
-        <Grid item md={12}>
-          <Typography component="h1" variant="h3" className={classes.title}>
-            Expediente
-            { ' ' }
-            { createRecordId(record.id)}
-          </Typography>
-          { record.patients.map((patient) => (
-            <PatientGeneralInfo patient={patient} key={patient.id} />
-          ))}
-          {formsGrouped ? Object.keys(formsGrouped).map((key) => (
-            <FormSection key={key} title={key} forms={formsGrouped[key]} />
-          )) : false}
+    <div>
+
+      <FadeIn>
+        <Grid container component="main">
+          <Grid item md={12}>
+            <Typography component="h1" variant="h3" className={classes.title}>
+              Expediente
+              { ' ' }
+              { createRecordId(record.id)}
+            </Typography>
+            { record.patients.map((patient) => (
+              <PatientGeneralInfo patient={patient} key={patient.id} />
+            ))}
+            {formsGrouped ? Object.keys(formsGrouped).map((key) => (
+              <FormSection key={key} title={key} forms={formsGrouped[key]} />
+            )) : false}
+          </Grid>
         </Grid>
-      </Grid>
+        {' '}
+
+      </FadeIn>
+
       <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
-    </FadeIn>
+    </div>
+
   );
 }
 
