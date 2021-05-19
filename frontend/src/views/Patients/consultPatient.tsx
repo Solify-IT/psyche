@@ -287,8 +287,16 @@ export default function CustomizedTables() {
                         </StyledTableCell>
                         <TableCell className={classes.canal}>
                           {field.userId
-                            ? <></>
-                            : <Button variant="contained" color="primary" className={classes.canal} data-patientId={field.id?.toString()} onClick={addUser}>Canalizar</Button>}
+                            ? (
+                              <>
+                                <Typography color="textSecondary" className={classes.subtitle}>
+                                  Nombre del Doctor:
+                                  {' '}
+                                  {field.user.name}
+                                </Typography>
+                              </>
+                            )
+                            : <Button variant="contained" color="primary" className={classes.canal} data-patientId={field.recordId?.toString()} onClick={addUser}>Canalizar</Button>}
                         </TableCell>
                       </TableRow>
                     ))}

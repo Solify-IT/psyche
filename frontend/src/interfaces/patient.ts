@@ -12,4 +12,5 @@ export default interface Patient {
   postalCode: number;
   recordId: number,
   userId?: number,
+  user?:any
 }
