@@ -12,6 +12,7 @@ import {
   FormLabel,
   Button,
   FormHelperText,
+  TextField,
 }
   from '@material-ui/core';
 import PatientArea from 'src/interfaces/patientArea';
@@ -54,8 +55,7 @@ function EditProfile(props: ProfileSetProps) {
   const history = useHistory();
   const { areas, workSchedule } = props;
 
-  console.log(workSchedule);
-  console.log(areas);
+  const [newWorkSchedule, setNewWorkSchedule] = useState<string>(workSchedule);
 
   const [patientAreas, setNewPatientAreas] = useState<PatientArea[]>(areas.sort((a, b) => {
     if (a.name < b.name) { return -1; }
@@ -68,7 +68,7 @@ function EditProfile(props: ProfileSetProps) {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await modifyProfile(patientAreas);
+      await modifyProfile(patientAreas, newWorkSchedule);
       setPatientAreas(patientAreas);
       toast.success('Se ha modificado su perfil de usuario exitosamente');
       history.push('/');
@@ -80,10 +80,14 @@ function EditProfile(props: ProfileSetProps) {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<any>) => {
+  const handleChangeCheckbox = (event: React.ChangeEvent<any>) => {
     const newArray = [...patientAreas];
     newArray[event.target.id].checked = event.target.checked;
     setNewPatientAreas(newArray);
+  };
+
+  const handleChangeTextArea = (event: React.ChangeEvent<any>) => {
+    setNewWorkSchedule(event.target.value);
   };
 
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
@@ -121,7 +125,7 @@ function EditProfile(props: ProfileSetProps) {
                             control={(
                               <Checkbox
                                 checked={area.checked}
-                                onChange={handleChange}
+                                onChange={handleChangeCheckbox}
                                 name={area.name}
                                 id={index.toString()}
                               />
@@ -134,6 +138,28 @@ function EditProfile(props: ProfileSetProps) {
 
                     </FormGroup>
                   </FormControl>
+                  <Grid container>
+                    <FormControl component="fieldset" className={classes.formControl} fullWidth>
+                      <FormLabel component="legend">Horarios</FormLabel>
+                      <FormHelperText>Ingresa tus horarios</FormHelperText>
+
+                      <Grid item xs={12}>
+                        <TextField
+                          variant="outlined"
+                          margin="normal"
+                          inputProps={{ minLength: 5 }}
+                          fullWidth
+                          multiline
+                          rows={4}
+                          id="workSchedule"
+                          label="Horario"
+                          name="workSchedule"
+                          onChange={handleChangeTextArea}
+                          value={workSchedule}
+                        />
+                      </Grid>
+                    </FormControl>
+                  </Grid>
                   <Grid container spacing={3} justify="center">
                     <Grid item xs={6}>
                       { loading ? <LoadingSpinner /> : (

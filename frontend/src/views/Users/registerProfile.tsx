@@ -161,9 +161,9 @@ function RegisterProfile() {
                         fullWidth
                         multiline
                         rows={4}
-                        id="username"
+                        id="workSchedule"
                         label="Horario"
-                        name="username"
+                        name="workSchedule"
                         onChange={handleChangeTextArea}
                         value={workSchedule}
                       />
