@@ -12,6 +12,19 @@ export default class UserRepository implements IUserRepository {
     this.datastore = datastore;
   }
 
+  async getAll(): Promise<User[]> {
+    const [users, error] = await wrapError(
+      this.datastore.fetchAll<User>('User'),
+    );
+    if (error) {
+      throw error;
+    }
+    if (users) {
+      return users;
+    }
+    throw new NotFoundError('No se encontró ningun usuario registrado');
+  }
+
   async getUserPatientAreas(id: number): Promise<PatientArea[]> {
     const [areas, error] = await wrapError(
       this.datastore.fetchAllWhere<PatientArea>('PatientArea', {

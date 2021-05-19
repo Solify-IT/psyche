@@ -83,6 +83,14 @@ export default class UserInteractor {
     return this.userPresenter.login(user);
   }
 
+  async getAll(): Promise<User[]> {
+    const [results, error] = await wrapError(this.userRepository.getAll());
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.findAll(results);
+  }
+
   isValidUser(user: User) : boolean {
     if (user.password.length < 8) {
       return false;

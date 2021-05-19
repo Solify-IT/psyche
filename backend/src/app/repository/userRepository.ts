@@ -9,5 +9,5 @@ export default interface IUserRepository {
   modifyProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
   setUserFirstTime(id: number, firstTime: boolean) : Promise<User>;
   getUserPatientAreas(id: number) : Promise<PatientArea[]>;
-
+  getAll(): Promise<User[]>;
 }
