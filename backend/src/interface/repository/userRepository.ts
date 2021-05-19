@@ -15,7 +15,10 @@ export default class UserRepository implements IUserRepository {
   }
   async getUser(username: string): Promise<User> {
     const [user, error] = await wrapError(
-      this.datastore.exists(`select exists(select 1 from contact where username=${username}`));
+      this.datastore.fetchOne<User>('User', {
+        username,
+      }),
+    );
     if (error) {
       throw error;
     }
@@ -74,14 +77,15 @@ export default class UserRepository implements IUserRepository {
     const [user, error] = await wrapError(
       this.datastore.fetchOne<User>('User', {
         username,
-        password,
       }),
     );
     if (error) {
       throw error;
     }
     if (user) {
-      return user;
+      if(bcrypt.compare(password, user.password)){
+        return user
+      }
     }
     throw new NotFoundError('No se encontro al usuario');
   }

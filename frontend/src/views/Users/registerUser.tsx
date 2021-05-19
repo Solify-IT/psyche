@@ -66,29 +66,38 @@ function RegisterUser() {
     };
     setNewUser(newUserV);
 
-    if (event.target.name === 'username') {
-      getUser(event.target.value).then((response:any) => {
-        console.log('Not error');
-        errors.username = 'El usuario ya existe';
-      }).catch((error:any) => {
-        errors.username = '';
-      });
-    }
-
     if (newUserV.password !== newUserV.password2) {
       errors.password = 'Las contraseñas no coinciden';
     } else {
       errors.password = '';
     }
+    setNewUser({
+      ...newUser,
+      [event.target.name]: event.target.value,
+      errors,
+    });
   };
 
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
+    let userExist = false;
     let passwordError = '';
     if (password2 !== password) {
       passwordError = 'Las contraseñas no coinciden';
       console.log(passwordError);
     } else {
+      console.log('realizar');
+      console.log(getUser(newUser.username));
+      getUser(newUser.username).then((responses:any) => {
+        userExist = true;
+        errors.username = 'El usuario ya esta ocupado';
+      }).catch((error:any) => {
+        userExist = false;
+      });
+    }
+    console.log(userExist);
+    if (!userExist) {
+      console.log('ok');
       CreateUser(newUser).then((response:any) => {
         console.log(response);
         toast.success('Se ha registrado el nuevo usuario');
@@ -98,6 +107,12 @@ function RegisterUser() {
           toast.warning('No se pudo registrar al usuario');
           console.log(error);
         });
+    } else {
+      const newUserV: User = {
+        ...newUser,
+        [event.target.name]: event.target.value,
+      };
+      setNewUser(newUserV);
     }
   };
 
