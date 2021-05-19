@@ -22,6 +22,7 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientAvailableForms from './views/Forms/patientAvailableForms';
+import PatientCanalization from './views/Patients/patientCanalization';
 // Form views
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import NewForm from './views/Forms/newForm';
@@ -54,6 +55,7 @@ const AppRouter = () => (
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
+    <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} />
   </div>
 );
 

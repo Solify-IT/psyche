@@ -120,4 +120,13 @@ export default class UserController {
 
     context.response.status(200).json(loginResult);
   }
+
+  async getAllUsers(context: IContext): Promise<void> {
+    const [users, error] = await wrapError(this.userInteractor.getAll());
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(users);
+  }
 }
