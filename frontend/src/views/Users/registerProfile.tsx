@@ -62,6 +62,8 @@ function RegisterProfile() {
     return initialArray;
   });
 
+  const [workSchedule, setWorkSchedule] = useState<string>('');
+
   useEffect(() => {
     if (!authenticationService.currentUserValue.user.firstTime) {
       history.replace('/');
@@ -74,11 +76,11 @@ function RegisterProfile() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await createProfile(patientAreas);
+      await createProfile(patientAreas, workSchedule);
       setPatientAreas(patientAreas);
       profileSet();
       history.replace('/');
-      toast.success('Se ha registrado su perfil de usuario exitosamente');
+      toast.success('Se ha registrado su perfil de psicólogo exitosamente');
     } catch (error) {
       toast.error('Ocurrió un error al intentar registrar el perfil.');
       console.error(error);
@@ -87,12 +89,16 @@ function RegisterProfile() {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<any>) => {
+  const handleChangeCheckbox = (event: React.ChangeEvent<any>) => {
     const newArray = [...patientAreas];
     newArray[event.target.id].checked = event.target.checked;
-    console.log(newArray);
     setNewPatientAreas(newArray);
   };
+
+  const handleChangeTextArea = (event: React.ChangeEvent<any>) => {
+    setWorkSchedule(event.target.value);
+  };
+
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
   return (
     <FadeIn>
@@ -128,7 +134,7 @@ function RegisterProfile() {
                             control={(
                               <Checkbox
                                 checked={area.checked}
-                                onChange={handleChange}
+                                onChange={handleChangeCheckbox}
                                 name={area.name}
                                 id={index.toString()}
                               />
@@ -142,25 +148,25 @@ function RegisterProfile() {
                     </FormGroup>
                   </FormControl>
                 </Grid>
-                <Grid container alignContent="stretch">
-                  <FormControl required error={checkboxError} component="fieldset" className={classes.formControl}>
+                <Grid container>
+                  <FormControl component="fieldset" className={classes.formControl} fullWidth>
                     <FormLabel component="legend">Horarios</FormLabel>
                     <FormHelperText>Ingresa tus horarios</FormHelperText>
 
                     <Grid item xs={12}>
-                      { loading ? <LoadingSpinner /> : (
-                        <TextField
-                          variant="outlined"
-                          margin="normal"
-                          inputProps={{ minLength: 5 }}
-                          fullWidth
-                          multiline
-                          rows={4}
-                          id="username"
-                          label="Horario"
-                          name="username"
-                        />
-                      )}
+                      <TextField
+                        variant="outlined"
+                        margin="normal"
+                        inputProps={{ minLength: 5 }}
+                        fullWidth
+                        multiline
+                        rows={4}
+                        id="username"
+                        label="Horario"
+                        name="username"
+                        onChange={handleChangeTextArea}
+                        value={workSchedule}
+                      />
                     </Grid>
                   </FormControl>
                 </Grid>

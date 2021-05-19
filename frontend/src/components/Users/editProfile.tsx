@@ -46,12 +46,16 @@ const useStyles = makeStyles((theme) => ({
 
 type ProfileSetProps = {
   areas : PatientArea[];
+  workSchedule : string;
 };
 
 function EditProfile(props: ProfileSetProps) {
   const classes = useStyles();
   const history = useHistory();
-  const { areas } = props;
+  const { areas, workSchedule } = props;
+
+  console.log(workSchedule);
+  console.log(areas);
 
   const [patientAreas, setNewPatientAreas] = useState<PatientArea[]>(areas.sort((a, b) => {
     if (a.name < b.name) { return -1; }

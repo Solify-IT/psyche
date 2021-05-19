@@ -8,8 +8,8 @@ export default async function CreateUser(user:User) {
   return result.data;
 }
 
-export async function createProfile(areas: Array<PatientArea>) {
-  const result = await server.post('/profile', areas).then(handleResponse).catch(handleResponse);
+export async function createProfile(areas: Array<PatientArea>, workSchedule: string) {
+  const result = await server.post('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
 
