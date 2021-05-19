@@ -11,5 +11,6 @@ export default interface IUserRepository {
   getUserPatientAreas(id: number) : Promise<PatientArea[]>;
   findAll(): Promise<User[]>;
   getUser(username: string): Promise<User>;
+  updateProfile(user: User) : Promise<User>;
 
 }
