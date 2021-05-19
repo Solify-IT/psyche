@@ -12,6 +12,7 @@ import {
   FormLabel,
   Button,
   FormHelperText,
+  TextField,
 }
   from '@material-ui/core';
 import {
@@ -140,22 +141,45 @@ function RegisterProfile() {
 
                     </FormGroup>
                   </FormControl>
-                  <Grid container spacing={3} justify="center">
-                    <Grid item xs={6}>
+                </Grid>
+                <Grid container alignContent="stretch">
+                  <FormControl required error={checkboxError} component="fieldset" className={classes.formControl}>
+                    <FormLabel component="legend">Horarios</FormLabel>
+                    <FormHelperText>Ingresa tus horarios</FormHelperText>
+
+                    <Grid item xs={12}>
                       { loading ? <LoadingSpinner /> : (
-                        <Button
-                          type="submit"
+                        <TextField
+                          variant="outlined"
+                          margin="normal"
+                          inputProps={{ minLength: 5 }}
                           fullWidth
-                          disabled={checkboxError}
-                          variant="contained"
-                          color="primary"
-                          className={classes.submit}
-                          onClick={handleSubmit}
-                        >
-                          Guardar
-                        </Button>
+                          multiline
+                          rows={4}
+                          id="username"
+                          label="Horario"
+                          name="username"
+                        />
                       )}
                     </Grid>
+                  </FormControl>
+                </Grid>
+
+                <Grid container spacing={3} justify="center">
+                  <Grid item xs={6}>
+                    { loading ? <LoadingSpinner /> : (
+                      <Button
+                        type="submit"
+                        fullWidth
+                        disabled={checkboxError}
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={handleSubmit}
+                      >
+                        Guardar
+                      </Button>
+                    )}
                   </Grid>
                 </Grid>
               </Grid>
