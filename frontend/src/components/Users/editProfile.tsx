@@ -155,7 +155,7 @@ function EditProfile(props: ProfileSetProps) {
                           label="Horario"
                           name="workSchedule"
                           onChange={handleChangeTextArea}
-                          value={workSchedule}
+                          value={newWorkSchedule}
                         />
                       </Grid>
                     </FormControl>

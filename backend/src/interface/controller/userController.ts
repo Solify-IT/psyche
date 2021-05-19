@@ -79,6 +79,7 @@ export default class UserController {
         name: area.name,
         userId: user.id,
         checked: area.checked,
+        id: area.id,
       });
     });
     const { workSchedule } = context.request.body;
@@ -112,7 +113,14 @@ export default class UserController {
       context.next(error);
       return;
     }
-    context.response.status(200).json({ patientAreas, workSchedule: user.workSchedule });
+    const [resultUser, err] = await wrapError(
+      this.userInteractor.getOne(user.id),
+    );
+    if (err) {
+      context.next(err);
+      return;
+    }
+    context.response.status(200).json({ patientAreas, workSchedule: resultUser.workSchedule });
   }
 
   async login(context: IContext): Promise<void> {
