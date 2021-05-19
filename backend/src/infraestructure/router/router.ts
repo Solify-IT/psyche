@@ -1,4 +1,4 @@
-import { Application, response } from 'express';
+import { Application } from 'express';
 import { wrapError } from '@types';
 import IAppController from 'interface/controller/appController';
 

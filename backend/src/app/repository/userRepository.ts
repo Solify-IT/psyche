@@ -12,5 +12,4 @@ export default interface IUserRepository {
   findAll(): Promise<User[]>;
   getUser(username: string): Promise<User>;
 
-
 }

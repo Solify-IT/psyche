@@ -6,7 +6,6 @@ import jwtConfig from 'utils/jwtConfig';
 import PatientArea from 'domain/model/user/patientArea';
 
 export default class UserPresenter implements IUserPresenter {
-  
   expiresIn: string = '30 days';
 
   patientAreas(areas: PatientArea[]): PatientArea[] {
@@ -16,7 +15,7 @@ export default class UserPresenter implements IUserPresenter {
   getUser(user: User): User {
     return user;
   }
-  
+
   login(user: User): LoginResult {
     const userLoginResult = {
       id: user.id,

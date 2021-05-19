@@ -13,6 +13,7 @@ export default class UserRepository implements IUserRepository {
   constructor(datastore: IDatastore) {
     this.datastore = datastore;
   }
+
   async getUser(username: string): Promise<User> {
     const [user, error] = await wrapError(
       this.datastore.fetchOne<User>('User', {
@@ -83,15 +84,16 @@ export default class UserRepository implements IUserRepository {
       throw error;
     }
     if (user) {
-      if(bcrypt.compare(password, user.password)){
-        return user
+      if (bcrypt.compare(password, user.password)) {
+        return user;
       }
     }
     throw new NotFoundError('No se encontro al usuario');
   }
 
   async register(user: User): Promise<User> {
-    user.password = await bcrypt.hash(user.password,8)
+    /* eslint-disable no-param-reassign */
+    user.password = await bcrypt.hash(user.password, 8);
     const [result, error] = await wrapError(
       this.datastore.save<User>('User', user),
     );
@@ -112,6 +114,7 @@ export default class UserRepository implements IUserRepository {
 
     return users;
   }
+
   async findOne(id: number): Promise<User> {
     const [users, error] = await wrapError(
       this.datastore.fetchOne<User>('User', { id }),
@@ -124,6 +127,3 @@ export default class UserRepository implements IUserRepository {
     return users;
   }
 }
-
-
-

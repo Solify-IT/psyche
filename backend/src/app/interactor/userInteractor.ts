@@ -7,7 +7,6 @@ import PatientArea from 'domain/model/user/patientArea';
 import InvalidDataError from 'utils/errors/InvalidDataError';
 
 export default class UserInteractor {
-
   userRepository: IUserRepository;
 
   userPresenter: IUserPresenter;
@@ -82,7 +81,7 @@ export default class UserInteractor {
 
     return this.userPresenter.findAll(users);
   }
-  
+
   async getOne(id: number): Promise<User> {
     const [users, error] = await wrapError(this.userRepository.findOne(id));
 

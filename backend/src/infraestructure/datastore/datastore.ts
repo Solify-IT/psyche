@@ -49,7 +49,6 @@ export default class Datastore implements IDatastore {
     const repository = connection.manager.getRepository<T>('User');
     const exist = await repository.query(query);
 
-    return exist
-
+    return exist;
   }
 }
