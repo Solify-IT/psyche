@@ -120,7 +120,6 @@ export default class UserController {
 
     context.response.status(200).json(loginResult);
   }
-}
   async getUser(context: IContext): Promise<void> {
     const { username } = context.request.params;
     console.log(username);
@@ -132,3 +131,5 @@ export default class UserController {
     context.response.status(200).json(userExist)
   }
 }
+
+
