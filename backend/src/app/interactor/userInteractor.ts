@@ -28,6 +28,14 @@ export default class UserInteractor {
     return this.userPresenter.register(results);
   }
 
+  async getUser(username: string): Promise<User> {
+    const [results, error] = await wrapError(this.userRepository.getUser(username));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.getUser(results);
+  }
+
   async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
     const [results, error] = await wrapError(this.userRepository.registerProfile(areas));
     if (error) {
@@ -62,6 +70,16 @@ export default class UserInteractor {
       return result;
     }
     throw new InvalidDataError('User not found.');
+  }
+
+  async getAll(): Promise<User[]> {
+    const [users, error] = await wrapError(this.userRepository.findAll());
+
+    if (error) {
+      throw error;
+    }
+
+    return this.userPresenter.findAll(users);
   }
 
   async getOne(id: number): Promise<User> {

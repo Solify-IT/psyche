@@ -10,4 +10,8 @@ export default class PatientPresenter implements IPatientPresenter {
   record(record: Record): Record {
     return record;
   }
+
+  canalize(patient: Patient): Patient {
+    return patient;
+  }
 }
