@@ -11,6 +11,7 @@ import RecordDetail from './views/Patients/recordDetail';
 import RegisterUser from './views/Users/registerUser';
 import Login from './views/login';
 import ModifyProfile from './views/Users/modifyProfile';
+import ViewUsers from './views/Users/viewUsers';
 
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
@@ -56,6 +57,7 @@ const AppRouter = () => (
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} />
+    <PrivateRoute path="/view-users" exact component={ViewUsers} />
   </div>
 );
 
