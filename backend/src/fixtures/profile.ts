@@ -12,7 +12,7 @@ const userFixture : User = {
   firstTime: true,
   active: true,
   professionalLicense: '1111',
-
+  patients: null,
 };
 
 export default userFixture;

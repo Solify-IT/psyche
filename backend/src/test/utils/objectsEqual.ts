@@ -19,9 +19,6 @@ function objectsEqual<T>(originalObject: T, responseObject: T, exclude?: string[
       const value1 = JSON.stringify(valuesOriginal.get(key));
       const value2 = JSON.stringify(valuesResponse.get(key));
       if (value1 !== value2) {
-        console.log('NOT EQUAL');
-        console.log(`${key}`);
-        console.log(`${value1} != ${value2}`);
         return false;
       }
     }

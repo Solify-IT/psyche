@@ -23,6 +23,11 @@ export async function getPatients() {
   console.log(result);
 }
 
+export async function getUsers() {
+  const result = await server.get('/allUsers').then(handleResponse).catch(handleResponse);
+  return result;
+}
+
 export async function modifyProfile(areas: Array<PatientArea>, workSchedule: string)
   : Promise<PatientArea[]> {
   const result = await server.put('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
@@ -32,4 +37,9 @@ export async function modifyProfile(areas: Array<PatientArea>, workSchedule: str
 export async function getUserAreas() {
   const result = await server.get('/profile/areas');
   return result;
+}
+
+export async function getUser(username:String) {
+  const exist = await server.get(`/user/${username}`);
+  return exist;
 }
