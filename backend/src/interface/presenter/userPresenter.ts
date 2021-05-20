@@ -12,6 +12,10 @@ export default class UserPresenter implements IUserPresenter {
     return areas;
   }
 
+  getUser(user: User): User {
+    return user;
+  }
+
   login(user: User): LoginResult {
     const userLoginResult = {
       id: user.id,
@@ -34,5 +38,9 @@ export default class UserPresenter implements IUserPresenter {
 
   findAll(users: User[]): User[] {
     return users;
+  }
+
+  updateProfile(user: User): User {
+    return user;
   }
 }

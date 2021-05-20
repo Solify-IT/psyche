@@ -37,3 +37,8 @@ export async function getUserAreas() {
   const result = await server.get('/profile/areas');
   return result;
 }
+
+export async function getUser(username:String) {
+  const exist = await server.get(`/user/${username}`);
+  return exist;
+}

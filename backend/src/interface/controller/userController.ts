@@ -121,6 +121,16 @@ export default class UserController {
     context.response.status(200).json(loginResult);
   }
 
+  async getUser(context: IContext): Promise<void> {
+    const { username } = context.request.params;
+    const [userExist, error] = await wrapError(this.userInteractor.getUser(username));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userExist);
+  }
+
   async getAllUsers(context: IContext): Promise<void> {
     const [users, error] = await wrapError(this.userInteractor.getAll());
     if (error) {

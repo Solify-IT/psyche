@@ -18,13 +18,13 @@ export default class User {
   @Column()
   address: string;
 
-  @Column({ unique: true })
+  @Column()
   zipCode: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

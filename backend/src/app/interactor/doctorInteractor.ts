@@ -17,7 +17,6 @@ export default class DoctorInteractor {
     const [doctors, error] = await wrapError(this.doctorRepository.findAll());
 
     if (error) {
-      console.error(error);
       throw error;
     }
     return this.doctorPresenter.findAll(doctors);
@@ -27,7 +26,6 @@ export default class DoctorInteractor {
     const [doctors, error] = await wrapError(this.doctorRepository.findAll());
 
     if (error) {
-      console.error(error);
       throw error;
     }
     return this.doctorPresenter.findAllOld(doctors);

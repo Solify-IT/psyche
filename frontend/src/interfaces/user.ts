@@ -10,5 +10,6 @@ export default interface User {
   password2: string;
   errors: {
     password: string,
+    username: string,
   };
 }

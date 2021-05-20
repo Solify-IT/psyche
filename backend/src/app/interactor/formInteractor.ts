@@ -44,7 +44,6 @@ export default class FormInteractor {
 
   async updatePatientForm(form: PatientForm): Promise<Form> {
     const [result, error] = await wrapError(this.formRepository.updatePatientForm(form));
-
     if (error) {
       throw error;
     }

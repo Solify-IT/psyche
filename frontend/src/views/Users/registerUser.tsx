@@ -16,7 +16,7 @@ import {
   from '@material-ui/core';
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
-import CreateUser from 'src/api/user';
+import CreateUser, { getUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +52,7 @@ function RegisterUser() {
     password2: '',
     errors: {
       password: '',
+      username: '',
     },
   });
   const {
@@ -61,20 +62,14 @@ function RegisterUser() {
 
   const classes = useStyles();
 
-  const isPasswordValid = () => {
-    if (!password || !password2) return false;
-    return password === password2;
-  };
-
   const handleChange = (event: React.ChangeEvent<any>) => {
-    setNewUser({
+    const newUserV: User = {
       ...newUser,
       [event.target.name]: event.target.value,
-    });
+    };
+    setNewUser(newUserV);
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { errors } = newUser;
-    if (newUser.password !== newUser.password2) {
+    if (newUserV.password !== newUserV.password2) {
       errors.password = 'Las contraseñas no coinciden';
     } else {
       errors.password = '';
@@ -84,17 +79,28 @@ function RegisterUser() {
       [event.target.name]: event.target.value,
       errors,
     });
-
-    console.log(newUser);
   };
 
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
+    let userExist = false;
     let passwordError = '';
     if (password2 !== password) {
       passwordError = 'Las contraseñas no coinciden';
       console.log(passwordError);
     } else {
+      console.log('realizar');
+      console.log(getUser(newUser.username));
+      getUser(newUser.username).then((responses:any) => {
+        userExist = true;
+        errors.username = 'El usuario ya esta ocupado';
+      }).catch((error:any) => {
+        userExist = false;
+      });
+    }
+    console.log(userExist);
+    if (!userExist) {
+      console.log('ok');
       CreateUser(newUser).then((response:any) => {
         console.log(response);
         toast.success('Se ha registrado el nuevo usuario');
@@ -104,6 +110,12 @@ function RegisterUser() {
           toast.warning('No se pudo registrar al usuario');
           console.log(error);
         });
+    } else {
+      const newUserV: User = {
+        ...newUser,
+        [event.target.name]: event.target.value,
+      };
+      setNewUser(newUserV);
     }
   };
 
