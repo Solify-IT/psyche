@@ -124,13 +124,21 @@ export default class UserController {
   async getUser(context: IContext): Promise<void> {
     const { username } = context.request.params;
     const [userExist, error] = await wrapError(this.userInteractor.getUser(username));
+    if (error) {
+      context.next(error);
+      return;
+    }
     context.response.status(200).json(userExist);
   }
 
   async updateProfile(context: IContext): Promise<void> {
-    const id = parseInt(context.request.params.id);
+    const id = parseInt(context.request.params.id, 10);
     const [userProfile, error] = await
     wrapError(this.userInteractor.updateProfile({ id, ...context.request.body }));
+    if (error) {
+      context.next(error);
+      return;
+    }
     context.response.status(200).json(userProfile);
   }
 
@@ -142,6 +150,4 @@ export default class UserController {
     }
     context.response.status(200).json(users);
   }
-    
 }
-  
