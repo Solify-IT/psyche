@@ -23,6 +23,11 @@ export async function getPatients() {
   console.log(result);
 }
 
+export async function getUsers() {
+  const result = await server.get('/allUsers').then(handleResponse).catch(handleResponse);
+  return result;
+}
+
 export async function modifyProfile(areas: Array<PatientArea>) : Promise<PatientArea[]> {
   const result = await server.put('/profile', areas).then(handleResponse).catch(handleResponse);
   return result.data;

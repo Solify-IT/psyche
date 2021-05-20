@@ -41,4 +41,16 @@ export default class PatientController {
     }
     context.response.status(200).json(record);
   }
+
+  async canalizePatient(context: IContext): Promise<void> {
+    const [patients, error] = await wrapError(
+      this.patientInteractor.canalize(context.request.body),
+    );
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(patients);
+  }
 }

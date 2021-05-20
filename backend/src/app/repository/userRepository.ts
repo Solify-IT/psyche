@@ -12,4 +12,5 @@ export default interface IUserRepository {
   findAll(): Promise<User[]>;
   getUser(username: string): Promise<User>;
   updateProfile(user: User) : Promise<User>;
+  getAll(): Promise<User[]>;
 }

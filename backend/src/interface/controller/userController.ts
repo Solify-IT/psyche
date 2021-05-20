@@ -131,12 +131,17 @@ export default class UserController {
     const id = parseInt(context.request.params.id);
     const [userProfile, error] = await
     wrapError(this.userInteractor.updateProfile({ id, ...context.request.body }));
+    context.response.status(200).json(userProfile);
+  }
 
+  async getAllUsers(context: IContext): Promise<void> {
+    const [users, error] = await wrapError(this.userInteractor.getAll());
     if (error) {
       context.next(error);
       return;
     }
-    context.response.status(200).json(userProfile);
+    context.response.status(200).json(users);
   }
+    
 }
   

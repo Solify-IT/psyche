@@ -63,6 +63,11 @@ export default class Router {
     });
     app.put('/User/:id', async (request, response, next) => {
       await wrapError(controller.users.updateProfile({ request, response, next }));
+    app.get('/allUsers', async (request, response, next) => {
+      await wrapError(controller.users.getAllUsers({ request, response, next }));
+    });
+    app.post('/canalize-patient', async (request, response, next) => {
+      await wrapError(controller.patients.canalizePatient({ request, response, next }));
     });
   }
 }
