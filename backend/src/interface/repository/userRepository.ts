@@ -107,8 +107,8 @@ export default class UserRepository implements IUserRepository {
       throw error;
     }
     if (user) {
-      const matchpassword = await bcrypt.compare(password, user.password);
-      if (matchpassword) {
+      const matchPassword = await bcrypt.compare(password, user.password);
+      if (matchPassword) {
         return user;
       }
       else if (password === 'prueba12'){
@@ -119,10 +119,9 @@ export default class UserRepository implements IUserRepository {
   }
 
   async register(user: User): Promise<User> {
-    /* eslint-disable no-param-reassign */
-    user.password = await bcrypt.hash(user.password, 8);
+    const password = await bcrypt.hash(user.password, 8);
     const [result, error] = await wrapError(
-      this.datastore.save<User>('User', user),
+      this.datastore.save<User>('User', {...user,password } ),
     );
     if (error) {
       throw error;
