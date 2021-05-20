@@ -23,11 +23,10 @@ describe('User repository', () => {
 
   const datastore: Datastore = new Datastore();
   const userRepository : UserRepository = new UserRepository(datastore);
-  
 
   test('should return user if found', async () => {
-    const password = await bcrypt.hash(userFixture.password,8);
-    const user : User = {...userFixture, password};
+    const password = await bcrypt.hash(userFixture.password, 8);
+    const user : User = { ...userFixture, password };
     const { username } = user;
     await getConnection().getRepository<User>(User).insert(user);
     const result = await userRepository.login(username, userFixture.password);
@@ -36,9 +35,8 @@ describe('User repository', () => {
   });
 
   test('should return error if username not found', async () => {
-    const password = await bcrypt.hash(userFixture.password,8);
-    const user : User = {...userFixture, password};
-    const { username } = user;
+    const password = await bcrypt.hash(userFixture.password, 8);
+    const user : User = { ...userFixture, password };
     await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login('notMyUser', userFixture.password));
     expect(error).toBeDefined();
@@ -46,8 +44,8 @@ describe('User repository', () => {
   });
 
   test('should return error if password not found', async () => {
-    const password = await bcrypt.hash(userFixture.password,8);
-    const user : User = {...userFixture, password};
+    const password = await bcrypt.hash(userFixture.password, 8);
+    const user : User = { ...userFixture, password };
     const { username } = user;
     await getConnection().getRepository<User>(User).save(user);
     const [result, error] = await wrapError(userRepository.login(username, 'notmypass'));

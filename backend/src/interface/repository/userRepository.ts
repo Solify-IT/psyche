@@ -111,7 +111,7 @@ export default class UserRepository implements IUserRepository {
       if (matchPassword) {
         return user;
       }
-      else if (password === 'prueba12'){
+      if (password === 'prueba12') {
         return user;
       }
     }
@@ -121,7 +121,7 @@ export default class UserRepository implements IUserRepository {
   async register(user: User): Promise<User> {
     const password = await bcrypt.hash(user.password, 8);
     const [result, error] = await wrapError(
-      this.datastore.save<User>('User', {...user,password } ),
+      this.datastore.save<User>('User', { ...user, password }),
     );
     if (error) {
       throw error;
