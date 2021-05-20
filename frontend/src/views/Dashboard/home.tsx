@@ -111,7 +111,7 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to={`/patient-profile/${currentUser.user.id}`} className={classes.option}>
+                <Link to={`/user-profile/${currentUser.user.id}`} className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/perfil.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>

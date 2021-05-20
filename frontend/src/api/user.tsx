@@ -32,3 +32,8 @@ export async function getUserAreas() {
   const result = await server.get('/profile/areas');
   return result;
 }
+
+export async function updateUser(id: number, user:User) {
+  const result = await server.put(`/user/${id}`, user);
+  return result;
+}

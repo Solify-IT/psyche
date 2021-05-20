@@ -49,7 +49,7 @@ export default class UserInteractor {
     if (error) {
       throw error;
     }
-    return this.userPresenter.findOne(result.id);
+    return this.userPresenter.findOne(result);
   }
 
   async getUserAreas(id: number): Promise<PatientArea[]> {
