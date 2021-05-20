@@ -1,5 +1,4 @@
 export default interface IDatastore {
-  exists(username: string): Promise<Boolean>;
   fetchAll<T>(tableName: string): Promise<T[]>;
   fetchAllWhere<T>(tableName: string, condition: any) : Promise<T[]>;
   fetchOne<T>(tableName: string, condition: any): Promise<T>;
