@@ -28,21 +28,10 @@ export default class UserInteractor {
     return this.userPresenter.register(results);
   }
 
-  async registerProfile(id: number,
+  async registerDoctorProfile(id: number,
     areas: PatientArea[], workSchedule: string): Promise<PatientArea[]> {
     const [results, error] = await wrapError(
-      this.userRepository.registerProfile(id, areas, workSchedule),
-    );
-    if (error) {
-      throw error;
-    }
-    return this.userPresenter.patientAreas(results);
-  }
-
-  async modifyProfile(id: number,
-    areas: PatientArea[], workSchedule: string): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(
-      this.userRepository.modifyProfile(id, areas, workSchedule),
+      this.userRepository.registerDoctorProfile(id, areas, workSchedule),
     );
     if (error) {
       throw error;

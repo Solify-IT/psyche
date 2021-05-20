@@ -22,7 +22,7 @@ export default class UserController {
     context.response.status(200).json(user);
   }
 
-  async registerProfile(context: IContext): Promise<void> {
+  async registerDoctorProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
     const { areas } = context.request.body;
@@ -38,7 +38,7 @@ export default class UserController {
     const { workSchedule } = context.request.body;
 
     const [, error] = await wrapError(
-      this.userInteractor.registerProfile(user.id, finalAreas, workSchedule),
+      this.userInteractor.registerDoctorProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -67,7 +67,7 @@ export default class UserController {
     context.response.status(200).json(users);
   }
 
-  async modifyProfile(context: IContext): Promise<void> {
+  async modifyDoctorProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
 
@@ -85,7 +85,7 @@ export default class UserController {
     const { workSchedule } = context.request.body;
 
     const [patientAreas, error] = await wrapError(
-      this.userInteractor.registerProfile(user.id, finalAreas, workSchedule),
+      this.userInteractor.registerDoctorProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);

@@ -30,7 +30,7 @@ describe('Patient  profile repository', () => {
 
   test('should register patient profile', async () => {
     const userResult = await getConnection().getRepository<User>(User).save(user);
-    const result = await userRepository.registerProfile(userResult.id, areas, workSchedule);
+    const result = await userRepository.registerDoctorProfile(userResult.id, areas, workSchedule);
     expect(result).toBeDefined();
     const finalUserResult = await getConnection().getRepository<User>(User).findOneOrFail(
       userResult.id,
@@ -41,7 +41,9 @@ describe('Patient  profile repository', () => {
 
   test('should modify patient profile', async () => {
     const userResult = await getConnection().getRepository<User>(User).save(user);
-    const registerResult = await userRepository.registerProfile(userResult.id, areas, workSchedule);
+    const registerResult = await userRepository.registerDoctorProfile(
+      userResult.id, areas, workSchedule,
+    );
 
     const newWorkSchedule = '13:00 - 18:00';
     const newPatientAreas : PatientArea[] = [
@@ -59,7 +61,7 @@ describe('Patient  profile repository', () => {
       },
     ];
 
-    const result = await userRepository.modifyProfile(
+    const result = await userRepository.registerDoctorProfile(
       userResult.id, newPatientAreas, newWorkSchedule,
     );
     expect(result).toBeDefined();
