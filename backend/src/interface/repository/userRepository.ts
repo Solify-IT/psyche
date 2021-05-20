@@ -4,8 +4,6 @@ import IUserRepository from 'app/repository/userRepository';
 import NotFoundError from 'utils/errors/NotFoundError';
 import PatientArea from 'domain/model/user/patientArea';
 import IDatastore from './datastore';
-import { match } from 'node:assert';
-import { PassThrough } from 'node:stream';
 
 const bcrypt = require('bcrypt');
 
@@ -110,9 +108,7 @@ export default class UserRepository implements IUserRepository {
     }
     if (user) {
       const matchpassword = await bcrypt.compare(password, user.password);
-      console.log(match);
       if (matchpassword) {
-        console.log(bcrypt.compare(password, user.password));
         return user;
       }
     }
