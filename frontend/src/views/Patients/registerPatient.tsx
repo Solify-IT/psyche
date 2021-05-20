@@ -236,7 +236,7 @@ function RegisterPatient() {
         );
       default:
         return (
-          <div>Wrong Step bitch</div>
+          <div>Te queremos Caro :D</div>
         );
     }
   }
