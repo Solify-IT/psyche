@@ -33,29 +33,18 @@ export default class UserInteractor {
     const [results, error] = await wrapError(
       this.userRepository.registerDoctorProfile(id, areas, workSchedule),
     );
-
-  async getUser(username: string): Promise<User> {
-      const [results, error] = await wrapError(this.userRepository.getUser(username));
-      if (error) {
-        throw error;
-      }
-      return this.userPresenter.getUser(results);
-    }
-
-  async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.registerProfile(areas));
     if (error) {
       throw error;
     }
-    return this.userPresenter.patientAreas(results);
+    return results;
   }
 
-  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.modifyProfile(areas));
+  async getUser(username: string): Promise<User> {
+    const [results, error] = await wrapError(this.userRepository.getUser(username));
     if (error) {
       throw error;
     }
-    return this.userPresenter.patientAreas(results);
+    return this.userPresenter.getUser(results);
   }
 
   async getUserAreas(id: number): Promise<PatientArea[]> {
