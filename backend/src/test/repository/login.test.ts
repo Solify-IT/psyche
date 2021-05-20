@@ -5,6 +5,7 @@ import Datastore from 'infraestructure/datastore/datastore';
 import UserRepository from 'interface/repository/userRepository';
 import testConnection from 'test/utils/testConnection';
 import { getConnection } from 'typeorm';
+import bcrypt from 'bcrypt';
 
 describe('User repository', () => {
   beforeAll(async () => {
@@ -28,8 +29,9 @@ describe('User repository', () => {
   test('should return user if found', async () => {
     await getConnection().getRepository<User>(User).insert(user);
     const result = await userRepository.login(username, password);
+    console.log(user.password);
     expect(result.username).toEqual(username);
-    expect(result.password).toEqual(password);
+    expect(result.password).toEqual('prueba12');
   });
 
   test('should return error if username not found', async () => {

@@ -3,7 +3,7 @@ import { User } from 'domain/model';
 const userFixture : User = {
   username: 'prueba',
   email: 'prueba',
-  password: 'prueba',
+  password: 'prueba12',
   name: 'Nombre',
   role: 'Administrador',
   zipCode: 'abc',
