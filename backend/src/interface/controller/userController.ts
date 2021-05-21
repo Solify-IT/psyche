@@ -6,7 +6,6 @@ import { IContext } from 'utils/context';
 import getRequestUser from 'utils/getRequestUser';
 
 export default class UserController {
-
   userInteractor: UserInteractor;
 
   constructor(userInteractor: UserInteractor) {
@@ -137,7 +136,7 @@ export default class UserController {
   }
 
   async updateProfile(context: IContext): Promise<void> {
-    const id = parseInt(context.request.params.id);
+    const id = parseInt(context.request.params.id, 10);
     const [userProfile, error] = await
     wrapError(this.userInteractor.updateProfile({ id, ...context.request.body }));
     if (error) {
@@ -146,7 +145,6 @@ export default class UserController {
     }
     context.response.status(200).json(userProfile);
   }
-
 
   async getUser(context: IContext): Promise<void> {
     const { username } = context.request.params;
