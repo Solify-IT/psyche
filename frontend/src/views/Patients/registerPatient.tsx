@@ -235,9 +235,7 @@ function RegisterPatient() {
           />
         );
       default:
-        return (
-          <div>Te queremos Caro :D</div>
-        );
+        return null;
     }
   }
 
