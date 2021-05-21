@@ -78,21 +78,20 @@ export default class UserRepository implements IUserRepository {
     throw new NotFoundError('No se encontró ningún patient area');
   }
 
-  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
+  async registerDoctorProfile(id: number,
+    areas: PatientArea[], workSchedule: string): Promise<PatientArea[]> {
     const [result, error] = await wrapError(
       this.datastore.bulkInsert<PatientArea>('PatientArea', areas),
     );
     if (error) {
       throw error;
     }
-    return result;
-  }
 
-  async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [result, error] = await wrapError(
-      this.datastore.bulkInsert<PatientArea>('PatientArea', areas),
+    const [, userError] = await wrapError(
+      this.datastore.save('User', { id, workSchedule }),
     );
-    if (error) {
+
+    if (userError) {
       throw error;
     }
     return result;

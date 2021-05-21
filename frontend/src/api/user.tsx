@@ -8,8 +8,8 @@ export async function CreateUser(user:User) {
   return result.data;
 }
 
-export async function createProfile(areas: Array<PatientArea>) {
-  const result = await server.post('/profile', areas).then(handleResponse).catch(handleResponse);
+export async function createProfile(areas: Array<PatientArea>, workSchedule: string) {
+  const result = await server.post('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
 
@@ -28,8 +28,9 @@ export async function getUsers() {
   return result;
 }
 
-export async function modifyProfile(areas: Array<PatientArea>) : Promise<PatientArea[]> {
-  const result = await server.put('/profile', areas).then(handleResponse).catch(handleResponse);
+export async function modifyProfile(areas: Array<PatientArea>, workSchedule: string)
+  : Promise<PatientArea[]> {
+  const result = await server.put('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
 

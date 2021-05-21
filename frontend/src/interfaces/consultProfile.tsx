@@ -13,4 +13,5 @@ export default interface ConsultProfile {
   active: boolean;
   professionalLicense: string;
   patientAreas: Array<PatientArea>;
+  workSchedule: string;
 }

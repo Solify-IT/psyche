@@ -4,11 +4,20 @@ import PromiseLoader from 'src/utils/promiseLoader';
 import EditProfile from 'src/components/Users/editProfile';
 import { getUserAreas } from 'src/api/user';
 
+type PsychProfileResponse = {
+  patientAreas: PatientArea[],
+  workSchedule: string,
+};
+
 function ModifyProfile() {
   const mPromise = getUserAreas();
-  const content = PromiseLoader<PatientArea[]>(
+  const content = PromiseLoader<PsychProfileResponse>(
     mPromise,
-    (areas) => <EditProfile areas={areas} />,
+    (response) => {
+      console.log(response);
+      const { patientAreas, workSchedule } = response;
+      return <EditProfile areas={patientAreas} workSchedule={workSchedule} />;
+    },
     (error) => {
       switch (error.response?.status) {
         case 404:

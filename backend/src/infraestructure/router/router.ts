@@ -28,12 +28,6 @@ export default class Router {
     app.post('/patients', async (request, response, next) => {
       await wrapError(controller.patients.registerPatient({ request, response, next }));
     });
-    app.get('/doctors', async (request, response, next) => {
-      await wrapError(controller.doctors.getDoctors({ request, response, next }));
-    });
-    app.get('/doctors/old', async (request, response, next) => {
-      await wrapError(controller.doctors.getDoctorsOld({ request, response, next }));
-    });
     app.post('/forms', async (request, response, next) => {
       await wrapError(controller.forms.registerForm({ request, response, next }));
     });
@@ -44,13 +38,13 @@ export default class Router {
       await wrapError(controller.forms.registerPatientForm({ request, response, next }));
     });
     app.post('/profile', async (request, response, next) => {
-      await wrapError(controller.users.registerProfile({ request, response, next }));
+      await wrapError(controller.users.registerDoctorProfile({ request, response, next }));
     });
     app.get('/profilePatient/:id', async (request, response, next) => {
       await wrapError(controller.users.getUsers({ request, response, next }));
     });
     app.put('/profile', async (request, response, next) => {
-      await wrapError(controller.users.modifyProfile({ request, response, next }));
+      await wrapError(controller.users.modifyDoctorProfile({ request, response, next }));
     });
     app.get('/profile/areas', async (request, response, next) => {
       await wrapError(controller.users.getUserPatientAreas({ request, response, next }));
