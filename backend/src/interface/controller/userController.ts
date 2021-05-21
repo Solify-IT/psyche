@@ -6,6 +6,7 @@ import { IContext } from 'utils/context';
 import getRequestUser from 'utils/getRequestUser';
 
 export default class UserController {
+
   userInteractor: UserInteractor;
 
   constructor(userInteractor: UserInteractor) {
@@ -145,7 +146,7 @@ export default class UserController {
     }
     context.response.status(200).json(userProfile);
   }
-}
+
 
   async getUser(context: IContext): Promise<void> {
     const { username } = context.request.params;

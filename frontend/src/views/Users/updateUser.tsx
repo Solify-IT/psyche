@@ -54,6 +54,7 @@ function UpdateUser() {
     password2: '',
     errors: {
       password: '',
+      username: '',
     },
   });
   const {
