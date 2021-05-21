@@ -5,10 +5,13 @@ export default interface IUserRepository {
   register(user: User) : Promise <User>;
   findOne(id: number): Promise<User>;
   login(username: string, password: string) : Promise<User>;
-  registerProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
-  modifyProfile(areas: PatientArea[]) : Promise<PatientArea[]>;
+  registerDoctorProfile(
+    id: number, areas: PatientArea[], workSchedule: string) : Promise<PatientArea[]>;
   setUserFirstTime(id: number, firstTime: boolean) : Promise<User>;
   getUserPatientAreas(id: number) : Promise<PatientArea[]>;
   updateProfile(user: User) : Promise<User>;
-
+  findAll(): Promise<User[]>;
+  getUser(username: string): Promise<User>;
+  updateProfile(user: User) : Promise<User>;
+  getAll(): Promise<User[]>;
 }

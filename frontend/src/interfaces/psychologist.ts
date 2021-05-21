@@ -1,4 +1,5 @@
-export default interface User {
+export default interface Psychologist {
+  id?:number,
   username: string;
   name: string;
   address: string;
@@ -7,9 +8,5 @@ export default interface User {
   password: string;
   email: string;
   role: string;
-  password2: string;
-  errors: {
-    password: string,
-    username: string,
-  };
+  patientAreas: Array<any>,
 }

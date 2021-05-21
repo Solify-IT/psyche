@@ -3,7 +3,7 @@ import { User } from 'domain/model';
 const userFixture : User = {
   username: 'prueba',
   email: 'prueba',
-  password: 'prueba',
+  password: 'prueba12',
   name: 'Nombre',
   role: 'Administrador',
   zipCode: 'abc',
@@ -11,6 +11,7 @@ const userFixture : User = {
   active: true,
   firstTime: true,
   professionalLicense: 'Licencia',
+  patients: null,
 };
 
 export default userFixture;

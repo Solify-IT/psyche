@@ -8,8 +8,8 @@ export default async function CreateUser(user:User) {
   return result.data;
 }
 
-export async function createProfile(areas: Array<PatientArea>) {
-  const result = await server.post('/profile', areas).then(handleResponse).catch(handleResponse);
+export async function createProfile(areas: Array<PatientArea>, workSchedule: string) {
+  const result = await server.post('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
 
@@ -23,8 +23,14 @@ export async function getPatients() {
   console.log(result);
 }
 
-export async function modifyProfile(areas: Array<PatientArea>) : Promise<PatientArea[]> {
-  const result = await server.put('/profile', areas).then(handleResponse).catch(handleResponse);
+export async function getUsers() {
+  const result = await server.get('/allUsers').then(handleResponse).catch(handleResponse);
+  return result;
+}
+
+export async function modifyProfile(areas: Array<PatientArea>, workSchedule: string)
+  : Promise<PatientArea[]> {
+  const result = await server.put('/profile', { areas, workSchedule }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
 
@@ -36,4 +42,9 @@ export async function getUserAreas() {
 export async function updateUser(id: number, user:User) {
   const result = await server.put(`/user/${id}`, user);
   return result;
+}
+
+export async function getUser(username:String) {
+  const exist = await server.get(`/user/${username}`);
+  return exist;
 }

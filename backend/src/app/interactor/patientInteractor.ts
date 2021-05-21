@@ -42,4 +42,14 @@ export default class PatientInteractor {
     }
     return this.patientPresenter.record(record);
   }
+
+  async canalize(data: Patient) : Promise<any> {
+    const patients : Patient[] = (!Array.isArray(data)) ? [data] : data;
+    const [result, error] = await wrapError(this.patientRepository.canalize(patients));
+
+    if (error) {
+      throw error;
+    }
+    return this.patientPresenter.canalize(result);
+  }
 }

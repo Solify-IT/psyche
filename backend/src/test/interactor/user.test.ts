@@ -31,9 +31,9 @@ describe('User register profile', () => {
 
   test('should return list of patient areas when registered', async () => {
     jest.spyOn(
-      userRepository, 'registerProfile',
+      userRepository, 'registerDoctorProfile',
     ).mockImplementation(async () => patientAreaFixture);
-    const [result, error] = await wrapError(interactor.registerProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerDoctorProfile(1, patientAreaFixture, ''));
 
     expect(error).toBe(null);
     expect(result).toBeDefined();
@@ -42,18 +42,18 @@ describe('User register profile', () => {
 
   test('should catch error from repository', async () => {
     jest.spyOn(
-      userRepository, 'registerProfile',
+      userRepository, 'registerDoctorProfile',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.registerProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerDoctorProfile(1, patientAreaFixture, ''));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
   });
   test('should modify profile', async () => {
     jest.spyOn(
-      userRepository, 'modifyProfile',
+      userRepository, 'registerDoctorProfile',
     ).mockImplementation(async () => patientAreaFixture);
-    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerDoctorProfile(1, patientAreaFixture, ''));
 
     expect(error).toBe(null);
     expect(result).toBeDefined();
@@ -62,9 +62,9 @@ describe('User register profile', () => {
 
   test('should catch error from repository', async () => {
     jest.spyOn(
-      userRepository, 'modifyProfile',
+      userRepository, 'registerDoctorProfile',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.modifyProfile(patientAreaFixture));
+    const [result, error] = await wrapError(interactor.registerDoctorProfile(1, patientAreaFixture, ''));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);

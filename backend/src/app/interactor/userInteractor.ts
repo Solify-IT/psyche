@@ -28,20 +28,23 @@ export default class UserInteractor {
     return this.userPresenter.register(results);
   }
 
-  async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.registerProfile(areas));
+  async registerDoctorProfile(id: number,
+    areas: PatientArea[], workSchedule: string): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(
+      this.userRepository.registerDoctorProfile(id, areas, workSchedule),
+    );
     if (error) {
       throw error;
     }
-    return this.userPresenter.patientAreas(results);
+    return results;
   }
 
-  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.modifyProfile(areas));
+  async getUser(username: string): Promise<User> {
+    const [results, error] = await wrapError(this.userRepository.getUser(username));
     if (error) {
       throw error;
     }
-    return this.userPresenter.patientAreas(results);
+    return this.userPresenter.getUser(results);
   }
 
   async updateProfile(user: User): Promise<User> {
@@ -70,6 +73,16 @@ export default class UserInteractor {
       return result;
     }
     throw new InvalidDataError('User not found.');
+  }
+
+  async getAll(): Promise<User[]> {
+    const [users, error] = await wrapError(this.userRepository.findAll());
+
+    if (error) {
+      throw error;
+    }
+
+    return this.userPresenter.findAll(users);
   }
 
   async getOne(id: number): Promise<User> {
