@@ -53,7 +53,7 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} />
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} />
-    <PrivateRoute path="/patient-profile/update/:id" exact component={UpdateUser} />
+    <PrivateRoute path="/user-profile/update/:id/" exact component={UpdateUser} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
     <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
   </div>

@@ -10,10 +10,9 @@ import {
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { consultProfile } from 'src/api/user';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
-import { Link } from 'react-router-dom';
 import { authenticationService } from 'src/api/authenticationService';
 
 function ConsultProfiles() {
@@ -105,6 +104,11 @@ function ConsultProfiles() {
   const classes = useStyles();
   const currentUser = authenticationService.currentUserValue;
 
+  const history = useHistory();
+  const updateProfile = () => {
+    history.replace(`/user-profile/update/${currentUser.user.id}`);
+  };
+
   return (
     <div className={classes.heroContent}>
       <main>
@@ -115,18 +119,17 @@ function ConsultProfiles() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Link to={`/patient-profile/update/${currentUser.user.id}`}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
-                Editar
-                {'     '}
-                <EditIcon className={classes.icon} />
-              </Button>
-            </Link>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              onClick={updateProfile}
+              className={classes.button}
+            >
+              Editar
+              {'     '}
+              <EditIcon className={classes.icon} />
+            </Button>
           </Grid>
           <Grid item lg={12} xs={12}>
             <Paper className={classes.paper}>

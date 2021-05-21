@@ -76,7 +76,9 @@ function UpdateUser() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
+      console.log(userInformation);
       await updateUser(parseInt(userId, 10), userInformation);
+      console.log('we are gonna try 2');
       toast.success('Se ha modificado la información del usuario.');
       history.replace(`/user-profile/${currentUser.user.id}`);
     } catch (error) {
@@ -84,6 +86,7 @@ function UpdateUser() {
       toast.error('Ocurrió un error al intentar editar el usuario');
     } finally {
       setLoading(false);
+      console.log('falso');
     }
   };
   return (
@@ -92,90 +95,92 @@ function UpdateUser() {
         <Typography variant="h2" align="center">
           Editar Usuario
         </Typography>
-        <form method="PUT" onSubmit={handleSubmit}>
+        <Grid
+          container
+          justify="center"
+          spacing={2}
+        >
           <Grid
-            container
-            justify="center"
-            spacing={2}
+            item
+            xs={10}
+            component={Paper}
+            className={classes.paper}
+            elevation={6}
+            square
           >
-            <Grid
-              item
-              xs={10}
-              component={Paper}
-              className={classes.paper}
-              elevation={6}
-              square
-            >
-              <Grid container justify="center" alignItems="center" spacing={3}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Nombre"
-                    name="name"
-                    value={name}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="address"
-                    label="Dirección"
-                    name="address"
-                    value={address}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    inputProps={{ maxLength: 5, minLength: 5 }}
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="zipCode"
-                    label="Código Postal"
-                    name="zipCode"
-                    value={zipCode}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    type="email"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Correo"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                </Grid>
+            <Grid container justify="center" alignItems="center" spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Nombre"
+                  name="name"
+                  value={name}
+                  onChange={handleChange}
+                />
               </Grid>
-              <Grid item xs={12} className={classes.submit}>
-                {!loading ? (
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="address"
+                  label="Dirección"
+                  name="address"
+                  value={address}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  inputProps={{ maxLength: 5, minLength: 5 }}
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="zipCode"
+                  label="Código Postal"
+                  name="zipCode"
+                  value={zipCode}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  type="email"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Correo"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                />
+              </Grid>
+            </Grid>
+            <Grid container alignItems="center" justify="center" direction="row">
+              <Grid item>
+                {loading ? <LoadingSpinner /> : (
                   <Button
                     type="submit"
                     variant="contained"
                     color="primary"
+                    className={classes.submit}
+                    onClick={handleSubmit}
                   >
                     Modificar
                   </Button>
-                ) : <LoadingSpinner /> }
+                )}
               </Grid>
             </Grid>
           </Grid>
-        </form>
+        </Grid>
       </Container>
     </div>
   );
