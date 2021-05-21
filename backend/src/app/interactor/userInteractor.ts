@@ -28,28 +28,23 @@ export default class UserInteractor {
     return this.userPresenter.register(results);
   }
 
+  async registerDoctorProfile(id: number,
+    areas: PatientArea[], workSchedule: string): Promise<PatientArea[]> {
+    const [results, error] = await wrapError(
+      this.userRepository.registerDoctorProfile(id, areas, workSchedule),
+    );
+    if (error) {
+      throw error;
+    }
+    return results;
+  }
+
   async getUser(username: string): Promise<User> {
     const [results, error] = await wrapError(this.userRepository.getUser(username));
     if (error) {
       throw error;
     }
     return this.userPresenter.getUser(results);
-  }
-
-  async registerProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.registerProfile(areas));
-    if (error) {
-      throw error;
-    }
-    return this.userPresenter.patientAreas(results);
-  }
-
-  async modifyProfile(areas: PatientArea[]): Promise<PatientArea[]> {
-    const [results, error] = await wrapError(this.userRepository.modifyProfile(areas));
-    if (error) {
-      throw error;
-    }
-    return this.userPresenter.patientAreas(results);
   }
 
   async getUserAreas(id: number): Promise<PatientArea[]> {

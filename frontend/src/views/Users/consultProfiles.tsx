@@ -28,6 +28,7 @@ function ConsultProfiles() {
     active: true,
     professionalLicense: '',
     patientAreas: Array<PatientArea>(),
+    workSchedule: '',
 
   });
   const { id } : any = useParams();
@@ -164,6 +165,9 @@ function ConsultProfiles() {
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
                     Cédula profesional:
                   </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Horarios:
+                  </Box>
                 </Grid>
                 <Grid item xs={3} lg={3} className={classes.grid}>
                   <Box className={classes.box}>
@@ -174,6 +178,9 @@ function ConsultProfiles() {
                   </Box>
                   <Box className={classes.box}>
                     { field.professionalLicense}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.workSchedule}
                   </Box>
                 </Grid>
               </Grid>
