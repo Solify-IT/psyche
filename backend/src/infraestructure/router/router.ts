@@ -61,5 +61,8 @@ export default class Router {
     app.post('/canalize-patient', async (request, response, next) => {
       await wrapError(controller.patients.canalizePatient({ request, response, next }));
     });
+    app.put('/changePassword/', async (request, response, next) => {
+      await wrapError(controller.users.changePassword({ request, response, next }));
+    });
   }
 }

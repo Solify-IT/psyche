@@ -14,7 +14,8 @@
     "orm-generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/infraestructure/orm/ormconfig.ts --connection  --name",
     "orm-create": "ts-node ./node_modules/typeorm/cli.js migration:create --config src/infraestructure/orm/ormconfig.ts --connection  --name",
     "orm-revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --config src/infraestructure/orm/ormconfig.ts --connection  --name",
-    "orm-run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/infraestructure/orm/ormconfig.ts --connection  --name"
+    "orm-run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/infraestructure/orm/ormconfig.ts --connection  --name",
+    "encrypt": "ts-node src/scripts/encryptPassword.ts"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "global": "^4.4.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",

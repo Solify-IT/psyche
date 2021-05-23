@@ -11,6 +11,7 @@ import {
 import EditIcon from '@material-ui/icons/Edit';
 import { consultProfile } from 'src/api/user';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
 
@@ -103,6 +104,12 @@ function ConsultProfiles() {
 
   const classes = useStyles();
 
+  const history = useHistory();
+
+  const newPassword = () => {
+    history.push('/change-password/');
+  };
+
   return (
     <div className={classes.heroContent}>
       <main>
@@ -118,8 +125,19 @@ function ConsultProfiles() {
               variant="contained"
               color="secondary"
               className={classes.button}
+              onClick={newPassword}
             >
-              Editar
+              Cambiar Contraseña
+              {'     '}
+              <EditIcon className={classes.icon} />
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Editar Perfil
               {'     '}
               <EditIcon className={classes.icon} />
             </Button>
