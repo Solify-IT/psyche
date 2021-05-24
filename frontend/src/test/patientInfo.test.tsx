@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import CornerFab from 'src/components/cornerFab';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { Button } from '@material-ui/core';
 import recordFixture from 'src/fixtures/recordFixture';
 
 Enzyme.configure({ adapter: new Adapter() });
