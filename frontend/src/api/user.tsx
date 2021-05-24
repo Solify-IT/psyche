@@ -43,3 +43,9 @@ export async function getUser(username:String) {
   const exist = await server.get(`/user/${username}`);
   return exist;
 }
+
+export async function deactivateAccount(id:number) {
+  console.log('call');
+  const exist = await server.put(`/deactivate-account/${id}`);
+  return exist;
+}

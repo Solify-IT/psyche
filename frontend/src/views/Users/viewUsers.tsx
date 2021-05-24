@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router';
 import {
   makeStyles,
   Grid,
@@ -19,7 +21,8 @@ import {
 }
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
-import { getUsers } from '../../api/user';
+import Swal from 'sweetalert2';
+import { deactivateAccount, getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -31,6 +34,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ViewUsers() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const history = useHistory();
+  const handleSubmit = async (id: number) => {
+    setLoading(true);
+    try {
+      await deactivateAccount(id);
+      Swal.fire(
+        'Cuenta desactivada!',
+        'El usuario no podrá acceder a partir de este momento.',
+        'success',
+      );
+      history.replace('/view-users');
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrio un error interno!',
+      });
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  function handleDelete(id:number) {
+    Swal.fire({
+      title: '¿Estás seguro de desactivar al usuario?',
+      text: 'El usuario no podrá acceder al sistema',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('waiting');
+        handleSubmit(id);
+      }
+    });
+  }
+
   const classes = useStyles();
   const [users, setUsers] = useState<Users[]>([]);
 
@@ -56,7 +101,7 @@ function ViewUsers() {
         </IconButton>
       </TableCell>
       <TableCell>
-        <IconButton>
+        <IconButton disabled={!user.active} onClick={() => handleDelete(user.id!)}>
           <Delete style={{ color: '#FF0000' }} />
         </IconButton>
       </TableCell>
