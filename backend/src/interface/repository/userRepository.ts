@@ -14,6 +14,17 @@ export default class UserRepository implements IUserRepository {
     this.datastore = datastore;
   }
 
+  async changePassword(id: number, password: string): Promise<User> {
+    const [result, error] = await wrapError(
+      this.datastore.save('User', { id, password }),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return result as User;
+  }
+
   async updateProfile(user: User): Promise<User> {
     const [result, error] = await wrapError(
       this.datastore.save<User>('User', user),
@@ -110,11 +121,8 @@ export default class UserRepository implements IUserRepository {
       if (matchPassword) {
         return user;
       }
-      if (password === 'prueba12') {
-        return user;
-      }
     }
-    throw new NotFoundError('No se encontro al usuario');
+    throw new NotFoundError('No se encontró al usuario');
   }
 
   async register(user: User): Promise<User> {
