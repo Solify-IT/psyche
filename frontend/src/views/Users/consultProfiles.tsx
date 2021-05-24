@@ -110,6 +110,12 @@ function ConsultProfiles() {
     history.replace(`/user-profile/update/${currentUser.user.id}`);
   };
 
+  const history = useHistory();
+
+  const newPassword = () => {
+    history.push('/change-password/');
+  };
+
   return (
     <div className={classes.heroContent}>
       <main>
@@ -126,8 +132,19 @@ function ConsultProfiles() {
               color="secondary"
               onClick={updateProfile}
               className={classes.button}
+              onClick={newPassword}
             >
-              Editar
+              Cambiar Contraseña
+              {'     '}
+              <EditIcon className={classes.icon} />
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Editar Perfil
               {'     '}
               <EditIcon className={classes.icon} />
             </Button>

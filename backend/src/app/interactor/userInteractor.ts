@@ -104,6 +104,29 @@ export default class UserInteractor {
     return this.userPresenter.login(user);
   }
 
+  async changePassword(id: number, newPassword: string) {
+    const encryptedPassword = await this.userPresenter.encryptedPassword(newPassword);
+    const [user, error] = await wrapError(
+      this.userRepository.changePassword(id, encryptedPassword),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return user;
+  }
+
+  async passwordValid(username: string, password: string) {
+    const [user, error] = await wrapError(
+      this.userRepository.login(username, password),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return user;
+  }
+
   isValidUser(user: User) : boolean {
     if (user.password.length < 8) {
       return false;

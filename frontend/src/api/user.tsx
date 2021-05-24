@@ -3,7 +3,7 @@ import User from '../interfaces/user';
 import server from '../utils/server';
 import handleResponse from '../utils/handleResponse';
 
-export default async function CreateUser(user:User) {
+export async function CreateUser(user:User) {
   const result = await server.post('/users', { ...user }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
@@ -47,4 +47,9 @@ export async function updateUser(id: number, user:User) {
 export async function getUser(username:String) {
   const exist = await server.get(`/user/${username}`);
   return exist;
+}
+
+export async function changePassword(oldPassword: string, password: String) {
+  const user = await server.put('/changePassword', { oldPassword, password });
+  return user.data;
 }
