@@ -31,6 +31,7 @@ import UpdatePatientForm from './views/Forms/updatePatientForm';
 import ConsultPatientForm from './views/Forms/consultPatientForm';
 // Users
 import ConsultProfiles from './views/Users/consultProfiles';
+import UpdateUserAdmin from './views/Users/updateUserAdmin';
 
 const AppRouter = () => (
   <div>
@@ -58,6 +59,7 @@ const AppRouter = () => (
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} />
+    <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
   </div>
 );
 
