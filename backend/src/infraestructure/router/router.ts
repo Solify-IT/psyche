@@ -55,11 +55,17 @@ export default class Router {
     app.get('/patientFormField/:id', async (request, response, next) => {
       await wrapError(controller.forms.detailField({ request, response, next }));
     });
+    app.put('/user/:id', async (request, response, next) => {
+      await wrapError(controller.users.updateProfile({ request, response, next }));
+    });
     app.get('/allUsers', async (request, response, next) => {
       await wrapError(controller.users.getAllUsers({ request, response, next }));
     });
     app.post('/canalize-patient', async (request, response, next) => {
       await wrapError(controller.patients.canalizePatient({ request, response, next }));
+    });
+    app.put('/changePassword/', async (request, response, next) => {
+      await wrapError(controller.users.changePassword({ request, response, next }));
     });
   }
 }

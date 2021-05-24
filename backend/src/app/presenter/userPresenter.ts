@@ -9,4 +9,6 @@ export default interface IUserPresenter {
   login(user: User) : LoginResult;
   patientAreas(areas: PatientArea[]) : PatientArea[];
   updateProfile(user: User) : User;
+  findOne(user: User):User;
+  encryptedPassword(password: string): Promise<string>;
 }

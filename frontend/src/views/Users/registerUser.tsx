@@ -16,7 +16,7 @@ import {
   from '@material-ui/core';
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
-import CreateUser, { getUser } from 'src/api/user';
+import { CreateUser, getUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
@@ -87,10 +87,7 @@ function RegisterUser() {
     let passwordError = '';
     if (password2 !== password) {
       passwordError = 'Las contraseñas no coinciden';
-      console.log(passwordError);
     } else {
-      console.log('realizar');
-      console.log(getUser(newUser.username));
       getUser(newUser.username).then((responses:any) => {
         userExist = true;
         errors.username = 'El usuario ya esta ocupado';
