@@ -29,7 +29,7 @@ describe('Patient info', () => {
         <RecordInfo record={record} />
       </BrowserRouter>,
     );
-    expect(wrapper.find('PatientGeneralInfo')).toHaveLength(2);
+    expect(wrapper.find('PatientGeneralInfo')).toHaveLength(3);
   });
 
   test('renders patient file sections', () => {
