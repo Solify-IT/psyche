@@ -128,7 +128,6 @@ function ConsultProfiles() {
               type="submit"
               variant="contained"
               color="secondary"
-              onClick={updateProfile}
               className={classes.button}
               onClick={newPassword}
             >
@@ -140,6 +139,7 @@ function ConsultProfiles() {
               type="submit"
               variant="contained"
               color="secondary"
+              onClick={updateProfile}
               className={classes.button}
             >
               Editar Perfil
