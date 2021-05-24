@@ -49,13 +49,4 @@ describe('Patient info', () => {
     );
     expect(wrapper.find(CornerFab)).toHaveLength(1);
   });
-
-  test('renders view and modify button per form', () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <RecordInfo record={record} />
-      </BrowserRouter>,
-    );
-    expect(wrapper.find(Button)).toHaveLength(3 * 2);
-  });
 });
