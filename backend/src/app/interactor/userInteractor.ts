@@ -104,14 +104,14 @@ export default class UserInteractor {
     return this.userPresenter.login(user);
   }
 
-  async deactivateAccount(id: number): Promise<User>{
+  async deactivateAccount(id: number): Promise<User> {
     const [result, error] = await wrapError(this.userRepository.deactiveAccount(id));
-    if(error) {
+    if (error) {
       throw error;
     }
     return this.userPresenter.deactiveAccount(result);
   }
-  
+
   async changePassword(id: number, newPassword: string) {
     const encryptedPassword = await this.userPresenter.encryptedPassword(newPassword);
     const [user, error] = await wrapError(

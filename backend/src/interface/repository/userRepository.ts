@@ -162,16 +162,19 @@ export default class UserRepository implements IUserRepository {
     return users;
   }
 
-  async deactiveAccount (id: number): Promise <User> {
+  async deactiveAccount(id: number): Promise <User> {
     const active = false;
     const [user, userError] = await wrapError(
       this.datastore.fetchOne<User>('User', { id }),
     );
+    if (userError) {
+      throw userError;
+    }
     const [users, error] = await wrapError(
       this.datastore.save<User>('User', { ...user, active }),
     );
 
-    if(error){
+    if (error) {
       throw error;
     }
     return users;

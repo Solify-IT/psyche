@@ -53,7 +53,7 @@ export default class UserPresenter implements IUserPresenter {
   deactiveAccount(user:User) : User {
     return user;
   }
-  
+
   async encryptedPassword(password: string) : Promise<string> {
     const encryptedPassword = await bcrypt.hash(password, 8);
     return encryptedPassword;
