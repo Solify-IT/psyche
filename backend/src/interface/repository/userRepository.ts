@@ -117,8 +117,7 @@ export default class UserRepository implements IUserRepository {
       throw error;
     }
     if (user) {
-      // const matchPassword = await bcrypt.compare(password, user.password);
-      const matchPassword = true;
+      const matchPassword = await bcrypt.compare(password, user.password);
       if (matchPassword) {
         return user;
       }
