@@ -233,7 +233,7 @@ export default function CustomizedTables() {
             <Grid item xs={3}>
               <TextField
                 id="outlined-basic"
-                label="Nombre del paciente"
+                label="Nombre del paciente o especialista"
                 variant="outlined"
                 value={searchData}
                 onChange={handleSearch}
