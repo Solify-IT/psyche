@@ -44,4 +44,8 @@ export default class UserPresenter implements IUserPresenter {
   updateProfile(user: User): User {
     return user;
   }
+
+  deactiveAccount(user:User) : User {
+    return user;
+  }
 }

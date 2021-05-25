@@ -9,4 +9,5 @@ export default interface IUserPresenter {
   login(user: User) : LoginResult;
   patientAreas(areas: PatientArea[]) : PatientArea[];
   updateProfile(user: User) : User;
+  deactiveAccount(user: User) : User;
 }

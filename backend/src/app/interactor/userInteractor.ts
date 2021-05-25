@@ -96,6 +96,14 @@ export default class UserInteractor {
     return this.userPresenter.login(user);
   }
 
+  async deactivateAccount(id: number): Promise<User>{
+    const [result, error] = await wrapError(this.userRepository.deactiveAccount(id));
+    if(error) {
+      throw error;
+    }
+    return this.userPresenter.deactiveAccount(result);
+  }
+
   isValidUser(user: User) : boolean {
     if (user.password.length < 8) {
       return false;

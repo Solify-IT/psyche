@@ -97,9 +97,11 @@ export default class UserRepository implements IUserRepository {
   }
 
   async login(username: string, password: string): Promise<User> {
+    const active = true;
     const [user, error] = await wrapError(
       this.datastore.fetchOne<User>('User', {
         username,
+        active,
       }),
     );
     if (error) {
@@ -108,9 +110,6 @@ export default class UserRepository implements IUserRepository {
     if (user) {
       const matchPassword = await bcrypt.compare(password, user.password);
       if (matchPassword) {
-        return user;
-      }
-      if (password === 'prueba12') {
         return user;
       }
     }
@@ -149,6 +148,21 @@ export default class UserRepository implements IUserRepository {
       throw error;
     }
 
+    return users;
+  }
+
+  async deactiveAccount (id: number): Promise <User> {
+    const active = false;
+    const [user, userError] = await wrapError(
+      this.datastore.fetchOne<User>('User', { id }),
+    );
+    const [users, error] = await wrapError(
+      this.datastore.save<User>('User', { ...user, active }),
+    );
+
+    if(error){
+      throw error;
+    }
     return users;
   }
 }

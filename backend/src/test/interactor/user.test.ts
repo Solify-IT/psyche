@@ -69,4 +69,5 @@ describe('User register profile', () => {
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
   });
+
 });
