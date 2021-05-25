@@ -165,6 +165,20 @@ export default class UserController {
     context.response.status(200).json(users);
   }
 
+  async deactivateAccount(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    if (user.role !== 'administrador') {
+      context.response.status(400);
+    }
+    const [result, error] = await
+    wrapError(this.userInteractor.deactivateAccount(parseInt(context.request.params.id, 10)));
+    if (error) {
+      throw error;
+    }
+    context.response.status(200).json(result);
+  }
+
   async changePassword(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
