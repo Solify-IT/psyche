@@ -34,18 +34,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function viewUser(){
-//   const [user, setUser] = useState<Users[]>([]);
-//   useEffect(() => {
-//     getUser(username)
-//       .then((response:any) => {
-//         setUser(Object.values(response));
-//         console.log(user);
-//       })
-//       .catch((error:any) => console.log(error));
-//   }, []);
-// }
-
 function ViewUsers() {
   const classes = useStyles();
   const [users, setUsers] = useState<Users[]>([]);
@@ -54,7 +42,6 @@ function ViewUsers() {
     getUsers()
       .then((response:any) => {
         setUsers(Object.values(response));
-        console.log(response);
       })
       .catch((error:any) => console.log(error));
   }, []);
@@ -62,7 +49,6 @@ function ViewUsers() {
   const history = useHistory();
   const updateProfile = (event: React.ChangeEvent<any>) => {
     const { userid } = event.currentTarget.dataset;
-    console.log(userid);
     history.replace(`/user-update/${userid}`);
   };
 
