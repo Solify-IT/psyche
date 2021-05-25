@@ -14,6 +14,7 @@ import { getFormField } from 'src/api/forms';
 import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
+import { Link } from 'react-router-dom';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -133,6 +134,8 @@ function ConsultPatientForm() {
               variant="contained"
               color="secondary"
               className={classes.button}
+              component={Link}
+              to={`/update-patient-form/${id}`}
             >
               Editar
               {'     '}

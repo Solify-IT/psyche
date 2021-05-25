@@ -12,13 +12,16 @@ import {
   IconButton,
   TableContainer,
   Paper,
+  Fab,
 } from '@material-ui/core';
 import {
   Edit,
   Delete,
+  Add,
 }
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
+import { Link } from 'react-router-dom';
 import { getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +73,11 @@ function ViewUsers() {
           <Typography variant="h2" align="center">
             Consultar Usuarios
           </Typography>
+          <Grid container justify="flex-end">
+            <Fab color="primary" aria-label="add" component={Link} to="/register-user">
+              <Add />
+            </Fab>
+          </Grid>
           <Grid container>
             <TableContainer component={Paper} className={classes.table}>
               <Table aria-label="simple table">
