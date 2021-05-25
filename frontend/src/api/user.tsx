@@ -3,7 +3,7 @@ import User from '../interfaces/user';
 import server from '../utils/server';
 import handleResponse from '../utils/handleResponse';
 
-export default async function CreateUser(user:User) {
+export async function CreateUser(user:User) {
   const result = await server.post('/users', { ...user }).then(handleResponse).catch(handleResponse);
   return result.data;
 }
@@ -39,6 +39,11 @@ export async function getUserAreas() {
   return result;
 }
 
+export async function updateUser(id: number, user:User) {
+  const result = await server.put(`/user/${id}`, user);
+  return result;
+}
+
 export async function getUser(username:String) {
   const exist = await server.get(`/user/${username}`);
   return exist;
@@ -48,4 +53,9 @@ export async function deactivateAccount(id:number) {
   console.log('call');
   const exist = await server.put(`/deactivate-account/${id}`);
   return exist;
+}
+
+export async function changePassword(oldPassword: string, password: String) {
+  const user = await server.put('/changePassword', { oldPassword, password });
+  return user.data;
 }

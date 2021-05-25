@@ -9,9 +9,11 @@ export default interface IUserRepository {
     id: number, areas: PatientArea[], workSchedule: string) : Promise<PatientArea[]>;
   setUserFirstTime(id: number, firstTime: boolean) : Promise<User>;
   getUserPatientAreas(id: number) : Promise<PatientArea[]>;
+  updateProfile(user: User) : Promise<User>;
   findAll(): Promise<User[]>;
   getUser(username: string): Promise<User>;
   updateProfile(user: User) : Promise<User>;
   getAll(): Promise<User[]>;
   deactiveAccount(id: number) : Promise <User>;
+  changePassword(id: number, password: string) : Promise<User>;
 }

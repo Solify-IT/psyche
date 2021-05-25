@@ -4,8 +4,13 @@ import LoginResult from 'domain/model/user/loginResult';
 import jwt from 'jsonwebtoken';
 import jwtConfig from 'utils/jwtConfig';
 import PatientArea from 'domain/model/user/patientArea';
+import bcrypt from 'bcrypt';
 
 export default class UserPresenter implements IUserPresenter {
+  findOne(user: User): User {
+    return user;
+  }
+
   expiresIn: string = '30 days';
 
   patientAreas(areas: PatientArea[]): PatientArea[] {
@@ -47,5 +52,10 @@ export default class UserPresenter implements IUserPresenter {
 
   deactiveAccount(user:User) : User {
     return user;
+  }
+  
+  async encryptedPassword(password: string) : Promise<string> {
+    const encryptedPassword = await bcrypt.hash(password, 8);
+    return encryptedPassword;
   }
 }
