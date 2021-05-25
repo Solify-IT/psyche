@@ -133,10 +133,28 @@ function ConsultPatientForm() {
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Text>Section #1</Text>
+          <Text>
+            {' '}
+            { field.name}
+          </Text>
         </View>
         <View style={styles.section}>
-          <Text>Section #2</Text>
+          <Text>
+            { field.fields.map((fields:any) => (
+              <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                { fields.label}
+                {': '}
+              </Box>
+            )) }
+          </Text>
+          <Text>
+            {' '}
+            { field.fields.map((fields:any) => (
+              <Box ml={15} className={classes.box2}>
+                { fields.value}
+              </Box>
+            )) }
+          </Text>
         </View>
       </Page>
     </Document>
