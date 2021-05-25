@@ -126,6 +126,10 @@ export default function CustomizedTables() {
   const [searchData, setSearchData] = useState('');
   const [patients, setPatients] = useState<Patient[]>([]);
   const [patientsData, setPatientsData] = useState<Patient[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [doctors, setDoctors] = useState<Patient[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [doctorsData, setDoctorsData] = useState<Patient[]>([]);
   const [value, setValue] = useState('');
   const history = useHistory();
   const classes = useStyles();
@@ -159,19 +163,26 @@ export default function CustomizedTables() {
     }
     if (value === ('')) {
       setPatients(patients);
+      setDoctors(doctors);
       const patientFilter = Object.values(patientsData);
       const filteredUsers = patientFilter.filter(
         (patientConverter) => (patientConverter.name.toLowerCase()
+          .includes(searchData.toLowerCase()))
+        || (patientConverter.user.name.toLowerCase()
           .includes(searchData.toLowerCase())),
       );
       setPatients(filteredUsers);
     } else if (value === ('todos')) {
       setPatients(patients);
+      setDoctors(doctors);
       const patientFilter = Object.values(patientsData);
       const filteredUsers = patientFilter.filter(
         (patientConverter) => (patientConverter.name.toLowerCase()
-          .includes(searchData.toLowerCase())),
+          .includes(searchData.toLowerCase()))
+          || (patientConverter.user.name.toLowerCase()
+            .includes(searchData.toLowerCase())),
       );
+
       setPatients(filteredUsers);
     } else {
       const patientFilter = Object.values(patientsData);
@@ -181,7 +192,12 @@ export default function CustomizedTables() {
          && patientConverter.type.toLowerCase() === value.toLowerCase())
          || (patientConverter.type.toLowerCase() === value.toLowerCase()
          && patientConverter.name.toLowerCase()
-           .includes(searchData.toLowerCase())),
+           .includes(searchData.toLowerCase())
+         && (patientConverter.user.name.toLowerCase()
+           .includes(searchData.toLowerCase())))
+        || (patientConverter.type.toLowerCase() === value.toLowerCase()
+        && patientConverter.user.name.toLowerCase()
+          .includes(searchData.toLowerCase())),
       );
       setPatients(filteredUsers);
     }
