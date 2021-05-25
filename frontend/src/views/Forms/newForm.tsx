@@ -160,7 +160,7 @@ function NewForm() {
     switch (type) {
       case 'text':
       case 'number':
-      case 'firma':
+      case 'signature':
       case 'datepicker':
         return null;
 
@@ -288,7 +288,7 @@ function NewForm() {
                     <MenuItem value="select">Select</MenuItem>
                     <MenuItem value="checkbox">Checkbox</MenuItem>
                     <MenuItem value="datepicker">Date Picker</MenuItem>
-                    <MenuItem value="firma">Firma</MenuItem>
+                    <MenuItem value="signature">Firma</MenuItem>
                   </Select>
                 </Grid>
                 <Grid item xs={12} sm={8}>

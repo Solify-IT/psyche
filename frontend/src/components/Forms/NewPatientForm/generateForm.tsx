@@ -152,7 +152,7 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
-      case 'firma':
+      case 'signature':
         return (
           <Grid item xs={4}>
             <TextField
