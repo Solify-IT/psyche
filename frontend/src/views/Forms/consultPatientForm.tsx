@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import {
   makeStyles,
   Grid,
@@ -15,6 +16,9 @@ import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
+import {
+  Page, Text, View, Document, StyleSheet, PDFViewer,
+} from '@react-pdf/renderer';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -105,9 +109,54 @@ function ConsultPatientForm() {
       paddingBottom: '10px',
       marginLeft: '90px',
     },
+    pdffff: {
+      width: '100%',
+      height: '100%',
+    },
   }));
 
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+      backgroundColor: '#E4E4E4',
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1,
+    },
+  });
+
   const classes = useStyles();
+
+  const MyDocument = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Text>Section #1</Text>
+        </View>
+        <View style={styles.section}>
+          <Text>Section #2</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+
+  const App = () => (
+    <PDFViewer>
+      <MyDocument />
+    </PDFViewer>
+  );
+
+  const handleSubmit = async () => {
+    console.log('yeah');
+    App();
+    const canvas : any = document.getElementById('root');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    ReactDOM.render(<App />, canvas);
+    console.log('se logró');
+  };
 
   return (
     <div className={classes.heroContent}>
@@ -125,6 +174,7 @@ function ConsultPatientForm() {
               variant="contained"
               color="primary"
               className={classes.button}
+              onClick={handleSubmit}
             >
               Imprimir
               <PrintIcon className={classes.icon} />
