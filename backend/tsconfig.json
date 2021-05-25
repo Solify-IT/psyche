@@ -17,8 +17,7 @@
   "include": [
     "src/**/*",
     ".eslintrc.js",
-    "jest.config.js"
-, "../frontend/src/utils/hasPatientAreas.ts"  ],
+    "jest.config.js"],
   "exclude": [
     "node_modules"
   ]

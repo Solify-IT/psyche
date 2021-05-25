@@ -152,7 +152,7 @@ function RegisterFamily() {
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Información mimebro familiar
+            Información miembro familiar
           </Typography>
           <Typography variant="h5" component="h2">
             {patient.name}

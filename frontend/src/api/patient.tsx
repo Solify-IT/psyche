@@ -22,3 +22,8 @@ export async function getPatientRecord(id: number) {
   const result = await server.get<Record>(`records/${id}`);
   return result;
 }
+
+export async function canalizePatient(patient:Array<Patient>) {
+  const result = await server.post('/canalize-patient', patient).then(handleResponse).catch(handleResponse);
+  return result.data;
+}

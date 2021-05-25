@@ -1,4 +1,4 @@
-import { wrapError } from '@types';
+import { PasswordConfirm, wrapError } from '@types';
 import UserInteractor from 'app/interactor/userInteractor';
 import PatientArea from 'domain/model/user/patientArea';
 import UserLoginResult from 'domain/model/user/userLoginResult';
@@ -22,20 +22,23 @@ export default class UserController {
     context.response.status(200).json(user);
   }
 
-  async registerProfile(context: IContext): Promise<void> {
+  async registerDoctorProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
-    const request : PatientArea[] = Object.values(context.request.body);
-    const areas : PatientArea[] = [];
-    request.forEach((area) => {
-      areas.push({
+    const { areas } = context.request.body;
+
+    const finalAreas : PatientArea[] = [];
+    areas.forEach((area : PatientArea) => {
+      finalAreas.push({
         name: area.name,
         userId: user.id,
         checked: area.checked,
       });
     });
+    const { workSchedule } = context.request.body;
+
     const [, error] = await wrapError(
-      this.userInteractor.registerProfile(areas),
+      this.userInteractor.registerDoctorProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -64,21 +67,25 @@ export default class UserController {
     context.response.status(200).json(users);
   }
 
-  async modifyProfile(context: IContext): Promise<void> {
+  async modifyDoctorProfile(context: IContext): Promise<void> {
     const token = context.request.headers.authorization.split(' ')[1];
     const user : UserLoginResult = getRequestUser(token);
-    const request : PatientArea[] = Object.values(context.request.body);
-    const areas : PatientArea[] = [];
-    request.forEach((area) => {
-      areas.push({
-        id: area.id,
+
+    const { areas } = context.request.body;
+
+    const finalAreas : PatientArea[] = [];
+    areas.forEach((area : PatientArea) => {
+      finalAreas.push({
         name: area.name,
         userId: user.id,
         checked: area.checked,
+        id: area.id,
       });
     });
+    const { workSchedule } = context.request.body;
+
     const [patientAreas, error] = await wrapError(
-      this.userInteractor.modifyProfile(areas),
+      this.userInteractor.registerDoctorProfile(user.id, finalAreas, workSchedule),
     );
     if (error) {
       context.next(error);
@@ -106,7 +113,14 @@ export default class UserController {
       context.next(error);
       return;
     }
-    context.response.status(200).json(patientAreas);
+    const [resultUser, err] = await wrapError(
+      this.userInteractor.getOne(user.id),
+    );
+    if (err) {
+      context.next(err);
+      return;
+    }
+    context.response.status(200).json({ patientAreas, workSchedule: resultUser.workSchedule });
   }
 
   async login(context: IContext): Promise<void> {
@@ -119,5 +133,57 @@ export default class UserController {
     }
 
     context.response.status(200).json(loginResult);
+  }
+
+  async updateProfile(context: IContext): Promise<void> {
+    const id = parseInt(context.request.params.id, 10);
+    const [userProfile, error] = await
+    wrapError(this.userInteractor.updateProfile({ id, ...context.request.body }));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userProfile);
+  }
+
+  async getUser(context: IContext): Promise<void> {
+    const { username } = context.request.params;
+    const [userExist, error] = await wrapError(this.userInteractor.getUser(username));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userExist);
+  }
+
+  async getAllUsers(context: IContext): Promise<void> {
+    const [users, error] = await wrapError(this.userInteractor.getAll());
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(users);
+  }
+
+  async changePassword(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const { oldPassword, password } : PasswordConfirm = context.request.body;
+
+    const [, oldPasswordError] = await wrapError(this.userInteractor.passwordValid(
+      user.username, oldPassword,
+    ));
+
+    if (oldPasswordError) {
+      context.next(oldPasswordError);
+      return;
+    }
+
+    const [, error] = await wrapError(this.userInteractor.changePassword(user.id, password));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(user);
   }
 }

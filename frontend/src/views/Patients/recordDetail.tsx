@@ -10,6 +10,7 @@ import { getPatientRecord } from 'src/api/patient';
 function RecordDetail() {
   const { id } : any = useParams();
   const mPromise = getPatientRecord(id);
+  console.log(mPromise);
   const content = PromiseLoader<Record>(
     mPromise,
     (record) => <RecordInfo record={record} />,

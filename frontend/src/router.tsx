@@ -11,6 +11,7 @@ import RecordDetail from './views/Patients/recordDetail';
 import RegisterUser from './views/Users/registerUser';
 import Login from './views/login';
 import ModifyProfile from './views/Users/modifyProfile';
+import ViewUsers from './views/Users/viewUsers';
 
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
@@ -22,6 +23,8 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientAvailableForms from './views/Forms/patientAvailableForms';
+import PatientCanalization from './views/Patients/patientCanalization';
+import UpdatePatientCanalization from './views/Patients/updatePatientCanalization';
 // Form views
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import NewForm from './views/Forms/newForm';
@@ -29,6 +32,8 @@ import UpdatePatientForm from './views/Forms/updatePatientForm';
 import ConsultPatientForm from './views/Forms/consultPatientForm';
 // Users
 import ConsultProfiles from './views/Users/consultProfiles';
+import UpdateUser from './views/Users/updateUser';
+import ChangePassword from './views/Users/changePassword';
 
 const AppRouter = () => (
   <div>
@@ -52,8 +57,14 @@ const AppRouter = () => (
     <PrivateRoute path="/dashboard-as-psic" exact component={DashboardPsic} />
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} />
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} />
+    <PrivateRoute path="/user-profile/update/:id/" exact component={UpdateUser} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
+    <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
+    <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} />
+    <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} />
+    <PrivateRoute path="/change-password" exact component={ChangePassword} />
+    <PrivateRoute path="/view-users" exact component={ViewUsers} />
   </div>
 );
 

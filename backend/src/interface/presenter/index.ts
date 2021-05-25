@@ -1,4 +1,4 @@
 import PatientPresenter from './patientPresenter';
-import DoctorPresenter from './doctorPresenter';
 
-export { PatientPresenter, DoctorPresenter };
+// eslint-disable-next-line import/prefer-default-export
+export { PatientPresenter };

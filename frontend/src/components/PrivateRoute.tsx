@@ -39,12 +39,14 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
       }
 
       // invalid areas array
-      if (currentUser.user.areas === undefined || currentUser.user.areas.length === 0) {
-        if (currentUser.user.role === UserRole.Psicólogo || currentUser.user.role
-          === UserRole.Administrador) {
-          console.error('User patient areas field is invalid');
-          logout();
-          return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+      if (currentUser.user.firstTime === false) {
+        if (currentUser.user.areas === undefined || currentUser.user.areas.length === 0) {
+          if (currentUser.user.role === UserRole.Psicólogo || currentUser.user.role
+            === UserRole.Administrador) {
+            console.error('User patient areas field is invalid');
+            logout();
+            return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+          }
         }
       }
 

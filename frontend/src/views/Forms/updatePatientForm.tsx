@@ -22,6 +22,7 @@ import { updatePatientForm, getFormField } from 'src/api/forms';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
 import { useHistory, useParams } from 'react-router';
+import PatientFormField from 'src/interfaces/patientFormField';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -55,7 +56,21 @@ function UpdatePatientForm() {
   useEffect(() => {
     getFormField(formId)
       .then((response:any) => {
-        setFields(Object.values(response.data.fields));
+        setFields(Object.values(response.data.fields.sort(
+          (a: PatientFormField, b: PatientFormField) => {
+            if (a.id && b.id) {
+              if (a.id < b.id!) {
+                return -1;
+              }
+              if (a.id > b.id) {
+                return 1;
+              }
+              return 0;
+            }
+            console.error('Form ids not obtained. Defaulting to standard order');
+            return 0;
+          },
+        )));
         setFormInformation(response.data);
       })
       .catch((error:any) => console.log(error));

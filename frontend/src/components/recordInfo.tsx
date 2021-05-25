@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#C94B72',
     borderRadius: 20,
     padding: theme.spacing(2, 6),
+    marginTop: '20px',
   },
   patientSectionTitle: {
     marginBottom: 20,
@@ -41,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
     height: 80,
     width: 80,
+  },
+  canalize: {
+    textAlign: 'right',
+    paddingRight: '35px',
   },
 }));
 
@@ -148,8 +153,14 @@ function FormSection(props: FormSectionProps) {
 
 function RecordInfo(props: RecordInfoProps) {
   const classes = useStyles();
+  const history = useHistory();
   const { record } = props;
   const formsGrouped = groupBy(record.forms, (form) => form.name);
+
+  function updateCanalization(event: React.ChangeEvent<any>) {
+    const { recordid } = event.currentTarget.dataset;
+    history.push(`/update-patient-canalization/${recordid}`);
+  }
 
   function PatientGeneralInfo(patientProps: PatientGeneralInfoProps) {
     const { patient } = patientProps;
@@ -190,6 +201,19 @@ function RecordInfo(props: RecordInfoProps) {
               { ' ' }
               { createRecordId(record.id)}
             </Typography>
+            <Grid item xs={12}>
+              <div className={classes.canalize}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  data-recordid={record.id}
+                  onClick={updateCanalization}
+                >
+                  Modificar Canalización
+                </Button>
+              </div>
+            </Grid>
             { record.patients.map((patient) => (
               <PatientGeneralInfo patient={patient} key={patient.id} />
             ))}

@@ -14,7 +14,6 @@ import {
   TableRow,
   InputLabel,
   MenuItem,
-  FormControl,
   Select,
   CircularProgress,
   Divider,
@@ -40,22 +39,27 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginTop: '20px',
-    padding: '20px',
+    padding: '30px',
   },
   submit: {
-    marginTop: '25px',
+    textAlign: 'center',
   },
   table: {
     padding: '10px',
   },
   formControl: {
-    marginLeft: '10px',
-    marginTop: '15px',
-    minWidth: 240,
+    marginTop: '16px',
+    marginLeft: '5px',
+    textAlign: 'left',
   },
   addButton: {
     textAlign: 'right',
     marginRight: '4rem',
+  },
+  group: {
+    marginTop: '16px',
+    marginLeft: '20px',
+    textAlign: 'left',
   },
 
 }));
@@ -66,7 +70,7 @@ function NewForm() {
   const history = useHistory();
   const [newField, setNewField] = useState<Field>({
     label: '',
-    type: 'text',
+    type: '',
     key: uuid4(),
     options: [],
     value: '',
@@ -107,7 +111,6 @@ function NewForm() {
 
     setTitleValid(true);
     const form : Form = { name: title, fields: fieldList, type: formType };
-    console.log(form);
     setLoading(true);
 
     try {
@@ -148,7 +151,7 @@ function NewForm() {
     setNewField({
       label: '',
       key: uuid4(),
-      type: 'text',
+      type: '',
       options: [],
     });
   }
@@ -167,9 +170,7 @@ function NewForm() {
         );
 
       default:
-        return (
-          <p>default</p>
-        );
+        return null;
     }
   }
 
@@ -207,7 +208,6 @@ function NewForm() {
           ? <CircularProgress />
           : (
             <Grid item xs={6}>
-
               <Button
                 type="submit"
                 fullWidth
@@ -217,7 +217,7 @@ function NewForm() {
                 className={classes.submit}
                 disabled={fieldList.length === 0 || loading}
               >
-                REGISTRAR
+                Registrar
               </Button>
             </Grid>
           )}
@@ -232,10 +232,9 @@ function NewForm() {
             Crear Nuevo Form
           </Typography>
           <Grid container justify="center">
-            <Grid item xs={12} component={Paper} className={classes.paper} elevation={6} square>
-              <Grid container spacing={8}>
-
-                <Grid item xs={6}>
+            <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
+              <Grid container spacing={5}>
+                <Grid item xs={12} sm={8}>
                   <TextField
                     margin="normal"
                     variant="outlined"
@@ -245,17 +244,15 @@ function NewForm() {
                     label="Nombre de formato"
                     onChange={handleTitle}
                     value={title}
-                    className={classes.formControl}
                     name="name"
                     error={!titleValid}
                     helperText={!titleValid && 'Este campo no puede estar vació.'}
                   />
                 </Grid>
-
-                <Grid item xs={6}>
-                  <InputLabel id="type">Tipo</InputLabel>
-
+                <Grid item xs={12} sm={4}>
+                  <InputLabel shrink id="type">Tipo</InputLabel>
                   <Select
+                    variant="outlined"
                     labelId="type"
                     required
                     fullWidth
@@ -272,31 +269,27 @@ function NewForm() {
                     <Divider />
                     {optionsPsicologia.map(createSelect)}
                     <Divider />
-
                   </Select>
                 </Grid>
-              </Grid>
-
-              <Grid container spacing={3}>
-                <Grid item xs={3}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel>Tipo de Dato</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="type"
-                      name="type"
-                      value={type}
-                      onChange={handleNewField}
-                    >
-                      <MenuItem value="text">Text Field</MenuItem>
-                      <MenuItem value="number">Number Field</MenuItem>
-                      <MenuItem value="select">Select</MenuItem>
-                      <MenuItem value="checkbox">Checkbox</MenuItem>
-                      <MenuItem value="datepicker">Date Picker</MenuItem>
-                    </Select>
-                  </FormControl>
+                <Grid item xs={12} sm={4}>
+                  <InputLabel shrink>Tipo de Dato</InputLabel>
+                  <Select
+                    variant="outlined"
+                    fullWidth
+                    labelId="demo-simple-select-label"
+                    id="type"
+                    name="type"
+                    value={type}
+                    onChange={handleNewField}
+                  >
+                    <MenuItem value="text">Text Field</MenuItem>
+                    <MenuItem value="number">Number Field</MenuItem>
+                    <MenuItem value="select">Select</MenuItem>
+                    <MenuItem value="checkbox">Checkbox</MenuItem>
+                    <MenuItem value="datepicker">Date Picker</MenuItem>
+                  </Select>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={12} sm={8}>
                   <TextField
                     variant="outlined"
                     margin="normal"
@@ -311,16 +304,12 @@ function NewForm() {
                     helperText={!labelValid && 'Este campo no puede estar vació.'}
                   />
                 </Grid>
-              </Grid>
-              {renderCustomForm()}
-              <Grid container spacing={3} justify="center">
-                <Grid item xs={6}>
+                {renderCustomForm()}
+                <Grid item xs={12} className={classes.submit}>
                   <Button
                     type="submit"
-                    fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
                     onClick={addField}
                   >
                     Agregar
