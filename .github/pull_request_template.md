@@ -15,9 +15,11 @@ Usa el formato: SIGLAS-XX (ejemplo SNLX-99)
 #### Checklist
 
 **Assignees:**
-- [ ] Añadí la documentación necesaria, si es necesario. 
+- [ ] Añadí la documentación necesaria, si es necesario.
 - [ ] Agregué tests para probar que mi código funciona
-- [ ] Revisé PRs existentes antes de publicar el mío. 
+- [ ] Revisé PRs existentes antes de publicar el mío.
+- [ ] Agregue artefactos de analisis, diseño, codigo, y pruebas a la matriz de trazabilidad.
+- [ ] Agregue los tiempos y fechas reales en el plan de valor ganado.
 
 **Reviewers:**
 - [ ] La Inyección de dependencias es correcta.
