@@ -10,10 +10,10 @@ import {
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { consultProfile } from 'src/api/user';
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
+import { authenticationService } from 'src/api/authenticationService';
 
 function ConsultProfiles() {
   const [field, setField] = useState<ConsultProfile>({
@@ -103,8 +103,12 @@ function ConsultProfiles() {
   }));
 
   const classes = useStyles();
+  const currentUser = authenticationService.currentUserValue;
 
   const history = useHistory();
+  const updateProfile = () => {
+    history.replace(`/user-profile/update/${currentUser.user.id}`);
+  };
 
   const newPassword = () => {
     history.push('/change-password/');
@@ -135,6 +139,7 @@ function ConsultProfiles() {
               type="submit"
               variant="contained"
               color="secondary"
+              onClick={updateProfile}
               className={classes.button}
             >
               Editar Perfil

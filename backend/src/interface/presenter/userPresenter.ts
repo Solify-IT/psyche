@@ -7,6 +7,10 @@ import PatientArea from 'domain/model/user/patientArea';
 import bcrypt from 'bcrypt';
 
 export default class UserPresenter implements IUserPresenter {
+  findOne(user: User): User {
+    return user;
+  }
+
   expiresIn: string = '30 days';
 
   patientAreas(areas: PatientArea[]): PatientArea[] {

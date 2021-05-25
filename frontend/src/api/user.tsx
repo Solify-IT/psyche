@@ -39,6 +39,11 @@ export async function getUserAreas() {
   return result;
 }
 
+export async function updateUser(id: number, user:User) {
+  const result = await server.put(`/user/${id}`, user);
+  return result;
+}
+
 export async function getUser(username:String) {
   const exist = await server.get(`/user/${username}`);
   return exist;
