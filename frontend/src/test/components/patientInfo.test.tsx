@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import CornerFab from 'src/components/cornerFab';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { Button } from '@material-ui/core';
 import recordFixture from 'src/fixtures/recordFixture';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -48,14 +47,5 @@ describe('Patient info', () => {
       </BrowserRouter>,
     );
     expect(wrapper.find(CornerFab)).toHaveLength(1);
-  });
-
-  test('renders view and modify button per form', () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <RecordInfo record={record} />
-      </BrowserRouter>,
-    );
-    expect(wrapper.find(Button)).toHaveLength(3 * 2);
   });
 });

@@ -12,18 +12,18 @@ import {
   IconButton,
   TableContainer,
   Paper,
+  Fab,
 } from '@material-ui/core';
 import {
   Edit,
   Delete,
+  Add,
 }
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { getUsers } from '../../api/user';
-// import { getUsers, getUser } from '../../api/user';
-
-// <IconButton data-userid={user.id ? user.id.toString() : ''} onClick={updateProfile}>
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -93,6 +93,11 @@ function ViewUsers() {
           <Typography variant="h2" align="center">
             Consultar Usuarios
           </Typography>
+          <Grid container justify="flex-end">
+            <Fab color="primary" aria-label="add" component={Link} to="/register-user">
+              <Add />
+            </Fab>
+          </Grid>
           <Grid container>
             <TableContainer component={Paper} className={classes.table}>
               <Table aria-label="simple table">
