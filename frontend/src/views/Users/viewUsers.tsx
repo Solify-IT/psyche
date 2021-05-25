@@ -22,6 +22,7 @@ import {
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
 import Swal from 'sweetalert2';
+import { authenticationService } from 'src/api/authenticationService';
 import { deactivateAccount, getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 function ViewUsers() {
   const [loading, setLoading] = useState<boolean>(false);
   const history = useHistory();
+  const currentUser = authenticationService.currentUserValue;
   const handleSubmit = async (id: number) => {
     setLoading(true);
     try {
@@ -45,7 +47,6 @@ function ViewUsers() {
         'El usuario no podrá acceder a partir de este momento.',
         'success',
       );
-      history.replace('/view-users');
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -54,7 +55,9 @@ function ViewUsers() {
       });
       console.log(error);
     } finally {
+      console.log('finally');
       setLoading(false);
+      history.replace('/view-users');
     }
   };
 
@@ -70,7 +73,6 @@ function ViewUsers() {
       confirmButtonText: 'Confirmar',
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log('waiting');
         handleSubmit(id);
       }
     });
@@ -96,13 +98,16 @@ function ViewUsers() {
       <TableCell>{user.zipCode}</TableCell>
       <TableCell>{user.address}</TableCell>
       <TableCell>
-        <IconButton>
-          <Edit color="secondary" />
+        <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
+          <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
         </IconButton>
       </TableCell>
       <TableCell>
-        <IconButton disabled={!user.active} onClick={() => handleDelete(user.id!)}>
-          <Delete style={{ color: '#FF0000' }} />
+        <IconButton
+          disabled={!user.active || (user.id === currentUser.user.id)}
+          onClick={() => handleDelete(user.id!)}
+        >
+          <Delete style={{ color: (user.active && (user.id !== currentUser.user.id)) ? '#FF0000' : '#A7A7A7' }} />
         </IconButton>
       </TableCell>
     </TableRow>
