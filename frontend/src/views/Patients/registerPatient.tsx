@@ -235,9 +235,7 @@ function RegisterPatient() {
           />
         );
       default:
-        return (
-          <div>Wrong Step bitch</div>
-        );
+        return null;
     }
   }
 

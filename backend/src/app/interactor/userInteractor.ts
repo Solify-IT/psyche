@@ -47,6 +47,14 @@ export default class UserInteractor {
     return this.userPresenter.getUser(results);
   }
 
+  async updateProfile(user: User): Promise<User> {
+    const [result, error] = await wrapError(this.userRepository.updateProfile(user));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.findOne(result);
+  }
+
   async getUserAreas(id: number): Promise<PatientArea[]> {
     const [results, error] = await wrapError(this.userRepository.getUserPatientAreas(id));
     if (error) {
@@ -94,6 +102,29 @@ export default class UserInteractor {
       throw error;
     }
     return this.userPresenter.login(user);
+  }
+
+  async changePassword(id: number, newPassword: string) {
+    const encryptedPassword = await this.userPresenter.encryptedPassword(newPassword);
+    const [user, error] = await wrapError(
+      this.userRepository.changePassword(id, encryptedPassword),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return user;
+  }
+
+  async passwordValid(username: string, password: string) {
+    const [user, error] = await wrapError(
+      this.userRepository.login(username, password),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return user;
   }
 
   isValidUser(user: User) : boolean {

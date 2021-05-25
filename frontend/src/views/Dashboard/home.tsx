@@ -48,7 +48,7 @@ function Home() {
       <main>
         <div className={classes.heroContent}>
           <Container>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} justify="center">
 
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
@@ -98,8 +98,7 @@ function Home() {
                   </Paper>
                 </Link>
               </Grid>
-
-              <Grid item xs={12} sm={6} lg={4}>
+              <Grid item xs={12} sm={6} lg={4} hidden>
                 <Link to="/app/home-divisions" className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/calendar.png" alt="Logo" className={classes.image} />
@@ -111,7 +110,7 @@ function Home() {
               </Grid>
 
               <Grid item xs={12} sm={6} lg={4}>
-                <Link to={`/patient-profile/${currentUser.user.id}`} className={classes.option}>
+                <Link to={`/user-profile/${currentUser.user.id}`} className={classes.option}>
                   <Paper className={classes.paper}>
                     <img src="/images/perfil.png" alt="Logo" className={classes.image} />
                     <Typography variant="h4" align="center" className={classes.subtitles}>

@@ -9,3 +9,8 @@ export async function wrapError<T>(
     return [null, err];
   }
 }
+
+export type PasswordConfirm = {
+  oldPassword: string,
+  password: string
+};
