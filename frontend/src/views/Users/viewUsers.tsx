@@ -71,8 +71,8 @@ function ViewUsers() {
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#6EA84F',
+      cancelButtonColor: '#FF0000',
       confirmButtonText: 'Confirmar',
     }).then((result) => {
       if (result.isConfirmed) {
