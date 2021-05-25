@@ -30,8 +30,9 @@ type CornerFabProps = {
   extended: boolean,
 };
 
-function CornerFab({ text, link, extended } : CornerFabProps) {
+function CornerFab(props : CornerFabProps) {
   const classes = useStyles();
+  const { text, link, extended } = props;
 
   return extended ? (
     <Fab
