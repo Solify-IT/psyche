@@ -152,6 +152,23 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
+      case 'signature':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
       case 'number':
         return (
           <Grid item xs={4}>
