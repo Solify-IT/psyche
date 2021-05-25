@@ -47,6 +47,14 @@ export default class UserInteractor {
     return this.userPresenter.getUser(results);
   }
 
+  async updateProfile(user: User): Promise<User> {
+    const [result, error] = await wrapError(this.userRepository.updateProfile(user));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.findOne(result);
+  }
+
   async getUserAreas(id: number): Promise<PatientArea[]> {
     const [results, error] = await wrapError(this.userRepository.getUserPatientAreas(id));
     if (error) {
