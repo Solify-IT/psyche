@@ -32,6 +32,7 @@ function ConsultPatientForm() {
     getFormField(id)
       .then((response:any) => {
         setField(response.data);
+        console.log(response.data.fields);
       })
       .catch((error:any) => {
         console.log(error);
@@ -137,11 +138,11 @@ function ConsultPatientForm() {
           </Text>
         </View>
         <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 3,
         }}
         >
           <Text>
-            <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+            <Box fontWeight="fontWeightBold" className={classes.box}>
               Folio
               {': '}
               PPQ-AP-
@@ -153,13 +154,12 @@ function ConsultPatientForm() {
             </Box>
           </Text>
         </View>
-        <br />
         <View style={{
           color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
         }}
         >
           <Text>
-            <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+            <Box fontWeight="fontWeightBold" className={classes.box}>
               Tipo de paciente
               {': '}
               {field.type}
@@ -168,19 +168,21 @@ function ConsultPatientForm() {
         </View>
         <br />
         <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
         }}
         >
           <Text>
             { field.fields.map((fields:any) => (
-              <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+              <Box fontWeight="fontWeightBold" className={classes.box}>
                 { fields.label}
                 {': '}
                 { fields.value}
+                {'                '}
               </Box>
             )) }
           </Text>
         </View>
+        <br />
       </Page>
     </Document>
   );

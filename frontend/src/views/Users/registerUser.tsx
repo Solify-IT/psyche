@@ -43,6 +43,7 @@ function RegisterUser() {
   const [newUser, setNewUser] = useState<User>({
     username: '',
     name: '',
+    lastName: '',
     address: '',
     telephone: '',
     zipCode: '',
@@ -56,7 +57,7 @@ function RegisterUser() {
     },
   });
   const {
-    name, username, email, address, zipCode, telephone, password, role, password2,
+    name, lastName, username, email, address, zipCode, telephone, password, role, password2,
     errors,
   } = { ...newUser };
 
@@ -156,6 +157,19 @@ function RegisterUser() {
                     margin="normal"
                     required
                     fullWidth
+                    id="lastName"
+                    label="Apellidos"
+                    name="lastName"
+                    value={lastName}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
                     id="address"
                     label="Dirección"
                     name="address"
@@ -163,7 +177,7 @@ function RegisterUser() {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     variant="outlined"
                     inputProps={{ maxLength: 5, minLength: 5 }}

@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@react-pdf/renderer": "^2.0.13"
+    "@react-pdf/renderer": "^2.0.13",
+    "sweetalert2": "^11.0.11"
   }
 }

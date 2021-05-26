@@ -15,6 +15,9 @@ export default class User {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  lastName: string;
+
   @Column()
   address: string;
 
@@ -38,6 +41,9 @@ export default class User {
 
   @Column({ nullable: true })
   professionalLicense?: string;
+
+  @Column({ nullable: true })
+  telephone?: string;
 
   @Column({ nullable: true })
   workSchedule?: string;

@@ -44,6 +44,7 @@ function UpdateUser() {
 
   const [userInformation, setUserInformation] = useState<User>({
     name: '',
+    lastName: ' ',
     address: '',
     zipCode: '',
     email: '',
@@ -58,7 +59,7 @@ function UpdateUser() {
     },
   });
   const {
-    name, address, zipCode, email, username, telephone, password, role, password2, errors,
+    name, lastName, address, zipCode, email, username, telephone, password, role, password2, errors,
   } = { ...userInformation };
 
   useEffect(() => {
@@ -120,6 +121,19 @@ function UpdateUser() {
                   label="Nombre"
                   name="name"
                   value={name}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Apellidos"
+                  name="lastName"
+                  value={lastName}
                   onChange={handleChange}
                 />
               </Grid>
