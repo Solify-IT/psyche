@@ -17,8 +17,7 @@ import {
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
-// import { consultProfile, updateUser } from 'src/api/user';
-import consultProfile from 'src/api/user';
+import { consultProfile } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
 import roles from 'src/fixtures/roles';
 

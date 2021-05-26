@@ -71,7 +71,6 @@ export default class FormInteractor {
 
   async deleteFormById(id: number): Promise<boolean> {
     const [result, error] = await wrapError(this.formRepository.deleteFormWithId(id));
-
     if (error) {
       throw error;
     }
@@ -79,5 +78,13 @@ export default class FormInteractor {
       throw new NotFoundError('No se encontró el form.');
     }
     return result;
+  }
+
+  async getForms(): Promise<Form[]> {
+    const [result, error] = await wrapError(this.formRepository.getForms());
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.forms(result);
   }
 }

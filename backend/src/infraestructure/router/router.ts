@@ -73,5 +73,8 @@ export default class Router {
     app.delete('/forms/:id', async (request, response, next) => {
       await wrapError(controller.forms.deleteFormById({ request, response, next }));
     });
+    app.get('/forms', async (request, response, next) => {
+      await wrapError(controller.forms.getForms({ request, response, next }));
+    });
   }
 }

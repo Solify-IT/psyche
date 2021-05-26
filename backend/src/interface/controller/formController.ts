@@ -85,11 +85,20 @@ export default class FormController {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
     const [deleted, error] = await wrapError(this.formInteractor.deleteFormById(id));
-
     if (error) {
       context.next(error);
       return;
     }
     context.response.status(200).json(deleted);
+  }
+
+  async getForms(context: IContext): Promise<void> {
+    const [form, error] = await wrapError(this.formInteractor.getForms());
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(form);
   }
 }
