@@ -17,6 +17,6 @@ export default class FieldOption {
   @Column({ default: false })
   checked?: boolean;
 
-  @ManyToOne(() => Field, (field) => field.options)
+  @ManyToOne(() => Field, (field) => field.options, { onDelete: 'CASCADE' })
   field?: Field;
 }
