@@ -52,4 +52,12 @@ export default class PatientInteractor {
     }
     return this.patientPresenter.canalize(result);
   }
+
+  async archiveRecord(id: number) : Promise<Record> {
+    const [record, error] = await wrapError(this.patientRepository.archiveRecord(id));
+    if (error) {
+      throw error;
+    }
+    return this.patientPresenter.archiveRecord(record);
+  }
 }

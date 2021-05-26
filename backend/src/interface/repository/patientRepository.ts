@@ -62,4 +62,22 @@ export default class PatientRepository implements IPatientRepository {
 
     return patients;
   }
+
+  async archiveRecord(id: number): Promise<Record> {
+    const active = false;
+    const [record, recordError] = await wrapError(
+      this.datastore.fetchOne<Record>('Record', { id }),
+      );
+    if (recordError) {
+      throw recordError;
+    }
+    const [records, error] = await wrapError(
+      this.datastore.save<Record>('Record', {...record, active}),
+    );
+
+    if (error) {
+      throw(error);
+    }
+    return records;
+  }
 }
