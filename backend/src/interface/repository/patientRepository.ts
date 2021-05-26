@@ -71,13 +71,18 @@ export default class PatientRepository implements IPatientRepository {
     if (recordError) {
       throw recordError;
     }
-    const [records, error] = await wrapError(
-      this.datastore.save<Record>('Record', {...record, active}),
-    );
+    if(record){
+      const [records, error] = await wrapError(
+        this.datastore.save<Record>('Record', {...record, active}),
+      );
 
-    if (error) {
-      throw(error);
+      if (error) {
+        throw(error);
+      }
+      return records;
     }
-    return records;
+    
+    throw new NotFoundError('El expediente no existe');
+    
   }
 }
