@@ -80,4 +80,16 @@ export default class FormController {
     }
     context.response.status(200).json(form);
   }
+
+  async deleteFormById(context: IContext): Promise<void> {
+    // eslint-disable-next-line radix
+    const id = parseInt(context.request.params.id);
+    const [deleted, error] = await wrapError(this.formInteractor.deleteFormById(id));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(deleted);
+  }
 }
