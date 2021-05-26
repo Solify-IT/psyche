@@ -47,9 +47,5 @@ describe('Patient info', () => {
       </BrowserRouter>,
     );
     expect(wrapper.find(CornerFab)).toHaveLength(1);
-<<<<<<< HEAD
   });
-=======
-  });
->>>>>>> origin/viewForms
 });
