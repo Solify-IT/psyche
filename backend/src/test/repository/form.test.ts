@@ -64,4 +64,14 @@ describe('Form repository', () => {
     expect(error).toBeDefined();
     expect(result).toBeNull();
   });
+
+  test('should delete form', async () => {
+    const result = await getConnection().getRepository<Form>(Form).save(form);
+    const [found, error] = await wrapError(formRepository.deleteFormWithId(result.id));
+    expect(found).toEqual(true);
+    expect(error).toBeNull();
+
+    const shouldntExist = await getConnection().getRepository<Form>(Form).findOne(result.id);
+    expect(shouldntExist).toBeUndefined();
+  });
 });
