@@ -49,6 +49,12 @@ export async function getUser(username:String) {
   return exist;
 }
 
+export async function deactivateAccount(id:number) {
+  console.log('call');
+  const exist = await server.put(`/deactivate-account/${id}`);
+  return exist;
+}
+
 export async function changePassword(oldPassword: string, password: String) {
   const user = await server.put('/changePassword', { oldPassword, password });
   return user.data;
