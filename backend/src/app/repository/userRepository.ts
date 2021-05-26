@@ -14,5 +14,6 @@ export default interface IUserRepository {
   getUser(username: string): Promise<User>;
   updateProfile(user: User) : Promise<User>;
   getAll(): Promise<User[]>;
+  deactiveAccount(id: number) : Promise <User>;
   changePassword(id: number, password: string) : Promise<User>;
 }

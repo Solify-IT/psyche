@@ -29,4 +29,24 @@ describe('User repository', () => {
     expect(result.firstTime).toEqual(false);
     expect(result.id === userResult.id);
   });
+
+  test('should deactive account user', async () => {
+    const userPsico : User = {
+      username: 'alice33',
+      email: 'alice@email.com',
+      password: 'Alice123',
+      name: 'Alice B',
+      role: 'Psicologo',
+      zipCode: '12345',
+      address: 'Av First 123 San Francisco',
+      active: true,
+      firstTime: true,
+      professionalLicense: 'Licencia',
+      patients: null,
+    };
+    const userTest = await getConnection().getRepository<User>(User).save(user);
+    expect(userPsico.active).toEqual(userTest.active);
+    const result = await userRepository.deactiveAccount(userTest.id);
+    expect(result.active).toEqual(false);
+  });
 });

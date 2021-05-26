@@ -32,7 +32,6 @@ function ConsultPatientForm() {
     getFormField(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response.data);
       })
       .catch((error:any) => {
         console.log(error);
