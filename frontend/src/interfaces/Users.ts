@@ -5,4 +5,5 @@ export default interface Users {
   zipCode: string;
   email: string;
   role: string;
+  active: boolean;
 }

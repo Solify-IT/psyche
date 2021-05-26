@@ -109,7 +109,7 @@ function ConsultProfiles() {
   const updateProfile = () => {
     history.replace(`/user-profile/update/${currentUser.user.id}`);
   };
-  
+
   const newPassword = () => {
     history.push('/change-password/');
   };
