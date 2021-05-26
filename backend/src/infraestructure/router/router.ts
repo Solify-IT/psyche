@@ -67,5 +67,9 @@ export default class Router {
     app.put('/changePassword/', async (request, response, next) => {
       await wrapError(controller.users.changePassword({ request, response, next }));
     });
+
+    app.get('/report/', async (request, response, next) => {
+      await wrapError(controller.patients.getPatientStatistics({ request, response, next }));
+    });
   }
 }

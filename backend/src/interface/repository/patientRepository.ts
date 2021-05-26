@@ -62,4 +62,15 @@ export default class PatientRepository implements IPatientRepository {
 
     return patients;
   }
+
+  async getPatientStatistics() : Promise<any> {
+    const [result, error] = await wrapError(
+      this.datastore.groupByAndCount('Patient', 'startDate', true),
+    );
+
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
 }

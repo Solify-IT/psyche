@@ -43,4 +43,18 @@ export default class Datastore implements IDatastore {
 
     return items;
   }
+
+  async groupByAndCount<T>(
+    tableName: string, field: string, isAge?: boolean,
+  ): Promise<any[]> {
+    const connection = getConnection();
+    const select = isAge ? `date_part('year', AGE(${tableName}.${field}))` : `${tableName}.${field}`;
+    const groupBy = isAge ? 'age' : field;
+    const items = await connection.getRepository<T>(tableName).createQueryBuilder(tableName)
+      .select(select, isAge ? 'age' : field)
+      .addSelect('COUNT(id)')
+      .groupBy(groupBy)
+      .getRawMany();
+    return items;
+  }
 }

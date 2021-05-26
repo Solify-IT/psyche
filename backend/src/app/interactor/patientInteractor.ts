@@ -52,4 +52,15 @@ export default class PatientInteractor {
     }
     return this.patientPresenter.canalize(result);
   }
+
+  async getPatientStatistics(startDate: Date, endDate: Date) : Promise<any> {
+    console.log(startDate);
+    console.log(endDate);
+    const [result, error] = await wrapError(this.patientRepository.getPatientStatistics());
+
+    if (error) {
+      throw error;
+    }
+    return result;
+  }
 }
