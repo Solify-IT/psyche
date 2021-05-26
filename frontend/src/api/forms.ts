@@ -25,3 +25,8 @@ export async function getFormField(id: number) {
   const result = await server.get(`/patientFormField/${id}`);
   return result;
 }
+
+export async function getForms() {
+  const result = await server.get('/forms');
+  return result;
+}

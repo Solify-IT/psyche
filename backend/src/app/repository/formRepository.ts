@@ -9,4 +9,5 @@ export default interface IFormRepository {
   registerPatientForm(form: PatientForm) : Promise<PatientForm>;
   getFormsWithReportId(id: number) : Promise<Form[]>;
   detailField(id: number) : Promise<PatientFormField>;
+  getForms() : Promise<Form[]>;
 }

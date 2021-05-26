@@ -80,4 +80,14 @@ export default class FormController {
     }
     context.response.status(200).json(form);
   }
+
+  async getForms(context: IContext): Promise<void> {
+    const [form, error] = await wrapError(this.formInteractor.getForms());
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(form);
+  }
 }

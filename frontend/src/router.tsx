@@ -30,6 +30,7 @@ import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import NewForm from './views/Forms/newForm';
 import UpdatePatientForm from './views/Forms/updatePatientForm';
 import ConsultPatientForm from './views/Forms/consultPatientForm';
+import ViewForms from './views/Forms/viewForms';
 // Users
 import ConsultProfiles from './views/Users/consultProfiles';
 import UpdateUser from './views/Users/updateUser';
@@ -65,6 +66,7 @@ const AppRouter = () => (
     <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} />
+    <PrivateRoute path="/view-forms" exact component={ViewForms} />
   </div>
 );
 
