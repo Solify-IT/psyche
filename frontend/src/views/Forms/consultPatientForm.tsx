@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import {
   makeStyles,
   Grid,
@@ -10,14 +9,13 @@ import {
 }
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
 import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
 import {
-  Page, Text, View, Document, StyleSheet, PDFViewer,
+  Page, Text, View, Document, StyleSheet, PDFDownloadLink,
 } from '@react-pdf/renderer';
 
 function ConsultPatientForm() {
@@ -117,8 +115,7 @@ function ConsultPatientForm() {
 
   const styles = StyleSheet.create({
     page: {
-      flexDirection: 'row',
-      backgroundColor: '#E4E4E4',
+      backgroundColor: 'white',
     },
     section: {
       margin: 10,
@@ -132,25 +129,54 @@ function ConsultPatientForm() {
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
+        <View style={{
+          color: 'black', textAlign: 'center', margin: 30, padding: 5, fontSize: 20,
+        }}
+        >
           <Text>
-            {' '}
             { field.name}
           </Text>
         </View>
-        <View style={styles.section}>
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+        }}
+        >
+          <Text>
+            <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+              Folio
+              {': '}
+              PPQ-AP-
+              {field.recordId}
+              {'                '}
+              Fecha de registro
+              {': '}
+              {field.createdDate}
+            </Box>
+          </Text>
+        </View>
+        <br />
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+        }}
+        >
+          <Text>
+            <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+              Tipo de paciente
+              {': '}
+              {field.type}
+            </Box>
+          </Text>
+        </View>
+        <br />
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+        }}
+        >
           <Text>
             { field.fields.map((fields:any) => (
               <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
                 { fields.label}
                 {': '}
-              </Box>
-            )) }
-          </Text>
-          <Text>
-            {' '}
-            { field.fields.map((fields:any) => (
-              <Box ml={15} className={classes.box2}>
                 { fields.value}
               </Box>
             )) }
@@ -159,22 +185,6 @@ function ConsultPatientForm() {
       </Page>
     </Document>
   );
-
-  const App = () => (
-    <PDFViewer>
-      <MyDocument />
-    </PDFViewer>
-  );
-
-  const handleSubmit = async () => {
-    console.log('yeah');
-    App();
-    const canvas : any = document.getElementById('root');
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    ReactDOM.render(<App />, canvas);
-    console.log('se logró');
-  };
 
   return (
     <div className={classes.heroContent}>
@@ -187,16 +197,21 @@ function ConsultPatientForm() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={handleSubmit}
+            <PDFDownloadLink
+              document={<MyDocument />}
+              fileName="movielist.pdf"
+              style={{
+                textDecoration: 'none',
+                padding: '10px',
+                color: 'secondary',
+                backgroundColor: 'secondary',
+                border: '1px solid #4a4a4a',
+              }}
             >
-              Imprimir
-              <PrintIcon className={classes.icon} />
-            </Button>
+              {
+               ({ loading }) => (loading ? 'Loading' : 'Imprimir')
+              }
+            </PDFDownloadLink>
             <Button
               type="submit"
               variant="contained"
