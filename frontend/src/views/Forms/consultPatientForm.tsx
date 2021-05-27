@@ -125,11 +125,49 @@ function ConsultPatientForm() {
     logo: {
       height: '100px',
       width: '55.2px',
-      marginRight: '30px',
+      marginRight: '15px',
+      marginLeft: '40px',
+      marginTop: '15px',
+      marginBottom: '15px',
+      alignSelf: 'flex-end',
     },
     item: {
       width: '90%',
       flexDirection: 'row',
+    },
+    movieContainer: {
+      backgroundColor: '#f6f6f5',
+      display: 'flex',
+      flexDirection: 'row',
+      padding: '5px',
+      margin: '30px',
+      fontSize: 20,
+      borderColor: '#C94B72',
+      borderRadius: '10px',
+      borderWidth: 1,
+      alignContent: 'center',
+    },
+    title: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: '38px',
+      fontSize: 15,
+    },
+    subtitle: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: '7px',
+      // marginLeft: '80px',
+      fontSize: 10,
+      textAlign: 'left',
+    },
+    movieDetails: {
+      display: 'flex',
+      marginLeft: '6px',
     },
   });
 
@@ -138,17 +176,28 @@ function ConsultPatientForm() {
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={{
+        {/* <View style={{
           color: 'black', textAlign: 'left', margin: 30, padding: 5, fontSize: 20,
         }}
-        >
-          <Text>
-            <Image source="/images/loginImage.png" style={styles.logo} />
-            <Text style={{ textAlign: 'center' }}>
+        > */}
+        <View style={styles.movieContainer}>
+          <Image source="/images/loginImage.png" style={styles.logo} />
+          <View style={styles.movieDetails}>
+            <Text style={styles.title}>
+              Patronato Psicológico Queretano I.A.P
+            </Text>
+            <br />
+            <Text style={styles.subtitle}>
               { field.name}
             </Text>
-
-          </Text>
+            <br />
+            <Text style={styles.subtitle}>
+              Folio
+              {': '}
+              PPQ-AP-
+              {field.recordId}
+            </Text>
+          </View>
         </View>
         <View style={{
           color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 3,
