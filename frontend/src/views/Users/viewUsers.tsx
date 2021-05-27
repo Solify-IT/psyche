@@ -47,7 +47,7 @@ function ViewUsers() {
       await deactivateAccount(id);
       Swal.fire(
         '¡Cuenta desactivada!',
-        'El usuario no podrá acceder al sistema a partir de este momento.',
+        'El usuario no tiene acceso al sistema a partir de este momento.',
         'success',
       );
     } catch (error) {
@@ -67,7 +67,7 @@ function ViewUsers() {
   function handleDelete(id:number) {
     Swal.fire({
       title: '¿Está seguro de desactivar al usuario?',
-      text: 'Al confrimar, el usuario no podrá acceder al sistema.',
+      text: 'Al confirmar, el usuario no tendrá acceso al sistema.',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
