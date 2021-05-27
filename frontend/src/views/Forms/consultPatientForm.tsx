@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import ReactDOM from 'react-dom';
 import {
   makeStyles,
   Grid,
@@ -34,7 +33,7 @@ function ConsultPatientForm() {
     getFormField(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response.data);
+        console.log(response.data.fields);
       })
       .catch((error:any) => {
         console.log(error);
@@ -117,14 +116,12 @@ function ConsultPatientForm() {
 
   const styles = StyleSheet.create({
     page: {
-      flexDirection: 'row',
       backgroundColor: 'white',
     },
     section: {
       margin: 10,
       padding: 10,
       flexGrow: 1,
-      textAlign: 'center',
     },
   });
 
@@ -133,52 +130,60 @@ function ConsultPatientForm() {
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
+        <View style={{
+          color: 'black', textAlign: 'center', margin: 30, padding: 5, fontSize: 20,
+        }}
+        >
           <Text>
-            <Typography variant="h2" align="center" className={classes.subtitles}>
-              { field.name}
-              {' '}
-            </Typography>
-            <Grid item xs={6} lg={6} className={classes.grid}>
-              <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                Folio:
-              </Box>
-              <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                Fecha de registro:
-              </Box>
-              <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                Tipo de paciente:
-              </Box>
-            </Grid>
-            <Grid item xs={6} lg={6} className={classes.grid}>
-              <Box ml={15} className={classes.box2}>
-                PPQ-AP-
-                {field.recordId}
-              </Box>
-              <Box ml={15} className={classes.box2}>
-                { field.createdDate}
-              </Box>
-              <Box ml={15} className={classes.box2}>
-                { field.type}
-              </Box>
-            </Grid>
-            <Grid item xs={6} lg={6} className={classes.grid2}>
-              { field.fields.map((fields:any) => (
-                <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                  { fields.label}
-                  {': '}
-                </Box>
-              )) }
-            </Grid>
-            <Grid item xs={6} lg={6} className={classes.grid2}>
-              { field.fields.map((fields:any) => (
-                <Box ml={15} className={classes.box2}>
-                  { fields.value}
-                </Box>
-              )) }
-            </Grid>
+            { field.name}
           </Text>
         </View>
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 3,
+        }}
+        >
+          <Text>
+            <Box fontWeight="fontWeightBold" className={classes.box}>
+              Folio
+              {': '}
+              PPQ-AP-
+              {field.recordId}
+              {'                '}
+              Fecha de registro
+              {': '}
+              {field.createdDate}
+            </Box>
+          </Text>
+        </View>
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+        }}
+        >
+          <Text>
+            <Box fontWeight="fontWeightBold" className={classes.box}>
+              Tipo de paciente
+              {': '}
+              {field.type}
+            </Box>
+          </Text>
+        </View>
+        <br />
+        <View style={{
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
+        }}
+        >
+          <Text>
+            { field.fields.map((fields:any) => (
+              <Box fontWeight="fontWeightBold" className={classes.box}>
+                { fields.label}
+                {': '}
+                { fields.value}
+                {'                '}
+              </Box>
+            )) }
+          </Text>
+        </View>
+        <br />
       </Page>
     </Document>
   );
@@ -209,8 +214,8 @@ function ConsultPatientForm() {
                 <PrintIcon className={classes.icon} />
               </Button>
               {
-                 ({ loading }) => (loading ? 'Loading' : 'Imprimir')
-               }
+                ({ loading }) => (loading ? 'Loading' : 'Imprimir')
+              }
             </PDFDownloadLink>
             <Button
               type="submit"
