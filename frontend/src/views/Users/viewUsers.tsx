@@ -88,10 +88,15 @@ function ViewUsers() {
     getUsers()
       .then((response:any) => {
         setUsers(Object.values(response));
-        console.log(users);
       })
       .catch((error:any) => console.log(error));
   }, []);
+
+  const updateProfile = (event: React.ChangeEvent<any>) => {
+    const { userid } = event.currentTarget.dataset;
+    console.log(userid);
+    history.replace(`/user-update/${userid}`);
+  };
 
   const createUser = (user:Users) => (
     <TableRow key={user.id}>
@@ -101,6 +106,9 @@ function ViewUsers() {
       <TableCell>{user.zipCode}</TableCell>
       <TableCell>{user.address}</TableCell>
       <TableCell>
+        <IconButton data-userid={user.username} onClick={updateProfile}>
+          <Edit color="secondary" />
+        </IconButton>
         <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
           <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
         </IconButton>
