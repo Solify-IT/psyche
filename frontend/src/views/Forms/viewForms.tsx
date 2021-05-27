@@ -16,6 +16,7 @@ import {
 import Form from 'src/interfaces/form';
 import { getForms, deleteForm } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
+import { useHistory } from 'react-router';
 
 type FormsTableProps = {
   initialForms: Form[]
@@ -23,6 +24,7 @@ type FormsTableProps = {
 
 function FormsTable(props: FormsTableProps) {
   const { initialForms } = props;
+  const history = useHistory();
 
   const [, setLoading] = useState<boolean>(false);
   const [forms, setForms] = useState<Form[]>(initialForms);
@@ -58,7 +60,8 @@ function FormsTable(props: FormsTableProps) {
   };
 
   function updateForm(event: React.ChangeEvent<any>) {
-    console.log(event);
+    const { formid } = event.currentTarget.dataset;
+    history.push(`update-form/${formid}`);
   }
 
   async function handleDeleteForm(id: number) {
