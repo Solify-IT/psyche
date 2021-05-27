@@ -132,8 +132,12 @@ function ConsultPatientForm() {
       alignSelf: 'flex-end',
     },
     item: {
-      width: '90%',
-      flexDirection: 'row',
+      width: '80%',
+      fontSize: 11,
+      fontWeignt: 700,
+    },
+    single: {
+      fontSize: 11,
     },
     movieContainer: {
       backgroundColor: '#f6f6f5',
@@ -165,6 +169,14 @@ function ConsultPatientForm() {
       fontSize: 10,
       textAlign: 'left',
     },
+    priv: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'row',
+      alignItems: 'center',
+      fontSize: 5,
+      textAlign: 'left',
+    },
     movieDetails: {
       display: 'flex',
       marginLeft: '6px',
@@ -172,6 +184,10 @@ function ConsultPatientForm() {
   });
 
   const classes = useStyles();
+  function getFileName() {
+    const d = new Date();
+    return `${field.name}_PPQ_${field.recordId}_${d.toLocaleDateString()}.pdf`;
+  }
 
   const MyDocument = () => (
     <Document>
@@ -194,22 +210,17 @@ function ConsultPatientForm() {
             <Text style={styles.subtitle}>
               Folio
               {': '}
-              PPQ-AP-
+              PPQ-
               {field.recordId}
             </Text>
           </View>
         </View>
         <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 3,
+          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
         }}
         >
           <Text>
             <Box fontWeight="fontWeightBold" className={classes.box}>
-              Folio
-              {': '}
-              PPQ-AP-
-              {field.recordId}
-              {'                '}
               Fecha de registro
               {': '}
               {field.createdDate}
@@ -217,10 +228,10 @@ function ConsultPatientForm() {
           </Text>
         </View>
         <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12,
+          color: 'black', textAlign: 'justify', marginLeft: 30, padding: 5, fontSize: 12,
         }}
         >
-          <Text>
+          <Text style={{ lineHeight: 2 }}>
             <Box fontWeight="fontWeightBold" className={classes.box}>
               Tipo de paciente
               {': '}
@@ -230,21 +241,25 @@ function ConsultPatientForm() {
         </View>
         <br />
         <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
+          color: 'black', textAlign: 'justify', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
         }}
         >
-
-          { field.fields.map((fields:any) => (
-            <Text style={styles.item}>
-              { fields.label}
-              {': '}
-              { fields.value}
-              {'                '}
-            </Text>
-          )) }
-
+          <Text style={styles.item}>
+            { field.fields.map((fields:any) => (
+              <View style={{
+                flexDirection: 'column',
+              }}
+              >
+                <Text>
+                  { fields.label}
+                  {':   '}
+                  { fields.value}
+                  {'      '}
+                </Text>
+              </View>
+            ))}
+          </Text>
         </View>
-        <br />
       </Page>
     </Document>
   );
@@ -262,7 +277,7 @@ function ConsultPatientForm() {
           <Grid item xs={12}>
             <PDFDownloadLink
               document={<MyDocument />}
-              fileName="pruebaaaaaa.pdf"
+              fileName={getFileName()}
             >
               <Button
                 type="submit"
