@@ -9,13 +9,14 @@ import {
 }
   from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
 import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
 import {
-  Page, Text, View, Document, StyleSheet, PDFDownloadLink,
+  Page, Text, View, Document, StyleSheet, Image, PDFDownloadLink,
 } from '@react-pdf/renderer';
 
 function ConsultPatientForm() {
@@ -122,6 +123,11 @@ function ConsultPatientForm() {
       padding: 10,
       flexGrow: 1,
     },
+    logo: {
+      height: '100px',
+      width: '55.2px',
+      margin: '10px',
+    },
   });
 
   const classes = useStyles();
@@ -133,6 +139,7 @@ function ConsultPatientForm() {
           color: 'black', textAlign: 'center', margin: 30, padding: 5, fontSize: 20,
         }}
         >
+          <Image source="/images/loginImage.png" style={styles.logo} />
           <Text>
             { field.name}
           </Text>
@@ -200,17 +207,20 @@ function ConsultPatientForm() {
           <Grid item xs={12}>
             <PDFDownloadLink
               document={<MyDocument />}
-              fileName="movielist.pdf"
-              style={{
-                textDecoration: 'none',
-                padding: '10px',
-                color: 'secondary',
-                backgroundColor: 'secondary',
-                border: '1px solid #4a4a4a',
-              }}
+              fileName="pruebaaaaaa.pdf"
             >
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                // onClick={handleSubmit}
+              >
+                Imprimir
+                <PrintIcon className={classes.icon} />
+              </Button>
               {
-               ({ loading }) => (loading ? 'Loading' : 'Imprimir')
+                ({ loading }) => (loading ? 'Loading' : 'Imprimir')
               }
             </PDFDownloadLink>
             <Button
