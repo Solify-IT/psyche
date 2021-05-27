@@ -94,6 +94,7 @@ function ViewUsers() {
 
   const updateProfile = (event: React.ChangeEvent<any>) => {
     const { userid } = event.currentTarget.dataset;
+    console.log(userid);
     history.replace(`/user-update/${userid}`);
   };
 
