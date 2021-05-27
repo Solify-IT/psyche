@@ -119,14 +119,17 @@ function ConsultPatientForm() {
       backgroundColor: 'white',
     },
     section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1,
+      width: '90%',
+      textAlign: 'center',
     },
     logo: {
       height: '100px',
       width: '55.2px',
-      margin: '10px',
+      marginRight: '30px',
+    },
+    item: {
+      width: '90%',
+      flexDirection: 'row',
     },
   });
 
@@ -136,12 +139,15 @@ function ConsultPatientForm() {
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={{
-          color: 'black', textAlign: 'center', margin: 30, padding: 5, fontSize: 20,
+          color: 'black', textAlign: 'left', margin: 30, padding: 5, fontSize: 20,
         }}
         >
-          <Image source="/images/loginImage.png" style={styles.logo} />
           <Text>
-            { field.name}
+            <Image source="/images/loginImage.png" style={styles.logo} />
+            <Text style={{ textAlign: 'center' }}>
+              { field.name}
+            </Text>
+
           </Text>
         </View>
         <View style={{
@@ -178,16 +184,16 @@ function ConsultPatientForm() {
           color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
         }}
         >
-          <Text>
-            { field.fields.map((fields:any) => (
-              <Box fontWeight="fontWeightBold" className={classes.box}>
-                { fields.label}
-                {': '}
-                { fields.value}
-                {'                '}
-              </Box>
-            )) }
-          </Text>
+
+          { field.fields.map((fields:any) => (
+            <Text style={styles.item}>
+              { fields.label}
+              {': '}
+              { fields.value}
+              {'                '}
+            </Text>
+          )) }
+
         </View>
         <br />
       </Page>

@@ -55,6 +55,7 @@ function UpdateUserAdmin() {
 
   const [userInformation, setUserInformation] = useState<User>({
     name: '',
+    lastName: ' ',
     address: '',
     zipCode: '',
     email: '',
@@ -69,7 +70,7 @@ function UpdateUserAdmin() {
     },
   });
   const {
-    name, address, zipCode, email, username, telephone, password, role, password2, errors,
+    name, lastName, address, zipCode, email, username, telephone, password, role, password2, errors,
   } = { ...userInformation };
 
   useEffect(() => {
