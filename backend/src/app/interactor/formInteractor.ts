@@ -4,6 +4,7 @@ import IFormRepository from 'app/repository/formRepository';
 import { Form } from 'domain/model';
 import PatientForm from 'domain/model/patientForm';
 import PatientFormField from 'domain/model/patientFormField';
+import NotFoundError from 'utils/errors/NotFoundError';
 
 export default class FormInteractor {
   formRepository: IFormRepository;
@@ -62,6 +63,25 @@ export default class FormInteractor {
   async getFormsByRecordId(id: number): Promise<Form[]> {
     const [result, error] = await wrapError(this.formRepository.getFormsWithReportId(id));
 
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.forms(result);
+  }
+
+  async deleteFormById(id: number): Promise<boolean> {
+    const [result, error] = await wrapError(this.formRepository.deleteFormWithId(id));
+    if (error) {
+      throw error;
+    }
+    if (!result) {
+      throw new NotFoundError('No se encontró el form.');
+    }
+    return result;
+  }
+
+  async getForms(): Promise<Form[]> {
+    const [result, error] = await wrapError(this.formRepository.getForms());
     if (error) {
       throw error;
     }

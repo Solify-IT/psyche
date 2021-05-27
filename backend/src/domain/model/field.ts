@@ -18,7 +18,7 @@ export default class Field {
   @Column()
   type: string;
 
-  @ManyToOne(() => Form, (form) => form.fields)
+  @ManyToOne(() => Form, (form) => form.fields, { onDelete: 'CASCADE' })
   form?: Form;
 
   @OneToMany(() => FieldOption, (options) => options.field, { cascade: true, eager: true, onDelete: 'CASCADE' })
