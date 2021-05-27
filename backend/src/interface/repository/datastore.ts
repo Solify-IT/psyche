@@ -5,4 +5,5 @@ export default interface IDatastore {
   save<T>(tableName: string, data: T): Promise<T>;
   bulkInsert<T>(tableName: string, data: T[]): Promise<T[]>;
   groupByAndCount(tableName: string, field: string, isAge?: boolean) : Promise<any[]>;
+  delete<T>(tableName: string, id: number): Promise<T>;
 }

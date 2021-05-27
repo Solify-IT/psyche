@@ -108,9 +108,11 @@ export default class UserRepository implements IUserRepository {
   }
 
   async login(username: string, password: string): Promise<User> {
+    const active = true;
     const [user, error] = await wrapError(
       this.datastore.fetchOne<User>('User', {
         username,
+        active,
       }),
     );
     if (error) {
@@ -157,6 +159,24 @@ export default class UserRepository implements IUserRepository {
       throw error;
     }
 
+    return users;
+  }
+
+  async deactiveAccount(id: number): Promise <User> {
+    const active = false;
+    const [user, userError] = await wrapError(
+      this.datastore.fetchOne<User>('User', { id }),
+    );
+    if (userError) {
+      throw userError;
+    }
+    const [users, error] = await wrapError(
+      this.datastore.save<User>('User', { ...user, active }),
+    );
+
+    if (error) {
+      throw error;
+    }
     return users;
   }
 }

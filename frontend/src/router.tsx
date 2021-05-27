@@ -4,7 +4,6 @@ import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
-import NewPatientForm from './views/Forms/newPatientForm';
 import RecordDetail from './views/Patients/recordDetail';
 
 // User Views
@@ -26,14 +25,20 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 // Patient Views
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
-import PatientAvailableForms from './views/Forms/patientAvailableForms';
 import PatientCanalization from './views/Patients/patientCanalization';
 import UpdatePatientCanalization from './views/Patients/updatePatientCanalization';
-// Form views
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
-import NewForm from './views/Forms/newForm';
-import UpdatePatientForm from './views/Forms/updatePatientForm';
-import ConsultPatientForm from './views/Forms/consultPatientForm';
+
+// Form views
+import {
+  ViewForms,
+  ConsultPatientForm,
+  UpdatePatientForm,
+  PatientAvailableForms,
+  NewPatientForm,
+  NewForm,
+} from './views/Forms';
+
 // Users
 import ConsultProfiles from './views/Users/consultProfiles';
 import UpdateUserAdmin from './views/Users/updateUserAdmin';
@@ -72,6 +77,8 @@ const AppRouter = () => (
     <PrivateRoute path="/view-users" exact component={ViewUsers} />
     <PrivateRoute path="/user-update/:id/" exact component={UpdateUserAdmin} />
     <Route path="/soolers" exact component={Soolers} />
+    <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
+    <PrivateRoute path="/view-forms" exact component={ViewForms} />
   </div>
 );
 

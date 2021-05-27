@@ -64,12 +64,20 @@ export default class Router {
     app.post('/canalize-patient', async (request, response, next) => {
       await wrapError(controller.patients.canalizePatient({ request, response, next }));
     });
+    app.put('/deactivate-account/:id', async (request, response, next) => {
+      await wrapError(controller.users.deactivateAccount({ request, response, next }));
+    });
     app.put('/changePassword/', async (request, response, next) => {
       await wrapError(controller.users.changePassword({ request, response, next }));
     });
-
     app.get('/report/', async (request, response, next) => {
       await wrapError(controller.patients.getPatientStatistics({ request, response, next }));
+    });
+    app.delete('/forms/:id', async (request, response, next) => {
+      await wrapError(controller.forms.deleteFormById({ request, response, next }));
+    });
+    app.get('/forms', async (request, response, next) => {
+      await wrapError(controller.forms.getForms({ request, response, next }));
     });
   }
 }

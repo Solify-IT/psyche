@@ -22,8 +22,10 @@ import {
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
 import { useHistory } from 'react-router';
+import Swal from 'sweetalert2';
+import { authenticationService } from 'src/api/authenticationService';
 import { Link } from 'react-router-dom';
-import { getUsers } from '../../api/user';
+import { deactivateAccount, getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -47,6 +49,49 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 function ViewUsers() {
+  const [, setLoading] = useState<boolean>(false);
+  const history = useHistory();
+  const currentUser = authenticationService.currentUserValue;
+  const handleSubmit = async (id: number) => {
+    setLoading(true);
+    try {
+      await deactivateAccount(id);
+      Swal.fire(
+        'Cuenta desactivada!',
+        'El usuario no podrá acceder a partir de este momento.',
+        'success',
+      );
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrio un error interno!',
+      });
+      console.log(error);
+    } finally {
+      console.log('finally');
+      setLoading(false);
+      history.replace('/view-users');
+    }
+  };
+
+  function handleDelete(id:number) {
+    Swal.fire({
+      title: '¿Estás seguro de desactivar al usuario?',
+      text: 'El usuario no podrá acceder al sistema',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#6EA84F',
+      cancelButtonColor: '#FF0000',
+      confirmButtonText: 'Confirmar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSubmit(id);
+      }
+    });
+  }
+
   const classes = useStyles();
   const [users, setUsers] = useState<Users[]>([]);
 
@@ -54,12 +99,10 @@ function ViewUsers() {
     getUsers()
       .then((response:any) => {
         setUsers(Object.values(response));
-        console.log(response);
       })
       .catch((error:any) => console.log(error));
   }, []);
 
-  const history = useHistory();
   const updateProfile = (event: React.ChangeEvent<any>) => {
     const { userid } = event.currentTarget.dataset;
     console.log(userid);
@@ -77,10 +120,16 @@ function ViewUsers() {
         <IconButton data-userid={user.username} onClick={updateProfile}>
           <Edit color="secondary" />
         </IconButton>
+        <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
+          <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
+        </IconButton>
       </TableCell>
       <TableCell>
-        <IconButton>
-          <Delete style={{ color: '#FF0000' }} />
+        <IconButton
+          disabled={!user.active || (user.id === currentUser.user.id)}
+          onClick={() => handleDelete(user.id!)}
+        >
+          <Delete style={{ color: (user.active && (user.id !== currentUser.user.id)) ? '#FF0000' : '#A7A7A7' }} />
         </IconButton>
       </TableCell>
     </TableRow>
