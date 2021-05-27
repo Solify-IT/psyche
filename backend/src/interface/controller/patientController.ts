@@ -27,6 +27,7 @@ export default class PatientController {
       context.next(error);
       return;
     }
+
     context.response.status(200).json(patients);
   }
 

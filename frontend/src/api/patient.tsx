@@ -29,7 +29,6 @@ export async function canalizePatient(patient:Array<Patient>) {
 }
 
 export async function archiveRecord(id: number) {
-  console.log('await 1');
   const result = await server.put(`/archive-record/${id}`).then(handleResponse).catch(handleResponse);
   return result.data;
 }
