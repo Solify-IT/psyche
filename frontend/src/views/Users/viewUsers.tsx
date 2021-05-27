@@ -109,6 +109,7 @@ function ViewUsers() {
       <TableCell>
         <IconButton data-userid={user.username} onClick={updateProfile}>
           <Edit color="secondary" />
+        </IconButton>
         <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
           <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
         </IconButton>
