@@ -23,7 +23,6 @@ import {
 }
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
-import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { authenticationService } from 'src/api/authenticationService';
 import { Link } from 'react-router-dom';
@@ -93,7 +92,6 @@ function ViewUsers() {
       .catch((error:any) => console.log(error));
   }, []);
 
-  const history = useHistory();
   const updateProfile = (event: React.ChangeEvent<any>) => {
     const { userid } = event.currentTarget.dataset;
     history.replace(`/user-update/${userid}`);
