@@ -106,10 +106,11 @@ function ViewUsers() {
       <TableCell>{user.zipCode}</TableCell>
       <TableCell>{user.address}</TableCell>
       <TableCell>
-        <IconButton data-userid={user.username} onClick={updateProfile}>
-          <Edit color="secondary" />
-        </IconButton>
-        <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
+        <IconButton
+          disabled={!user.active || !(user.id !== currentUser.user.id)}
+          data-userid={user.username}
+          onClick={updateProfile}
+        >
           <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
         </IconButton>
       </TableCell>
@@ -161,4 +162,5 @@ function ViewUsers() {
     </main>
   );
 }
+
 export default ViewUsers;
