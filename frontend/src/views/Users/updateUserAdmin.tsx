@@ -17,8 +17,9 @@ import {
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
-import { consultProfile, updateUser } from 'src/api/user';
+import { getUser, updateUser } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
+import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -35,11 +36,20 @@ const useStyles = makeStyles((theme) => ({
   table: {
     padding: '10px',
   },
+  rol: {
+    maxWidth: '100%',
+    padding: '200px',
+  },
+  textFields: {
+    padding: '10px',
+  },
+  button: {
+    paddingTop: '15px',
+  },
 }));
-function UpdateUser() {
+function UpdateUserAdmin() {
   const classes = useStyles();
-  const currentUser = authenticationService.currentUserValue;
-  const { userId } : any = useParams();
+  const { id } : any = useParams();
   const history = useHistory();
 
   const [userInformation, setUserInformation] = useState<User>({
@@ -60,17 +70,18 @@ function UpdateUser() {
     },
   });
   const {
-    name, address, zipCode, email, username, telephone, password, role,
-    professionalLicense, workSchedule, password2, errors,
+    name, address, zipCode, email, username, telephone, password, role, professionalLicense,
+    workSchedule, password2, errors,
   } = { ...userInformation };
 
   useEffect(() => {
-    consultProfile(userId)
+    getUser(id)
       .then((response:any) => {
         setUserInformation(response.data);
+        console.log(id);
       })
       .catch((error:any) => console.log(error));
-  }, [userId]);
+  }, [id]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const handleChange = (event: React.ChangeEvent<any>) => {
@@ -81,10 +92,9 @@ function UpdateUser() {
     setLoading(true);
     try {
       console.log(userInformation);
-      await updateUser(parseInt(userId, 10), userInformation);
-      console.log('we are gonna try 2');
+      await updateUser(parseInt(id, 10), userInformation);
       toast.success('Se ha modificado la información del usuario.');
-      history.replace(`/user-profile/${currentUser.user.id}`);
+      history.replace('/view-users');
     } catch (error) {
       console.error(error);
       toast.error('Ocurrió un error al intentar editar el usuario');
@@ -167,23 +177,53 @@ function UpdateUser() {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} className={classes.textFields}>
                 <TextField
                   variant="outlined"
                   margin="normal"
-                  type="workSchedule"
+                  required
+                  fullWidth
+                  id="professionalLicense"
+                  label="Cédula Profesional"
+                  name="professionalLicense"
+                  value={professionalLicense}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className={classes.textFields}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
                   required
                   fullWidth
                   id="workSchedule"
-                  label="Horario de Trabajo"
+                  label="Horarios de Trabajo"
                   name="workSchedule"
                   value={workSchedule}
                   onChange={handleChange}
                 />
               </Grid>
+              <Grid item xs={12} sm={6} className={classes.rol} alignItems="center">
+                <InputLabel id="role-label">Rol</InputLabel>
+                <Select
+                  required
+                  labelId="role-select"
+                  fullWidth
+                  id="role-select"
+                  name="role"
+                  value={role}
+                  onChange={handleChange}
+                >
+                  { Object.keys(roles).map((roleOption) => (
+                    <MenuItem value={roleOption} key={roleOption}>
+                      {roleOption}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Grid>
             </Grid>
             <Grid container alignItems="center" justify="center" direction="row">
-              <Grid item>
+              <Grid item className={classes.button}>
                 {loading ? <LoadingSpinner /> : (
                   <Button
                     type="submit"
@@ -203,4 +243,4 @@ function UpdateUser() {
     </div>
   );
 }
-export default UpdateUser;
+export default UpdateUserAdmin;

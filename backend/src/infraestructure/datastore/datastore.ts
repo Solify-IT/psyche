@@ -44,4 +44,23 @@ export default class Datastore implements IDatastore {
     return items;
   }
 
+  async delete<T>(tableName: string, id: number): Promise<T> {
+    const connection = getConnection();
+    const repository = connection.manager.getRepository<T>(tableName);
+    await repository.delete(id);
+    const found = await repository.findOne(id);
+    return found;
+  }
+
+  async fetchAllJoining<T>(tableName: string, tableName2: string): Promise<T[]> {
+    const connection = getConnection();
+    const repositoryT1 = connection.manager.getRepository(tableName);
+    const repositoryT2 = connection.manager.getRepository(tableName2);
+
+    const usersActives = connection.getRepository<T>(tableName).createQueryBuilder(tableName)
+      .innerJoinAndSelect("patient.record_id","record","record.active = :isActive",{ isActive: false})
+      .getRawMany();
+      return usersActives;
+  }
+
 }
