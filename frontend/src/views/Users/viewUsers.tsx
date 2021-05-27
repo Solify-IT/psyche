@@ -46,15 +46,15 @@ function ViewUsers() {
     try {
       await deactivateAccount(id);
       Swal.fire(
-        'Cuenta desactivada!',
-        'El usuario no podrá acceder a partir de este momento.',
+        '¡Cuenta desactivada!',
+        'El usuario no tiene acceso al sistema a partir de este momento.',
         'success',
       );
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ocurrio un error interno!',
+        text: '¡Ocurrió un error interno!',
       });
       console.log(error);
     } finally {
@@ -66,8 +66,8 @@ function ViewUsers() {
 
   function handleDelete(id:number) {
     Swal.fire({
-      title: '¿Estás seguro de desactivar al usuario?',
-      text: 'El usuario no podrá acceder al sistema',
+      title: '¿Desactivar usuario?',
+      text: 'Al confirmar, el usuario no tendrá acceso al sistema.',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
@@ -106,10 +106,11 @@ function ViewUsers() {
       <TableCell>{user.zipCode}</TableCell>
       <TableCell>{user.address}</TableCell>
       <TableCell>
-        <IconButton data-userid={user.username} onClick={updateProfile}>
-          <Edit color="secondary" />
-        </IconButton>
-        <IconButton disabled={!user.active || !(user.id !== currentUser.user.id)}>
+        <IconButton
+          disabled={!user.active || !(user.id !== currentUser.user.id)}
+          data-userid={user.username}
+          onClick={updateProfile}
+        >
           <Edit color={(user.active && (user.id !== currentUser.user.id)) ? 'secondary' : 'disabled'} />
         </IconButton>
       </TableCell>
@@ -161,4 +162,5 @@ function ViewUsers() {
     </main>
   );
 }
+
 export default ViewUsers;
