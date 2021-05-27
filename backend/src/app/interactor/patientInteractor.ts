@@ -3,6 +3,7 @@ import { Patient } from 'domain/model';
 import IPatientPresenter from 'app/presenter/patientPresenter';
 import IPatientRepository from 'app/repository/patientRepository';
 import Record from 'domain/model/record';
+import InvalidDataError from 'utils/errors/InvalidDataError';
 
 export default class PatientInteractor {
   patientRepository: IPatientRepository;
@@ -54,11 +55,14 @@ export default class PatientInteractor {
   }
 
   async getPatientStatistics(startDate: Date, endDate: Date) : Promise<any> {
-    const [result, error] = await wrapError(this.patientRepository.getGenderGraph('Psicología Pareja', startDate, endDate));
+    if (startDate && endDate) {
+      const [result, error] = await wrapError(this.patientRepository.getGenderGraph('Psicología Pareja', startDate, endDate));
 
-    if (error) {
-      throw error;
+      if (error) {
+        throw error;
+      }
+      return result;
     }
-    return result;
+    throw new InvalidDataError('Se debe proporcionar una fecha inicio y fin');
   }
 }
