@@ -19,6 +19,7 @@ export = {
   cli: {
     migrationsDir: 'src/infraestructure/orm/migration',
   },
+  logging: false,
   ssl: process.env.SSL_CERT ? {
     ca: process.env.SSL_CERT,
   } : null,

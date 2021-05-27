@@ -14,3 +14,25 @@ export type PasswordConfirm = {
   oldPassword: string,
   password: string
 };
+
+export type GroupByAndCountBuilder = {
+  tableName: string,
+  field: string,
+  isAge?: boolean,
+  condition?: string
+};
+
+export type GraphGroup = {
+  title: string,
+  graphs: Graph[],
+};
+
+export type Graph = {
+  title: string,
+  data: GraphData[],
+};
+
+export type GraphData = {
+  label: string,
+  value: number,
+};

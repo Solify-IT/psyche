@@ -1,3 +1,4 @@
+import { GraphData, GroupByAndCountBuilder } from '@types';
 import { IDatastore } from 'interface/repository';
 import { getConnection } from 'typeorm';
 
@@ -45,17 +46,33 @@ export default class Datastore implements IDatastore {
   }
 
   async groupByAndCount<T>(
-    tableName: string, field: string, isAge?: boolean,
-  ): Promise<any[]> {
+    builder: GroupByAndCountBuilder,
+  ): Promise<GraphData[]> {
     const connection = getConnection();
-    const select = isAge ? `date_part('year', AGE(${tableName}.${field}))` : `${tableName}.${field}`;
-    const groupBy = isAge ? 'age' : field;
-    const items = await connection.getRepository<T>(tableName).createQueryBuilder(tableName)
-      .select(select, isAge ? 'age' : field)
+    const select = builder.isAge ? `date_part('year', AGE(${builder.tableName}.${builder.field}))` : `${builder.tableName}.${builder.field}`;
+    const groupBy = builder.isAge ? 'age' : builder.field;
+    const items = await connection.getRepository<T>(
+      builder.tableName,
+    ).createQueryBuilder(builder.tableName)
+      .select(select, groupBy)
       .addSelect('COUNT(id)')
+      .where(builder.condition)
       .groupBy(groupBy)
       .getRawMany();
-    return items;
+
+    console.log(items);
+
+    const graphData : GraphData[] = items.map((item) => {
+      const label = item[groupBy];
+      const value = item.count;
+      const newGraphData : GraphData = {
+        label,
+        value,
+      };
+      console.log(newGraphData);
+      return newGraphData;
+    });
+    return graphData;
   }
 
   async delete<T>(tableName: string, id: number): Promise<T> {

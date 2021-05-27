@@ -54,9 +54,7 @@ export default class PatientInteractor {
   }
 
   async getPatientStatistics(startDate: Date, endDate: Date) : Promise<any> {
-    console.log(startDate);
-    console.log(endDate);
-    const [result, error] = await wrapError(this.patientRepository.getPatientStatistics());
+    const [result, error] = await wrapError(this.patientRepository.getGenderGraph('Psicología Pareja', startDate, endDate));
 
     if (error) {
       throw error;

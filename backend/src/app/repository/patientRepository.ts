@@ -1,3 +1,4 @@
+import { Graph } from '@types';
 import { Patient } from 'domain/model';
 import Record from 'domain/model/record';
 
@@ -6,5 +7,6 @@ export default interface IPatientRepository {
   findRecord(id: number) : Promise<Record>;
   register(patient: Patient[]): Promise<Record>;
   canalize(patient: Patient[]): Promise<Patient>;
-  getPatientStatistics(): Promise<any>;
+  getAgeGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph>;
+  getGenderGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph>
 }
