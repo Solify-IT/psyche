@@ -18,8 +18,8 @@ Usa el formato: SIGLAS-XX (ejemplo SNLX-99)
 - [ ] Añadí la documentación necesaria, si es necesario.
 - [ ] Agregué tests para probar que mi código funciona
 - [ ] Revisé PRs existentes antes de publicar el mío.
-- [ ] Agregue artefactos de analisis, diseño, codigo, y pruebas a la matriz de trazabilidad.
-- [ ] Agregue los tiempos y fechas reales en el plan de valor ganado.
+- [ ] Agregue artefactos de analisis, diseño, codigo, y pruebas a la [matriz de trazabilidad](https://docs.google.com/spreadsheets/d/1d1Xoovni1NMP6kdRcVcF63uMi7vCh7L5i_9vEs-EmSg/edit?usp=sharing).
+- [ ] Agregue los tiempos y fechas reales en el [plan de valor ganado](https://docs.google.com/spreadsheets/d/1MVEE5b19y5CxzQJxFSf31RyKIn8mhyHfYt4_y15_M5A/edit?usp=sharing).
 
 **Reviewers:**
 - [ ] La Inyección de dependencias es correcta.
