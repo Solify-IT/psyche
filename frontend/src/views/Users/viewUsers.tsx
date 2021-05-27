@@ -46,15 +46,15 @@ function ViewUsers() {
     try {
       await deactivateAccount(id);
       Swal.fire(
-        'Cuenta desactivada!',
-        'El usuario no podrá acceder a partir de este momento.',
+        '¡Cuenta desactivada!',
+        'El usuario no podrá acceder al sistema a partir de este momento.',
         'success',
       );
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ocurrio un error interno!',
+        text: '¡Ocurrió un error interno!',
       });
       console.log(error);
     } finally {
@@ -66,8 +66,8 @@ function ViewUsers() {
 
   function handleDelete(id:number) {
     Swal.fire({
-      title: '¿Estás seguro de desactivar al usuario?',
-      text: 'El usuario no podrá acceder al sistema',
+      title: '¿Está seguro de desactivar al usuario?',
+      text: 'Al confrimar, el usuario no podrá acceder al sistema.',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
