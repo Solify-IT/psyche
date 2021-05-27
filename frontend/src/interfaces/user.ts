@@ -9,6 +9,8 @@ export default interface User {
   password: string;
   email: string;
   role: string;
+  professionalLicense: string;
+  workSchedule: string;
   password2: string;
   errors: {
     password: string,

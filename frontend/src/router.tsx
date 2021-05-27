@@ -12,12 +12,16 @@ import Login from './views/login';
 import ModifyProfile from './views/Users/modifyProfile';
 import ViewUsers from './views/Users/viewUsers';
 
+// Soolers View
+import Soolers from './views/Dashboard/soolers';
+
 // Dashboard Views
 import DashboardArea from './views/Dashboard/dashboardArea';
 import DashboardAtPsic from './views/Dashboard/dashboardAtPsic';
 import DashboardAtPsiq from './views/Dashboard/dashboardAtPsiq';
 import DashboardEvaluacion from './views/Dashboard/dashboardEvaluacion';
 import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
+
 // Patient Views
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
@@ -71,7 +75,8 @@ const AppRouter = () => (
     <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} />
-    <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
+    <PrivateRoute path="/user-update/:id/" exact component={UpdateUserAdmin} />
+    <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
   </div>
 );

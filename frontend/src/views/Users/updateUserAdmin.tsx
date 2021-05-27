@@ -17,7 +17,7 @@ import {
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
-import { consultProfile } from 'src/api/user';
+import { getUser, updateUser } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
 import roles from 'src/fixtures/roles';
 
@@ -49,8 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function UpdateUserAdmin() {
   const classes = useStyles();
-  const currentUser = authenticationService.currentUserValue;
-  const { userId } : any = useParams();
+  const { id } : any = useParams();
   const history = useHistory();
 
   const [userInformation, setUserInformation] = useState<User>({
@@ -63,6 +62,8 @@ function UpdateUserAdmin() {
     telephone: '',
     password: '',
     role: '',
+    professionalLicense: '',
+    workSchedule: '',
     password2: '',
     errors: {
       password: '',
@@ -70,16 +71,19 @@ function UpdateUserAdmin() {
     },
   });
   const {
-    name, lastName, address, zipCode, email, username, telephone, password, role, password2, errors,
+    name, lastName, address, zipCode, email, username, telephone, password,
+    role, professionalLicense,
+    workSchedule, password2, errors,
   } = { ...userInformation };
 
   useEffect(() => {
-    consultProfile(userId)
+    getUser(id)
       .then((response:any) => {
         setUserInformation(response.data);
+        console.log(id);
       })
       .catch((error:any) => console.log(error));
-  }, [userId]);
+  }, [id]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const handleChange = (event: React.ChangeEvent<any>) => {
@@ -90,10 +94,9 @@ function UpdateUserAdmin() {
     setLoading(true);
     try {
       console.log(userInformation);
-      // await updateUser(parseInt(userId, 10), userInformation);
-      console.log('we are gonna try 2');
+      await updateUser(parseInt(id, 10), userInformation);
       toast.success('Se ha modificado la información del usuario.');
-      history.replace(`/user-profile/${currentUser.user.id}`);
+      history.replace('/view-users');
     } catch (error) {
       console.error(error);
       toast.error('Ocurrió un error al intentar editar el usuario');
@@ -182,10 +185,23 @@ function UpdateUserAdmin() {
                   margin="normal"
                   required
                   fullWidth
-                  id="name"
+                  id="professionalLicense"
                   label="Cédula Profesional"
-                  name="name"
-                  value={name}
+                  name="professionalLicense"
+                  value={professionalLicense}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className={classes.textFields}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="workSchedule"
+                  label="Horarios de Trabajo"
+                  name="workSchedule"
+                  value={workSchedule}
                   onChange={handleChange}
                 />
               </Grid>

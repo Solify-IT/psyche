@@ -144,7 +144,7 @@ function ConsultPatientForm() {
         >
           <Text>
             <Image source="/images/loginImage.png" style={styles.logo} />
-            <Text style={{ textAlign: 'center' }}>
+            <Text>
               { field.name}
             </Text>
 

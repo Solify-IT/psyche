@@ -50,6 +50,8 @@ function RegisterUser() {
     password: '',
     email: '',
     role: '',
+    professionalLicense: '',
+    workSchedule: '',
     password2: '',
     errors: {
       password: '',
@@ -57,8 +59,8 @@ function RegisterUser() {
     },
   });
   const {
-    name, lastName, username, email, address, zipCode, telephone, password, role, password2,
-    errors,
+    name, lastName, username, email, address, zipCode, telephone, password, role,
+    professionalLicense, workSchedule, password2, errors,
   } = { ...newUser };
 
   const classes = useStyles();

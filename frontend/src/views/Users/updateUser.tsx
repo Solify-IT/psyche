@@ -52,6 +52,8 @@ function UpdateUser() {
     telephone: '',
     password: '',
     role: '',
+    professionalLicense: '',
+    workSchedule: '',
     password2: '',
     errors: {
       password: '',
@@ -59,7 +61,8 @@ function UpdateUser() {
     },
   });
   const {
-    name, lastName, address, zipCode, email, username, telephone, password, role, password2, errors,
+    name, lastName, address, zipCode, email, username, telephone, password, role,
+    professionalLicense, workSchedule, password2, errors,
   } = { ...userInformation };
 
   useEffect(() => {
@@ -175,6 +178,20 @@ function UpdateUser() {
                   label="Correo"
                   name="email"
                   value={email}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  type="workSchedule"
+                  required
+                  fullWidth
+                  id="workSchedule"
+                  label="Horario de Trabajo"
+                  name="workSchedule"
+                  value={workSchedule}
                   onChange={handleChange}
                 />
               </Grid>
