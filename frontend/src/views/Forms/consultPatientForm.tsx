@@ -16,7 +16,7 @@ import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
 import {
-  Page, Text, View, Document, StyleSheet, PDFDownloadLink,
+  Page, Text, View, Document, StyleSheet, Image, PDFDownloadLink,
 } from '@react-pdf/renderer';
 
 function ConsultPatientForm() {
@@ -123,6 +123,11 @@ function ConsultPatientForm() {
       padding: 10,
       flexGrow: 1,
     },
+    logo: {
+      height: '100px',
+      width: '55.2px',
+      margin: '10px',
+    },
   });
 
   const classes = useStyles();
@@ -134,6 +139,7 @@ function ConsultPatientForm() {
           color: 'black', textAlign: 'center', margin: 30, padding: 5, fontSize: 20,
         }}
         >
+          <Image source="/images/loginImage.png" style={styles.logo} />
           <Text>
             { field.name}
           </Text>
