@@ -66,7 +66,7 @@ function ViewUsers() {
 
   function handleDelete(id:number) {
     Swal.fire({
-      title: '¿Está seguro de desactivar al usuario?',
+      title: '¿Desactivar usuario?',
       text: 'Al confirmar, el usuario no tendrá acceso al sistema.',
       icon: 'warning',
       showCancelButton: true,
