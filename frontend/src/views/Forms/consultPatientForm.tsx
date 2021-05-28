@@ -15,9 +15,6 @@ import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
-import {
-  Page, Text, View, Document, StyleSheet, Image, PDFDownloadLink,
-} from '@react-pdf/renderer';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -114,155 +111,15 @@ function ConsultPatientForm() {
     },
   }));
 
-  const styles = StyleSheet.create({
-    page: {
-      backgroundColor: 'white',
-    },
-    section: {
-      width: '90%',
-      textAlign: 'center',
-    },
-    logo: {
-      height: '100px',
-      width: '55.2px',
-      marginRight: '15px',
-      marginLeft: '40px',
-      marginTop: '15px',
-      marginBottom: '15px',
-      alignSelf: 'flex-end',
-    },
-    item: {
-      width: '80%',
-      fontSize: 11,
-      fontWeignt: 700,
-    },
-    single: {
-      fontSize: 11,
-    },
-    movieContainer: {
-      backgroundColor: '#f6f6f5',
-      display: 'flex',
-      flexDirection: 'row',
-      padding: '5px',
-      margin: '30px',
-      fontSize: 20,
-      borderColor: '#C94B72',
-      borderRadius: '10px',
-      borderWidth: 1,
-      alignContent: 'center',
-    },
-    title: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: '38px',
-      fontSize: 15,
-    },
-    subtitle: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: '7px',
-      // marginLeft: '80px',
-      fontSize: 10,
-      textAlign: 'left',
-    },
-    priv: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      alignItems: 'center',
-      fontSize: 5,
-      textAlign: 'left',
-    },
-    movieDetails: {
-      display: 'flex',
-      marginLeft: '6px',
-    },
-  });
-
   const classes = useStyles();
-  function getFileName() {
-    const d = new Date();
-    return `${field.name}_PPQ_${field.recordId}_${d.toLocaleDateString()}.pdf`;
-  }
 
-  const MyDocument = () => (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        {/* <View style={{
-          color: 'black', textAlign: 'left', margin: 30, padding: 5, fontSize: 20,
-        }}
-        > */}
-        <View style={styles.movieContainer}>
-          <Image source="/images/loginImage.png" style={styles.logo} />
-          <View style={styles.movieDetails}>
-            <Text style={styles.title}>
-              Patronato Psicológico Queretano I.A.P
-            </Text>
-            <br />
-            <Text style={styles.subtitle}>
-              { field.name}
-            </Text>
-            <br />
-            <Text style={styles.subtitle}>
-              Folio
-              {': '}
-              PPQ-
-              {field.recordId}
-            </Text>
-          </View>
-        </View>
-        <View style={{
-          color: 'black', textAlign: 'left', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
-        }}
-        >
-          <Text>
-            <Box fontWeight="fontWeightBold" className={classes.box}>
-              Fecha de registro
-              {': '}
-              {field.createdDate}
-            </Box>
-          </Text>
-        </View>
-        <View style={{
-          color: 'black', textAlign: 'justify', marginLeft: 30, padding: 5, fontSize: 12,
-        }}
-        >
-          <Text style={{ lineHeight: 2 }}>
-            <Box fontWeight="fontWeightBold" className={classes.box}>
-              Tipo de paciente
-              {': '}
-              {field.type}
-            </Box>
-          </Text>
-        </View>
-        <br />
-        <View style={{
-          color: 'black', textAlign: 'justify', marginLeft: 30, padding: 5, fontSize: 12, lineHeight: 2,
-        }}
-        >
-          <Text style={styles.item}>
-            { field.fields.map((fields:any) => (
-              <View style={{
-                flexDirection: 'column',
-              }}
-              >
-                <Text>
-                  { fields.label}
-                  {':   '}
-                  { fields.value}
-                  {'      '}
-                </Text>
-              </View>
-            ))}
-          </Text>
-        </View>
-      </Page>
-    </Document>
-  );
+  function printDiv() {
+    const contenidoOriginal = document.body.innerHTML;
+
+    window.print();
+
+    document.body.innerHTML = contenidoOriginal;
+  }
 
   return (
     <div className={classes.heroContent}>
@@ -275,24 +132,16 @@ function ConsultPatientForm() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <PDFDownloadLink
-              document={<MyDocument />}
-              fileName={getFileName()}
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={printDiv}
             >
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                // onClick={handleSubmit}
-              >
-                Imprimir
-                <PrintIcon className={classes.icon} />
-              </Button>
-              {
-                ({ loading }) => (loading ? 'Loading' : 'Imprimir')
-              }
-            </PDFDownloadLink>
+              Imprimir
+              <PrintIcon className={classes.icon} />
+            </Button>
             <Button
               type="submit"
               variant="contained"
