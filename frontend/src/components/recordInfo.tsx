@@ -98,7 +98,6 @@ function FormSection(props: FormSectionProps) {
 
   function consultForm(event: React.ChangeEvent<any>) {
     const { id } = event.currentTarget.dataset;
-    console.log(id);
     // eslint-disable-next-line no-restricted-globals
     history.push(`/patient-form/${id}`);
   }
@@ -169,7 +168,6 @@ function RecordInfo(props: RecordInfoProps) {
   const handleArchiveRecord = async (id: number) => {
     setLoading(true);
     try {
-      console.log(id);
       await archiveRecord(id);
       console.log('ended');
       Swal.fire(
@@ -181,11 +179,10 @@ function RecordInfo(props: RecordInfoProps) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ocurrio un error interno!',
+        text: 'Ocurrió un error interno!',
       });
       console.log(error);
     } finally {
-      console.log('finally');
       setLoading(false);
       history.replace('/');
     }
