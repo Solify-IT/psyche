@@ -52,17 +52,4 @@ export default class Datastore implements IDatastore {
     return found;
   }
 
-  /* async fetchAllJoining(tableName: string, tableName2: string): Promise<void> {
-    const connection = getConnection();
-    const repositoryT1 = connection.manager.getRepository(tableName);
-    const repositoryT2 = connection.manager.getRepository(tableName2);
-    await repositoryT1
-
-    const usersActives: T[] = createQueryBuilder(tableName)
-      .innerJoinAndSelect("patient.record_id","record","record.active = :isActive",{ isActive: false})
-      .getRawMany();
-      return usersActives;
-  }
-} */
-
 }
