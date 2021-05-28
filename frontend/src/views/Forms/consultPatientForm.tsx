@@ -11,7 +11,7 @@ import {
 import EditIcon from '@material-ui/icons/Edit';
 import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
@@ -112,13 +112,13 @@ function ConsultPatientForm() {
   }));
 
   const classes = useStyles();
+  const history = useHistory();
 
   function printDiv() {
-    const contenidoOriginal = document.body.innerHTML;
-
+    // const contenidoOriginal = document.body.innerHTML;
     window.print();
-
-    document.body.innerHTML = contenidoOriginal;
+    // document.body.innerHTML = contenidoOriginal;
+    history.replace(`/patient-form/${id}`);
   }
 
   return (
