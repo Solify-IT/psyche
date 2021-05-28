@@ -14,6 +14,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Paper,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -23,6 +24,7 @@ import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -31,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
   group: {
     margin: theme.spacing(3, 0, 3),
     textAlign: 'left',
+  },
+  paper: {
+    marginTop: '20px',
+    padding: '30px',
   },
   submit: {
     textAlign: 'center',
@@ -269,12 +275,10 @@ function UpdatePatientForm() {
 
   return (
     <main>
-      <Typography variant="h2" align="center">
-        Modificar el Formato del Paciente
-      </Typography>
       <div className={classes.heroContent}>
         <Container>
-          <Grid container spacing={3}>
+          <ContentTitle text="Modificar Encuesta De Paciente" />
+          <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} spacing={3}>
             <Grid item xs={12}>
               <Typography variant="h6" align="left">
                 Nombre del Formato:
@@ -300,7 +304,6 @@ function UpdatePatientForm() {
               </Grid>
 
             </Grid>
-
           </Grid>
         </Container>
       </div>

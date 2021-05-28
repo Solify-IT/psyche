@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   IconButton,
 }
   from '@material-ui/core';
@@ -17,6 +16,7 @@ import Form from 'src/interfaces/form';
 import { getForms, deleteForm } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
 
 type FormsTableProps = {
   initialForms: Form[]
@@ -121,9 +121,7 @@ function FormsTable(props: FormsTableProps) {
   return (
     <main>
       <div className={classes.heroContent}>
-        <Typography variant="h2" align="center">
-          Consultar Forms
-        </Typography>
+        <ContentTitle text="Consultar Encuestas" />
         <Grid container justify="center" alignItems="center">
           <Grid item className={classes.table}>
             <div style={{ height: 800, width: '100%', marginTop: '20px' }}>

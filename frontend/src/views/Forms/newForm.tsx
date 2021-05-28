@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -32,6 +31,7 @@ import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
 import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewForm() {
-/* eslint-disable react/jsx-props-no-spreading */
   const classes = useStyles();
   const history = useHistory();
   const [newField, setNewField] = useState<Field>({
@@ -229,9 +228,7 @@ function NewForm() {
     <div className={classes.heroContent}>
       <main>
         <Container>
-          <Typography variant="h2" align="center">
-            Crear Nuevo Form
-          </Typography>
+          <ContentTitle text="Crear Nuevo Form" />
           <Grid container justify="center">
             <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
               <Grid container spacing={5}>

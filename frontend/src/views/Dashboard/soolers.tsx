@@ -8,6 +8,7 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
 
 function Soolers() {
   const useStyles = makeStyles((theme) => ({
@@ -54,9 +55,7 @@ function Soolers() {
 
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
-                  <Typography variant="h2" gutterBottom>
-                    Soolers
-                  </Typography>
+                  <ContentTitle text="Soolers" align="left" />
                 </Grid>
 
                 <Grid item xs={12}>

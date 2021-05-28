@@ -9,6 +9,7 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
 
 function DasboarPsic() {
   const useStyles = makeStyles((theme) => ({
@@ -53,9 +54,7 @@ function DasboarPsic() {
             <Grid container spacing={3}>
 
               <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Asistencia Psicológica
-                </Typography>
+                <ContentTitle text="Atención Psicológica" />
               </Grid>
 
               <Grid item xs={12}>

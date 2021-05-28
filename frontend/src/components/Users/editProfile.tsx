@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   Paper,
   FormControl,
   FormGroup,
@@ -22,6 +21,7 @@ import LoadingSpinner from 'src/components/loadingSpinner';
 import { setPatientAreas } from 'src/api/authenticationService';
 import { useHistory } from 'react-router';
 import FadeIn from 'react-fade-in';
+import ContentTitle from '../contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -95,9 +95,7 @@ function EditProfile(props: ProfileSetProps) {
     <FadeIn>
       <div className={classes.heroContent}>
         <Container>
-          <Typography variant="h2" align="center">
-            Modificar areas de tratamiento
-          </Typography>
+          <ContentTitle text="Modificar perfil de psicólogo" />
           <Container>
             <Grid
               container

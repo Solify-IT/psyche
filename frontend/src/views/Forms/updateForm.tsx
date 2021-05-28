@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -32,6 +31,7 @@ import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
 import { useParams, useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -249,9 +249,7 @@ function UpdateForm() {
     <div className={classes.heroContent}>
       <main>
         <Container>
-          <Typography variant="h2" align="center">
-            Modificar Form
-          </Typography>
+          <ContentTitle text="Modificar Encuesta" />
           <Grid container justify="center">
             <Grid item xs={10} component={Paper} className={classes.paper} elevation={6}>
               <Grid container spacing={5}>

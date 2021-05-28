@@ -19,6 +19,7 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { consultProfile, updateUser } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -96,9 +97,7 @@ function UpdateUser() {
   return (
     <div className={classes.heroContent}>
       <Container>
-        <Typography variant="h2" align="center">
-          Editar Usuario
-        </Typography>
+        <ContentTitle text="Editar Usuario" />
         <Grid
           container
           justify="center"

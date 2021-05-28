@@ -4,7 +4,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -14,6 +13,7 @@ import { toast } from 'react-toastify';
 import { changePassword } from 'src/api/user';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import User from 'src/interfaces/user';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -78,9 +78,7 @@ function ChangePassword() {
   return (
     <div className={classes.heroContent}>
       <Container>
-        <Typography variant="h2" align="center">
-          Cambiar Contraseña
-        </Typography>
+        <ContentTitle text="Cambiar Contraseña" />
         <Grid
           container
           justify="center"

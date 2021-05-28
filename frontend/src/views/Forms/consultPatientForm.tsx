@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   Button,
   Box,
   Paper,
@@ -15,6 +14,7 @@ import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -113,10 +113,7 @@ function ConsultPatientForm() {
       <main>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center" className={classes.subtitles}>
-              { field.name}
-              {' '}
-            </Typography>
+            <ContentTitle text={field.name} />
           </Grid>
           <Grid item xs={12}>
             <Button

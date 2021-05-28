@@ -11,6 +11,7 @@ import {
 import FadeIn from 'react-fade-in';
 import hasPatientArea from 'src/utils/hasPatientArea';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
 
 function DashboardAtPsiq() {
   const useStyles = makeStyles((theme) => ({
@@ -82,9 +83,7 @@ function DashboardAtPsiq() {
           <Container>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Atención psiquiátrica
-                </Typography>
+                <ContentTitle text="Atención psiquiátrica" />
               </Grid>
               <Grid item xs={false} sm={1} />
               <Grid item xs={11}>

@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   Container,
-  Typography,
   Grid,
   Paper,
   TextField,
@@ -14,6 +13,7 @@ import {
   FormControl,
   Button,
 } from '@material-ui/core';
+import ContentTitle from 'src/components/contentTitle';
 import {
   optionsPsicologia,
   optionsPsiquiatria,
@@ -243,9 +243,7 @@ function RegisterPatient() {
     <div className={classes.heroContent}>
       <main>
         <Container>
-          <Typography variant="h2" align="center" color="secondary">
-            Registrar Paciente
-          </Typography>
+          <ContentTitle text="Registrar Paciente" />
           {type === 'Psicología Familia' || type === 'Psicología Pareja'
             ? (
               <>

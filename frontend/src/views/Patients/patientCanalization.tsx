@@ -14,6 +14,7 @@ import {
   Container,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
+import ContentTitle from 'src/components/contentTitle';
 
 interface ParamTypes {
   patientId: string
@@ -164,9 +165,7 @@ function PatientCanalization() {
     <main>
       <div className={classes.heroContent}>
         <Container>
-          <Typography variant="h2" align="center" color="secondary">
-            Canalizar a Paciente
-          </Typography>
+          <ContentTitle text="Canalizar a Paciente" />
           <Grid justify="center" alignItems="center" container spacing={3}>
             {users.map(createCard)}
           </Grid>

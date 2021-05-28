@@ -26,6 +26,7 @@ import 'src/App.css';
 import { CSVLink } from 'react-csv';
 import { getPatients } from 'src/api/patient';
 import Container from '@material-ui/core/Container';
+import ContentTitle from 'src/components/contentTitle';
 
 function getFileName() {
   const d = new Date();
@@ -217,7 +218,7 @@ export default function CustomizedTables() {
       <main>
         <Container>
           <Grid item xs={12} className={classes.grid}>
-            <Typography component="h2" variant="h3" align="center" color="primary" className={classes.subtitles}>Pacientes</Typography>
+            <ContentTitle text="Pacientes" />
             <CSVLink
               data={patients}
               filename={getFileName()}

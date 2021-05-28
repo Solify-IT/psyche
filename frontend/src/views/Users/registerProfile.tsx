@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   Paper,
   FormControl,
   FormGroup,
@@ -25,6 +24,7 @@ import LoadingSpinner from 'src/components/loadingSpinner';
 import { authenticationService, profileSet, setPatientAreas } from 'src/api/authenticationService';
 import { useHistory } from 'react-router';
 import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -104,9 +104,7 @@ function RegisterProfile() {
     <FadeIn>
       <div className={classes.heroContent}>
         <Container>
-          <Typography variant="h2" align="center">
-            Registrar areas de tratamiento
-          </Typography>
+          <ContentTitle text="Registrar areas de tratamiento" />
           <Container>
             <Grid
               container

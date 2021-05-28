@@ -18,6 +18,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
+import ContentTitle from 'src/components/contentTitle';
 import {
   optionsPsicologia,
   optionsPsiquiatria,
@@ -191,9 +192,7 @@ function UpdatePatientCanalization() {
     <main>
       <div className={classes.heroContent}>
         <Container>
-          <Typography variant="h2" align="center" color="secondary">
-            Modificar Área y Canalización de Paciente
-          </Typography>
+          <ContentTitle text="Modificar Área y Canalización de Paciente" />
           <Grid container spacing={3} justify="center" alignItems="center">
             <Grid item xs={12} sm={4} className={classes.area}>
               <InputLabel>Área</InputLabel>

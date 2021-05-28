@@ -13,6 +13,7 @@ import {
 import Form from 'src/interfaces/form';
 import FadeIn from 'react-fade-in';
 import { Link } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
 
 type FormProps = {
   forms: Form[];
@@ -35,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 function Forms(props: FormProps) {
   const { forms, recordId } = props;
   const classes = useStyles();
-  console.log(forms);
 
   if (forms.length === 0) {
     return (
@@ -51,7 +51,6 @@ function Forms(props: FormProps) {
 
               </Grid>
               <Grid container justify="center">
-
                 <Button variant="contained" color="primary" component={Link} to="/new-form">
                   Registrar una nueva encuesta
                 </Button>
@@ -69,6 +68,7 @@ function Forms(props: FormProps) {
       <main>
         <div className={classes.heroContent}>
           <Container>
+            <ContentTitle text="Encuestas" />
             <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
               <Grid container justify="center">
                 <Typography variant="h5" className={classes.title}>

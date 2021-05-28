@@ -9,6 +9,7 @@ import {
 }
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
 
 function DasboardArea() {
   const useStyles = makeStyles((theme) => ({
@@ -48,11 +49,8 @@ function DasboardArea() {
           <Container>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Registrar Paciente
-                </Typography>
+                <ContentTitle text="Registrar Paciente" />
               </Grid>
-
               <Grid item xs={12}>
                 <Typography align="justify" className={classes.description}>
                   Selecciona el area correspondiente a la que pertenece el paciente:

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   Button,
   Paper,
   Box,
@@ -14,6 +13,7 @@ import { useHistory, useParams } from 'react-router';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
 
 function ConsultProfiles() {
   const [field, setField] = useState<ConsultProfile>({
@@ -119,9 +119,7 @@ function ConsultProfiles() {
       <main>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center" className={classes.subtitles}>
-              Mi perfil
-            </Typography>
+            <ContentTitle text="Mi perfil" />
           </Grid>
           <Grid item xs={12}>
             <Button

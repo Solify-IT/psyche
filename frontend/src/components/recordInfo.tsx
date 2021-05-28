@@ -12,6 +12,7 @@ import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 import { useHistory } from 'react-router-dom';
 import createRecordId from 'src/utils/createRecordId';
+import ContentTitle from './contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   patientSection: {
@@ -95,8 +96,6 @@ function FormSection(props: FormSectionProps) {
 
   function consultForm(event: React.ChangeEvent<any>) {
     const { id } = event.currentTarget.dataset;
-    console.log(id);
-    // eslint-disable-next-line no-restricted-globals
     history.push(`/patient-form/${id}`);
   }
 
@@ -196,11 +195,7 @@ function RecordInfo(props: RecordInfoProps) {
       <FadeIn>
         <Grid container component="main">
           <Grid item md={12}>
-            <Typography component="h1" variant="h3" className={classes.title}>
-              Expediente
-              { ' ' }
-              { createRecordId(record.id)}
-            </Typography>
+            <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
             <Grid item xs={12}>
               <div className={classes.canalize}>
                 <Button

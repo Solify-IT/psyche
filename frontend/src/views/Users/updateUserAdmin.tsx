@@ -4,7 +4,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -18,6 +17,7 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { getUser, updateUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
+import ContentTitle from 'src/components/contentTitle';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -104,9 +104,7 @@ function UpdateUserAdmin() {
   return (
     <div className={classes.heroContent}>
       <Container>
-        <Typography variant="h2" align="center">
-          Editar Usuario
-        </Typography>
+        <ContentTitle text="Editar Usuario" />
         <Grid
           container
           justify="center"

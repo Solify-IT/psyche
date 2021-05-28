@@ -11,6 +11,7 @@ import {
 import FadeIn from 'react-fade-in';
 import hasPatientArea from 'src/utils/hasPatientArea';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
 
 function DashboardAsesoria() {
   const useStyles = makeStyles((theme) => ({
@@ -83,9 +84,7 @@ function DashboardAsesoria() {
             <Grid container spacing={3}>
 
               <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Asesoría Jurídica
-                </Typography>
+                <ContentTitle text="Asesoría Jurídica" />
               </Grid>
               <Grid item xs={false} sm={1} />
               <Grid item xs={11}>

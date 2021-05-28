@@ -26,6 +26,7 @@ import Users from 'src/interfaces/Users';
 import Swal from 'sweetalert2';
 import { authenticationService } from 'src/api/authenticationService';
 import { Link } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
 import { deactivateAccount, getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
@@ -129,9 +130,7 @@ function ViewUsers() {
     <main>
       <div className={classes.heroContent}>
         <Container>
-          <Typography variant="h2" align="center">
-            Consultar Usuarios
-          </Typography>
+          <ContentTitle text="Consultar Usuarios" />
           <Grid container justify="flex-end">
             <Fab color="primary" aria-label="add" component={Link} to="/register-user">
               <Add />

@@ -10,6 +10,7 @@ import {
   from '@material-ui/core';
 import FadeIn from 'react-fade-in';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
 
 function Home() {
   const useStyles = makeStyles((theme) => ({
@@ -52,9 +53,7 @@ function Home() {
 
               <Grid item xs={12} sm={6}>
                 <Grid item xs={12}>
-                  <Typography variant="h2" gutterBottom>
-                    { greeting }
-                  </Typography>
+                  <ContentTitle text={greeting} align="left" />
                 </Grid>
 
                 <Grid item xs={12}>
