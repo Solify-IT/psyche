@@ -1,9 +1,9 @@
 
 @media print {
-    Button, Footer {
+    Button, Footer, Link, Header, span, a {
        visibility: hidden;
     }
-    ul, img, table {
+    ul,table, Box {
         page-break-inside: avoid;
     }
 }
