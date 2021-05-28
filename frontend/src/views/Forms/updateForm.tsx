@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   makeStyles,
@@ -25,13 +25,13 @@ import FieldRow from 'src/components/Forms/NewForm/FieldRow';
 import AddOptionField from 'src/components/Forms/NewForm/AddOptionField';
 import FieldOption from 'src/interfaces/fieldOptions';
 import { v4 as uuid4 } from 'uuid';
-import { registerForm } from 'src/api/forms';
+import { getForm, registerForm } from 'src/api/forms';
 import Form from 'src/interfaces/form';
 import { toast } from 'react-toastify';
 import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
-import { useHistory } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -64,10 +64,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function NewForm() {
+interface ParamTypes {
+  id: string
+}
+
+function UpdateForm() {
 /* eslint-disable react/jsx-props-no-spreading */
   const classes = useStyles();
   const history = useHistory();
+  const { id } = useParams<ParamTypes>();
   const [newField, setNewField] = useState<Field>({
     label: '',
     type: '',
@@ -87,9 +92,22 @@ function NewForm() {
   const [titleValid, setTitleValid] = useState<boolean>(true);
 
   const [title, setTitle] = useState<string>('');
+  const [formId, setId] = useState<string>('');
   const [formType, setFormType] = useState<string>('');
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    getForm(parseInt(id, 10))
+      .then((response:any) => {
+        console.log(response);
+        setTitle(response.name);
+        setFormType(response.type);
+        setList(response.fields);
+        setId(response.id);
+      })
+      .catch((error:any) => console.log(error));
+  }, [id]);
 
   const handleNewField = (event: React.ChangeEvent<any>) => {
     setNewField({ ...newField, [event.target.name]: event.target.value });
@@ -110,17 +128,19 @@ function NewForm() {
     }
 
     setTitleValid(true);
-    const form : Form = { name: title, fields: fieldList, type: formType };
+    const form : Form = {
+      id: parseInt(formId, 10), name: title, fields: fieldList, type: formType,
+    };
     setLoading(true);
 
     try {
       await registerForm(form);
-      toast.success('Se ha registrado la nueva encuesta exitosamente.');
+      toast.success('Se ha modificado la encuesta exitosamente.');
       // TODO: Redireccionar a el detail de la pagina
-      history.replace('/');
+      history.replace('/view-forms');
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar registrar el form');
+      toast.error('Ocurrió un error al intentar modificar el form');
     } finally {
       setLoading(false);
     }
@@ -131,7 +151,8 @@ function NewForm() {
   }
 
   function removeField(field: Field) {
-    const newFieldList = fieldList.filter((element) => element.key !== field.key);
+    console.log(field);
+    const newFieldList = fieldList.filter((element) => element.id !== field.id);
     setList(newFieldList);
   }
   const createSelect = (option:any) => (
@@ -160,7 +181,6 @@ function NewForm() {
     switch (type) {
       case 'text':
       case 'number':
-      case 'signature':
       case 'datepicker':
         return null;
 
@@ -218,7 +238,7 @@ function NewForm() {
                 className={classes.submit}
                 disabled={fieldList.length === 0 || loading}
               >
-                Registrar
+                Modificar
               </Button>
             </Grid>
           )}
@@ -230,10 +250,10 @@ function NewForm() {
       <main>
         <Container>
           <Typography variant="h2" align="center">
-            Crear Nuevo Form
+            Modificar Form
           </Typography>
           <Grid container justify="center">
-            <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
+            <Grid item xs={10} component={Paper} className={classes.paper} elevation={6}>
               <Grid container spacing={5}>
                 <Grid item xs={12} sm={8}>
                   <TextField
@@ -288,7 +308,6 @@ function NewForm() {
                     <MenuItem value="select">Select</MenuItem>
                     <MenuItem value="checkbox">Checkbox</MenuItem>
                     <MenuItem value="datepicker">Date Picker</MenuItem>
-                    <MenuItem value="signature">Firma</MenuItem>
                   </Select>
                 </Grid>
                 <Grid item xs={12} sm={8}>
@@ -328,4 +347,4 @@ function NewForm() {
 
   );
 }
-export default NewForm;
+export default UpdateForm;
