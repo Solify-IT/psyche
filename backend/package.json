@@ -15,7 +15,9 @@
     "orm-create": "ts-node ./node_modules/typeorm/cli.js migration:create --config src/infraestructure/orm/ormconfig.ts --connection  --name",
     "orm-revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --config src/infraestructure/orm/ormconfig.ts --connection  --name",
     "orm-run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/infraestructure/orm/ormconfig.ts --connection  --name",
-    "encrypt": "ts-node src/scripts/encryptPassword.ts"
+    "encrypt": "ts-node src/scripts/encryptPassword.ts",
+    "seed:config": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js -n src/infraestructure/orm/ormconfig.ts config ",
+    "seed:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js -n src/infraestructure/orm/ormconfig.ts seed"
   },
   "repository": {
     "type": "git",
@@ -45,7 +47,9 @@
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.2",
     "typeorm": "^0.2.32",
-    "uuid": "^8.3.2"
+    "typeorm-seeding": "^1.6.1",
+    "uuid": "^8.3.2",
+    "faker": "^5.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -54,6 +58,7 @@
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/express-jwt": "^6.0.1",
+    "@types/faker": "^5.5.5",
     "@types/fs-extra": "^9.0.8",
     "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.1",
