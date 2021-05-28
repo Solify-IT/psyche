@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import {
@@ -18,7 +17,6 @@ import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { getUser, updateUser } from 'src/api/user';
-import { authenticationService } from 'src/api/authenticationService';
 import roles from 'src/fixtures/roles';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,8 +68,8 @@ function UpdateUserAdmin() {
     },
   });
   const {
-    name, address, zipCode, email, username, telephone, password, role, professionalLicense,
-    workSchedule, password2, errors,
+    name, address, zipCode, email, role, professionalLicense,
+    workSchedule,
   } = { ...userInformation };
 
   useEffect(() => {

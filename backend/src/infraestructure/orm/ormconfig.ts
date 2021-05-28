@@ -22,4 +22,6 @@ export = {
   ssl: process.env.SSL_CERT ? {
     ca: process.env.SSL_CERT,
   } : null,
+  seeds: ['src/infraestructure/datastore/seeder/**/*{.ts,js}'],
+  factories: ['src/infraestructure/datastore/factory/**/*{.ts,js}'],
 } as ConnectionOptions;
