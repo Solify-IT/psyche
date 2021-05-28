@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
@@ -24,6 +23,7 @@ import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -277,41 +277,39 @@ function GenerateForm(props: GenerateFormProps) {
   }
 
   return (
-    <main>
+    <MainContent>
+
       <ContentTitle text="Llenar Formato del Paciente" />
-      <div className={classes.heroContent}>
-        <Container>
-          <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} spacing={3}>
-            <Grid item xs={12}>
-              <Typography variant="h6" align="left">
-                Nombre del Formato:
-                {' '}
-                {data.name}
-              </Typography>
-            </Grid>
-            {fields.map(createComponent)}
+      <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} spacing={3}>
+        <Grid item xs={12}>
+          <Typography variant="h6" align="left">
+            Nombre del Formato:
+            {' '}
+            {data.name}
+          </Typography>
+        </Grid>
+        {fields.map(createComponent)}
 
-            <Grid container alignItems="center" justify="center" direction="row">
-              <Grid item>
-                {!loading ? (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={handleSubmit}
-                  >
-                    Registrar
-                  </Button>
-                ) : <LoadingSpinner /> }
-              </Grid>
-
-            </Grid>
-
+        <Grid container alignItems="center" justify="center" direction="row">
+          <Grid item>
+            {!loading ? (
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleSubmit}
+              >
+                Registrar
+              </Button>
+            ) : <LoadingSpinner /> }
           </Grid>
-        </Container>
-      </div>
-    </main>
+
+        </Grid>
+
+      </Grid>
+    </MainContent>
+
   );
 }
 

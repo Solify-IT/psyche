@@ -4,15 +4,15 @@ import {
   Grid, makeStyles, Paper, Typography,
 } from '@material-ui/core';
 import Moment from 'moment';
-import FadeIn from 'react-fade-in';
 import Record from 'src/interfaces/record';
-import CornerFab from 'src/components/cornerFab';
 import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 import { useHistory } from 'react-router-dom';
 import createRecordId from 'src/utils/createRecordId';
 import ContentTitle from './contentTitle';
+import MainContent from './mainContent';
+import CornerFab from './cornerFab';
 
 const useStyles = makeStyles((theme) => ({
   patientSection: {
@@ -191,40 +191,32 @@ function RecordInfo(props: RecordInfoProps) {
 
   return (
     <div>
-
-      <FadeIn>
-        <Grid container component="main">
-          <Grid item md={12}>
-            <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
-            <Grid item xs={12}>
-              <div className={classes.canalize}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  data-recordid={record.id}
-                  onClick={updateCanalization}
-                >
-                  Modificar Canalización
-                </Button>
-              </div>
-            </Grid>
-            { record.patients.map((patient) => (
-              <PatientGeneralInfo patient={patient} key={patient.id} />
-            ))}
-            {formsGrouped ? Object.keys(formsGrouped).map((key) => (
-              <FormSection key={key} title={key} forms={formsGrouped[key]} />
-            )) : false}
+      <MainContent>
+        <Grid item md={12}>
+          <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
+          <Grid item xs={12}>
+            <div className={classes.canalize}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                data-recordid={record.id}
+                onClick={updateCanalization}
+              >
+                Modificar Canalización
+              </Button>
+            </div>
           </Grid>
+          { record.patients.map((patient) => (
+            <PatientGeneralInfo patient={patient} key={patient.id} />
+          ))}
+          {formsGrouped ? Object.keys(formsGrouped).map((key) => (
+            <FormSection key={key} title={key} forms={formsGrouped[key]} />
+          )) : false}
         </Grid>
-        {' '}
-
-      </FadeIn>
-
+      </MainContent>
       <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
     </div>
-
   );
 }
-
 export default RecordInfo;

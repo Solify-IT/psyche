@@ -11,7 +11,6 @@ import {
   Card,
   CardContent,
   Typography,
-  Container,
   Select,
   InputLabel,
   MenuItem,
@@ -19,6 +18,7 @@ import {
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 import {
   optionsPsicologia,
   optionsPsiquiatria,
@@ -189,38 +189,36 @@ function UpdatePatientCanalization() {
   );
 
   return (
-    <main>
-      <div className={classes.heroContent}>
-        <Container>
-          <ContentTitle text="Modificar Área y Canalización de Paciente" />
-          <Grid container spacing={3} justify="center" alignItems="center">
-            <Grid item xs={12} sm={4} className={classes.area}>
-              <InputLabel>Área</InputLabel>
-              <Select
-                required
-                fullWidth
-                label="Clasificación"
-                name="type"
-                value={type}
-                onChange={handleChange}
-              >
-                {optionsPsiquiatria.map(createSelect)}
-                <Divider />
-                {optionsAsesoria.map(createSelect)}
-                <Divider />
-                {optionsClinica.map(createSelect)}
-                <Divider />
-                {optionsPsicologia.map(createSelect)}
-                <Divider />
-              </Select>
-            </Grid>
-          </Grid>
-          <Grid justify="center" alignItems="center" container spacing={3}>
-            {users.map(createCard)}
-          </Grid>
-        </Container>
-      </div>
-    </main>
+    <MainContent>
+
+      <ContentTitle text="Modificar Área y Canalización de Paciente" />
+      <Grid container spacing={3} justify="center" alignItems="center">
+        <Grid item xs={12} sm={4} className={classes.area}>
+          <InputLabel>Área</InputLabel>
+          <Select
+            required
+            fullWidth
+            label="Clasificación"
+            name="type"
+            value={type}
+            onChange={handleChange}
+          >
+            {optionsPsiquiatria.map(createSelect)}
+            <Divider />
+            {optionsAsesoria.map(createSelect)}
+            <Divider />
+            {optionsClinica.map(createSelect)}
+            <Divider />
+            {optionsPsicologia.map(createSelect)}
+            <Divider />
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid justify="center" alignItems="center" container spacing={3}>
+        {users.map(createCard)}
+      </Grid>
+    </MainContent>
+
   );
 }
 

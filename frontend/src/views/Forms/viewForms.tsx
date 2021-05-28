@@ -17,6 +17,7 @@ import { getForms, deleteForm } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 type FormsTableProps = {
   initialForms: Form[]
@@ -33,7 +34,7 @@ function FormsTable(props: FormsTableProps) {
       padding: theme.spacing(6, 0, 6),
     },
     table: {
-      width: '85%',
+      width: '100%',
     },
   }));
   const classes = useStyles();
@@ -119,26 +120,24 @@ function FormsTable(props: FormsTableProps) {
   ];
 
   return (
-    <main>
-      <div className={classes.heroContent}>
-        <ContentTitle text="Consultar Encuestas" />
-        <Grid container justify="center" alignItems="center">
-          <Grid item className={classes.table}>
-            <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
-              <DataGrid
-                rows={forms}
-                columns={columns}
-                pageSize={20}
+    <MainContent>
+      <ContentTitle text="Consultar Encuestas" />
+      <Grid container justify="center" alignItems="center">
+        <Grid item className={classes.table}>
+          <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
+            <DataGrid
+              rows={forms}
+              columns={columns}
+              pageSize={20}
                 // filterModel={riceFilterModel}
-                components={{
-                  Toolbar: GridToolbar,
-                }}
-              />
-            </div>
-          </Grid>
+              components={{
+                Toolbar: GridToolbar,
+              }}
+            />
+          </div>
         </Grid>
-      </div>
-    </main>
+      </Grid>
+    </MainContent>
   );
 }
 
