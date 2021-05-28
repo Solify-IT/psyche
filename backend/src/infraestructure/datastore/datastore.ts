@@ -1,5 +1,5 @@
 import { IDatastore } from 'interface/repository';
-import { getConnection } from 'typeorm';
+import { createQueryBuilder, getConnection } from 'typeorm';
 
 export default class Datastore implements IDatastore {
   async fetchAllWhere<T>(tableName: string, condition: any): Promise<T[]> {
@@ -52,15 +52,17 @@ export default class Datastore implements IDatastore {
     return found;
   }
 
-  async fetchAllJoining<T>(tableName: string, tableName2: string): Promise<T[]> {
+  /* async fetchAllJoining(tableName: string, tableName2: string): Promise<void> {
     const connection = getConnection();
     const repositoryT1 = connection.manager.getRepository(tableName);
     const repositoryT2 = connection.manager.getRepository(tableName2);
+    await repositoryT1
 
-    const usersActives = connection.getRepository<T>(tableName).createQueryBuilder(tableName)
+    const usersActives: T[] = createQueryBuilder(tableName)
       .innerJoinAndSelect("patient.record_id","record","record.active = :isActive",{ isActive: false})
       .getRawMany();
       return usersActives;
   }
+} */
 
 }

@@ -1,5 +1,6 @@
 import { wrapError } from '@types';
 import PatientInteractor from 'app/interactor/patientInteractor';
+import { Patient } from 'domain/model';
 import { IContext } from 'utils/context';
 
 export default class PatientController {
@@ -23,11 +24,22 @@ export default class PatientController {
 
   async getPatients(context: IContext): Promise<void> {
     const [patients, error] = await wrapError(this.patientInteractor.getAll());
+    const patientsActive: Patient[] = [];
+
+    patients.forEach( async element => {
+      const record = await this.patientInteractor.getRecord(element.recordId);
+      if (record.active===false) {
+        patientsActive.push(element);
+      }
+    })
+
+    console.log(patientsActive);
     if (error) {
       context.next(error);
       return;
     }
 
+    console.log(patientsActive);
     context.response.status(200).json(patients);
   }
 

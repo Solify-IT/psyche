@@ -28,13 +28,13 @@ export default class PatientInteractor {
     const [patients, error] = await wrapError(this.patientRepository.findAll());
     const patientsActive: Patient[]= [];
 
-    patients.forEach(async element => {
+    /* patients.forEach(async element => {
       const record : Record = await this.getRecord(element.recordId);
       if (record.active === true) {
         console.log("activo");
         patientsActive.push(element);
       }
-    });
+    }); */
 
     if (error) {
       throw error;
@@ -42,7 +42,7 @@ export default class PatientInteractor {
 
     console.log(patientsActive);
 
-    return this.patientPresenter.findAll(patientsActive);
+    return this.patientPresenter.findAll(patients);
   }
 
   async getRecord(id: number) : Promise<Record> {
