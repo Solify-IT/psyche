@@ -1,7 +1,6 @@
 import { Patient } from 'domain/model';
 import IPatientPresenter from 'app/presenter/patientPresenter';
 import Record from 'domain/model/record';
-import recordFixture from 'fixtures/record';
 
 export default class PatientPresenter implements IPatientPresenter {
   findAll(patients: Patient[]): Patient[] {

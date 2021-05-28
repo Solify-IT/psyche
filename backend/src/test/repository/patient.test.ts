@@ -59,13 +59,11 @@ describe('Patient repository', () => {
     expect(result.active).toEqual(true);
     const deactivate = await patientRepository.archiveRecord(result.id);
     expect(deactivate.active).toEqual(false);
-    
   });
 
   test('should return that the record does not exist', async () => {
-    const [deactivate,error] = await wrapError( patientRepository.archiveRecord(9000));
+    const [deactivate, error] = await wrapError(patientRepository.archiveRecord(9000));
     expect(error).toBeDefined();
     expect(deactivate).toBeNull();
-    
   });
 });

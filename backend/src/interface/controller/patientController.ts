@@ -26,12 +26,12 @@ export default class PatientController {
     const [patients, error] = await wrapError(this.patientInteractor.getAll());
     const patientsActive: Patient[] = [];
 
-    patients.forEach( async element => {
+    patients.forEach(async (element) => {
       const record = await this.patientInteractor.getRecord(element.recordId);
-      if (record.active===false) {
+      if (record.active === false) {
         patientsActive.push(element);
       }
-    })
+    });
 
     console.log(patientsActive);
     if (error) {
@@ -73,7 +73,7 @@ export default class PatientController {
     console.log(id);
     const [record, error] = await wrapError(this.patientInteractor.archiveRecord(id));
 
-    if(error) {
+    if (error) {
       context.next(error);
     }
     context.response.status(200).json(record);

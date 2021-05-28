@@ -1,5 +1,5 @@
 import { IDatastore } from 'interface/repository';
-import { createQueryBuilder, getConnection } from 'typeorm';
+import { getConnection } from 'typeorm';
 
 export default class Datastore implements IDatastore {
   async fetchAllWhere<T>(tableName: string, condition: any): Promise<T[]> {
@@ -51,5 +51,4 @@ export default class Datastore implements IDatastore {
     const found = await repository.findOne(id);
     return found;
   }
-
 }
