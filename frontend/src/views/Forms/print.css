@@ -1,0 +1,9 @@
+
+@media print {
+    Button, Footer {
+       visibility: hidden;
+    }
+    ul, img, table {
+        page-break-inside: avoid;
+    }
+}

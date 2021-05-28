@@ -15,6 +15,7 @@ import { useParams, useHistory } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
+import './print.css';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -115,9 +116,7 @@ function ConsultPatientForm() {
   const history = useHistory();
 
   function printDiv() {
-    // const contenidoOriginal = document.body.innerHTML;
     window.print();
-    // document.body.innerHTML = contenidoOriginal;
     history.replace(`/patient-form/${id}`);
   }
 
