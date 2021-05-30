@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
   Paper,
 }
   from '@material-ui/core';
-import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function DasboarPsic() {
   const useStyles = makeStyles((theme) => ({
@@ -46,73 +46,65 @@ function DasboarPsic() {
   const classes = useStyles();
 
   return (
-    <FadeIn>
-      <main>
-        <div className={classes.heroContent}>
-          <Container>
-            <Grid container spacing={3}>
+    <MainContent>
+      <Grid container spacing={3}>
 
-              <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Asistencia Psicológica
-                </Typography>
-              </Grid>
+        <Grid item xs={12}>
+          <ContentTitle text="Atención Psicológica" />
+        </Grid>
 
-              <Grid item xs={12}>
-                <Typography align="justify" className={classes.description}>
-                  Selecciona el area correspondiente a la que pertenece el paciente:
-                </Typography>
-              </Grid>
+        <Grid item xs={12}>
+          <Typography align="justify" className={classes.description}>
+            Selecciona el area correspondiente a la que pertenece el paciente:
+          </Typography>
+        </Grid>
 
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/dashboard-atencion-psicologica" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Atención Psicológica
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/dashboard-atencion-psicologica" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/psic.png" alt="registrarPaciente" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.subtitles}>
+                Atención Psicológica
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>
 
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/dashboard-psiquiatrica" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/psiq.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Atención Psiquiátrica
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/dashboard-psiquiatrica" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/psiq.png" alt="Logo" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.subtitles}>
+                Atención Psiquiátrica
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>
 
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/dashboard-evaluacion" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/pericial.png" alt="registrarPaciente" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.textPadding}>
-                      Evaluación
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/dashboard-evaluacion" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/pericial.png" alt="registrarPaciente" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.textPadding}>
+                Evaluación
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>
 
-              <Grid item xs={12} sm={6} lg={3}>
-                <Link to="/dashboard-asesoria" className={classes.option}>
-                  <Paper className={classes.paper}>
-                    <img src="/images/asesoria.png" alt="Logo" className={classes.image} />
-                    <Typography variant="h4" align="center" className={classes.subtitles}>
-                      Asesoría Jurídica
-                    </Typography>
-                  </Paper>
-                </Link>
-              </Grid>
+        <Grid item xs={12} sm={6} lg={3}>
+          <Link to="/dashboard-asesoria" className={classes.option}>
+            <Paper className={classes.paper}>
+              <img src="/images/asesoria.png" alt="Logo" className={classes.image} />
+              <Typography variant="h4" align="center" className={classes.subtitles}>
+                Asesoría Jurídica
+              </Typography>
+            </Paper>
+          </Link>
+        </Grid>
 
-            </Grid>
-          </Container>
-        </div>
-      </main>
-    </FadeIn>
+      </Grid>
+    </MainContent>
   );
 }
 

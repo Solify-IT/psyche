@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -14,6 +12,8 @@ import { toast } from 'react-toastify';
 import { changePassword } from 'src/api/user';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import User from 'src/interfaces/user';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -76,84 +76,80 @@ function ChangePassword() {
   }
 
   return (
-    <div className={classes.heroContent}>
-      <Container>
-        <Typography variant="h2" align="center">
-          Cambiar Contraseña
-        </Typography>
+    <MainContent>
+      <ContentTitle text="Cambiar Contraseña" />
+      <Grid
+        container
+        justify="center"
+        spacing={2}
+      >
         <Grid
-          container
-          justify="center"
-          spacing={2}
+          item
+          xs={8}
+          component={Paper}
+          className={classes.paper}
+          elevation={6}
+          square
         >
-          <Grid
-            item
-            xs={8}
-            component={Paper}
-            className={classes.paper}
-            elevation={6}
-            square
-          >
-            <Grid className={classes.form} container justify="center" alignItems="center" spacing={3}>
-              <Grid item xs={8} sm={7}>
-                <TextField
-                  variant="outlined"
-                  type="password"
-                  required
-                  fullWidth
-                  value={fields.password}
-                  id="password"
-                  label="Contraseña Actual"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={8} sm={7}>
-                <TextField
-                  variant="outlined"
-                  type="password"
-                  inputProps={{ minLength: 8 }}
-                  required
-                  fullWidth
-                  id="newPassword"
-                  value={fields.newPassword}
-                  label="Nueva Contraseña"
-                  name="newPassword"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={8} sm={7}>
-                <TextField
-                  variant="outlined"
-                  type="password"
-                  inputProps={{ minLength: 8 }}
-                  required
-                  fullWidth
-                  id="confirmNewPassword"
-                  value={fields.confirmNewPassword}
-                  label="Confirmar Contraseña"
-                  name="confirmNewPassword"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={8} className={classes.submit}>
-                { loading ? <LoadingSpinner /> : (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={fields.password === '' || fields.newPassword === '' || fields.confirmNewPassword === ''}
-                    onClick={handleSubmit}
-                  >
-                    Actualizar
-                  </Button>
-                )}
-              </Grid>
+          <Grid className={classes.form} container justify="center" alignItems="center" spacing={3}>
+            <Grid item xs={8} sm={7}>
+              <TextField
+                variant="outlined"
+                type="password"
+                required
+                fullWidth
+                value={fields.password}
+                id="password"
+                label="Contraseña Actual"
+                name="password"
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={8} sm={7}>
+              <TextField
+                variant="outlined"
+                type="password"
+                inputProps={{ minLength: 8 }}
+                required
+                fullWidth
+                id="newPassword"
+                value={fields.newPassword}
+                label="Nueva Contraseña"
+                name="newPassword"
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={8} sm={7}>
+              <TextField
+                variant="outlined"
+                type="password"
+                inputProps={{ minLength: 8 }}
+                required
+                fullWidth
+                id="confirmNewPassword"
+                value={fields.confirmNewPassword}
+                label="Confirmar Contraseña"
+                name="confirmNewPassword"
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={8} className={classes.submit}>
+              { loading ? <LoadingSpinner /> : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={fields.password === '' || fields.newPassword === '' || fields.confirmNewPassword === ''}
+                  onClick={handleSubmit}
+                >
+                  Actualizar
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </MainContent>
   );
 }
 export default ChangePassword;
