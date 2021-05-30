@@ -28,6 +28,7 @@ import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientCanalization from './views/Patients/patientCanalization';
 import UpdatePatientCanalization from './views/Patients/updatePatientCanalization';
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
+import UpdateForm from './views/Forms/updateForm';
 
 // Form views
 import {
@@ -75,9 +76,11 @@ const AppRouter = () => (
     <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} />
+    <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
     <PrivateRoute path="/user-update/:id/" exact component={UpdateUserAdmin} />
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
+    <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
   </div>
 );
 

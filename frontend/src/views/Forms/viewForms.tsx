@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   IconButton,
 }
   from '@material-ui/core';
@@ -16,6 +15,9 @@ import {
 import Form from 'src/interfaces/form';
 import { getForms, deleteForm } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
+import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 type FormsTableProps = {
   initialForms: Form[]
@@ -23,6 +25,7 @@ type FormsTableProps = {
 
 function FormsTable(props: FormsTableProps) {
   const { initialForms } = props;
+  const history = useHistory();
 
   const [, setLoading] = useState<boolean>(false);
   const [forms, setForms] = useState<Form[]>(initialForms);
@@ -31,7 +34,7 @@ function FormsTable(props: FormsTableProps) {
       padding: theme.spacing(6, 0, 6),
     },
     table: {
-      width: '85%',
+      width: '100%',
     },
   }));
   const classes = useStyles();
@@ -58,7 +61,8 @@ function FormsTable(props: FormsTableProps) {
   };
 
   function updateForm(event: React.ChangeEvent<any>) {
-    console.log(event);
+    const { formid } = event.currentTarget.dataset;
+    history.push(`update-form/${formid}`);
   }
 
   async function handleDeleteForm(id: number) {
@@ -116,28 +120,24 @@ function FormsTable(props: FormsTableProps) {
   ];
 
   return (
-    <main>
-      <div className={classes.heroContent}>
-        <Typography variant="h2" align="center">
-          Consultar Forms
-        </Typography>
-        <Grid container justify="center" alignItems="center">
-          <Grid item className={classes.table}>
-            <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
-              <DataGrid
-                rows={forms}
-                columns={columns}
-                pageSize={20}
+    <MainContent>
+      <ContentTitle text="Consultar Encuestas" />
+      <Grid container justify="center" alignItems="center">
+        <Grid item className={classes.table}>
+          <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
+            <DataGrid
+              rows={forms}
+              columns={columns}
+              pageSize={20}
                 // filterModel={riceFilterModel}
-                components={{
-                  Toolbar: GridToolbar,
-                }}
-              />
-            </div>
-          </Grid>
+              components={{
+                Toolbar: GridToolbar,
+              }}
+            />
+          </div>
         </Grid>
-      </div>
-    </main>
+      </Grid>
+    </MainContent>
   );
 }
 

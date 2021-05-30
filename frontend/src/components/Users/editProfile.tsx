@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   Paper,
   FormControl,
   FormGroup,
@@ -21,7 +20,8 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { setPatientAreas } from 'src/api/authenticationService';
 import { useHistory } from 'react-router';
-import FadeIn from 'react-fade-in';
+import ContentTitle from '../contentTitle';
+import MainContent from '../mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -92,98 +92,93 @@ function EditProfile(props: ProfileSetProps) {
 
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
   return (
-    <FadeIn>
-      <div className={classes.heroContent}>
-        <Container>
-          <Typography variant="h2" align="center">
-            Modificar areas de tratamiento
-          </Typography>
-          <Container>
+    <MainContent>
+
+      <ContentTitle text="Modificar perfil de psicólogo" />
+      <Container>
+        <Grid
+          container
+          justify="center"
+        >
+          <Grid
+            item
+            xs={12}
+            component={Paper}
+            className={classes.paper}
+            elevation={6}
+            square
+          >
             <Grid
               container
-              justify="center"
+              alignContent="stretch"
             >
-              <Grid
-                item
-                xs={12}
-                component={Paper}
-                className={classes.paper}
-                elevation={6}
-                square
-              >
-                <Grid
-                  container
-                  alignContent="stretch"
-                >
-                  <FormControl required error={checkboxError} component="fieldset" className={classes.formControl}>
-                    <FormLabel component="legend">Areas</FormLabel>
-                    <FormHelperText>Elige por lo menos una opción</FormHelperText>
-                    <FormGroup>
-                      { patientAreas.map((area, index) => (
-                        <div className={classes.checkboxRow} key={area.id}>
-                          <FormControlLabel
-                            control={(
-                              <Checkbox
-                                checked={area.checked}
-                                onChange={handleChangeCheckbox}
-                                name={area.name}
-                                id={index.toString()}
-                              />
-                  )}
-                            label={area.name}
+              <FormControl required error={checkboxError} component="fieldset" className={classes.formControl}>
+                <FormLabel component="legend">Areas</FormLabel>
+                <FormHelperText>Elige por lo menos una opción</FormHelperText>
+                <FormGroup>
+                  { patientAreas.map((area, index) => (
+                    <div className={classes.checkboxRow} key={area.id}>
+                      <FormControlLabel
+                        control={(
+                          <Checkbox
+                            checked={area.checked}
+                            onChange={handleChangeCheckbox}
+                            name={area.name}
+                            id={index.toString()}
                           />
-                        </div>
+                  )}
+                        label={area.name}
+                      />
+                    </div>
 
-                      ))}
+                  ))}
 
-                    </FormGroup>
-                  </FormControl>
-                  <Grid container>
-                    <FormControl component="fieldset" className={classes.formControl} fullWidth>
-                      <FormLabel component="legend">Horarios</FormLabel>
-                      <FormHelperText>Ingresa tus horarios</FormHelperText>
+                </FormGroup>
+              </FormControl>
+              <Grid container>
+                <FormControl component="fieldset" className={classes.formControl} fullWidth>
+                  <FormLabel component="legend">Horarios</FormLabel>
+                  <FormHelperText>Ingresa tus horarios</FormHelperText>
 
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          margin="normal"
-                          inputProps={{ minLength: 5 }}
-                          fullWidth
-                          multiline
-                          rows={4}
-                          id="workSchedule"
-                          label="Horario"
-                          name="workSchedule"
-                          onChange={handleChangeTextArea}
-                          value={newWorkSchedule}
-                        />
-                      </Grid>
-                    </FormControl>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      margin="normal"
+                      inputProps={{ minLength: 5 }}
+                      fullWidth
+                      multiline
+                      rows={4}
+                      id="workSchedule"
+                      label="Horario"
+                      name="workSchedule"
+                      onChange={handleChangeTextArea}
+                      value={newWorkSchedule}
+                    />
                   </Grid>
-                  <Grid container spacing={3} justify="center">
-                    <Grid item xs={6}>
-                      { loading ? <LoadingSpinner /> : (
-                        <Button
-                          type="submit"
-                          fullWidth
-                          disabled={checkboxError}
-                          variant="contained"
-                          color="primary"
-                          className={classes.submit}
-                          onClick={handleSubmit}
-                        >
-                          Guardar
-                        </Button>
-                      )}
-                    </Grid>
-                  </Grid>
+                </FormControl>
+              </Grid>
+              <Grid container spacing={3} justify="center">
+                <Grid item xs={6}>
+                  { loading ? <LoadingSpinner /> : (
+                    <Button
+                      type="submit"
+                      fullWidth
+                      disabled={checkboxError}
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                      onClick={handleSubmit}
+                    >
+                      Guardar
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
-          </Container>
-        </Container>
-      </div>
-    </FadeIn>
+          </Grid>
+        </Grid>
+      </Container>
+    </MainContent>
 
   );
 }
