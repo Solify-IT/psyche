@@ -240,71 +240,41 @@ function RecordInfo(props: RecordInfoProps) {
 
   return (
     <div>
-      <FadeIn>
-        <Grid container component="main">
-          <Grid item md={12}>
-            <Typography component="h1" variant="h3" className={classes.title}>
-              Expediente
-              { ' ' }
-              { createRecordId(record.id)}
-            </Typography>
-            <Grid item xs={12}>
-              <div className={classes.canalize}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  data-recordid={record.id}
-                  onClick={confirmationArchive}
-                >
-                  Archivar Expediente
-                </Button>
-                {'  '}
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  data-recordid={record.id}
-                  onClick={updateCanalization}
-                >
-                  Modificar Canalización
-                </Button>
-              </div>
-            </Grid>
-            { record.patients.map((patient) => (
-              <PatientGeneralInfo patient={patient} key={patient.id} />
-            ))}
-            {formsGrouped ? Object.keys(formsGrouped).map((key) => (
-              <FormSection key={key} title={key} forms={formsGrouped[key]} />
-            )) : false}
+      <MainContent>
+        <Grid item md={12}>
+          <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
+          <Grid item xs={12}>
+            <div className={classes.canalize}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                data-recordid={record.id}
+                onClick={confirmationArchive}
+              >
+                Archivar Expediente
+              </Button>
+              {'  '}
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                data-recordid={record.id}
+                onClick={updateCanalization}
+              >
+                Modificar Canalización
+              </Button>
+            </div>
           </Grid>
-          <MainContent>
-            <Grid item md={12}>
-              <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
-              <Grid item xs={12}>
-                <div className={classes.canalize}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="secondary"
-                    data-recordid={record.id}
-                    onClick={updateCanalization}
-                  >
-                    Modificar Canalización
-                  </Button>
-                </div>
-              </Grid>
-              { record.patients.map((patient) => (
-                <PatientGeneralInfo patient={patient} key={patient.id} />
-              ))}
-              {formsGrouped ? Object.keys(formsGrouped).map((key) => (
-                <FormSection key={key} title={key} forms={formsGrouped[key]} />
-              )) : false}
-            </Grid>
-          </MainContent>
-          <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
+          { record.patients.map((patient) => (
+            <PatientGeneralInfo patient={patient} key={patient.id} />
+          ))}
+          {formsGrouped ? Object.keys(formsGrouped).map((key) => (
+            <FormSection key={key} title={key} forms={formsGrouped[key]} />
+          )) : false}
         </Grid>
-      </FadeIn>
+      </MainContent>
+      <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
     </div>
   );
 }
