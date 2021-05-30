@@ -3,7 +3,7 @@
     Button, Footer, Link, Header, span, a {
        visibility: hidden;
     }
-    ul,table, Box {
+    ul,table, Box, Grid{
         page-break-inside: avoid;
     }
 }
