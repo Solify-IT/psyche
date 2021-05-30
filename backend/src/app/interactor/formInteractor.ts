@@ -1,7 +1,8 @@
 import { wrapError } from '@types';
 import IFormPresenter from 'app/presenter/formPresenter';
+import IPatientPresenter from 'app/presenter/patientPresenter';
 import IFormRepository from 'app/repository/formRepository';
-import { Form } from 'domain/model';
+import { Form, Record } from 'domain/model';
 import PatientForm from 'domain/model/patientForm';
 import PatientFormField from 'domain/model/patientFormField';
 import NotFoundError from 'utils/errors/NotFoundError';
@@ -10,6 +11,8 @@ export default class FormInteractor {
   formRepository: IFormRepository;
 
   formPresenter: IFormPresenter;
+
+  patientPresenter: IPatientPresenter;
 
   constructor(formRepository: IFormRepository, formPresenter : IFormPresenter) {
     this.formPresenter = formPresenter;
@@ -86,5 +89,15 @@ export default class FormInteractor {
       throw error;
     }
     return this.formPresenter.forms(result);
+  }
+
+  async updateDateAt(recordId: number): Promise<Record> {
+    const [record, error] = await wrapError(this.formRepository.updateDateAt(recordId));
+
+    if (error) {
+      throw error;
+    }
+
+    return this.patientPresenter.record(record);
   }
 }

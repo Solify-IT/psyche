@@ -52,4 +52,14 @@ export default class PatientInteractor {
     }
     return this.patientPresenter.canalize(result);
   }
+
+  async updateDateAt(recordId: number): Promise<Record> {
+    const [record, error] = await wrapError(this.patientRepository.updateDateAt(recordId));
+
+    if (error) {
+      throw error;
+    }
+
+    return this.patientPresenter.record(record);
+  }
 }

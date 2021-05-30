@@ -1,9 +1,12 @@
 import { wrapError } from '@types';
 import FormInteractor from 'app/interactor/formInteractor';
+import PatientInteractor from 'app/interactor/patientInteractor';
 import { IContext } from 'utils/context';
 
 export default class FormController {
   formInteractor: FormInteractor;
+
+  patientInteractor: PatientInteractor;
 
   constructor(formInteractor: FormInteractor) {
     this.formInteractor = formInteractor;
@@ -29,6 +32,11 @@ export default class FormController {
       context.next(error);
       return;
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [record] = await wrapError(
+      this.formInteractor.updateDateAt(recordId),
+    );
     context.response.status(200).json(form);
   }
 
@@ -42,6 +50,12 @@ export default class FormController {
       context.next(error);
       return;
     }
+
+    const { recordId } = context.request.body;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [record] = await wrapError(
+      this.formInteractor.updateDateAt(recordId),
+    );
     context.response.status(200).json(form);
   }
 
@@ -89,6 +103,7 @@ export default class FormController {
       context.next(error);
       return;
     }
+
     context.response.status(200).json(deleted);
   }
 
