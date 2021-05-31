@@ -35,12 +35,11 @@ export default class PatientController {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [record, error] = await wrapError(this.patientInteractor.getRecord(recordId));
       const miliSecondsOccurred = Math.abs(
-        new Date(todayDate).getTime() - new Date(record.updatedAt).getTime()
+        new Date(todayDate).getTime() - new Date(record.updatedAt).getTime(),
       );
       const daysOccurred : number = Math.floor(miliSecondsOccurred / (1000 * 3600 * 24));
-      console.log(daysOccurred);
-      if (daysOccurred >= 3) {
-        console.log('Archive the expediente');
+      if (daysOccurred >= 90) {
+        this.patientInteractor.archiveRecord(recordId);
       }
     });
 
