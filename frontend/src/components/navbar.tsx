@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import '../App.css';
 import { makeStyles } from '@material-ui/core';
 import { logout } from 'src/api/authenticationService';
+import { AuthContext } from '../utils/authContext';
 
 function Navbar() {
+  const { currUser, removeUser } = useContext(AuthContext);
+  const history = useHistory();
+
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -43,6 +47,13 @@ function Navbar() {
   }));
   const classes = useStyles();
 
+  const logOut = () => {
+    logout();
+    removeUser();
+    history.go(0);
+    // history.replace('/login');
+  };
+
   return (
     <nav>
       <div className={classes.root}>
@@ -56,11 +67,18 @@ function Navbar() {
                 <img src="/images/logo.png" alt="logo of Psyque" className={classes.logo} />
               </Link>
             </Typography>
-            <Link to="/login" className={classes.button}>
-              <Button className={classes.button} onClick={logout}>
-                Cerrar sesión
-              </Button>
-            </Link>
+            {currUser === undefined
+              ? (
+                <>
+                </>
+              )
+              : (
+                <Link to="/login" className={classes.button}>
+                  <Button className={classes.button} onClick={logOut}>
+                    Cerrar sesión
+                  </Button>
+                </Link>
+              )}
           </Toolbar>
         </AppBar>
       </div>

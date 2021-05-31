@@ -84,9 +84,16 @@ function RegisterFamily() {
     telephone: '',
     address: '',
     birthPlace: '',
+    postalCode: 2222,
     birthDate: ' ',
-    postalCode: NaN,
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
 
   const {
@@ -113,9 +120,16 @@ function RegisterFamily() {
         telephone: '',
         address: '',
         birthPlace: '',
+        postalCode: 2222,
         birthDate: ' ',
-        postalCode: NaN,
         recordId: 1,
+        motive: '',
+        legalProceeding: false,
+        status: true,
+        abuseType: '',
+        abuseFirstTime: '',
+        abuseAttempts: '',
+        abuseMotive: '',
       });
     }
   }

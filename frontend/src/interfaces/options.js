@@ -21,31 +21,31 @@ export const optionsPsicologia = [
 ];
 export const optionsPsiquiatria = [
   {
-    id: 1,
+    id: 11,
     name: 'Psiquiatría Menor de Edad',
   },
   {
-    id: 2,
+    id: 22,
     name: 'Psiquiatría Adulto',
   },
 ];
 export const optionsClinica = [
   {
-    id: 1,
+    id: 111,
     name: 'Clínica',
   },
   {
-    id: 2,
+    id: 222,
     name: 'Forense',
   },
 ];
 export const optionsAsesoria = [
   {
-    id: 1,
+    id: 1111,
     name: 'Asesoría Jurídica Menor de Edad',
   },
   {
-    id: 2,
+    id: 2222,
     name: 'Asesoría Jurídica Adulto',
   },
 ];

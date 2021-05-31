@@ -13,6 +13,10 @@ import {
   makeStyles,
   FormControl,
   Button,
+  FormLabel,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
 } from '@material-ui/core';
 import {
   optionsPsicologia,
@@ -20,6 +24,7 @@ import {
   optionsClinica,
   optionsAsesoria,
 } from '../../interfaces/options';
+import { motivos, tipos, causas } from '../../interfaces/typeOptions';
 import { createPatient, createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
 import RegisterCouple from './registerCouple';
@@ -37,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     marginTop: '16px',
     marginLeft: '20px',
+    textAlign: 'left',
+    minWidth: 285,
+  },
+  formControl1: {
+    marginTop: '16px',
     textAlign: 'left',
     minWidth: 285,
   },
@@ -84,11 +94,20 @@ function RegisterPatient() {
     postalCode: 2222,
     birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const {
     name, lastName, type, gender,
-    telephone, address, birthPlace, birthDate, postalCode,
+    telephone, address, birthPlace, birthDate, postalCode, motive, abuseType, abuseMotive,
+    legalProceeding, abuseFirstTime, abuseAttempts,
   } = { ...formFields };
+
   let options = Array<Option>();
   switch (area) {
     case 'psicologia':
@@ -111,6 +130,33 @@ function RegisterPatient() {
   const createSelect = (option:any) => (
     <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
   );
+  const createFirstSelect = (option:any) => (
+    <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+  );
+  function createSecondSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
+  }
+
+  function createThirdSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
+  }
+
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<any>) => {
@@ -154,9 +200,16 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
-    postalCode: 0,
+    postalCode: 2222,
+    birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const [patientTwo, setPatientTwo] = useState<Patient>({
     name: '',
@@ -167,9 +220,16 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
-    postalCode: 0,
+    postalCode: 2222,
+    birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const handlePatientOne = (event: React.ChangeEvent<any>) => {
     setPatientOne({ ...patientOne, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
@@ -262,7 +322,6 @@ function RegisterPatient() {
                       component={Paper}
                       className={classes.paper}
                       elevation={6}
-                      justify="center"
                     >
                       <Grid container justify="flex-end" alignItems="center">
                         <Grid item xs={12} sm={4}>
@@ -311,7 +370,7 @@ function RegisterPatient() {
                             onChange={handleChange}
                           />
                         </Grid>
-                        <Grid xs={12} sm={4}>
+                        <Grid item xs={12} sm={4}>
                           <TextField
                             variant="outlined"
                             margin="normal"
@@ -399,6 +458,103 @@ function RegisterPatient() {
                             label="Teléfono"
                             name="telephone"
                             value={telephone}
+                            onChange={handleChange}
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                          <Typography variant="h4"> Antecedentes </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <FormControl
+                            variant="outlined"
+                            className={classes.formControl1}
+                          >
+                            <InputLabel>Motivo</InputLabel>
+                            <Select
+                              required
+                              fullWidth
+                              name="motive"
+                              label="Motivo"
+                              value={motive}
+                              onChange={handleChange}
+                            >
+                              {motivos.map(createFirstSelect)}
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <FormControl
+                            variant="outlined"
+                            className={classes.formControl}
+                          >
+                            <InputLabel>Tipo</InputLabel>
+                            <Select
+                              required
+                              fullWidth
+                              name="abuseType"
+                              label="Tipo"
+                              value={abuseType}
+                              onChange={handleChange}
+                            >
+                              {tipos.map(createSecondSelect)}
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <FormControl
+                            variant="outlined"
+                            className={classes.formControl}
+                          >
+                            <InputLabel>Causa</InputLabel>
+                            <Select
+                              required
+                              fullWidth
+                              name="abuseMotive"
+                              label="Causa"
+                              value={abuseMotive}
+                              onChange={handleChange}
+                            >
+                              {causas.map(createThirdSelect)}
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <FormControl
+                            component="fieldset"
+                            // className={classes.formControl1}
+                          >
+                            <FormLabel component="legend"> Procedimiento Legal </FormLabel>
+                            <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
+                              <FormControlLabel value="true" control={<Radio />} label="Si" />
+                              <FormControlLabel value="false" control={<Radio />} label="No" />
+                            </RadioGroup>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="postalCode"
+                            label="Edad de Inicio"
+                            name="abuseFirstTime"
+                            type="number"
+                            value={abuseFirstTime}
+                            onChange={handleChange}
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="abuseAttempts"
+                            label="Intentos de Abuso"
+                            name="abuseAttempts"
+                            type="number"
+                            value={abuseAttempts}
                             onChange={handleChange}
                           />
                         </Grid>

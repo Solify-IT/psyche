@@ -1,4 +1,4 @@
-export default interface Patient {
+export default interface Patients {
   id?: number;
   name: string;
   lastName: string;
@@ -10,13 +10,6 @@ export default interface Patient {
   birthPlace: string;
   birthDate: string;
   postalCode: number;
-  motive: string;
-  legalProceeding: boolean;
-  status: boolean;
-  abuseType: string;
-  abuseFirstTime: string;
-  abuseAttempts: string;
-  abuseMotive: string;
   recordId: number,
   userId?: number,
   user?:any
