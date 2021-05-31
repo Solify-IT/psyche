@@ -157,6 +157,6 @@ export default class UserInteractor {
     if (error) {
       throw error;
     }
-    return this.userPresenter.getUser(results);
+    return this.userPresenter.getUserByEmail(results);
   }
 }
