@@ -179,4 +179,17 @@ export default class UserRepository implements IUserRepository {
     }
     return users;
   }
+
+  async getUserByEmail(email: string): Promise<User> {
+    const [user, error] = await wrapError(
+      this.datastore.fetchOne<User>('User', { email }),
+    );
+    if (error) {
+      throw error;
+    }
+    if (user) {
+      return user;
+    }
+    throw new NotFoundError('El email esta disponible');
+  }
 }

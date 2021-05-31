@@ -65,6 +65,7 @@ function UpdateUserAdmin() {
     errors: {
       password: '',
       username: '',
+      email: '',
     },
   });
   const {

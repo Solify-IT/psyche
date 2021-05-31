@@ -14,5 +14,6 @@ export default interface User {
   errors: {
     password: string,
     username: string,
+    email: string,
   };
 }

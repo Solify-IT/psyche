@@ -54,6 +54,10 @@ export default class UserPresenter implements IUserPresenter {
     return user;
   }
 
+  getUserByEmail(user: User): User {
+    return user;
+  }
+
   async encryptedPassword(password: string) : Promise<string> {
     const encryptedPassword = await bcrypt.hash(password, 8);
     return encryptedPassword;
