@@ -66,7 +66,6 @@ function FormsTable(props: FormsTableProps) {
   }
 
   async function handleDeleteForm(id: number) {
-    console.log(id);
     const result = await Swal.fire({
       title: '¿Deseas eliminar el formulario?',
       text: 'El formulario ya no estará disponible para operaciones futuras.',
