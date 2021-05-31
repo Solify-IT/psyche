@@ -15,12 +15,10 @@ import {
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
 import Field from 'src/interfaces/field';
-import EditIcon from '@material-ui/icons/Edit';
 import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
-import { Link } from 'react-router-dom';
 import './print.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -54,9 +52,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ConsultPatientForm() {
+function PrintForm() {
   const { formId } : any = useParams();
   const classes = useStyles();
+  const history = useHistory();
   const [formInformation, setFormInformation] = useState({
     id: 0,
     name: '',
@@ -88,6 +87,11 @@ function ConsultPatientForm() {
       })
       .catch((error:any) => console.log(error));
   }, [formId]);
+
+  function printDiv() {
+    window.print();
+    history.replace(`/patient-form/${formId}`);
+  }
 
   function createComponent(field:any) {
     switch (field.type) {
@@ -195,8 +199,8 @@ function ConsultPatientForm() {
   }
 
   return (
-    <main>
-      <Typography variant="h2" align="center" className={classes.subtitles}>
+    <div>
+      <Typography variant="h5" align="center" className={classes.subtitles}>
         { formInformation.name}
         {' '}
       </Typography>
@@ -209,31 +213,18 @@ function ConsultPatientForm() {
                 variant="contained"
                 color="primary"
                 className={classes.button}
-                component={Link}
-                to={`/patient-print/${formId}`}
+                onClick={printDiv}
               >
                 Imprimir
                 <PrintIcon className={classes.icon} />
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                component={Link}
-                to={`/update-patient-form/${formId}`}
-              >
-                Editar
-                {'     '}
-                <EditIcon className={classes.icon} />
               </Button>
             </Grid>
             {fields.map(createComponent)}
           </Grid>
         </Container>
       </div>
-    </main>
+    </div>
   );
 }
 
-export default ConsultPatientForm;
+export default PrintForm;
