@@ -178,18 +178,18 @@ function ConsultPatientForm() {
         ); }
       default:
         return (
-          <TextField
-            key={field.id.toString()}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id={field.id.toString()}
-            label={field.label}
-            value={field.value}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
         );
     }
   }
@@ -212,7 +212,7 @@ function ConsultPatientForm() {
                 component={Link}
                 to={`/patient-print/${formId}`}
               >
-                Imprimir
+                Formato de impresión
                 <PrintIcon className={classes.icon} />
               </Button>
               <Button

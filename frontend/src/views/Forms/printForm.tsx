@@ -182,29 +182,37 @@ function PrintForm() {
         ); }
       default:
         return (
-          <TextField
-            key={field.id.toString()}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id={field.id.toString()}
-            label={field.label}
-            value={field.value}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
         );
     }
   }
 
   return (
     <div>
-      <Typography variant="h5" align="center" className={classes.subtitles}>
+      <Typography variant="h4" align="left" className={classes.subtitles}>
+        Patronato Psicológico Queretano I.A.P
+      </Typography>
+      <Typography variant="h5" align="left" className={classes.subtitles}>
+        Folio: PPQ-
+        {' '}
+        {formInformation.recordId}
+      </Typography>
+      <Typography variant="h5" align="left" className={classes.subtitles}>
         { formInformation.name}
         {' '}
       </Typography>
-      <div className={classes.heroContent}>
+      <div>
         <Container>
           <Grid container spacing={3}>
             <Grid item xs={12}>
