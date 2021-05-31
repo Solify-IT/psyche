@@ -11,7 +11,6 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Box,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -186,17 +185,17 @@ function PrintForm() {
         ); }
       default:
         return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
+          <TextField
+            key={field.id.toString()}
+            fullWidth
+            id={field.id.toString().toString()}
+            label={field.label}
+            value={field.value}
+            InputProps={{
+              readOnly: true,
+              style: { textAlign: 'center' },
+            }}
+          />
         );
     }
   }
@@ -206,13 +205,13 @@ function PrintForm() {
         Patronato Psicológico Queretano I.A.P
       </Typography>
       <Typography variant="h5" align="left" className={classes.subtitles}>
+        { formInformation.name}
+        {' '}
+      </Typography>
+      <Typography variant="h5" align="left" className={classes.subtitles}>
         Folio: PPQ-
         {' '}
         {formInformation.recordId}
-      </Typography>
-      <Typography variant="h5" align="left" className={classes.subtitles}>
-        { formInformation.name}
-        {' '}
       </Typography>
       <div>
         <Container>
@@ -230,13 +229,9 @@ function PrintForm() {
               </Button>
             </Grid>
             {fields.filter((field) => field.type !== 'signature').map(createComponent)}
-            <Grid container>
-              <Grid item xs={12}>
-                <Box justifyContent="center">
-                  <br />
-                  {fields.filter((field) => field.type === 'signature').map(createComponent)}
-                  <br />
-                </Box>
+            <Grid container justify="center" alignItems="center">
+              <Grid item xs={4}>
+                {fields.filter((field) => field.type === 'signature').map(createComponent)}
               </Grid>
               <Grid item xs={12}>
                 <Typography align="justify">

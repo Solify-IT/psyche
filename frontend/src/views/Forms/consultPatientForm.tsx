@@ -178,18 +178,17 @@ function ConsultPatientForm() {
         ); }
       default:
         return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              fullWidth
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
+          <TextField
+            key={field.id.toString()}
+            fullWidth
+            id={field.id.toString().toString()}
+            label={field.label}
+            value={field.value}
+            InputProps={{
+              readOnly: true,
+              style: { textAlign: 'center' },
+            }}
+          />
         );
     }
   }
@@ -228,7 +227,7 @@ function ConsultPatientForm() {
                 <EditIcon className={classes.icon} />
               </Button>
             </Grid>
-            {fields.map(createComponent)}
+            {fields.filter((field) => field.type !== 'signature').map(createComponent)}
           </Grid>
         </Container>
       </div>
