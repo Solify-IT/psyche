@@ -11,6 +11,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Box,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -49,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     paddingLeft: '5px',
+  },
+  text: {
+    align: 'center',
   },
 }));
 
@@ -185,7 +189,6 @@ function PrintForm() {
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              fullWidth
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
@@ -197,7 +200,6 @@ function PrintForm() {
         );
     }
   }
-
   return (
     <div>
       <Typography variant="h4" align="left" className={classes.subtitles}>
@@ -227,28 +229,31 @@ function PrintForm() {
                 <PrintIcon className={classes.icon} />
               </Button>
             </Grid>
-            {fields.map(createComponent)}
-            <Grid item xs={4}>
-              <TextField
-                fullWidth
-                label="Firma del paciente"
-                value="    "
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              <p>
-                Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
-                efectos de informar a usted, que de conformidad con lo
-                dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
-                de Datos Personales en posesión de Particulares,
-                hacemos de su conocimiento que:
-                Patronato Psicológico Queretano  IAP, con domicilio fiscal
-                en Ignacio Allende 19 Sur,
-                Col Centro, municipio de Querétaro es responsable de
-                recabar sus datos personales,
-                del uso que se le dé a  los mismos y de su protección.
-              </p>
+            {fields.filter((field) => field.type !== 'signature').map(createComponent)}
+            <Grid container>
+              <Grid item xs={12}>
+                <Box justifyContent="center">
+                  <br />
+                  {fields.filter((field) => field.type === 'signature').map(createComponent)}
+                  <br />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography align="justify">
+                  {'   '}
+                  <br />
+                  Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
+                  efectos de informar a usted, que de conformidad con lo
+                  dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
+                  de Datos Personales en posesión de Particulares,
+                  hacemos de su conocimiento que:
+                  Patronato Psicológico Queretano  IAP, con domicilio fiscal
+                  en Ignacio Allende 19 Sur,
+                  Col Centro, municipio de Querétaro es responsable de
+                  recabar sus datos personales,
+                  del uso que se le dé a  los mismos y de su protección.
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
