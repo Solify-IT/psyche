@@ -141,18 +141,19 @@ function RegisterUser() {
     if (await emailExist(newUserV.email)) {
       toast.warning('El correo electrónico ya esta ocupado, intente con otro');
     }
-    if (usernameExist(newUserV.username)) {
+    if (await usernameExist(newUserV.username)) {
       console.log('ok');
       toast.warning('El nombre de usuario ya esta ocupado, intente con otro');
-    } else {
-      await CreateUser(newUser).then((response:any) => {
-        toast.success('Se ha registrado el nuevo usuario');
-        history.replace('/home');
-      })
-        .catch((error:any) => {
-          toast.warning('Ha ocurrido un error y/o algún dato ya existe en el sistema');
-        });
     }
+
+    await CreateUser(newUser).then((response:any) => {
+      toast.success('Se ha registrado el nuevo usuario');
+      history.replace('/home');
+    })
+      .catch((error:any) => {
+        toast.warning('Ha ocurrido un error y/o algún dato ya existe en el sistema');
+      });
+
     setNewUser({
       ...newUserV,
       errors,
