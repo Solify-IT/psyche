@@ -19,6 +19,7 @@ export interface IRequest {
   is(type: string | string[]): string | false;
   body: any;
   headers: any;
+  user?: any;
 }
 
 export interface IResponse {
