@@ -7,11 +7,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
 import { authenticationService, login } from '../api/authenticationService';
 
 const useStyles = makeStyles((theme) => ({
@@ -82,9 +82,7 @@ export default function SignInSide() {
         <Grid item xs={false} sm={4} md={6} className={classes.image} />
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}>
           <div className={classes.paper}>
-            <Typography component="h1" variant="h3">
-              Inicia Sesión
-            </Typography>
+            <ContentTitle text="Iniciar Sesión" />
             <form className={classes.form} method="POST" onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"

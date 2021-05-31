@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Paper,
   Button,
@@ -32,6 +30,8 @@ import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
 import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewForm() {
-/* eslint-disable react/jsx-props-no-spreading */
   const classes = useStyles();
   const history = useHistory();
   const [newField, setNewField] = useState<Field>({
@@ -226,105 +225,100 @@ function NewForm() {
     );
   }
   return (
-    <div className={classes.heroContent}>
-      <main>
-        <Container>
-          <Typography variant="h2" align="center">
-            Crear Nuevo Form
-          </Typography>
-          <Grid container justify="center">
-            <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
-              <Grid container spacing={5}>
-                <Grid item xs={12} sm={8}>
-                  <TextField
-                    margin="normal"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Nombre de formato"
-                    onChange={handleTitle}
-                    value={title}
-                    name="name"
-                    error={!titleValid}
-                    helperText={!titleValid && 'Este campo no puede estar vació.'}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <InputLabel shrink id="type">Tipo</InputLabel>
-                  <Select
-                    variant="outlined"
-                    labelId="type"
-                    required
-                    fullWidth
-                    label="Clasificación"
-                    name="type"
-                    value={formType}
-                    onChange={handleNewType}
-                  >
-                    {optionsPsiquiatria.map(createSelect)}
-                    <Divider />
-                    {optionsAsesoria.map(createSelect)}
-                    <Divider />
-                    {optionsClinica.map(createSelect)}
-                    <Divider />
-                    {optionsPsicologia.map(createSelect)}
-                    <Divider />
-                  </Select>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <InputLabel shrink>Tipo de Dato</InputLabel>
-                  <Select
-                    variant="outlined"
-                    fullWidth
-                    labelId="demo-simple-select-label"
-                    id="type"
-                    name="type"
-                    value={type}
-                    onChange={handleNewField}
-                  >
-                    <MenuItem value="text">Text Field</MenuItem>
-                    <MenuItem value="number">Number Field</MenuItem>
-                    <MenuItem value="select">Select</MenuItem>
-                    <MenuItem value="checkbox">Checkbox</MenuItem>
-                    <MenuItem value="datepicker">Date Picker</MenuItem>
-                    <MenuItem value="signature">Firma</MenuItem>
-                  </Select>
-                </Grid>
-                <Grid item xs={12} sm={8}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="label"
-                    label="Etiqueta"
-                    name="label"
-                    value={label}
-                    onChange={handleNewField}
-                    error={!labelValid}
-                    helperText={!labelValid && 'Este campo no puede estar vació.'}
-                  />
-                </Grid>
-                {renderCustomForm()}
-                <Grid item xs={12} className={classes.submit}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={addField}
-                  >
-                    Agregar
-                  </Button>
-                </Grid>
-              </Grid>
+    <MainContent>
+
+      <ContentTitle text="Crear Nuevo Form" />
+      <Grid container justify="center">
+        <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={8}>
+              <TextField
+                margin="normal"
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                label="Nombre de formato"
+                onChange={handleTitle}
+                value={title}
+                name="name"
+                error={!titleValid}
+                helperText={!titleValid && 'Este campo no puede estar vació.'}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <InputLabel shrink id="type">Tipo</InputLabel>
+              <Select
+                variant="outlined"
+                labelId="type"
+                required
+                fullWidth
+                label="Clasificación"
+                name="type"
+                value={formType}
+                onChange={handleNewType}
+              >
+                {optionsPsiquiatria.map(createSelect)}
+                <Divider />
+                {optionsAsesoria.map(createSelect)}
+                <Divider />
+                {optionsClinica.map(createSelect)}
+                <Divider />
+                {optionsPsicologia.map(createSelect)}
+                <Divider />
+              </Select>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <InputLabel shrink>Tipo de Dato</InputLabel>
+              <Select
+                variant="outlined"
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="type"
+                name="type"
+                value={type}
+                onChange={handleNewField}
+              >
+                <MenuItem value="text">Text Field</MenuItem>
+                <MenuItem value="number">Number Field</MenuItem>
+                <MenuItem value="select">Select</MenuItem>
+                <MenuItem value="checkbox">Checkbox</MenuItem>
+                <MenuItem value="datepicker">Date Picker</MenuItem>
+                <MenuItem value="signature">Firma</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="label"
+                label="Etiqueta"
+                name="label"
+                value={label}
+                onChange={handleNewField}
+                error={!labelValid}
+                helperText={!labelValid && 'Este campo no puede estar vació.'}
+              />
+            </Grid>
+            {renderCustomForm()}
+            <Grid item xs={12} className={classes.submit}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={addField}
+              >
+                Agregar
+              </Button>
             </Grid>
           </Grid>
-          <FormTable />
+        </Grid>
+      </Grid>
+      <FormTable />
 
-        </Container>
-      </main>
-    </div>
+    </MainContent>
 
   );
 }

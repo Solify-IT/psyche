@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import {
   makeStyles,
   Grid,
-  Typography,
-  Container,
   Table,
   TableBody,
   TableCell,
@@ -26,6 +23,8 @@ import Users from 'src/interfaces/Users';
 import Swal from 'sweetalert2';
 import { authenticationService } from 'src/api/authenticationService';
 import { Link } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 import { deactivateAccount, getUsers } from '../../api/user';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ViewUsers() {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [, setLoading] = useState<boolean>(false);
   const history = useHistory();
   const currentUser = authenticationService.currentUserValue;
   const handleSubmit = async (id: number) => {
@@ -126,40 +125,34 @@ function ViewUsers() {
   );
 
   return (
-    <main>
-      <div className={classes.heroContent}>
-        <Container>
-          <Typography variant="h2" align="center">
-            Consultar Usuarios
-          </Typography>
-          <Grid container justify="flex-end">
-            <Fab color="primary" aria-label="add" component={Link} to="/register-user">
-              <Add />
-            </Fab>
-          </Grid>
-          <Grid container>
-            <TableContainer component={Paper} className={classes.table}>
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell> Nombre</TableCell>
-                    <TableCell> Rol</TableCell>
-                    <TableCell> Correo</TableCell>
-                    <TableCell> Código Postal</TableCell>
-                    <TableCell> Dirección</TableCell>
-                    <TableCell> Modificar</TableCell>
-                    <TableCell> Desactivar</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {users.map(createUser)}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-        </Container>
-      </div>
-    </main>
+    <MainContent>
+      <ContentTitle text="Consultar Usuarios" />
+      <Grid container justify="flex-end">
+        <Fab color="primary" aria-label="add" component={Link} to="/register-user">
+          <Add />
+        </Fab>
+      </Grid>
+      <Grid container>
+        <TableContainer component={Paper} className={classes.table}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell> Nombre</TableCell>
+                <TableCell> Rol</TableCell>
+                <TableCell> Correo</TableCell>
+                <TableCell> Código Postal</TableCell>
+                <TableCell> Dirección</TableCell>
+                <TableCell> Modificar</TableCell>
+                <TableCell> Desactivar</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users.map(createUser)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </MainContent>
   );
 }
 
