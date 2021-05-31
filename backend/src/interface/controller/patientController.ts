@@ -53,7 +53,6 @@ export default class PatientController {
       }
     });
 
-    console.log(patientsActive);
     if (error) {
       context.next(error);
       return;
