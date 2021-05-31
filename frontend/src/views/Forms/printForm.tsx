@@ -11,6 +11,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Paper,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -28,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
   group: {
     margin: theme.spacing(3, 0, 3),
     textAlign: 'left',
+    fontSize: '78px',
+  },
+  image: {
+    height: '130px',
+    width: 'auto',
+    marginRight: '30px',
   },
   submit: {
     textAlign: 'center',
@@ -37,12 +44,29 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     paddingBottom: '0px',
     color: '#000000',
+    fontSize: '12px',
+  },
+  resize: {
+    fontSize: '10px',
+    marginTop: '7px',
+  },
+  resize2: {
+    fontSize: '15px',
+  },
+  subtitles1: {
+    marginTop: '0px',
+    padding: '10px',
+    paddingBottom: '0px',
+    color: '#000000',
+    fontSize: '20px',
+    fontWeight: 'bold',
   },
   formControl: {
     margin: theme.spacing(0, 1, 0),
+    fontSize: '10px',
   },
   button: {
-    marginTop: '30px',
+    marginTop: '2px',
     float: 'right',
     marginLeft: '15px',
     textTransform: 'none',
@@ -52,6 +76,19 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     align: 'center',
+  },
+  patientSection: {
+    align: 'center',
+    margin: theme.spacing(4, 2),
+    flexDirection: 'column',
+    borderColor: '#C94B72',
+    borderRadius: 20,
+    padding: theme.spacing(2, 6),
+    marginTop: '2px',
+    marginBottom: '2px',
+  },
+  aviso: {
+    fontSize: '9px',
   },
 }));
 
@@ -103,12 +140,15 @@ function PrintForm() {
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              fullWidth
+              style={{ width: '90%', margin: '10px' }}
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
               InputProps={{
                 readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
               }}
             />
           </Grid>
@@ -118,12 +158,15 @@ function PrintForm() {
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              fullWidth
+              style={{ width: '90%', margin: '10px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
               InputProps={{
                 readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
               }}
             />
           </Grid>
@@ -133,12 +176,15 @@ function PrintForm() {
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              fullWidth
+              style={{ width: '90%', margin: '10px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
               InputProps={{
                 readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
               }}
             />
           </Grid>
@@ -148,12 +194,15 @@ function PrintForm() {
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              fullWidth
+              style={{ width: '90%', margin: '10px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
               InputProps={{
                 readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
               }}
             />
           </Grid>
@@ -161,11 +210,14 @@ function PrintForm() {
       case 'checkbox': {
         return (
           <Grid item xs={4}>
-            <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>
-              <FormLabel component="legend">{field.label}</FormLabel>
-              <FormGroup>
+            <FormControl component="fieldset" className={classes.resize} key={field.id.toString()}>
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup
+                className={classes.resize}
+              >
                 {field.options.map((option:FieldOption, index:any) => (
                   <FormControlLabel
+                    className={classes.resize}
                     control={(
                       <Checkbox
                         key={option.id?.toString()}
@@ -173,6 +225,7 @@ function PrintForm() {
                         name={option.label}
                         data-id={index}
                         data-group={field.id.toString()}
+                        className={classes.resize}
                       />
                 )}
                     label={option.label}
@@ -187,72 +240,85 @@ function PrintForm() {
         return (
           <TextField
             key={field.id.toString()}
-            fullWidth
+            style={{ width: '90%', margin: '10px' }}
             id={field.id.toString().toString()}
             label={field.label}
             value={field.value}
             InputProps={{
               readOnly: true,
-              style: { textAlign: 'center' },
+              classes: {
+                input: classes.resize,
+              },
             }}
           />
         );
     }
   }
   return (
-    <div>
-      <Typography variant="h4" align="left" className={classes.subtitles}>
-        Patronato Psicológico Queretano I.A.P
-      </Typography>
-      <Typography variant="h5" align="left" className={classes.subtitles}>
-        { formInformation.name}
-        {' '}
-      </Typography>
-      <Typography variant="h5" align="left" className={classes.subtitles}>
-        Folio: PPQ-
-        {' '}
-        {formInformation.recordId}
-      </Typography>
-      <div>
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={printDiv}
-              >
-                Imprimir
-                <PrintIcon className={classes.icon} />
-              </Button>
+    <div className={classes.heroContent}>
+      <main>
+        <Paper variant="outlined" className={classes.patientSection}>
+          <Grid container>
+            <Grid item>
+              <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
             </Grid>
-            {fields.filter((field) => field.type !== 'signature').map(createComponent)}
-            <Grid container justify="center" alignItems="center">
-              <Grid item xs={4}>
-                {fields.filter((field) => field.type === 'signature').map(createComponent)}
-              </Grid>
-              <Grid item xs={12}>
-                <Typography align="justify">
-                  {'   '}
-                  <br />
-                  Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
-                  efectos de informar a usted, que de conformidad con lo
-                  dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
-                  de Datos Personales en posesión de Particulares,
-                  hacemos de su conocimiento que:
-                  Patronato Psicológico Queretano  IAP, con domicilio fiscal
-                  en Ignacio Allende 19 Sur,
-                  Col Centro, municipio de Querétaro es responsable de
-                  recabar sus datos personales,
-                  del uso que se le dé a  los mismos y de su protección.
-                </Typography>
-              </Grid>
+            <Grid item>
+              <Typography variant="h4" align="left" className={classes.subtitles1}>
+                Patronato Psicológico Queretano I.A.P
+              </Typography>
+              <Typography align="left" className={classes.subtitles}>
+                { formInformation.name}
+                {' '}
+              </Typography>
+              <Typography align="left" className={classes.subtitles}>
+                Folio: PPQ-
+                {' '}
+                {formInformation.recordId}
+              </Typography>
             </Grid>
           </Grid>
-        </Container>
-      </div>
+        </Paper>
+        <div>
+          <Container>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={printDiv}
+                >
+                  Imprimir
+                  <PrintIcon className={classes.icon} />
+                </Button>
+              </Grid>
+              <Grid container justify="center" alignItems="center">
+                {fields.filter((field) => field.type !== 'signature').map(createComponent)}
+              </Grid>
+              <Grid container justify="center" alignItems="center">
+                <Grid item xs={4}>
+                  {fields.filter((field) => field.type === 'signature').map(createComponent)}
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography align="center" className={classes.aviso}>
+                    Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
+                    efectos de informar a usted, que de conformidad con lo
+                    dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
+                    de Datos Personales en posesión de Particulares,
+                    hacemos de su conocimiento que:
+                    Patronato Psicológico Queretano  IAP, con domicilio fiscal
+                    en Ignacio Allende 19 Sur,
+                    Col Centro, municipio de Querétaro es responsable de
+                    recabar sus datos personales,
+                    del uso que se le dé a  los mismos y de su protección.
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Container>
+        </div>
+      </main>
     </div>
   );
 }

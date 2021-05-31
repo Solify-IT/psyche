@@ -1,14 +1,33 @@
 
 @media print {
-    Navbar, nav, Nav, Button, Footer, Link, Header, a {
+    @page {
+        size: auto;
+        margin: 0;
+    }
+    @page :footer {
+        display: none
+    }
+  
+    @page :header {
+        display: none
+    }
+    nav, Nav, Button, Footer, Link, Header, a {
         visibility: collapse;
         display: none;
     }
-    ul,table, Box {
-        page-break-inside: avoid;
+    ul,table, checkbox, Checkbox, div {
+        page-break-after: avoid;
     }
     h2 {
         font-size: 30%;
+        margin: 0px;
+    }
+    main, div {
+        margin: 0px;
+        padding: 0px;
+        page-break-after: avoid;
+    }
+    .patientSection {
         margin: 0px;
     }
 }
