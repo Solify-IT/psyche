@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import {
   Button,
   Grid, makeStyles, Paper, Typography,
@@ -9,7 +10,10 @@ import PatientForm from 'src/interfaces/patientForm';
 import groupBy from 'src/utils/groupBy';
 import Patient from 'src/interfaces';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import createRecordId from 'src/utils/createRecordId';
+import FadeIn from 'react-fade-in';
+import { archiveRecord } from '../api/patient';
 import ContentTitle from './contentTitle';
 import MainContent from './mainContent';
 import CornerFab from './cornerFab';
@@ -96,6 +100,7 @@ function FormSection(props: FormSectionProps) {
 
   function consultForm(event: React.ChangeEvent<any>) {
     const { id } = event.currentTarget.dataset;
+    // eslint-disable-next-line no-restricted-globals
     history.push(`/patient-form/${id}`);
   }
 
@@ -155,10 +160,54 @@ function RecordInfo(props: RecordInfoProps) {
   const history = useHistory();
   const { record } = props;
   const formsGrouped = groupBy(record.forms, (form) => form.name);
+  const [loading, setLoading] = useState<boolean>(false);
 
   function updateCanalization(event: React.ChangeEvent<any>) {
     const { recordid } = event.currentTarget.dataset;
     history.push(`/update-patient-canalization/${recordid}`);
+  }
+
+  const handleArchiveRecord = async (id: number) => {
+    setLoading(true);
+    try {
+      await archiveRecord(id);
+      console.log('ended');
+      Swal.fire(
+        'Expediente archivado!',
+        'El expediente ha sido archivado y ya no estará disponible para su modificación.',
+        'success',
+      );
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error interno!',
+      });
+      console.log(error);
+    } finally {
+      setLoading(false);
+      history.replace('/');
+    }
+  };
+
+  function confirmationArchive(event: React.ChangeEvent<any>) {
+    const { recordid } = event.currentTarget.dataset;
+    console.log(recordid);
+    Swal.fire({
+      title: '¿Estás seguro de archivar el expediente?',
+      text: 'El expediente quedará inactivo y no podrá ser modificado a partir de la confirmación',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#6EA84F',
+      cancelButtonColor: '#FF0000',
+      confirmButtonText: 'Confirmar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('Ok fue confirmado');
+        handleArchiveRecord(recordid);
+      }
+    });
   }
 
   function PatientGeneralInfo(patientProps: PatientGeneralInfoProps) {
@@ -196,6 +245,16 @@ function RecordInfo(props: RecordInfoProps) {
           <ContentTitle text={`Expediente ${createRecordId(record.id)} `} />
           <Grid item xs={12}>
             <div className={classes.canalize}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                data-recordid={record.id}
+                onClick={confirmationArchive}
+              >
+                Archivar Expediente
+              </Button>
+              {'  '}
               <Button
                 type="submit"
                 variant="contained"

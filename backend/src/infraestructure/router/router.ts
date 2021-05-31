@@ -70,6 +70,9 @@ export default class Router {
     app.put('/changePassword/', async (request, response, next) => {
       await wrapError(controller.users.changePassword({ request, response, next }));
     });
+    app.put('/archive-record/:id', async (request, response, next) => {
+      await wrapError(controller.patients.archiveRecord({ request, response, next }));
+    });
     app.delete('/forms/:id', async (request, response, next) => {
       await wrapError(controller.forms.deleteFormById({ request, response, next }));
     });

@@ -5,4 +5,5 @@ export default interface IPatientPresenter {
   findAll(patients: Patient[]) : Patient[];
   record(record: Record) : Record;
   canalize(patient: Patient): Patient;
+  archiveRecord(record: Record) : Record;
 }
