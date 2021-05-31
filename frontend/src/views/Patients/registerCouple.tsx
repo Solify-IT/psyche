@@ -11,6 +11,7 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
+import MainContent from 'src/components/mainContent';
 import Patient from '../../interfaces/patient';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,165 +72,168 @@ const RegisterCouple: FC<PatientProps> = (props): JSX.Element => {
     flag = true;
   }
   return (
-    <Grid container justify="center">
-      <Grid
-        item
-        xs={10}
-        component={Paper}
-        className={classes.paper}
-        elevation={6}
-        justify="center"
-      >
-        <Grid container justify="flex-end" alignItems="flex-end">
-          <Grid item xs={12}>
-            <Typography variant="h6" className={classes.type} color="secondary">
-              Paciente -
-              {' '}
-              {step}
-            </Typography>
+    <MainContent>
+
+      <Grid container justify="center">
+        <Grid
+          item
+          xs={10}
+          component={Paper}
+          className={classes.paper}
+          elevation={6}
+          justify="center"
+        >
+          <Grid container justify="flex-end" alignItems="flex-end">
+            <Grid item xs={12}>
+              <Typography variant="h6" className={classes.type} color="secondary">
+                Paciente -
+                {' '}
+                {step}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="name"
-              label="Nombre"
-              name="name"
-              value={patient.name}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid item xs={12} sm={8}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="lastName"
-              label="Apellido(s)"
-              name="lastName"
-              value={patient.lastName}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid xs={12} sm={4}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              type="date"
-              required
-              fullWidth
-              id="birthDate"
-              label="Fecha de Nacimiento"
-              name="birthDate"
-              className={classes.date}
-              value={patient.birthDate}
-              onChange={handlePatient}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              className={classes.place}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="birthPlace"
-              label="Lugar de Nacimiento"
-              name="birthPlace"
-              value={patient.birthPlace}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl
-              variant="outlined"
-              className={classes.formControl}
-            >
-              <InputLabel>Género</InputLabel>
-              <Select
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
                 required
                 fullWidth
-                label="Género"
-                name="gender"
-                value={patient.gender}
+                id="name"
+                label="Nombre"
+                name="name"
+                value={patient.name}
                 onChange={handlePatient}
+              />
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Apellido(s)"
+                name="lastName"
+                value={patient.lastName}
+                onChange={handlePatient}
+              />
+            </Grid>
+            <Grid xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                type="date"
+                required
+                fullWidth
+                id="birthDate"
+                label="Fecha de Nacimiento"
+                name="birthDate"
+                className={classes.date}
+                value={patient.birthDate}
+                onChange={handlePatient}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                className={classes.place}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="birthPlace"
+                label="Lugar de Nacimiento"
+                name="birthPlace"
+                value={patient.birthPlace}
+                onChange={handlePatient}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl}
               >
-                <MenuItem value="Masculino"> Masculino </MenuItem>
-                <MenuItem value="Femenino"> Femenino </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="address"
-              label="Domicilio"
-              name="address"
-              value={patient.address}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="postalCode"
-              label="Código Postal"
-              name="postalCode"
-              type="number"
-              value={patient.postalCode}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="telephone"
-              label="Teléfono"
-              name="telephone"
-              value={patient.telephone}
-              onChange={handlePatient}
-            />
-          </Grid>
-          <Grid item xs={12} className={classes.submit}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              disabled={flag}
-              onClick={previousStep}
-            >
-              Anterior
-            </Button>
-            <Button
-              className={classes.next}
-              type="submit"
-              variant="contained"
-              color="primary"
-              onClick={nextStep}
-            >
-              Siguiente
-            </Button>
+                <InputLabel>Género</InputLabel>
+                <Select
+                  required
+                  fullWidth
+                  label="Género"
+                  name="gender"
+                  value={patient.gender}
+                  onChange={handlePatient}
+                >
+                  <MenuItem value="Masculino"> Masculino </MenuItem>
+                  <MenuItem value="Femenino"> Femenino </MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="address"
+                label="Domicilio"
+                name="address"
+                value={patient.address}
+                onChange={handlePatient}
+              />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="postalCode"
+                label="Código Postal"
+                name="postalCode"
+                type="number"
+                value={patient.postalCode}
+                onChange={handlePatient}
+              />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="telephone"
+                label="Teléfono"
+                name="telephone"
+                value={patient.telephone}
+                onChange={handlePatient}
+              />
+            </Grid>
+            <Grid item xs={12} className={classes.submit}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={flag}
+                onClick={previousStep}
+              >
+                Anterior
+              </Button>
+              <Button
+                className={classes.next}
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={nextStep}
+              >
+                Siguiente
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </MainContent>
   );
 };
 

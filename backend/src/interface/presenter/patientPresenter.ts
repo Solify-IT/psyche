@@ -14,4 +14,8 @@ export default class PatientPresenter implements IPatientPresenter {
   canalize(patient: Patient): Patient {
     return patient;
   }
+
+  archiveRecord(record: Record) : Record {
+    return record;
+  }
 }
