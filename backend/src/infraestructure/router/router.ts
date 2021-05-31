@@ -78,7 +78,7 @@ export default class Router {
     app.delete('/forms/:id', authorize([Role.Admin]), async (request, response, next) => {
       await wrapError(controller.forms.deleteFormById({ request, response, next }));
     });
-    app.get('/forms', authorize([Role.Psicologo, Role.Admin]), async (request, response, next) => {
+    app.get('/forms', async (request, response, next) => {
       await wrapError(controller.forms.getForms({ request, response, next }));
     });
   }

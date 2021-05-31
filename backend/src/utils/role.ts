@@ -1,6 +1,6 @@
 const Role = {
   Admin: 'Administrador',
-  Psicologo: 'Psicologo',
+  Psicologo: 'Psicólogo',
   Becario: 'Becario',
 };
 
