@@ -228,6 +228,28 @@ function PrintForm() {
               </Button>
             </Grid>
             {fields.map(createComponent)}
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                label="Firma del paciente"
+                value="    "
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+              <p>
+                Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
+                efectos de informar a usted, que de conformidad con lo
+                dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
+                de Datos Personales en posesión de Particulares,
+                hacemos de su conocimiento que:
+                Patronato Psicológico Queretano  IAP, con domicilio fiscal
+                en Ignacio Allende 19 Sur,
+                Col Centro, municipio de Querétaro es responsable de
+                recabar sus datos personales,
+                del uso que se le dé a  los mismos y de su protección.
+              </p>
+            </Grid>
           </Grid>
         </Container>
       </div>
