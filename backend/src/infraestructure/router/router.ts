@@ -81,5 +81,8 @@ export default class Router {
     app.get('/forms', async (request, response, next) => {
       await wrapError(controller.forms.getForms({ request, response, next }));
     });
+    app.get('/user-email/:email', async (request, response, next) => {
+      await wrapError(controller.users.getUserByEmail({ request, response, next }));
+    });
   }
 }

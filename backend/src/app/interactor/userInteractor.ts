@@ -17,8 +17,15 @@ export default class UserInteractor {
   }
 
   async register(user: User): Promise<User> {
+    const { username } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [userExist, errorU] = await wrapError(this.getUser(username));
+    if (userExist) {
+      console.log('ok');
+      throw new InvalidDataError('El usuario existe');
+    }
     if (!this.isValidUser(user)) {
-      throw new InvalidDataError('El usuario no es valido.');
+      throw new Error('El usuario no es valido.');
     }
     const [results, error] = await wrapError(this.userRepository.register(user));
 
@@ -143,5 +150,13 @@ export default class UserInteractor {
       return false;
     }
     return true;
+  }
+
+  async getUserByEmail(email: string): Promise<User> {
+    const [results, error] = await wrapError(this.userRepository.getUserByEmail(email));
+    if (error) {
+      throw error;
+    }
+    return this.userPresenter.getUserByEmail(results);
   }
 }
