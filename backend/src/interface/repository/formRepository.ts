@@ -128,4 +128,40 @@ export default class FormRepository implements IFormRepository {
     }
     return result;
   }
+
+  async findRecord(id: number): Promise<Record> {
+    const [record, error] = await wrapError(
+      this.datastore.fetchOne<Record>('Record', { id }),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    if (record) {
+      return record;
+    }
+    throw new NotFoundError('No se encontró el expediente del paciente solicitado');
+  }
+
+  async updateDateAt(id: number): Promise<Record> {
+    const updatedAt = new Date();
+    const [record, error] = await wrapError(
+      this.findRecord(id),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const [records, errorRecords] = await wrapError(
+      this.datastore.save<Record>('Record', { ...record, updatedAt }),
+    );
+
+    if (errorRecords) {
+      throw error;
+    }
+
+    return records;
+  }
 }

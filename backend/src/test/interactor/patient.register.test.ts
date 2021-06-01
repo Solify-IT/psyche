@@ -34,6 +34,7 @@ describe('Patient register', () => {
     id: 1,
     patients,
     active: true,
+    updatedAt: new Date(),
   };
   test('should return record when single patient is passed', async () => {
     jest.spyOn(

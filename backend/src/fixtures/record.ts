@@ -7,5 +7,6 @@ const recordFixture : Record = {
   id: 1,
   patients,
   active: true,
+  updatedAt: new Date(),
 };
 export default recordFixture;
