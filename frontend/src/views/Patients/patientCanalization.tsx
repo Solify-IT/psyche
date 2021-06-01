@@ -103,7 +103,7 @@ function PatientCanalization() {
       .then((response:any) => {
         console.log(response);
         toast.success('¡Canalización exitosa!');
-        history.replace('/consult-patient');
+        history.replace('/view-patients');
       })
       .catch((error:any) => {
         toast.warning('¡Algo ha salido mal!');

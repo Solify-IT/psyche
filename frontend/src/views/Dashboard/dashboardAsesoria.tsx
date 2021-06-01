@@ -47,7 +47,7 @@ function DashboardAsesoria() {
     if (hasPatientArea('Asesoría Jurídica Adulto', authenticationService.currentUserValue.user.areas)) {
       componentList.push(
         <Grid item xs={12} sm={6} lg={5} key="Asesoría Jurídica Adulto">
-          <Link to="/register-patient/asesoria/Asesoría Juridica Adulto" className={classes.option}>
+          <Link to="/register-patient/asesoria/Asesoría Jurídica Adulto" className={classes.option}>
             <Paper className={classes.paper}>
               <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
               <Typography variant="h4" align="center" className={classes.subtitles}>

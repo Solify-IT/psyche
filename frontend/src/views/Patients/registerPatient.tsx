@@ -50,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     minWidth: 285,
   },
+  formControl2: {
+    marginTop: '16px',
+    textAlign: 'left',
+    minWidth: 305,
+  },
   group: {
     margin: theme.spacing(1, 0, 3),
     textAlign: 'left',
@@ -57,10 +62,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputLabel: {
     paddingLeft: '10px',
-  },
-  date: {
-    marginTop: '28px',
-    marginLeft: '10px',
   },
   place: {
     marginLeft: '20px',
@@ -166,7 +167,8 @@ function RegisterPatient() {
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (name === '' || lastName === '' || type === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === '') {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === ''
+      || motive === '' || abuseType === '') {
       toast.warning('¡Completar todos los campos!');
     } else {
       createPatient(formFields)
@@ -240,10 +242,12 @@ function RegisterPatient() {
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
-      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || postalCode.toString() === '') {
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || postalCode.toString() === ''
+      || patientOne.motive === '' || patientOne.abuseType === '') {
       toast.warning('¡Completar datos del paciente uno!');
     } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
-    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || postalCode.toString() === '') {
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || postalCode.toString() === ''
+    || patientTwo.motive === '' || patientTwo.abuseType === '') {
       toast.warning('¡Completar datos del paciente dos!');
     } else {
       const array = Array<Patient>();
@@ -380,7 +384,6 @@ function RegisterPatient() {
                             id="birthDate"
                             label="Fecha de Nacimiento"
                             name="birthDate"
-                            className={classes.date}
                             value={birthDate}
                             onChange={handleChange}
                             InputLabelProps={{
@@ -485,7 +488,7 @@ function RegisterPatient() {
                         <Grid item xs={12} sm={4}>
                           <FormControl
                             variant="outlined"
-                            className={classes.formControl}
+                            className={classes.formControl2}
                           >
                             <InputLabel>Tipo</InputLabel>
                             <Select
@@ -503,11 +506,10 @@ function RegisterPatient() {
                         <Grid item xs={12} sm={4}>
                           <FormControl
                             variant="outlined"
-                            className={classes.formControl}
+                            className={classes.formControl2}
                           >
                             <InputLabel>Causa</InputLabel>
                             <Select
-                              required
                               fullWidth
                               name="abuseMotive"
                               label="Causa"
@@ -525,8 +527,8 @@ function RegisterPatient() {
                           >
                             <FormLabel component="legend"> Procedimiento Legal </FormLabel>
                             <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
-                              <FormControlLabel value="true" control={<Radio />} label="Si" />
-                              <FormControlLabel value="false" control={<Radio />} label="No" />
+                              <FormControlLabel value control={<Radio />} label="Si" />
+                              <FormControlLabel value={false} control={<Radio />} label="No" />
                             </RadioGroup>
                           </FormControl>
                         </Grid>
@@ -534,7 +536,6 @@ function RegisterPatient() {
                           <TextField
                             variant="outlined"
                             margin="normal"
-                            required
                             fullWidth
                             id="postalCode"
                             label="Edad de Inicio"
@@ -548,7 +549,6 @@ function RegisterPatient() {
                           <TextField
                             variant="outlined"
                             margin="normal"
-                            required
                             fullWidth
                             id="abuseAttempts"
                             label="Intentos de Abuso"

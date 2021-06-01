@@ -14,7 +14,7 @@ export async function createCouple(patient:Array<Patient>) {
 }
 
 export async function getPatients() {
-  const result = await server.get('/patients').then(handleResponse).catch(handleResponse);
+  const result = await server.get('/patients');
   return result;
 }
 
