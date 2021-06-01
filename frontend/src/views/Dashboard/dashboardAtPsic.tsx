@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
   Paper,
 }
   from '@material-ui/core';
-import FadeIn from 'react-fade-in';
 import hasPatientArea from 'src/utils/hasPatientArea';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function DasboardAtPsic() {
   const useStyles = makeStyles((theme) => ({
@@ -111,33 +111,25 @@ function DasboardAtPsic() {
     return componentList;
   }
   return (
-    <FadeIn>
-      <main>
-        <div className={classes.heroContent}>
-          <Container>
-            <Grid container spacing={3}>
+    <MainContent>
+      <Grid container spacing={3}>
 
-              <Grid item xs={12}>
-                <Typography variant="h2" align="center" className={classes.subtitles}>
-                  Atención Psicológica
-                </Typography>
-              </Grid>
+        <Grid item xs={12}>
+          <ContentTitle text="Atención Psicológica" />
+        </Grid>
 
-              <Grid item xs={12}>
-                <Typography align="justify" className={classes.description}>
-                  {
+        <Grid item xs={12}>
+          <Typography align="justify" className={classes.description}>
+            {
                   areaList().length !== 0
                     ? 'Selecciona el grupo al que pertenece el paciente:'
                     : 'No se encontraron areas en las que pueda manejar.'
                 }
-                </Typography>
-              </Grid>
-              { areaList() }
-            </Grid>
-          </Container>
-        </div>
-      </main>
-    </FadeIn>
+          </Typography>
+        </Grid>
+        { areaList() }
+      </Grid>
+    </MainContent>
   );
 }
 

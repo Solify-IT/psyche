@@ -5,7 +5,6 @@ import path from 'path';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
 import jwtConfig from 'utils/jwtConfig';
-// import jwt from 'express-jwt';
 import jwt from 'express-jwt';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
@@ -15,20 +14,37 @@ import 'reflect-metadata';
 const app: express.Application = express();
 
 const port : number = 8000;
-
+function setMorgan() {
+  app.use(morgan((tokens, req, res) => {
+    if (req && req.user) {
+      const { user } = (req.user as any);
+      return [
+        user.username || '',
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res),
+        tokens.res(req, res, 'content-length'), '-',
+        tokens['response-time'](req, res), 'ms',
+      ].join(' ');
+    }
+    return [
+      tokens.method(req, res),
+      tokens.url(req, res),
+      tokens.status(req, res),
+      tokens.res(req, res, 'content-length'), '-',
+      tokens['response-time'](req, res), 'ms',
+    ].join(' ');
+  }));
+}
 const initServer = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
   app.use(express.static(path.join(__dirname, '../public')));
-  app.use(morgan('dev'));
-  if (jwtConfig.authenticationEnabled) {
-    app.use(jwt({
-      secret: jwtConfig.secret,
-      algorithms:
-     jwtConfig.algorithms,
-    }).unless({ path: ['/login'] }));
-  }
+  setMorgan();
+  app.use(
+    jwt({ secret: jwtConfig.secret, algorithms: jwtConfig.algorithms }).unless({ path: ['/login'] }),
+  );
 };
 
 async function initDatabase() {

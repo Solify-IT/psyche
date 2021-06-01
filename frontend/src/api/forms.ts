@@ -1,7 +1,7 @@
 import Form from 'src/interfaces/form';
 import server from 'src/utils/server';
 
-export default async function registerForm(form: Form) {
+export async function registerForm(form: Form) {
   const result = await server.post('/forms', form);
   return result;
 }
@@ -24,4 +24,19 @@ export async function listFormsWithRecordId(id: number) {
 export async function getFormField(id: number) {
   const result = await server.get(`/patientFormField/${id}`);
   return result;
+}
+
+export async function getForms() {
+  const result = await server.get('/forms');
+  return result;
+}
+
+export async function deleteForm(id: number) {
+  const result = await server.delete(`/forms/${id}`);
+  return result;
+}
+
+export async function getForm(id: number) {
+  const result = await server.get(`/forms/${id}`);
+  return result.data;
 }

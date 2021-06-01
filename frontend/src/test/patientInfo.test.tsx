@@ -48,5 +48,4 @@ describe('Patient info', () => {
     );
     expect(wrapper.find(CornerFab)).toHaveLength(1);
   });
-
 });

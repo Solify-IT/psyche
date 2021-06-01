@@ -88,3 +88,35 @@ describe('Get all forms by record id', () => {
     expect(result).toBe(null);
   });
 });
+
+describe('Delete form', () => {
+  test('should return true when valid', async () => {
+    jest.spyOn(
+      formRepository, 'deleteFormWithId',
+    ).mockImplementation(async () => true);
+    const [result, error] = await wrapError(interactor.deleteFormById(1));
+
+    expect(error).toBe(null);
+    expect(result).toEqual(true);
+  });
+
+  test('should throw error when repository returns true', async () => {
+    jest.spyOn(
+      formRepository, 'deleteFormWithId',
+    ).mockImplementation(async () => false);
+    const [result, error] = await wrapError(interactor.deleteFormById(1));
+
+    expect(error).toBeInstanceOf(Error);
+    expect(result).toBe(null);
+  });
+
+  test('should catch error from repository', async () => {
+    jest.spyOn(
+      formRepository, 'getFormsWithReportId',
+    ).mockImplementation(async () => { throw new Error('An error occured'); });
+    const [result, error] = await wrapError(interactor.deleteFormById(1));
+
+    expect(error).toBeInstanceOf(Error);
+    expect(result).toBe(null);
+  });
+});

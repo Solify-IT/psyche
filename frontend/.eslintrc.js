@@ -1,9 +1,16 @@
 module.exports = {
-  extends: ['airbnb-typescript'],
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'airbnb-typescript',
+  ],
   parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
-    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    }
   },
   rules: {
     'class-methods-use-this': 'off',
@@ -12,5 +19,10 @@ module.exports = {
   },
   env: {
     browser: true,
+  },
+  settings:  {
+    react:  {
+      version:  'detect',
+    },
   },
 };

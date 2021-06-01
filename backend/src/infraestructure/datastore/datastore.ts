@@ -43,4 +43,12 @@ export default class Datastore implements IDatastore {
 
     return items;
   }
+
+  async delete<T>(tableName: string, id: number): Promise<T> {
+    const connection = getConnection();
+    const repository = connection.manager.getRepository<T>(tableName);
+    await repository.delete(id);
+    const found = await repository.findOne(id);
+    return found;
+  }
 }

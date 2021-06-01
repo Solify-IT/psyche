@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   Button,
   Box,
   Paper,
@@ -15,6 +14,8 @@ import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import PatientForms from 'src/interfaces/patientForms';
 import { Link } from 'react-router-dom';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function ConsultPatientForm() {
   const [field, setField] = useState<PatientFormField>({
@@ -30,7 +31,6 @@ function ConsultPatientForm() {
     getFormField(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response.data);
       })
       .catch((error:any) => {
         console.log(error);
@@ -110,85 +110,81 @@ function ConsultPatientForm() {
   const classes = useStyles();
 
   return (
-    <div className={classes.heroContent}>
-      <main>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h2" align="center" className={classes.subtitles}>
-              { field.name}
-              {' '}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              Imprimir
-              <PrintIcon className={classes.icon} />
-            </Button>
-            <Button
-              type="submit"
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              component={Link}
-              to={`/update-patient-form/${id}`}
-            >
-              Editar
-              {'     '}
-              <EditIcon className={classes.icon} />
-            </Button>
-          </Grid>
-          <Grid item xs={12} lg={12}>
-            <Paper className={classes.paper}>
-              <Grid container xs={12} lg={12}>
-                <Grid item xs={6} lg={6} className={classes.grid}>
-                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Folio:
-                  </Box>
-                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Fecha de registro:
-                  </Box>
-                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Tipo de paciente:
-                  </Box>
-                </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid}>
-                  <Box ml={15} className={classes.box2}>
-                    PPQ-AP-
-                    {field.recordId}
-                  </Box>
-                  <Box ml={15} className={classes.box2}>
-                    { field.createdDate}
-                  </Box>
-                  <Box ml={15} className={classes.box2}>
-                    { field.type}
-                  </Box>
-                </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid2}>
-                  { field.fields.map((fields:any) => (
-                    <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                      { fields.label}
-                      {': '}
-                    </Box>
-                  )) }
-                </Grid>
-                <Grid item xs={6} lg={6} className={classes.grid2}>
-                  { field.fields.map((fields:any) => (
-                    <Box ml={15} className={classes.box2}>
-                      { fields.value}
-                    </Box>
-                  )) }
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
+    <MainContent>
+
+      <Grid container>
+        <Grid item xs={12}>
+          <ContentTitle text={field.name} />
         </Grid>
-      </main>
-    </div>
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Imprimir
+            <PrintIcon className={classes.icon} />
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            component={Link}
+            to={`/update-patient-form/${id}`}
+          >
+            Editar
+            {'     '}
+            <EditIcon className={classes.icon} />
+          </Button>
+        </Grid>
+        <Grid item xs={12} lg={12}>
+          <Paper className={classes.paper}>
+            <Grid container xs={12} lg={12}>
+              <Grid item xs={6} lg={6} className={classes.grid}>
+                <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                  Folio:
+                </Box>
+                <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                  Fecha de registro:
+                </Box>
+                <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                  Tipo de paciente:
+                </Box>
+              </Grid>
+              <Grid item xs={6} lg={6} className={classes.grid}>
+                <Box ml={15} className={classes.box2}>
+                  PPQ-AP-
+                  {field.recordId}
+                </Box>
+                <Box ml={15} className={classes.box2}>
+                  { field.createdDate}
+                </Box>
+                <Box ml={15} className={classes.box2}>
+                  { field.type}
+                </Box>
+              </Grid>
+              <Grid item xs={6} lg={6} className={classes.grid2}>
+                { field.fields.map((fields:any) => (
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    { fields.label}
+                    {': '}
+                  </Box>
+                )) }
+              </Grid>
+              <Grid item xs={6} lg={6} className={classes.grid2}>
+                { field.fields.map((fields:any) => (
+                  <Box ml={15} className={classes.box2}>
+                    { fields.value}
+                  </Box>
+                )) }
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
+    </MainContent>
   );
 }
 
