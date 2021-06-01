@@ -140,7 +140,6 @@ export default function CustomizedTables() {
 
   useEffect(() => {
     getPatients().then((response:any) => {
-      console.log(response);
       setPatients(response);
       setPatientsData(response);
     })

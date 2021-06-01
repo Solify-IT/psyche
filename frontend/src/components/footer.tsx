@@ -10,7 +10,7 @@ function Footer() {
       <Typography variant="h5" align="center" gutterBottom>
         Psyque
       </Typography>
-      <Link to="/soolers" text-decoration="none">
+      <Link to="/soolers">
         <Typography variant="body2" color="textSecondary" align="center">
           {'Copyright © '}
           {'Soolers '}

@@ -103,8 +103,8 @@ function UpdatePatientCanalization() {
   useEffect(() => {
     getPatientRecord(parseInt(patientId, 10))
       .then((response:any) => {
-        setType(response.data.patients[0].type);
-        setPatients(Object.values(response.data.patients));
+        setType(response.patients[0].type);
+        setPatients(Object.values(response.patients));
       })
       .catch((error:any) => console.log(error));
   }, []);
@@ -117,16 +117,13 @@ function UpdatePatientCanalization() {
       // eslint-disable-next-line no-param-reassign
       patient.type = type;
     });
-    console.log(patients);
     canalizePatient(patients)
-      .then((response:any) => {
-        console.log(response);
+      .then(() => {
         toast.success('¡Modificación exitosa!');
         history.replace('/consult-patient');
       })
-      .catch((error:any) => {
+      .catch(() => {
         toast.warning('¡Algo ha salido mal!');
-        console.log(error);
       });
   }
 
@@ -141,7 +138,6 @@ function UpdatePatientCanalization() {
   );
 
   const handleChange = (event:React.ChangeEvent<any>) => {
-    console.log(event.target);
     setType(event.target.value);
   };
 

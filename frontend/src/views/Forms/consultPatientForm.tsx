@@ -30,7 +30,7 @@ function ConsultPatientForm() {
   useEffect(() => {
     getFormField(id)
       .then((response:any) => {
-        setField(response.data);
+        setField(response);
       })
       .catch((error:any) => {
         console.log(error);

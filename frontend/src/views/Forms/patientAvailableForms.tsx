@@ -9,9 +9,9 @@ import Forms from 'src/components/Forms/ListForm/Forms';
 
 function PatientAvailableForms() {
   const { id } : any = useParams();
-  const mPromise = listFormsWithRecordId(id);
+  const mPromise = listFormsWithRecordId;
   const content = PromiseLoader<Form[]>(
-    mPromise,
+    () => mPromise(id),
     (forms) => <Forms forms={forms} recordId={id} />,
     (error) => {
       switch (error.response?.status) {

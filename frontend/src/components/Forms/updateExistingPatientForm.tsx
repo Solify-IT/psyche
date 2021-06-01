@@ -16,12 +16,13 @@ import {
   Paper,
 }
   from '@material-ui/core';
-import Form from 'src/interfaces/form';
 import FieldOption from 'src/interfaces/fieldOptions';
-import { registerPatientForm } from 'src/api/forms';
+import Field from 'src/interfaces/field';
+import { updatePatientForm } from 'src/api/forms';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
+import PatientFormField from 'src/interfaces/patientFormField';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
 
@@ -33,41 +34,42 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 3),
     textAlign: 'left',
   },
+  paper: {
+    marginTop: '20px',
+    padding: '30px',
+  },
   submit: {
     textAlign: 'center',
   },
   formControl: {
     margin: theme.spacing(0, 1, 0),
   },
-  paper: {
-    marginTop: '20px',
-    padding: '30px',
-  },
 }));
 
-type GenerateFormProps = {
-  data: Form;
-  id: number;
+type UpdateExistingPatientFormProps = {
+  form: any,
+  formId: number,
 };
 
-function GenerateForm(props: GenerateFormProps) {
-  const { id, data } = props;
+function UpdateExistingPatientForm(props: UpdateExistingPatientFormProps) {
+  const { form, formId } = props;
   const classes = useStyles();
   const history = useHistory();
-
-  const [fields, setFields] = useState(data.fields.sort((a, b) => {
-    if (a.id && b.id) {
-      if (a.id < b.id!) {
-        return -1;
+  const [fields, setFields] = useState<Field[]>(form.fields.sort(
+    (a: PatientFormField, b: PatientFormField) => {
+      if (a.id && b.id) {
+        if (a.id < b.id!) {
+          return -1;
+        }
+        if (a.id > b.id) {
+          return 1;
+        }
+        return 0;
       }
-      if (a.id > b.id) {
-        return 1;
-      }
+      console.error('Form ids not obtained. Defaulting to standard order');
       return 0;
-    }
-    console.error('Form ids not obtained. Defaulting to standard order');
-    return 0;
-  }));
+    },
+  ));
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -120,18 +122,21 @@ function GenerateForm(props: GenerateFormProps) {
 
   const handleSubmit = async () => {
     const patientForm = {
-      name: data.name,
-      type: data.type,
+      id: form.id,
+      name: form.name,
+      recordId: form.recordId,
+      type: form.type,
+      createdData: form.createdData,
       fields,
     };
     setLoading(true);
     try {
-      await registerPatientForm(id, patientForm);
-      toast.success('Se han llenado los datos de la encuesta exitosamente.');
-      history.replace(`/expediente/${id}`);
+      await updatePatientForm(formId, patientForm);
+      toast.success('Se ha modificado el formato del paciente.');
+      history.replace(`/expediente/${form.recordId}`);
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar registrar la encuesta');
+      toast.error('Ocurrió un error al intentar registrar el formato');
     } finally {
       setLoading(false);
     }
@@ -140,23 +145,6 @@ function GenerateForm(props: GenerateFormProps) {
   function createComponent(field:any) {
     switch (field.type) {
       case 'text':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id={field.id.toString().toString()}
-              label={field.label}
-              name={field.label.replace(/\s/g, '')}
-              value={field.value}
-              onChange={handleChange}
-            />
-          </Grid>
-        );
-      case 'signature':
         return (
           <Grid item xs={4}>
             <TextField
@@ -277,13 +265,13 @@ function GenerateForm(props: GenerateFormProps) {
   return (
     <MainContent>
 
-      <ContentTitle text="Llenar Formato del Paciente" />
+      <ContentTitle text="Modificar Encuesta De Paciente" />
       <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h6" align="left">
             Nombre del Formato:
             {' '}
-            {data.name}
+            {form.name}
           </Typography>
         </Grid>
         {fields.map(createComponent)}
@@ -304,11 +292,9 @@ function GenerateForm(props: GenerateFormProps) {
           </Grid>
 
         </Grid>
-
       </Grid>
     </MainContent>
-
   );
 }
 
-export default GenerateForm;
+export default UpdateExistingPatientForm;

@@ -106,7 +106,6 @@ function RegisterUser() {
       })
         .catch((error:any) => {
           toast.warning('No se pudo registrar al usuario');
-          console.log(error);
         });
     } else {
       const newUserV: User = {

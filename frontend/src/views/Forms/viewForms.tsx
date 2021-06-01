@@ -141,18 +141,10 @@ function FormsTable(props: FormsTableProps) {
 }
 
 function ViewForms() {
-  const promise = getForms();
+  const promise = getForms;
   const content = PromiseLoader(
     promise,
     (data: Form[]) => <FormsTable initialForms={data} />,
-    (error) => {
-      switch (error.response?.status) {
-        case 404:
-          return <h2>No se encontró el expediente</h2>;
-        default:
-          return <h2>Ocurrió un error de conexión.</h2>;
-      }
-    },
   );
 
   return content;

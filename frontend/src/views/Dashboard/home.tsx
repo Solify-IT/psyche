@@ -42,7 +42,6 @@ function Home() {
   }));
 
   const classes = useStyles();
-  const currentUser = authenticationService.currentUserValue;
   const { name } = authenticationService.currentUserValue.user;
   const greeting = (name === undefined) ? 'Hola' : `Hola, ${name}`;
 
@@ -123,7 +122,7 @@ function Home() {
     UserRole.Psicólogo,
   ])(
     <Grid item xs={12} sm={6} lg={4}>
-      <Link to={`/user-profile/${currentUser.user.id}`} className={classes.option}>
+      <Link to="/user-profile/" className={classes.option}>
         <Paper className={classes.paper}>
           <img src="/images/perfil.png" alt="Logo" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>

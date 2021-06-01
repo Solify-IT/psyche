@@ -124,14 +124,13 @@ function RegisterPatient() {
       toast.warning('¡Completar todos los campos!');
     } else {
       createPatient(formFields)
-        .then((response:any) => {
-          console.log(response);
+        .then(() => {
           toast.success('¡Se ha registrado el paciente! 😃');
           history.replace('/home');
         })
         .catch((error:any) => {
           toast.warning('Algo ha salido mal!');
-          console.log(error);
+          console.error(error);
         });
     }
   };
@@ -190,14 +189,12 @@ function RegisterPatient() {
       array.push(patientOne);
       array.push(patientTwo);
       createCouple(array)
-        .then((response:any) => {
-          console.log(response);
+        .then(() => {
           toast.success('¡Se han registrado los pacientes! 😃');
           history.replace('/home');
         })
-        .catch((error:any) => {
+        .catch(() => {
           toast.warning('Algo ha salido mal!');
-          console.log(error);
         });
     }
   };

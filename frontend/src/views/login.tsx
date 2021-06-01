@@ -66,13 +66,11 @@ export default function SignInSide() {
 
     login(username, password)
       .then((response) => {
-        console.log(response);
         toast.success('Se ha iniciado sesión 😃');
         history.replace('/home');
       })
       .catch((error) => {
         toast.warning('¡Usuario y/o contraseña incorrectos!');
-        console.log(error);
       });
   };
   return (

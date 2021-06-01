@@ -72,8 +72,7 @@ const AppRouter = () => (
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/user-profile/update/:id/" exact component={UpdateUser} />
     <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
-    <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
-    <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
+    <PrivateRoute path="/user-profile/" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />

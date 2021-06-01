@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { authenticationService } from 'src/api/authenticationService';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { authenticationService, logout } from 'src/api/authenticationService';
 
 const SERVER_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
 
@@ -24,4 +24,11 @@ server.interceptors.request.use((config) => {
   return config;
 }, (error) => Promise.reject(error));
 
+server.interceptors.response.use((response: AxiosResponse) => response, (error: AxiosError) => {
+  if (error.response && [401, 403].indexOf(error.response.status) !== -1) {
+    window.location.replace('/');
+    logout();
+    alert('¡Tu sesión ha caducado 😔!');
+  } return Promise.reject(error);
+});
 export default server;

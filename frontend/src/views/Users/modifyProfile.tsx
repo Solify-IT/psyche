@@ -10,11 +10,10 @@ type PsychProfileResponse = {
 };
 
 function ModifyProfile() {
-  const mPromise = getUserAreas();
+  const mPromise = getUserAreas;
   const content = PromiseLoader<PsychProfileResponse>(
     mPromise,
     (response) => {
-      console.log(response);
       const { patientAreas, workSchedule } = response;
       return <EditProfile areas={patientAreas} workSchedule={workSchedule} />;
     },

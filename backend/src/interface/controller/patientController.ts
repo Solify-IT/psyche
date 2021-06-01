@@ -33,13 +33,11 @@ export default class PatientController {
       }
     });
 
-    console.log(patientsActive);
     if (error) {
       context.next(error);
       return;
     }
 
-    console.log(patientsActive);
     context.response.status(200).json(patients);
   }
 
@@ -70,7 +68,6 @@ export default class PatientController {
   async archiveRecord(context: IContext): Promise<void> {
     // eslint-disable-next-line radix
     const id = parseInt(context.request.params.id);
-    console.log(id);
     const [record, error] = await wrapError(this.patientInteractor.archiveRecord(id));
 
     if (error) {

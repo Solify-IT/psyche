@@ -137,8 +137,7 @@ function RegisterFamily() {
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     createCouple(family)
-      .then((response:any) => {
-        console.log(response);
+      .then(() => {
         toast.success('¡Se han registrado los pacientes! 😃');
         history.replace('/home');
       })

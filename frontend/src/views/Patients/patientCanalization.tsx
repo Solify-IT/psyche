@@ -86,7 +86,7 @@ function PatientCanalization() {
   useEffect(() => {
     getPatientRecord(parseInt(patientId, 10))
       .then((response:any) => {
-        setPatients(Object.values(response.data.patients));
+        setPatients(Object.values(response.patients));
       })
       .catch((error:any) => console.log(error));
   }, []);
@@ -97,10 +97,8 @@ function PatientCanalization() {
       // eslint-disable-next-line no-param-reassign
       patient.userId = parseInt(userid, 10);
     });
-    console.log(patients);
     canalizePatient(patients)
-      .then((response:any) => {
-        console.log(response);
+      .then(() => {
         toast.success('¡Canalización exitosa!');
         history.replace('/consult-patient');
       })
