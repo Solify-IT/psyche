@@ -6,6 +6,12 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
+
+    .aviso{
+        position: static;
+        bottom: 20px;
+        width: 100%;
+    }
   
     @page :header {
         display: none

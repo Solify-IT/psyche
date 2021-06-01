@@ -101,11 +101,19 @@ const useStyles = makeStyles((theme) => ({
   aviso: {
     fontSize: '9px',
     marginTop: '40px',
+    position: 'absolute',
+    bottom: '20px',
+    width: '100%',
   },
   firma: {
     fontSize: '13px',
     textAlign: 'center',
     font: 'inherit',
+  },
+  gridFirma: {
+    position: 'absolute',
+    bottom: '100px',
+    width: '100%',
   },
 }));
 
@@ -226,7 +234,7 @@ function PrintForm() {
         );
       case 'signature':
         return (
-          <Grid item xs={4} spacing={5}>
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
             <div>
               <Divider variant="middle" className={classes.divider} />
               <Typography className={classes.firma}>
@@ -333,7 +341,7 @@ function PrintForm() {
               <Grid container justify="center" alignItems="center">
                 {fields.filter((field) => field.type === 'signature').map(createComponent)}
                 <Grid item xs={12}>
-                  <Typography align="center" className={classes.aviso}>
+                  <Typography align="center" className={classes.aviso} id="print-footer">
                     Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
                     efectos de informar a usted, que de conformidad con lo
                     dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
