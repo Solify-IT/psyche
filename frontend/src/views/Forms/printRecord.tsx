@@ -18,8 +18,8 @@ import {
 import FieldOption from 'src/interfaces/fieldOptions';
 import Field from 'src/interfaces/field';
 import PrintIcon from '@material-ui/icons/Print';
-import { getFormField } from 'src/api/forms';
-import { useHistory, useParams } from 'react-router';
+import { listFormsWithRecordId } from 'src/api/forms';
+import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import './print.css';
 
@@ -117,10 +117,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PrintForm() {
-  const { formId } : any = useParams();
+function PrintRecord() {
+  const { recordId } : any = useParams();
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   const [formInformation, setFormInformation] = useState({
     id: 0,
     name: '',
@@ -131,8 +131,9 @@ function PrintForm() {
   const [fields, setFields] = useState<Field[]>([]);
 
   useEffect(() => {
-    getFormField(formId)
+    listFormsWithRecordId(recordId)
       .then((response:any) => {
+        console.log(response);
         setFields(Object.values(response.data.fields.sort(
           (a: PatientFormField, b: PatientFormField) => {
             if (a.id && b.id) {
@@ -151,11 +152,11 @@ function PrintForm() {
         setFormInformation(response.data);
       })
       .catch((error:any) => console.log(error));
-  }, [formId]);
+  }, [recordId]);
 
   function printDiv() {
     window.print();
-    history.replace(`/patient-form/${formId}`);
+    // history.replace(`/patient-form/${formId}`);
   }
 
   function createComponent(field:any) {
@@ -363,4 +364,4 @@ function PrintForm() {
   );
 }
 
-export default PrintForm;
+export default PrintRecord;
