@@ -3,7 +3,6 @@ import {
   Container,
   makeStyles,
   Grid,
-  Typography,
   TextField,
   Button,
   FormControl,
@@ -22,6 +21,8 @@ import { useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import { Link } from 'react-router-dom';
 import './print.css';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -194,11 +195,8 @@ function ConsultPatientForm() {
   }
 
   return (
-    <main>
-      <Typography variant="h2" align="center" className={classes.subtitles}>
-        { formInformation.name}
-        {' '}
-      </Typography>
+    <MainContent>
+      <ContentTitle text={formInformation.name} />
       <div className={classes.heroContent}>
         <Container>
           <Grid container spacing={3}>
@@ -231,7 +229,7 @@ function ConsultPatientForm() {
           </Grid>
         </Container>
       </div>
-    </main>
+    </MainContent>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
@@ -14,6 +13,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Paper,
 }
   from '@material-ui/core';
 import Form from 'src/interfaces/form';
@@ -22,6 +22,8 @@ import { registerPatientForm } from 'src/api/forms';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -36,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(0, 1, 0),
+  },
+  paper: {
+    marginTop: '20px',
+    padding: '30px',
   },
 }));
 
@@ -271,43 +277,39 @@ function GenerateForm(props: GenerateFormProps) {
   }
 
   return (
-    <main>
-      <Typography variant="h2" align="center">
-        Llenar Formato del Paciente
-      </Typography>
-      <div className={classes.heroContent}>
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Typography variant="h6" align="left">
-                Nombre del Formato:
-                {' '}
-                {data.name}
-              </Typography>
-            </Grid>
-            {fields.map(createComponent)}
+    <MainContent>
 
-            <Grid container alignItems="center" justify="center" direction="row">
-              <Grid item>
-                {!loading ? (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={handleSubmit}
-                  >
-                    Registrar
-                  </Button>
-                ) : <LoadingSpinner /> }
-              </Grid>
+      <ContentTitle text="Llenar Formato del Paciente" />
+      <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} spacing={3}>
+        <Grid item xs={12}>
+          <Typography variant="h6" align="left">
+            Nombre del Formato:
+            {' '}
+            {data.name}
+          </Typography>
+        </Grid>
+        {fields.filter((field) => field.type !== 'signature').map(createComponent)}
 
-            </Grid>
-
+        <Grid container alignItems="center" justify="center" direction="row">
+          <Grid item>
+            {!loading ? (
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleSubmit}
+              >
+                Registrar
+              </Button>
+            ) : <LoadingSpinner /> }
           </Grid>
-        </Container>
-      </div>
-    </main>
+
+        </Grid>
+
+      </Grid>
+    </MainContent>
+
   );
 }
 

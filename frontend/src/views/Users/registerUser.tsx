@@ -18,6 +18,8 @@ import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
 import { CreateUser, getUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -98,11 +100,8 @@ function RegisterUser() {
         userExist = false;
       });
     }
-    console.log(userExist);
     if (!userExist) {
-      console.log('ok');
       CreateUser(newUser).then((response:any) => {
-        console.log(response);
         toast.success('Se ha registrado el nuevo usuario');
         history.replace('/home');
       })
@@ -120,16 +119,21 @@ function RegisterUser() {
   };
 
   return (
-    <div className={classes.heroContent}>
-      <Container>
-        <Typography variant="h2" align="center">
-          Registrar Usuario
-        </Typography>
-        <form method="POST" onSubmit={handleSubmit}>
+    <MainContent>
+      <ContentTitle text="Registrar Usuario" />
+      <form method="POST" onSubmit={handleSubmit}>
+        <Grid
+          container
+          justify="center"
+          spacing={2}
+        >
           <Grid
-            container
-            justify="center"
-            spacing={2}
+            item
+            xs={10}
+            component={Paper}
+            className={classes.paper}
+            elevation={6}
+            square
           >
             <Grid
               item
@@ -297,9 +301,9 @@ function RegisterUser() {
               </Grid>
             </Grid>
           </Grid>
-        </form>
-      </Container>
-    </div>
+        </Grid>
+      </form>
+    </MainContent>
 
   );
 }

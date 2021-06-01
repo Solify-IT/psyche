@@ -6,7 +6,7 @@ import {
   authenticationService, logout, profileSet,
 } from 'src/api/authenticationService';
 
-const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
+const PrivateRoute = ({ component: Component, roles, ...rest } : any) => (
   /* eslint-disable react/jsx-props-no-spreading */
   <Route
     {...rest}
@@ -23,8 +23,8 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => (
       }
 
       // check if the route is restricted by role
-      if (roles && roles.indexOf(currentUser.role) === -1) {
-        return <Redirect to={{ pathname: '/' }} />;
+      if (roles && (roles.length > 0 && !roles.includes(currentUser.user.role))) {
+        return <Redirect to={{ pathname: '/404' }} />;
       }
 
       // check if user is first time logged in

@@ -238,7 +238,11 @@ function PrintForm() {
       case 'checkbox': {
         return (
           <Grid item xs={4}>
-            <FormControl component="fieldset" key={field.id.toString()}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+            >
               <FormLabel className={classes.resize}>{field.label}</FormLabel>
               <FormGroup>
                 {field.options.map((option:FieldOption, index:any) => (

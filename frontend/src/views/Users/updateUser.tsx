@@ -19,6 +19,8 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { consultProfile, updateUser } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -44,7 +46,7 @@ function UpdateUser() {
 
   const [userInformation, setUserInformation] = useState<User>({
     name: '',
-    lastName: ' ',
+    lastName: '',
     address: '',
     zipCode: '',
     email: '',
@@ -81,9 +83,7 @@ function UpdateUser() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      console.log(userInformation);
       await updateUser(parseInt(userId, 10), userInformation);
-      console.log('we are gonna try 2');
       toast.success('Se ha modificado la información del usuario.');
       history.replace(`/user-profile/${currentUser.user.id}`);
     } catch (error) {
@@ -91,130 +91,138 @@ function UpdateUser() {
       toast.error('Ocurrió un error al intentar editar el usuario');
     } finally {
       setLoading(false);
-      console.log('falso');
     }
   };
   return (
-    <div className={classes.heroContent}>
-      <Container>
-        <Typography variant="h2" align="center">
-          Editar Usuario
-        </Typography>
+    <MainContent>
+      <ContentTitle text={`Editar Usuario - ${username}`} />
+      <Grid
+        container
+        justify="center"
+        spacing={2}
+      >
         <Grid
-          container
-          justify="center"
-          spacing={2}
+          item
+          xs={10}
+          component={Paper}
+          className={classes.paper}
+          elevation={6}
+          square
         >
-          <Grid
-            item
-            xs={10}
-            component={Paper}
-            className={classes.paper}
-            elevation={6}
-            square
-          >
-            <Grid container justify="center" alignItems="center" spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Nombre"
-                  name="name"
-                  value={name}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Apellidos"
-                  name="lastName"
-                  value={lastName}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="address"
-                  label="Dirección"
-                  name="address"
-                  value={address}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  inputProps={{ maxLength: 5, minLength: 5 }}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="zipCode"
-                  label="Código Postal"
-                  name="zipCode"
-                  value={zipCode}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  type="email"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Correo"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  type="workSchedule"
-                  required
-                  fullWidth
-                  id="workSchedule"
-                  label="Horario de Trabajo"
-                  name="workSchedule"
-                  value={workSchedule}
-                  onChange={handleChange}
-                />
-              </Grid>
+          <Grid container justify="center" alignItems="center" spacing={3}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Nombre"
+                name="name"
+                value={name}
+                onChange={handleChange}
+              />
             </Grid>
-            <Grid container alignItems="center" justify="center" direction="row">
-              <Grid item>
-                {loading ? <LoadingSpinner /> : (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={handleSubmit}
-                  >
-                    Modificar
-                  </Button>
-                )}
-              </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Apellidos"
+                name="lastName"
+                value={lastName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="address"
+                label="Dirección"
+                name="address"
+                value={address}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="telephone"
+                label="Teléfono"
+                name="telephone"
+                value={telephone}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                inputProps={{ maxLength: 5, minLength: 5 }}
+                margin="normal"
+                required
+                fullWidth
+                id="zipCode"
+                label="Código Postal"
+                name="zipCode"
+                value={zipCode}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                type="email"
+                required
+                fullWidth
+                id="email"
+                label="Correo"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                type="workSchedule"
+                required
+                fullWidth
+                id="workSchedule"
+                label="Horario de Trabajo"
+                name="workSchedule"
+                value={workSchedule}
+                onChange={handleChange}
+              />
+            </Grid>
+          </Grid>
+          <Grid container alignItems="center" justify="center" direction="row">
+            <Grid item>
+              {loading ? <LoadingSpinner /> : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={handleSubmit}
+                >
+                  Modificar
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </MainContent>
   );
 }
 export default UpdateUser;

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   Button,
   Paper,
+  Typography,
   Box,
 }
   from '@material-ui/core';
@@ -14,6 +14,8 @@ import { useHistory, useParams } from 'react-router';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
 import { authenticationService } from 'src/api/authenticationService';
+// import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function ConsultProfiles() {
   const [field, setField] = useState<ConsultProfile>({
@@ -22,6 +24,7 @@ function ConsultProfiles() {
     name: '',
     lastName: '',
     address: '',
+    telephone: '',
     zipCode: '',
     password: '',
     email: '',
@@ -108,7 +111,7 @@ function ConsultProfiles() {
 
   const history = useHistory();
   const updateProfile = () => {
-    history.replace(`/user-profile/update/${currentUser.user.id}`);
+    history.push(`/user-profile/update/${currentUser.user.id}`);
   };
 
   const newPassword = () => {
@@ -130,10 +133,13 @@ function ConsultProfiles() {
                     Nombre:
                   </Box>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Apellidos:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
                     Dirección:
                   </Box>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
-                    Código postal:
+                    Teléfono:
                   </Box>
                 </Grid>
                 <Grid item xs={3} lg={3} className={classes.grid}>
@@ -142,19 +148,23 @@ function ConsultProfiles() {
                   </Box>
                   <Box className={classes.box}>
                     {field.name}
-                    {' '}
+                  </Box>
+                  <Box className={classes.box}>
                     {field.lastName}
                   </Box>
                   <Box className={classes.box}>
                     { field.address}
                   </Box>
                   <Box className={classes.box}>
-                    { field.zipCode}
+                    {field.telephone}
                   </Box>
                 </Grid>
                 <Grid item xs={3} lg={3} className={classes.grid}>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
                     Rol:
+                  </Box>
+                  <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
+                    Código postal:
                   </Box>
                   <Box fontWeight="fontWeightBold" ml={15} className={classes.box}>
                     Correo electrónico:
@@ -169,6 +179,9 @@ function ConsultProfiles() {
                 <Grid item xs={3} lg={3} className={classes.grid}>
                   <Box className={classes.box}>
                     {field.role}
+                  </Box>
+                  <Box className={classes.box}>
+                    { field.zipCode}
                   </Box>
                   <Box className={classes.box}>
                     { field.email}
@@ -256,7 +269,7 @@ function ConsultProfiles() {
 
   return (
     <div className={classes.heroContent}>
-      <main>
+      <MainContent>
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="h2" align="center" className={classes.subtitles}>
@@ -289,7 +302,7 @@ function ConsultProfiles() {
           </Grid>
           {Profesional()}
         </Grid>
-      </main>
+      </MainContent>
     </div>
   );
 }

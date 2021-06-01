@@ -25,7 +25,8 @@ import {
 import 'src/App.css';
 import { CSVLink } from 'react-csv';
 import { getPatients } from 'src/api/patient';
-import Container from '@material-ui/core/Container';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function getFileName() {
   const d = new Date();
@@ -208,116 +209,112 @@ export default function CustomizedTables() {
   };
 
   return (
-    <div className={classes.heroContent}>
-      <main>
-        <Container>
-          <Grid item xs={12} className={classes.grid}>
-            <Typography component="h2" variant="h3" align="center" color="primary" className={classes.subtitles}>Pacientes</Typography>
-            <CSVLink
-              data={patients}
-              filename={getFileName()}
-              headers={headers}
-              className={classes.buttonCSV}
-            >
-              <Button variant="contained" color="secondary" className={classes.buttonCSV}>
-                Exportar a CSV
-              </Button>
-            </CSVLink>
+    <MainContent>
+      <Grid item xs={12} className={classes.grid}>
+        <ContentTitle text="Pacientes" />
+        <CSVLink
+          data={patients}
+          filename={getFileName()}
+          headers={headers}
+          className={classes.buttonCSV}
+        >
+          <Button variant="contained" color="secondary" className={classes.buttonCSV}>
+            Exportar a CSV
+          </Button>
+        </CSVLink>
+      </Grid>
+      <Paper className={classes.paper}>
+        <Grid item xs={3}>
+          <TextField
+            id="outlined-basic"
+            label="Nombre del paciente o especialista"
+            variant="outlined"
+            value={searchData}
+            onChange={handleSearch}
+          />
+          <FormControl className={classes.formPatient}>
+            <FormLabel component="legend">Todos los pacientes</FormLabel>
+            <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
+              <FormControlLabel value="todos" control={<Radio />} label="Todos" />
+            </RadioGroup>
+          </FormControl>
+          <FormControl className={classes.formPatient}>
+            <FormLabel component="legend">Psicología</FormLabel>
+            {fields.map((field) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.formPatient}>
+            <FormLabel component="legend">Psiquiatría</FormLabel>
+            {fieldsPs.map((field) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.formPatient}>
+            <FormLabel component="legend">Clínica</FormLabel>
+            {fieldsCl.map((field) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+          <FormControl className={classes.formPatient}>
+            <FormLabel component="legend">Asesoría</FormLabel>
+            {fieldsAs.map((field) => (
+              <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
+                <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
+              </RadioGroup>
+            ))}
+          </FormControl>
+        </Grid>
+        <GridList className={classes.gridList}>
+          <Grid item xs={12}>
+            <Table className={classes.table}>
+              <TableBody>
+                {patients.map((field) => (
+                  <TableRow key={field.id}>
+                    <StyledTableCell align="left" color="textPrimary">
+                      <Link to={`/expediente/${field.recordId}`} className={classes.link}>
+                        {field.name}
+                        {' '}
+                        {field.lastName}
+                      </Link>
+                      <>
+                        <Typography color="textSecondary" className={classes.subtitle}>
+                          {field.type}
+                        </Typography>
+                      </>
+                      <>
+                        <Typography color="textSecondary" className={classes.subtitle}>
+                          Folio:
+                          {field.recordId}
+                        </Typography>
+                      </>
+                    </StyledTableCell>
+                    <TableCell className={classes.canal}>
+                      {field.userId
+                        ? (
+                          <>
+                            <Typography color="textSecondary" className={classes.subtitle}>
+                              Nombre del Doctor:
+                              {' '}
+                              {field.user.name}
+                            </Typography>
+                          </>
+                        )
+                        : <Button variant="contained" color="primary" className={classes.canal} data-patientId={field.recordId?.toString()} onClick={addUser}>Canalizar</Button>}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </Grid>
-          <Paper className={classes.paper}>
-            <Grid item xs={3}>
-              <TextField
-                id="outlined-basic"
-                label="Nombre del paciente o especialista"
-                variant="outlined"
-                value={searchData}
-                onChange={handleSearch}
-              />
-              <FormControl className={classes.formPatient}>
-                <FormLabel component="legend">Todos los pacientes</FormLabel>
-                <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
-                  <FormControlLabel value="todos" control={<Radio />} label="Todos" />
-                </RadioGroup>
-              </FormControl>
-              <FormControl className={classes.formPatient}>
-                <FormLabel component="legend">Psicología</FormLabel>
-                {fields.map((field) => (
-                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
-                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
-                  </RadioGroup>
-                ))}
-              </FormControl>
-              <FormControl className={classes.formPatient}>
-                <FormLabel component="legend">Psiquiatría</FormLabel>
-                {fieldsPs.map((field) => (
-                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
-                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
-                  </RadioGroup>
-                ))}
-              </FormControl>
-              <FormControl className={classes.formPatient}>
-                <FormLabel component="legend">Clínica</FormLabel>
-                {fieldsCl.map((field) => (
-                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
-                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
-                  </RadioGroup>
-                ))}
-              </FormControl>
-              <FormControl className={classes.formPatient}>
-                <FormLabel component="legend">Asesoría</FormLabel>
-                {fieldsAs.map((field) => (
-                  <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange} key={field.id}>
-                    <FormControlLabel value={field.name} control={<Radio />} label={field.name} />
-                  </RadioGroup>
-                ))}
-              </FormControl>
-            </Grid>
-            <GridList className={classes.gridList}>
-              <Grid item xs={12}>
-                <Table className={classes.table}>
-                  <TableBody>
-                    {patients.map((field) => (
-                      <TableRow key={field.id}>
-                        <StyledTableCell align="left" color="textPrimary">
-                          <Link to={`/expediente/${field.recordId}`} className={classes.link}>
-                            {field.name}
-                            {' '}
-                            {field.lastName}
-                          </Link>
-                          <>
-                            <Typography color="textSecondary" className={classes.subtitle}>
-                              {field.type}
-                            </Typography>
-                          </>
-                          <>
-                            <Typography color="textSecondary" className={classes.subtitle}>
-                              Folio:
-                              {field.recordId}
-                            </Typography>
-                          </>
-                        </StyledTableCell>
-                        <TableCell className={classes.canal}>
-                          {field.userId
-                            ? (
-                              <>
-                                <Typography color="textSecondary" className={classes.subtitle}>
-                                  Nombre del Doctor:
-                                  {' '}
-                                  {field.user.name}
-                                </Typography>
-                              </>
-                            )
-                            : <Button variant="contained" color="primary" className={classes.canal} data-patientId={field.recordId?.toString()} onClick={addUser}>Canalizar</Button>}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Grid>
-            </GridList>
-          </Paper>
-        </Container>
-      </main>
-    </div>
+        </GridList>
+      </Paper>
+    </MainContent>
   );
 }

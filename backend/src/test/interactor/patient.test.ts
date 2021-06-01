@@ -95,4 +95,14 @@ describe('Patient register', () => {
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);
   });
+
+  test('should catch error when try to inactive a record', async () => {
+    jest.spyOn(
+      patientRepository, 'archiveRecord',
+    ).mockImplementation(async () => { throw new Error('An error occured'); });
+    const [result, error] = await wrapError(interactor.archiveRecord(1));
+
+    expect(error).toBeInstanceOf(Error);
+    expect(result).toBe(null);
+  });
 });

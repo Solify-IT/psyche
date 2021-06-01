@@ -6,6 +6,7 @@ export default interface ConsultProfile {
   name: string;
   lastName: string;
   address: string;
+  telephone: string;
   zipCode: string;
   password: string;
   email: string;
