@@ -5,8 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
-import { logout } from 'src/api/authenticationService';
-import { AuthContext } from '../utils/authContext';
 import { Link, useHistory } from 'react-router-dom';
 import '../App.css';
 import {
@@ -20,6 +18,7 @@ import {
 import withRole from 'src/utils/withRole';
 import UserRole from 'src/fixtures/roles';
 import { v4 as uuidv4 } from 'uuid';
+import { AuthContext } from '../utils/authContext';
 
 type NavigationItem = {
   label: string;
@@ -226,7 +225,6 @@ function Navbar() {
     history.go(0);
     // history.replace('/login');
   };
-  const history = useHistory();
 
   function handleNavigation(link: string) {
     history.push(link);

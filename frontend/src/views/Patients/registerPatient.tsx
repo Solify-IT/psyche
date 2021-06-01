@@ -15,6 +15,7 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  Typography,
 } from '@material-ui/core';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
@@ -391,7 +392,6 @@ function RegisterPatient() {
                         id="birthDate"
                         label="Fecha de Nacimiento"
                         name="birthDate"
-                        className={classes.date}
                         value={birthDate}
                         onChange={handleChange}
                         InputLabelProps={{
@@ -473,8 +473,8 @@ function RegisterPatient() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                       <Typography variant="h4"> Antecedentes </Typography>
-                     </Grid>
+                      <Typography variant="h4"> Antecedentes </Typography>
+                    </Grid>
                     <Grid item xs={12} sm={4}>
                       <FormControl
                         variant="outlined"

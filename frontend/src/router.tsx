@@ -85,7 +85,6 @@ const AppRouter = () => (
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
     <PrivateRoute path="/view-patients" exact component={ViewPatients} />
-  </div>
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <Route component={NotFound} />
   </Switch>

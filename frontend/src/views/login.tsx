@@ -11,8 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../utils/authContext';
 import ContentTitle from 'src/components/contentTitle';
+import { AuthContext } from '../utils/authContext';
 import { authenticationService, login } from '../api/authenticationService';
 
 const useStyles = makeStyles((theme) => ({

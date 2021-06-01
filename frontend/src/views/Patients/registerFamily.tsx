@@ -386,176 +386,178 @@ function RegisterFamily() {
                 variant="outlined"
                 className={classes.formControl}
               >
-                <MenuItem value="Masculino"> Masculino </MenuItem>
-                <MenuItem value="Femenino"> Femenino </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="address"
-              label="Domicilio"
-              name="address"
-              value={address}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="postalCode"
-              label="Código Postal"
-              name="postalCode"
-              type="number"
-              value={postalCode}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="telephone"
-              label="Teléfono"
-              name="telephone"
-              value={telephone}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <Typography variant="h4"> Antecedentes </Typography>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl
-              variant="outlined"
-              className={classes.formControl1}
-            >
-              <InputLabel>Motivo</InputLabel>
-              <Select
+                <Select>
+                  <MenuItem value="Masculino"> Masculino </MenuItem>
+                  <MenuItem value="Femenino"> Femenino </MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
                 required
                 fullWidth
-                name="motive"
-                label="Motivo"
-                value={motive}
+                id="address"
+                label="Domicilio"
+                name="address"
+                value={address}
                 onChange={handleChange}
-              >
-                {motivos.map(createFirstSelect)}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl
-              variant="outlined"
-              className={classes.formControl2}
-            >
-              <InputLabel>Tipo</InputLabel>
-              <Select
+              />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <TextField
+                variant="outlined"
+                margin="normal"
                 required
                 fullWidth
-                name="abuseType"
-                label="Tipo"
-                value={abuseType}
+                id="postalCode"
+                label="Código Postal"
+                name="postalCode"
+                type="number"
+                value={postalCode}
                 onChange={handleChange}
-              >
-                {tipos.map(createSecondSelect)}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl
-              variant="outlined"
-              className={classes.formControl2}
-            >
-              <InputLabel>Causa</InputLabel>
-              <Select
+              />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
                 fullWidth
-                name="abuseMotive"
-                label="Causa"
-                value={abuseMotive}
+                id="telephone"
+                label="Teléfono"
+                name="telephone"
+                value={telephone}
                 onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Typography variant="h4"> Antecedentes </Typography>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl1}
               >
-                {causas.map(createThirdSelect)}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl
-              component="fieldset"
-            >
-              <FormLabel component="legend"> Procedimiento Legal </FormLabel>
-              <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
-                <FormControlLabel value control={<Radio />} label="Si" />
-                <FormControlLabel value={false} control={<Radio />} label="No" />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="postalCode"
-              label="Edad de Inicio"
-              name="abuseFirstTime"
-              type="number"
-              value={abuseFirstTime}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="abuseAttempts"
-              label="Intentos de Abuso"
-              name="abuseAttempts"
-              type="number"
-              value={abuseAttempts}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} className={classes.submit}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              onClick={addField}
-            >
-              Agregar miembro
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid container spacing={3} className={classes.cards}>
-          {family.map(createCard)}
-        </Grid>
-        {family.length !== 0
-
-          ? (
+                <InputLabel>Motivo</InputLabel>
+                <Select
+                  required
+                  fullWidth
+                  name="motive"
+                  label="Motivo"
+                  value={motive}
+                  onChange={handleChange}
+                >
+                  {motivos.map(createFirstSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl2}
+              >
+                <InputLabel>Tipo</InputLabel>
+                <Select
+                  required
+                  fullWidth
+                  name="abuseType"
+                  label="Tipo"
+                  value={abuseType}
+                  onChange={handleChange}
+                >
+                  {tipos.map(createSecondSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl2}
+              >
+                <InputLabel>Causa</InputLabel>
+                <Select
+                  fullWidth
+                  name="abuseMotive"
+                  label="Causa"
+                  value={abuseMotive}
+                  onChange={handleChange}
+                >
+                  {causas.map(createThirdSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                component="fieldset"
+              >
+                <FormLabel component="legend"> Procedimiento Legal </FormLabel>
+                <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
+                  <FormControlLabel value control={<Radio />} label="Si" />
+                  <FormControlLabel value={false} control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="postalCode"
+                label="Edad de Inicio"
+                name="abuseFirstTime"
+                type="number"
+                value={abuseFirstTime}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="abuseAttempts"
+                label="Intentos de Abuso"
+                name="abuseAttempts"
+                type="number"
+                value={abuseAttempts}
+                onChange={handleChange}
+              />
+            </Grid>
             <Grid item xs={12} className={classes.submit}>
               <Button
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={submitPatients}
+                onClick={addField}
               >
-                Registrar Pacientes
+                Agregar miembro
               </Button>
             </Grid>
-          )
-          : (
-            <>
-            </>
-          )}
+          </Grid>
+          <Grid container spacing={3} className={classes.cards}>
+            {family.map(createCard)}
+          </Grid>
+          {family.length !== 0
+
+            ? (
+              <Grid item xs={12} className={classes.submit}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  onClick={submitPatients}
+                >
+                  Registrar Pacientes
+                </Button>
+              </Grid>
+            )
+            : (
+              <>
+              </>
+            )}
+        </Grid>
       </Grid>
     </MainContent>
 
