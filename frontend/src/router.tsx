@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
+import PrintForm from 'src/views/Forms/printForm';
 import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
@@ -69,7 +70,7 @@ const AppRouter = () => (
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} />
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} />
     <PrivateRoute path="/user-profile/update/:id/" exact component={UpdateUser} />
-    <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} />
+    <PrivateRoute path="/patient-form/:formId(\d+)" exact component={ConsultPatientForm} />
     <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} />
@@ -80,6 +81,7 @@ const AppRouter = () => (
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
+    <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
   </div>
 );
 
