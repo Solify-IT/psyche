@@ -149,7 +149,7 @@ function RegisterUser() {
 
     await CreateUser(newUser).then((response:any) => {
       toast.success('Se ha registrado el nuevo usuario');
-      history.replace('/home');
+      history.replace('/view-users');
     });
 
     setNewUser({
