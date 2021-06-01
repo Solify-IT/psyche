@@ -4,6 +4,7 @@ const userFixture : User = {
   id: 1,
   username: 'Jovenes',
   name: ' a',
+  lastName: 'a',
   address: 'sss',
   zipCode: '111',
   password: 'sssss',
