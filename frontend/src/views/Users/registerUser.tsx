@@ -87,12 +87,13 @@ function RegisterUser() {
   };
 
   async function usernameExist(usernameValidate: string): Promise<boolean> {
-    const usernameUser = await getUser(usernameValidate);
-    if (usernameUser) {
-      console.log('espera');
+    try {
+      const usernameUser = await getUser(usernameValidate);
       return true;
+    } catch (error) {
+      return false;
     }
-    return false;
+
     /*
     console.log(usernameUser);
     const isRegistered: boolean = false;
@@ -109,12 +110,12 @@ function RegisterUser() {
   }
 
   async function emailExist(emailValidate: string): Promise<boolean> {
-    const emailUser = await getUserByEmail(emailValidate);
-    if (emailUser) {
+    try {
+      const emailUser = await getUserByEmail(emailValidate);
       return true;
+    } catch (error) {
+      return false;
     }
-    console.log('no pasa');
-    return false;
 
     /*
     await getUserByEmail(emailValidate).then((responses:any) => {
@@ -149,10 +150,7 @@ function RegisterUser() {
     await CreateUser(newUser).then((response:any) => {
       toast.success('Se ha registrado el nuevo usuario');
       history.replace('/home');
-    })
-      .catch((error:any) => {
-        toast.warning('Ha ocurrido un error y/o algún dato ya existe en el sistema');
-      });
+    });
 
     setNewUser({
       ...newUserV,
