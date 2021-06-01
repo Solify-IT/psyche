@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import ConsultPatient from './views/Patients/consultPatient';
@@ -49,7 +49,7 @@ import NotFound from './components/NotFound';
 import UserRole from './fixtures/roles';
 
 const AppRouter = () => (
-  <div>
+  <Switch>
     <Route path="/login" exact component={Login} />
     <PrivateRoute path="/register-user" exact component={RegisterUser} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/new-form" exact component={NewForm} />
@@ -83,9 +83,8 @@ const AppRouter = () => (
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
-    <Route path="/404" component={NotFound} />
-    <Redirect to="/404" />
-  </div>
+    <Route component={NotFound} />
+  </Switch>
 );
 
 export default AppRouter;

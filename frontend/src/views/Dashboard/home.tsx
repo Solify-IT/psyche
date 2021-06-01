@@ -73,6 +73,7 @@ function Home() {
         <Paper className={classes.paper}>
           <img src="/images/usuarios.png" alt="Logo" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>
+            Consultar Usuarios
             Panel de Usuarios
           </Typography>
         </Paper>
