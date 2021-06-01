@@ -41,7 +41,11 @@ function Navbar() {
 
     setState(open);
   };
-  const navigationGroups : NavigationGroup[] = [
+
+  const isDrawerEnabled : boolean = (
+    authenticationService.currentUserValue && authenticationService.currentUserValue.user);
+
+  const navigationGroups : NavigationGroup[] = isDrawerEnabled ? [
     {
       group: [
         {
@@ -150,7 +154,7 @@ function Navbar() {
         },
       ],
     },
-  ];
+  ] : [];
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -229,100 +233,107 @@ function Navbar() {
 
     return false;
   }
+
   return (
     <nav>
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
+            {
+           isDrawerEnabled ? (
+             <div>
+               <SwipeableDrawer
+                 open={state}
+                 onClose={toggleDrawer(false)}
+                 onOpen={toggleDrawer(true)}
+               >
+                 <div
+                   className={classes.list}
+                   onClick={toggleDrawer(false)}
+                   onKeyDown={toggleDrawer(false)}
+                   role="presentation"
+                   key="drawer"
+                 >
+                   <Paper className={classes.navigationHeader} key="user-info" elevation={3} square>
+                     <Grid container alignItems="center">
+                       <Grid item xs={2} alignContent="center" alignItems="center">
+                         <Container key="nav-username">
+                           <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
+                         </Container>
+                       </Grid>
+                       <Grid item xs={10}>
+                         <Container key="nav-username">
+                           <Typography variant="h5">
+                             { authenticationService.currentUserValue.user.username }
+                           </Typography>
+                         </Container>
+                         <Container key="nav-email">
+                           <Typography variant="subtitle1">
+                             { authenticationService.currentUserValue.user.email }
+                           </Typography>
+                         </Container>
+                         <Container key="nav-role">
+                           <Typography variant="subtitle1">
+                             { authenticationService.currentUserValue.user.role }
+                           </Typography>
+                         </Container>
+                       </Grid>
+                     </Grid>
 
-            <SwipeableDrawer
-              open={state}
-              onClose={toggleDrawer(false)}
-              onOpen={toggleDrawer(true)}
-            >
-              <div
-                className={classes.list}
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
-                role="presentation"
-                key="drawer"
-              >
-                <Paper className={classes.navigationHeader} key="user-info" elevation={3} square>
-                  <Grid container alignItems="center">
-                    <Grid item xs={2} alignContent="center" alignItems="center">
-                      <Container key="nav-username">
-                        <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
-                      </Container>
-                    </Grid>
-                    <Grid item xs={10}>
-                      <Container key="nav-username">
-                        <Typography variant="h5">
-                          { authenticationService.currentUserValue.user.username }
-                        </Typography>
-                      </Container>
-                      <Container key="nav-email">
-                        <Typography variant="subtitle1">
-                          { authenticationService.currentUserValue.user.email }
-                        </Typography>
-                      </Container>
-                      <Container key="nav-role">
-                        <Typography variant="subtitle1">
-                          { authenticationService.currentUserValue.user.role }
-                        </Typography>
-                      </Container>
-                    </Grid>
-                  </Grid>
-
-                </Paper>
-                <List>
-                  {
-                  navigationGroups.map((group: NavigationGroup) => (
-                    <div key={uuidv4()}>
-                      {group.name && hasOptions(group.group)
-                        ? (
-                          <div>
-                            <Typography variant="h6" color="primary" className={classes.navigationGroupTitle}>
-                              {group.name}
-                            </Typography>
-                          </div>
-                        )
-                        : false}
-
-                      <div className={classes.navigationItem}>
-                        {
-                        group.group.map((child: NavigationItem) => (
-                          withRole(child.rolesAllowed)(
-                            <ListItem
-                              button
-                              onClick={() => handleNavigation(child.link)}
-                              key={child.label}
-                              classes={{ selected: classes.selected }}
-                              selected={child.link === history.location.pathname}
-                            >
-                              <ListItemIcon className={
-                                child.link === history.location.pathname ? classes.selected : ''
-}
-                              >
-                                {child.icon}
-                              </ListItemIcon>
-                              <ListItemText>
-                                {child.label}
-                              </ListItemText>
-                            </ListItem>,
+                   </Paper>
+                   <List>
+                     {
+                    navigationGroups.map((group: NavigationGroup) => (
+                      <div key={uuidv4()}>
+                        {group.name && hasOptions(group.group)
+                          ? (
+                            <div>
+                              <Typography variant="h6" color="primary" className={classes.navigationGroupTitle}>
+                                {group.name}
+                              </Typography>
+                            </div>
                           )
-                        ))
-}
+                          : false}
+
+                        <div className={classes.navigationItem}>
+                          {
+                          group.group.map((child: NavigationItem) => (
+                            withRole(child.rolesAllowed)(
+                              <ListItem
+                                button
+                                onClick={() => handleNavigation(child.link)}
+                                key={child.label}
+                                classes={{ selected: classes.selected }}
+                                selected={child.link === history.location.pathname}
+                              >
+                                <ListItemIcon className={
+                                  child.link === history.location.pathname ? classes.selected : ''
+  }
+                                >
+                                  {child.icon}
+                                </ListItemIcon>
+                                <ListItemText>
+                                  {child.label}
+                                </ListItemText>
+                              </ListItem>,
+                            )
+                          ))
+  }
+                        </div>
+                        { hasOptions(group.group) ? <Divider /> : false }
                       </div>
-                      { hasOptions(group.group) ? <Divider /> : false }
-                    </div>
-                  ))
-                }
-                </List>
-              </div>
-            </SwipeableDrawer>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
+                    ))
+                  }
+                   </List>
+                 </div>
+               </SwipeableDrawer>
+               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+                 <MenuIcon />
+               </IconButton>
+             </div>
+           )
+             : false
+}
             <Typography variant="h6" className={classes.title}>
               <Link to="/">
                 <img src="/images/logo.png" alt="logo of Psyque" className={classes.logo} />
