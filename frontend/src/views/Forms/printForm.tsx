@@ -12,6 +12,7 @@ import {
   FormControlLabel,
   Checkbox,
   Paper,
+  Divider,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -46,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
     color: '#000000',
     fontSize: '12px',
   },
+  checkboxLabel: {
+    fontSize: '12px',
+  },
   resize: {
-    fontSize: '10px',
+    fontSize: '12px',
     marginTop: '7px',
   },
   resize2: {
@@ -60,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#000000',
     fontSize: '20px',
     fontWeight: 'bold',
+  },
+  texto: {
+    fontSize: '10px',
   },
   formControl: {
     margin: theme.spacing(0, 1, 0),
@@ -87,8 +94,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2px',
     marginBottom: '2px',
   },
+  divider: {
+    marginTop: '100px',
+    background: 'black',
+  },
   aviso: {
     fontSize: '9px',
+    marginTop: '40px',
+  },
+  firma: {
+    fontSize: '13px',
+    textAlign: 'center',
+    font: 'inherit',
   },
 }));
 
@@ -207,17 +224,26 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'signature':
+        return (
+          <Grid item xs={4} spacing={5}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
       case 'checkbox': {
         return (
           <Grid item xs={4}>
-            <FormControl component="fieldset" className={classes.resize} key={field.id.toString()}>
+            <FormControl component="fieldset" key={field.id.toString()}>
               <FormLabel className={classes.resize}>{field.label}</FormLabel>
-              <FormGroup
-                className={classes.resize}
-              >
+              <FormGroup>
                 {field.options.map((option:FieldOption, index:any) => (
                   <FormControlLabel
-                    className={classes.resize}
+                    style={{ fontSize: '20px' }}
                     control={(
                       <Checkbox
                         key={option.id?.toString()}
@@ -225,11 +251,13 @@ function PrintForm() {
                         name={option.label}
                         data-id={index}
                         data-group={field.id.toString()}
-                        className={classes.resize}
                       />
-                )}
+                  )}
                     label={option.label}
                     key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
                   />
                 ))}
               </FormGroup>
@@ -238,19 +266,21 @@ function PrintForm() {
         ); }
       default:
         return (
-          <TextField
-            key={field.id.toString()}
-            style={{ width: '90%', margin: '10px' }}
-            id={field.id.toString().toString()}
-            label={field.label}
-            value={field.value}
-            InputProps={{
-              readOnly: true,
-              classes: {
-                input: classes.resize,
-              },
-            }}
-          />
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
         );
     }
   }
@@ -297,9 +327,7 @@ function PrintForm() {
                 {fields.filter((field) => field.type !== 'signature').map(createComponent)}
               </Grid>
               <Grid container justify="center" alignItems="center">
-                <Grid item xs={4}>
-                  {fields.filter((field) => field.type === 'signature').map(createComponent)}
-                </Grid>
+                {fields.filter((field) => field.type === 'signature').map(createComponent)}
                 <Grid item xs={12}>
                   <Typography align="center" className={classes.aviso}>
                     Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para

@@ -3,15 +3,14 @@
     @page {
         size: auto;
         margin: 0;
-    }
-    @page :footer {
-        display: none
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
   
     @page :header {
         display: none
     }
-    nav, Nav, Button, Footer, Link, Header, a {
+    nav, Nav, Button, Footer, Header, a {
         visibility: collapse;
         display: none;
     }
@@ -29,5 +28,8 @@
     }
     .patientSection {
         margin: 0px;
+    }
+    .divider {
+        margin: '10px';
     }
 }
