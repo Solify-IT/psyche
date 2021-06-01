@@ -181,7 +181,7 @@ function Navbar() {
       paddingTop: theme.spacing(1),
     },
     list: {
-      width: 400,
+      width: 'auto',
     },
     fullList: {
       width: 'auto',
@@ -205,10 +205,9 @@ function Navbar() {
       paddingLeft: 10,
     },
     navigationHeaderIcon: {
-      display: 'flex',
       alignItems: 'center',
       verticalAlign: 'middle',
-      fontSize: 50,
+      fontSize: 45,
     },
   }));
   const classes = useStyles();
@@ -249,7 +248,7 @@ function Navbar() {
                 key="drawer"
               >
                 <Paper className={classes.navigationHeader} key="user-info" elevation={3} square>
-                  <Grid container direction="row" alignItems="center" spacing={4}>
+                  <Grid container alignItems="center">
                     <Grid item xs={2} alignContent="center" alignItems="center">
                       <Container key="nav-username">
                         <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
@@ -270,7 +269,6 @@ function Navbar() {
                         <Typography variant="subtitle1">
                           { authenticationService.currentUserValue.user.role }
                         </Typography>
-
                       </Container>
                     </Grid>
                   </Grid>
