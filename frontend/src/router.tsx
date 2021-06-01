@@ -85,7 +85,7 @@ const AppRouter = () => (
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
-    <PrivateRoute path="/record-print/:id(\d+)/forms" exact component={PrintRecord} />
+    <PrivateRoute path="/record-print/:recordId(\d+)/forms" exact component={PrintRecord} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <Route path="/404" component={NotFound} />
     <Redirect to="/404" />

@@ -4,24 +4,15 @@ import {
   makeStyles,
   Grid,
   Typography,
-  TextField,
-  Button,
-  FormControl,
-  FormLabel,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
   Paper,
-  Divider,
 }
   from '@material-ui/core';
-import FieldOption from 'src/interfaces/fieldOptions';
-import Field from 'src/interfaces/field';
-import PrintIcon from '@material-ui/icons/Print';
 import { listFormsWithRecordId } from 'src/api/forms';
 import { useParams } from 'react-router';
-import PatientFormField from 'src/interfaces/patientFormField';
+// import PatientFormField from 'src/interfaces/patientFormField';
 import './print.css';
+// import Field from 'src/interfaces/field';
+import Form from 'src/interfaces/form';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -118,229 +109,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PrintRecord() {
-  const { recordId } : any = useParams();
   const classes = useStyles();
+  const [forms, setForms] = useState<Form[]>([]);
+  console.log(forms);
   // const history = useHistory();
   const [formInformation, setFormInformation] = useState({
     id: 0,
     name: '',
-    recordId: 0,
+    recordId: 1,
     type: '',
     createdData: '',
   });
-  const [fields, setFields] = useState<Field[]>([]);
-
+  console.log(formInformation);
+  const { recordId } : any = useParams();
+  console.log(recordId);
   useEffect(() => {
     listFormsWithRecordId(recordId)
       .then((response:any) => {
         console.log(response);
-        setFields(Object.values(response.data.fields.sort(
-          (a: PatientFormField, b: PatientFormField) => {
-            if (a.id && b.id) {
-              if (a.id < b.id!) {
-                return -1;
-              }
-              if (a.id > b.id) {
-                return 1;
-              }
-              return 0;
-            }
-            console.error('Form ids not obtained. Defaulting to standard order');
-            return 0;
-          },
-        )));
+        setForms(response);
         setFormInformation(response.data);
       })
       .catch((error:any) => console.log(error));
   }, [recordId]);
 
-  function printDiv() {
-    window.print();
-    // history.replace(`/patient-form/${formId}`);
-  }
-
-  function createComponent(field:any) {
-    switch (field.type) {
-      case 'text':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
-      case 'number':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
-      case 'datepicker':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
-      case 'select':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
-      case 'signature':
-        return (
-          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
-            <div>
-              <Divider variant="middle" className={classes.divider} />
-              <Typography className={classes.firma}>
-                {field.label}
-              </Typography>
-            </div>
-          </Grid>
-        );
-      case 'checkbox': {
-        return (
-          <Grid item xs={4}>
-            <FormControl
-              component="fieldset"
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-            >
-              <FormLabel className={classes.resize}>{field.label}</FormLabel>
-              <FormGroup>
-                {field.options.map((option:FieldOption, index:any) => (
-                  <FormControlLabel
-                    style={{ fontSize: '20px' }}
-                    control={(
-                      <Checkbox
-                        key={option.id?.toString()}
-                        checked={option.checked}
-                        name={option.label}
-                        data-id={index}
-                        data-group={field.id.toString()}
-                      />
-                  )}
-                    label={option.label}
-                    key={option.id}
-                    classes={{
-                      label: classes.checkboxLabel,
-                    }}
-                  />
-                ))}
-              </FormGroup>
-            </FormControl>
-          </Grid>
-        ); }
-      default:
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
-    }
-  }
   return (
     <div className={classes.heroContent}>
       <main>
-        <Paper variant="outlined" className={classes.patientSection}>
-          <Grid container>
-            <Grid item>
-              <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
-            </Grid>
-            <Grid item>
-              <Typography variant="h4" align="left" className={classes.subtitles1}>
-                Patronato Psicológico Queretano I.A.P
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                { formInformation.name}
-                {' '}
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                Folio: PPQ-
-                {' '}
-                {formInformation.recordId}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Paper>
         <div>
           <Container>
             <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={printDiv}
-                >
-                  Imprimir
-                  <PrintIcon className={classes.icon} />
-                </Button>
-              </Grid>
+              <Grid item xs={12} />
               <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type !== 'signature').map(createComponent)}
-              </Grid>
-              <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type === 'signature').map(createComponent)}
                 <Grid item xs={12}>
                   <Typography align="center" className={classes.aviso}>
                     Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
