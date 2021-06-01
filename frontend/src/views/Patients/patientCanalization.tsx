@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import Psychologist from 'src/interfaces/psychologist';
-import Patient from 'src/interfaces/patient';
-import { getUsers } from 'src/api/user';
-import { getPatientRecord, canalizePatient } from 'src/api/patient';
 import {
-  makeStyles,
-  Grid,
   Button,
   Card,
-  CardContent,
+  CardContent, Grid, makeStyles,
   Typography,
-  Container,
 } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { canalizePatient, getPatientRecord } from 'src/api/patient';
+import { getUsers } from 'src/api/user';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
+import Patient from 'src/interfaces/patient';
+import Psychologist from 'src/interfaces/psychologist';
 
 interface ParamTypes {
   patientId: string
@@ -161,18 +160,13 @@ function PatientCanalization() {
   );
 
   return (
-    <main>
-      <div className={classes.heroContent}>
-        <Container>
-          <Typography variant="h2" align="center" color="secondary">
-            Canalizar a Paciente
-          </Typography>
-          <Grid justify="center" alignItems="center" container spacing={3}>
-            {users.map(createCard)}
-          </Grid>
-        </Container>
-      </div>
-    </main>
+    <MainContent>
+
+      <ContentTitle text="Canalizar a Paciente" />
+      <Grid justify="center" alignItems="center" container spacing={3}>
+        {users.map(createCard)}
+      </Grid>
+    </MainContent>
   );
 }
 

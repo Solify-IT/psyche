@@ -6,4 +6,5 @@ export default interface IPatientRepository {
   findRecord(id: number) : Promise<Record>;
   register(patient: Patient[]): Promise<Record>;
   canalize(patient: Patient[]): Promise<Patient>;
+  archiveRecord(id: number): Promise <Record>;
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Container,
   makeStyles,
   Grid,
   Typography,
   Paper,
 }
   from '@material-ui/core';
-import FadeIn from 'react-fade-in';
+import ContentTitle from 'src/components/contentTitle';
+import MainContent from 'src/components/mainContent';
 
 function Soolers() {
   const useStyles = makeStyles((theme) => ({
@@ -46,87 +46,79 @@ function Soolers() {
   const classes = useStyles();
 
   return (
-    <FadeIn>
-      <main>
-        <div className={classes.heroContent}>
-          <Container>
-            <Grid container spacing={3}>
+    <MainContent>
+      <Grid container spacing={3}>
 
-              <Grid item xs={12} sm={6}>
-                <Grid item xs={12}>
-                  <Typography variant="h2" gutterBottom>
-                    Soolers
-                  </Typography>
-                </Grid>
+        <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
+            <ContentTitle text="Soolers" align="left" />
+          </Grid>
 
-                <Grid item xs={12}>
-                  <Typography align="justify" className={classes.description}>
-                    ¡Conoce al equipo Soolers, de la Familia Solify!
-                  </Typography>
-                </Grid>
-              </Grid>
+          <Grid item xs={12}>
+            <Typography align="justify" className={classes.description}>
+              ¡Conoce al equipo Soolers, de la Familia Solify!
+            </Typography>
+          </Grid>
+        </Grid>
 
-              <Grid item xs={false} sm={6} />
+        <Grid item xs={false} sm={6} />
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/ricardo.png" alt="registrarPaciente" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Ricardo Escobar Gouyonnet
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/ricardo.png" alt="registrarPaciente" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Ricardo Escobar Gouyonnet
+            </Typography>
+          </Paper>
+        </Grid>
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/marce.jpeg" alt="Logo" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Marcela Arcos Caballero
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/marce.jpeg" alt="Logo" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Marcela Arcos Caballero
+            </Typography>
+          </Paper>
+        </Grid>
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/adriz.jpeg" alt="Logo" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Adriana Paola Salinas García
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/adriz.jpeg" alt="Logo" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Adriana Paola Salinas García
+            </Typography>
+          </Paper>
+        </Grid>
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/albert.png" alt="Logo" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Alberto Castañeda Arana
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/albert.png" alt="Logo" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Alberto Castañeda Arana
+            </Typography>
+          </Paper>
+        </Grid>
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/dome.png" alt="Logo" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Doménica Rentería Berrospe
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/dome.png" alt="Logo" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Doménica Rentería Berrospe
+            </Typography>
+          </Paper>
+        </Grid>
 
-              <Grid item xs={12} sm={4} lg={4}>
-                <Paper className={classes.paper}>
-                  <img src="/images/charlie.jpeg" alt="Logo" className={classes.cardMedia} />
-                  <Typography variant="h6" align="center" className={classes.subtitles}>
-                    Carlos Alfonso Sánchez Rosales
-                  </Typography>
-                </Paper>
-              </Grid>
+        <Grid item xs={12} sm={4} lg={4}>
+          <Paper className={classes.paper}>
+            <img src="/images/charlie.jpeg" alt="Logo" className={classes.cardMedia} />
+            <Typography variant="h6" align="center" className={classes.subtitles}>
+              Carlos Alfonso Sánchez Rosales
+            </Typography>
+          </Paper>
+        </Grid>
 
-            </Grid>
-          </Container>
-        </div>
-      </main>
-    </FadeIn>
+      </Grid>
+    </MainContent>
   );
 }
 export default Soolers;

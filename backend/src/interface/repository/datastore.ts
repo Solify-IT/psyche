@@ -5,4 +5,5 @@ export default interface IDatastore {
   save<T>(tableName: string, data: T): Promise<T>;
   bulkInsert<T>(tableName: string, data: T[]): Promise<T[]>;
   delete<T>(tableName: string, id: number): Promise<T>;
+
 }
