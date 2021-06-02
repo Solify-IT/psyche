@@ -30,6 +30,7 @@ function Home() {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      minHeight: '260px',
     },
     image: {
       height: '130px',

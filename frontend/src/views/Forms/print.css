@@ -1,0 +1,41 @@
+
+@media print {
+    @page {
+        size: auto;
+        margin: 10px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .aviso{
+        position: static;
+        bottom: 20px;
+        width: 100%;
+    }
+  
+    @page :header {
+        display: none
+    }
+    nav, Nav, Button, Footer, Header, a {
+        visibility: collapse;
+        display: none;
+    }
+     ul,table, checkbox, Checkbox, div {
+        page-break-after: avoid;
+    }
+    h2 {
+        font-size: 30%;
+        margin: 0px;
+    }
+    main, div {
+        margin: 0px;
+        padding: 0px;
+        page-break-after: avoid;
+    }
+    .patientSection {
+        margin: 0px;
+    }
+    .divider {
+        margin: '10px';
+    }
+}
