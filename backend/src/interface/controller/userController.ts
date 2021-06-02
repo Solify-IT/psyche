@@ -211,4 +211,24 @@ export default class UserController {
     }
     context.response.status(200).json(userExist);
   }
+
+  async changePasswordAdmin(context: IContext): Promise<void> {
+    const token = context.request.headers.authorization.split(' ')[1];
+    const user : UserLoginResult = getRequestUser(token);
+    const { id } = context.request.params;
+    const { password } : PasswordConfirm = context.request.body;
+
+
+    if (user.role !== 'administador') {
+      context.response.status(400);
+    }
+
+    const [userChanged, error] = await wrapError(this.userInteractor.changePassword(parseInt(id), password));
+
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userChanged);
+  }
 }
