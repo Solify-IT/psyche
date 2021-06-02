@@ -3,7 +3,6 @@ import { Redirect, Route } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import PrintForm from 'src/views/Forms/printForm';
-import PrintRecord from 'src/views/Forms/printRecord';
 import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
@@ -85,7 +84,6 @@ const AppRouter = () => (
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
-    <PrivateRoute path="/record-print/:recordId(\d+)/forms" exact component={PrintRecord} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <Route path="/404" component={NotFound} />
     <Redirect to="/404" />
