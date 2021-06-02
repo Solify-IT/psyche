@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-param-reassign */
 import Faker from 'faker/locale/es_MX';
 import { define } from 'typeorm-seeding';
@@ -22,6 +23,126 @@ define(Patient, (faker: typeof Faker, context: { recordId: number, type: string 
   const birthPlace = faker.address.city();
   const birthDate = faker.date.past(60);
   const patient = new Patient();
+  const motives = [
+    'Abuso Sexual',
+    'Violencia Familiar',
+    'Trastornos Mentales',
+    'Discapacidad',
+    'Intento de Suicidio',
+    'Autolesiones',
+  ];
+  const motive = faker.random.arrayElement<string>(motives);
+
+  switch (motive) {
+    case motives[0]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 50) + 10).toString();
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Tocamiento',
+        'Penetración con pene',
+        'Pornografía',
+        'Penetración con otro objeto',
+        'Presenció relación sexual',
+        'Cibernético/Redes/Virtual',
+        'Otro',
+
+      ]);
+      break;
+    }
+    case motives[1]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 60) + 5).toString();
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Física',
+        'Psicológica',
+        'Económica',
+        'Patrimonial',
+        'Intento de Homicidio',
+        'Sexual',
+        'Otro',
+
+      ]);
+      break;
+    }
+    case motives[2]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 60) + 5).toString();
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Psicopatía',
+        'Paranoide',
+        'Límite de la Personalidad',
+        'Esquizofrenia',
+        'Psicosis',
+        'Bipolaridad',
+        'Otro',
+      ]);
+      break;
+    }
+    case motives[3]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 60) + 5).toString();
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Intelectual',
+        'Motríz',
+        'Lenguaje',
+        'Aprendizaje',
+        'Autismo',
+        'Otro',
+      ]);
+      break;
+    }
+    case motives[4]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 60) + 5).toString();
+      patient.abuseAttempts = (Math.floor(Math.random() * 10) + 1).toString();
+      patient.abuseMotive = faker.random.arrayElement<string>([
+        'Pastillas',
+        'Ahorcamiento',
+        'Lanzarse de un auto',
+        'Arma blanca',
+        'Tomar/Inyectarse líquido intoxicante',
+        'Arma de Fuego',
+      ]);
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Adicciones',
+        'Violencia familiar',
+        'Violencia en la pareja',
+        'Trastorno mental',
+        'Rompimiento con la pareja',
+        'Violación',
+        'Abuso sexual',
+        'Otro',
+      ]);
+
+      break;
+    }
+    case motives[5]: {
+      patient.abuseFirstTime = (Math.floor(Math.random() * 60) + 5).toString();
+      patient.abuseType = faker.random.arrayElement<string>([
+        'Adicciones',
+        'Violencia familiar',
+        'Violencia en la pareja',
+        'Trastorno mental',
+        'Rompimiento con la pareja',
+        'Violación',
+        'Abuso sexual',
+        'Otro',
+      ]);
+      patient.abuseFirstTime = (Math.floor(Math.random() * 10) + 1).toString();
+      patient.abuseMotive = faker.random.arrayElement<string>([
+        'Cortes en alguna parte del cuerpo',
+        'Golpes',
+        'Quemaduras de cigarro',
+        'Pellizcos',
+        'Rasguños',
+        'Mordeduras',
+      ]);
+
+      break;
+    }
+    default: {
+      console.log('default');
+      break;
+    }
+  }
+  patient.legalProceeding = faker.random.arrayElement<boolean>([false, true]);
+
+  patient.motive = motive;
   patient.name = name;
   patient.lastName = lastName;
   patient.gender = gender === 1 ? 'Hombre' : 'Mujer';
