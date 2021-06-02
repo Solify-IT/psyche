@@ -1,14 +1,16 @@
-import { Patient } from 'domain/model';
+import Patient from 'src/interfaces';
 
 const patientFixture : Patient = {
+  id: 1,
+  startDate: new Date(),
   name: 'Carlos',
   lastName: 'Del Rio',
-  type: 'Jovenes',
+  type: 'Joven',
   gender: 'Hombre',
   telephone: '2126427',
   address: 'Temp',
   birthPlace: 'test',
-  birthDate: new Date(),
+  birthDate: '',
   postalCode: 832032,
   motive: 'Abuso',
   legalProceeding: true,
@@ -18,7 +20,5 @@ const patientFixture : Patient = {
   abuseAttempts: '5',
   abuseMotive: 'Nomal',
   recordId: 1,
-
 };
-
 export default patientFixture;
