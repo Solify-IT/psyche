@@ -84,5 +84,8 @@ export default class Router {
     app.get('/user-email/:email', async (request, response, next) => {
       await wrapError(controller.users.getUserByEmail({ request, response, next }));
     });
+    app.put('/change-password/:id', async (request, response, next) => {
+      await wrapError(controller.users.changePasswordAdmin({ request, response, next }));
+    });
   }
 }
