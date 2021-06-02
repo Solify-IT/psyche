@@ -63,3 +63,8 @@ export async function getUserByEmail(email:string) {
   const exist = await server.get(`/user-email/${email}`);
   return exist;
 }
+
+export async function changePasswordAdmin(id: number, password: string) {
+  const user = await server.put(`/change-password/${id}`, { password });
+  return user.data;
+}
