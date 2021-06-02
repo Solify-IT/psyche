@@ -49,6 +49,7 @@ import UpdateUser from './views/Users/updateUser';
 import ChangePassword from './views/Users/changePassword';
 import NotFound from './components/NotFound';
 import UserRole from './fixtures/roles';
+import ChangePasswordAdmin from './views/Users/changePasswordAdmin';
 
 const AppRouter = () => (
   <Switch>
@@ -88,6 +89,7 @@ const AppRouter = () => (
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
     <PrivateRoute path="/view-patients" exact component={ViewPatients} />¿
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
+    <PrivateRoute path="/change-password/:id" exact component={ChangePasswordAdmin} roles={[UserRole.Administrador]} />
     <Route component={NotFound} />
   </Switch>
 );
