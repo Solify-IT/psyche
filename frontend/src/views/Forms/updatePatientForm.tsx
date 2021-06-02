@@ -285,7 +285,7 @@ function UpdatePatientForm() {
             {formInformation.name}
           </Typography>
         </Grid>
-        {fields.map(createComponent)}
+        {fields.filter((field) => field.type !== 'signature').map(createComponent)}
 
         <Grid container alignItems="center" justify="center" direction="row">
           <Grid item>

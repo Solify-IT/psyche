@@ -46,6 +46,7 @@ function UpdateUser() {
 
   const [userInformation, setUserInformation] = useState<User>({
     name: '',
+    lastName: '',
     address: '',
     zipCode: '',
     email: '',
@@ -63,7 +64,7 @@ function UpdateUser() {
     },
   });
   const {
-    name, address, zipCode, email, username, telephone, password, role,
+    name, lastName, address, zipCode, email, username, telephone, password, role,
     professionalLicense, workSchedule, password2, errors,
   } = { ...userInformation };
 
@@ -129,10 +130,36 @@ function UpdateUser() {
                 margin="normal"
                 required
                 fullWidth
+                id="lastName"
+                label="Apellidos"
+                name="lastName"
+                value={lastName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
                 id="address"
                 label="Dirección"
                 name="address"
                 value={address}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="telephone"
+                label="Teléfono"
+                name="telephone"
+                value={telephone}
                 onChange={handleChange}
               />
             </Grid>

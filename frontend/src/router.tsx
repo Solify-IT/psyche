@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
+import PrintForm from 'src/views/Forms/printForm';
 import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
@@ -72,7 +73,7 @@ const AppRouter = () => (
     <PrivateRoute path="/register-profile" exact component={RegisterProfile} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/modify-profile" exact component={ModifyProfile} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/user-profile/update/:id/" exact component={UpdateUser} />
-    <PrivateRoute path="/patient-form/:id" exact component={ConsultPatientForm} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
+    <PrivateRoute path="/patient-form/:formId(\d+)" exact component={ConsultPatientForm} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
@@ -83,8 +84,9 @@ const AppRouter = () => (
     <PrivateRoute path="/user-update/:id/" exact component={UpdateUserAdmin} roles={[UserRole.Administrador]} />
     <Route path="/soolers" exact component={Soolers} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
+    <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
-    <PrivateRoute path="/view-patients" exact component={ViewPatients} />
+    <PrivateRoute path="/view-patients" exact component={ViewPatients} />¿
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <Route component={NotFound} />
   </Switch>

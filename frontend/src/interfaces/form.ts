@@ -4,6 +4,6 @@ export default interface Form {
   id?: number;
   name: string;
   startDate?: string;
-  fields: Field[];
+  fields: Array<Field>;
   type: string;
 }
