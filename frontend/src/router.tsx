@@ -87,7 +87,7 @@ const AppRouter = () => (
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
-    <PrivateRoute path="/view-patients" exact component={ViewPatients} />¿
+    <PrivateRoute path="/view-patients" exact component={ViewPatients} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/change-password/:id" exact component={ChangePasswordAdmin} roles={[UserRole.Administrador]} />
     <Route component={NotFound} />
