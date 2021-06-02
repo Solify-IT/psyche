@@ -5,6 +5,7 @@ const userFixture : User = {
   email: 'prueba',
   password: 'prueba12',
   name: 'Nombre',
+  lastName: 'a',
   role: 'Administrador',
   zipCode: 'abc',
   address: 'Direccion',

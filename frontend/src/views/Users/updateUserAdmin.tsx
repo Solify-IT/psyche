@@ -52,6 +52,7 @@ function UpdateUserAdmin() {
 
   const [userInformation, setUserInformation] = useState<User>({
     name: '',
+    lastName: ' ',
     address: '',
     zipCode: '',
     email: '',
@@ -69,7 +70,7 @@ function UpdateUserAdmin() {
     },
   });
   const {
-    name, address, zipCode, email, role, professionalLicense,
+    name, lastName, address, zipCode, email, role, professionalLicense,
     workSchedule,
   } = { ...userInformation };
 
@@ -104,7 +105,6 @@ function UpdateUserAdmin() {
   };
   return (
     <MainContent>
-
       <ContentTitle text="Editar Usuario" />
       <Grid
         container
@@ -130,6 +130,19 @@ function UpdateUserAdmin() {
                 label="Nombre"
                 name="name"
                 value={name}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Apellidos"
+                name="lastName"
+                value={lastName}
                 onChange={handleChange}
               />
             </Grid>
