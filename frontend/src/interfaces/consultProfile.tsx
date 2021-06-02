@@ -4,7 +4,9 @@ export default interface ConsultProfile {
   id: number;
   username: string;
   name: string;
+  lastName: string;
   address: string;
+  telephone: string;
   zipCode: string;
   password: string;
   email: string;

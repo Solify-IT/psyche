@@ -45,7 +45,7 @@ export default class Patient {
   @Column({ nullable: false })
   legalProceeding: boolean;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, default: true })
   status: boolean;
 
   @Column({ nullable: false })

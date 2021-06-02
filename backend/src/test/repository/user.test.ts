@@ -36,6 +36,7 @@ describe('User repository', () => {
       email: 'alice@email.com',
       password: 'Alice123',
       name: 'Alice B',
+      lastName: 'Alice B',
       role: 'Psicologo',
       zipCode: '12345',
       address: 'Av First 123 San Francisco',

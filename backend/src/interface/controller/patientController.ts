@@ -32,7 +32,7 @@ export default class PatientController {
     const todayDate = new Date();
     patientsToCheck.forEach(async (patient) => {
       const { recordId } = patient;
-      const [record,] = await wrapError(this.patientInteractor.getRecord(recordId));
+      const [record] = await wrapError(this.patientInteractor.getRecord(recordId));
       const miliSecondsOccurred = Math.abs(
         new Date(todayDate).getTime() - new Date(record.updatedAt).getTime(),
       );

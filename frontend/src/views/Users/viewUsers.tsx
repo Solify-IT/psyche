@@ -17,6 +17,7 @@ import {
   Edit,
   Delete,
   Add,
+  VpnKey,
 }
   from '@material-ui/icons';
 import Users from 'src/interfaces/Users';
@@ -109,6 +110,12 @@ function ViewUsers() {
     history.replace(`/user-update/${userid}`);
   };
 
+  const updatePassword = (event: React.ChangeEvent<any>) => {
+    const { userid } = event.currentTarget.dataset;
+    console.log(userid);
+    history.replace(`/change-password/${userid}`);
+  };
+
   const createUser = (user:Users) => (
     <TableRow key={user.id}>
       <TableCell>{user.name}</TableCell>
@@ -131,6 +138,15 @@ function ViewUsers() {
           onClick={() => handleDelete(user.id!)}
         >
           <Delete style={{ color: (user.active && (user.id !== currentUser.user.id)) ? '#FF0000' : '#A7A7A7' }} />
+        </IconButton>
+      </TableCell>
+      <TableCell>
+        <IconButton
+          data-userid={user.id}
+          disabled={!user.active || (user.id === currentUser.user.id)}
+          onClick={updatePassword}
+        >
+          <VpnKey style={{ color: !(user.active && (user.id !== currentUser.user.id)) ? '#A7A7A7' : '#00b0ff' }} />
         </IconButton>
       </TableCell>
     </TableRow>
@@ -156,6 +172,7 @@ function ViewUsers() {
                 <TableCell> Dirección</TableCell>
                 <TableCell> Modificar</TableCell>
                 <TableCell> Desactivar</TableCell>
+                <TableCell>Cambiar Contraseña</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
