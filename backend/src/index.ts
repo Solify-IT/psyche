@@ -4,8 +4,8 @@ import morgan from 'morgan';
 import path from 'path';
 import { createConnection } from 'typeorm';
 import ormConfig from 'infraestructure/orm/ormconfig';
-import jwtConfig from 'utils/jwtConfig';
-import jwt from 'express-jwt';
+// import jwtConfig from 'utils/jwtConfig';
+// import jwt from 'express-jwt';
 import Router from './infraestructure/router/router';
 import Datastore from './infraestructure/datastore/datastore';
 import Registry from './registry';
@@ -42,9 +42,10 @@ const initServer = () => {
   app.use(cors());
   app.use(express.static(path.join(__dirname, '../public')));
   setMorgan();
-  app.use(
-    jwt({ secret: jwtConfig.secret, algorithms: jwtConfig.algorithms }).unless({ path: ['/login'] }),
-  );
+  /* app.use(
+    jwt({ secret: jwtConfig.secret, algorithms:
+      jwtConfig.algorithms }).unless({ path: ['/login'] }),
+  ); */
 };
 
 async function initDatabase() {

@@ -164,4 +164,22 @@ export default class FormRepository implements IFormRepository {
 
     return records;
   }
+
+  async getFormId(id: number): Promise<PatientForm[]> {
+    const [record, recordError] = await wrapError(this.datastore.fetchOne<Record>('Record', id));
+    if (recordError) {
+      throw recordError;
+    }
+
+    if (record) {
+    // TODO: Find way to improve this
+      const typeValue = record.patients[0].type;
+      const [result, error] = await wrapError(this.datastore.fetchAllWhere<PatientForm>('PatientForm', { type: typeValue }));
+      if (error) {
+        throw error;
+      }
+      return result;
+    }
+    throw new NotFoundError('No se encontró el expediente');
+  }
 }

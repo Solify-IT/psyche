@@ -12,4 +12,5 @@ export default interface IFormRepository {
   deleteFormWithId(id: number) : Promise<boolean>;
   getForms() : Promise<Form[]>;
   updateDateAt(recordId: number): Promise<Record>;
+  getFormId(id: number) : Promise<PatientForm[]>;
 }
