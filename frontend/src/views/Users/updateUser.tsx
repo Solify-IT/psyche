@@ -60,6 +60,7 @@ function UpdateUser() {
     errors: {
       password: '',
       username: '',
+      email: '',
     },
   });
   const {

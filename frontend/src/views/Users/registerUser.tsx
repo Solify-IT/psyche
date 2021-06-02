@@ -16,7 +16,7 @@ import {
   from '@material-ui/core';
 import User from 'src/interfaces/user';
 import { toast } from 'react-toastify';
-import { CreateUser, getUser } from 'src/api/user';
+import { CreateUser, getUser, getUserByEmail } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
@@ -58,6 +58,7 @@ function RegisterUser() {
     errors: {
       password: '',
       username: '',
+      email: '',
     },
   });
   const {
@@ -86,36 +87,76 @@ function RegisterUser() {
     });
   };
 
-  const handleSubmit = (event: React.ChangeEvent<any>) => {
+  async function usernameExist(usernameValidate: string): Promise<boolean> {
+    try {
+      const usernameUser = await getUser(usernameValidate);
+      return true;
+    } catch (error) {
+      return false;
+    }
+
+    /*
+    console.log(usernameUser);
+    const isRegistered: boolean = false;
+    getUser(usernameValidate).then((responses:any) => {
+      errors.username = 'Usuario ocupado';
+      console.log('retornará true');
+      return !isRegistered;
+    }).catch((error:any) => {
+      errors.username = '';
+      console.log('retornará false');
+      return isRegistered;
+    });
+    return isRegistered; */
+  }
+
+  async function emailExist(emailValidate: string): Promise<boolean> {
+    try {
+      const emailUser = await getUserByEmail(emailValidate);
+      return true;
+    } catch (error) {
+      return false;
+    }
+
+    /*
+    await getUserByEmail(emailValidate).then((responses:any) => {
+      errors.email = 'Email ocupado';
+      return true;
+    }).catch((error:any) => {
+      errors.email = '';
+      return false;
+    });
+    return false; */
+  }
+
+  const handleSubmit = async (event: React.ChangeEvent<any>) => {
     event.preventDefault();
-    let userExist = false;
+    const newUserV: User = {
+      ...newUser,
+      [event.target.name]: event.target.value,
+    };
+    setNewUser(newUserV);
     let passwordError = '';
     if (password2 !== password) {
       passwordError = 'Las contraseñas no coinciden';
-    } else {
-      getUser(newUser.username).then((responses:any) => {
-        userExist = true;
-        errors.username = 'El usuario ya esta ocupado';
-      }).catch((error:any) => {
-        userExist = false;
-      });
     }
-    if (!userExist) {
-      CreateUser(newUser).then((response:any) => {
-        toast.success('Se ha registrado el nuevo usuario');
-        history.replace('/home');
-      })
-        .catch((error:any) => {
-          toast.warning('No se pudo registrar al usuario');
-          console.log(error);
-        });
-    } else {
-      const newUserV: User = {
-        ...newUser,
-        [event.target.name]: event.target.value,
-      };
-      setNewUser(newUserV);
+    if (await emailExist(newUserV.email)) {
+      toast.warning('El correo electrónico ya esta ocupado, intente con otro');
     }
+    if (await usernameExist(newUserV.username)) {
+      console.log('ok');
+      toast.warning('El nombre de usuario ya esta ocupado, intente con otro');
+    }
+
+    await CreateUser(newUser).then((response:any) => {
+      toast.success('Se ha registrado el nuevo usuario');
+      history.replace('/view-users');
+    });
+
+    setNewUser({
+      ...newUserV,
+      errors,
+    });
   };
 
   return (

@@ -15,6 +15,9 @@ export default class Record {
   @CreateDateColumn({ type: 'date' })
   startDate?: Date;
 
+  @CreateDateColumn({ type: 'date' })
+  updatedAt: Date;
+
   @OneToMany(() => Patient, (patient) => patient.record, { cascade: true, eager: true, onDelete: 'CASCADE' })
   patients: Patient[];
 

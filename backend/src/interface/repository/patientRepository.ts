@@ -38,8 +38,10 @@ export default class PatientRepository implements IPatientRepository {
   }
 
   async register(patients: Patient[]): Promise<Record> {
+    const updatedAt = new Date();
     const record = {
       patients,
+      updatedAt,
     };
 
     const [result, error] = await wrapError(
@@ -61,6 +63,27 @@ export default class PatientRepository implements IPatientRepository {
     }
 
     return patients;
+  }
+
+  async updateDateAt(id: number): Promise<Record> {
+    const updatedAt = new Date();
+    const [record, error] = await wrapError(
+      this.findRecord(id),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const [records, errorRecords] = await wrapError(
+      this.datastore.save<Record>('Record', { ...record, updatedAt }),
+    );
+
+    if (errorRecords) {
+      throw error;
+    }
+
+    return records;
   }
 
   async archiveRecord(id: number): Promise<Record> {

@@ -137,8 +137,8 @@ export default function CustomizedTables() {
   useEffect(() => {
     getPatients().then((response:any) => {
       console.log(response);
-      setPatients(response);
-      setPatientsData(response);
+      setPatients(response.data);
+      setPatientsData(response.data);
     })
       .catch((error:any) => {
         console.log(error);

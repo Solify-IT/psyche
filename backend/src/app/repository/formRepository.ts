@@ -1,4 +1,4 @@
-import { Form } from 'domain/model';
+import { Form, Record } from 'domain/model';
 import PatientForm from 'domain/model/patientForm';
 import PatientFormField from 'domain/model/patientFormField';
 
@@ -11,4 +11,5 @@ export default interface IFormRepository {
   detailField(id: number) : Promise<PatientFormField>;
   deleteFormWithId(id: number) : Promise<boolean>;
   getForms() : Promise<Form[]>;
+  updateDateAt(recordId: number): Promise<Record>;
 }

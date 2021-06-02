@@ -12,4 +12,5 @@ export default interface IUserPresenter {
   deactiveAccount(user: User) : User;
   findOne(user: User):User;
   encryptedPassword(password: string): Promise<string>;
+  getUserByEmail(user: User): User;
 }

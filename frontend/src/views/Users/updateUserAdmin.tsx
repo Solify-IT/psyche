@@ -66,6 +66,7 @@ function UpdateUserAdmin() {
     errors: {
       password: '',
       username: '',
+      email: '',
     },
   });
   const {
@@ -77,7 +78,7 @@ function UpdateUserAdmin() {
     getUser(id)
       .then((response:any) => {
         setUserInformation(response.data);
-        console.log(id);
+        console.log(response.data);
       })
       .catch((error:any) => console.log(error));
   }, [id]);

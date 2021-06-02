@@ -8,6 +8,7 @@ describe('Patient presenter', () => {
     id: 1,
     patients: [patientFixture, patientFixture],
     active: true,
+    updatedAt: new Date(),
   };
   test('should return patient detail', () => {
     const result = patientPresenter.record(record);

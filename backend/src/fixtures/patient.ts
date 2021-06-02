@@ -10,7 +10,15 @@ const patientFixture : Patient = {
   birthPlace: 'test',
   birthDate: new Date(),
   postalCode: 832032,
+  motive: 'Abuso',
+  legalProceeding: true,
+  status: true,
+  abuseType: 'Sexual',
+  abuseFirstTime: '10',
+  abuseAttempts: '5',
+  abuseMotive: 'Nomal',
   recordId: 1,
+
 };
 
 export default patientFixture;

@@ -8,6 +8,7 @@ describe('Patient presenter', () => {
     id: 1,
     patients: [patientFixture, patientFixture],
     active: true,
+    updatedAt: new Date(),
   };
 
   const patients = [patientFixture, patientFixture];

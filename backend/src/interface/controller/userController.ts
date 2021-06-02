@@ -200,4 +200,15 @@ export default class UserController {
     }
     context.response.status(200).json(user);
   }
+
+  async getUserByEmail(context: IContext): Promise<void> {
+    const { email } = context.request.params;
+    console.log(email);
+    const [userExist, error] = await wrapError(this.userInteractor.getUserByEmail(email));
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(userExist);
+  }
 }
