@@ -71,11 +71,11 @@ describe('User register profile', () => {
   });
 
   test('should catch error from change Password', async () => {
-    const password = 'Luis1234$'
+    const password = 'Luis1234$';
     jest.spyOn(
       userRepository, 'changePassword',
     ).mockImplementation(async () => { throw new Error('An error occured'); });
-    const [result, error] = await wrapError(interactor.changePassword(1, password, ));
+    const [result, error] = await wrapError(interactor.changePassword(1, password));
 
     expect(error).toBeInstanceOf(Error);
     expect(result).toBe(null);

@@ -218,12 +218,13 @@ export default class UserController {
     const { id } = context.request.params;
     const { password } : PasswordConfirm = context.request.body;
 
-
     if (user.role !== 'administador') {
       context.response.status(400);
     }
 
-    const [userChanged, error] = await wrapError(this.userInteractor.changePassword(parseInt(id), password));
+    const [userChanged, error] = await wrapError(
+      this.userInteractor.changePassword(parseInt(id, 10), password),
+    );
 
     if (error) {
       context.next(error);
