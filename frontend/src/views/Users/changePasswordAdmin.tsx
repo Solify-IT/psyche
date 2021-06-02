@@ -48,7 +48,7 @@ function ChangePasswordAdmin() {
 
   function validPassword(password: string) : boolean {
     const strongRegex = new RegExp(
-      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{5,})',
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.{5,})',
     );
     return strongRegex.test(password);
   }
