@@ -36,6 +36,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// function viewUser(){
+//   const [user, setUser] = useState<Users[]>([]);
+//   useEffect(() => {
+//     getUser(username)
+//       .then((response:any) => {
+//         setUser(Object.values(response));
+//         console.log(user);
+//       })
+//       .catch((error:any) => console.log(error));
+//   }, []);
+// }
+
 function ViewUsers() {
   const [, setLoading] = useState<boolean>(false);
   const history = useHistory();

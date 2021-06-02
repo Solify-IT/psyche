@@ -1,8 +1,9 @@
-import { wrapError } from '@types';
+import { Graph, GroupByAndCountBuilder, wrapError } from '@types';
 import { Patient } from 'domain/model';
 import IPatientRepository from 'app/repository/patientRepository';
 import NotFoundError from 'utils/errors/NotFoundError';
 import Record from 'domain/model/record';
+import dateFormat from 'utils/dateFormat';
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
@@ -106,5 +107,48 @@ export default class PatientRepository implements IPatientRepository {
     }
 
     throw new NotFoundError('El expediente no existe');
+  }
+
+  async getAgeGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'birthDate',
+      condition: `Patient.type = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+      isAge: true,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Edad',
+      data,
+    };
+    return graph;
+  }
+
+  async getGenderGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'gender',
+      condition: `Patient.type = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Genero',
+      data,
+    };
+    return graph;
   }
 }
