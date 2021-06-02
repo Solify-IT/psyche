@@ -63,7 +63,7 @@ function ChangePasswordAdmin() {
       try {
         const user : User = await changePasswordAdmin(id, fields.confirmNewPassword);
         console.log(user);
-        toast.success(`¡Actualización completada! 😃`);
+        toast.success('¡Actualización completada! 😃');
         history.push('/view-users');
       } catch (error) {
         if (error.response && error.response.status === 404) {
