@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Link from '@material-ui/core/Link';
 import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
 import ContentTitle from 'src/components/contentTitle';
+import { AuthContext } from '../utils/authContext';
 import { authenticationService, login } from '../api/authenticationService';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function SignInSide() {
+  const { setUser } = useContext(AuthContext);
   const classes = useStyles();
   const history = useHistory();
   const [formFields, setFormFields] = useState({
@@ -66,7 +68,7 @@ export default function SignInSide() {
 
     login(username, password)
       .then((response) => {
-        console.log(response);
+        setUser(response.user);
         toast.success('Se ha iniciado sesión 😃');
         history.replace('/home');
       })

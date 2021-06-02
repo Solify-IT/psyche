@@ -13,6 +13,10 @@ import {
   Select,
   InputLabel,
   MenuItem,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
 } from '@material-ui/core';
 import {
   Edit,
@@ -21,6 +25,7 @@ import {
   from '@material-ui/icons';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import { motivos, tipos, causas } from 'src/interfaces/typeOptions';
 import MainContent from 'src/components/mainContent';
 import { createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
@@ -35,6 +40,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     textAlign: 'left',
     minWidth: 285,
+  },
+  formControl1: {
+    marginTop: '16px',
+    textAlign: 'left',
+    minWidth: 285,
+  },
+  formControl2: {
+    marginTop: '16px',
+    textAlign: 'left',
+    minWidth: 305,
   },
   group: {
     margin: theme.spacing(1, 0, 3),
@@ -85,14 +100,22 @@ function RegisterFamily() {
     telephone: '',
     address: '',
     birthPlace: '',
+    postalCode: 2222,
     birthDate: ' ',
-    postalCode: NaN,
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
 
   const {
     name, lastName, gender,
-    telephone, address, birthPlace, birthDate, postalCode,
+    telephone, address, birthPlace, birthDate, postalCode, motive, abuseType, abuseMotive,
+    legalProceeding, abuseFirstTime, abuseAttempts,
   } = { ...formFields };
 
   const handleChange = (event: React.ChangeEvent<any>) => {
@@ -101,9 +124,11 @@ function RegisterFamily() {
 
   function addField() {
     if (name === '' || lastName === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === '') {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === ''
+      || motive === '' || abuseType === '') {
       toast.warning('¡Completar todos los campos!');
     } else {
+      console.log(formFields);
       setFamily((prevFields) => [...prevFields, formFields]);
       setFormFields({
         name: '',
@@ -114,11 +139,45 @@ function RegisterFamily() {
         telephone: '',
         address: '',
         birthPlace: '',
+        postalCode: 2222,
         birthDate: ' ',
-        postalCode: NaN,
         recordId: 1,
+        motive: '',
+        legalProceeding: false,
+        status: true,
+        abuseType: '',
+        abuseFirstTime: '',
+        abuseAttempts: '',
+        abuseMotive: '',
       });
     }
+  }
+
+  const createFirstSelect = (option:any) => (
+    <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+  );
+  function createSecondSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
+  }
+
+  function createThirdSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
   }
 
   function updateMember(event: React.ChangeEvent<any>) {
@@ -186,6 +245,57 @@ function RegisterFamily() {
             <strong> Teléfono:</strong>
             {' '}
             {patient.telephone}
+            <br />
+            <strong> Motivo:</strong>
+            {' '}
+            {patient.motive}
+            <br />
+            <strong> Tipo:</strong>
+            {' '}
+            {patient.abuseType}
+            {patient.abuseMotive !== ''
+              ? (
+                <>
+                  <br />
+                  {' '}
+                  <strong> Causa:</strong>
+                  {' '}
+                  {' '}
+                  {' '}
+                  {patient.abuseMotive}
+                </>
+              )
+              : <></>}
+            <br />
+            <strong> Procedimiento Legal:</strong>
+            {' '}
+            {patient.legalProceeding ? <>Si</> : <>No</>}
+            {patient.abuseFirstTime !== ''
+              ? (
+                <>
+                  <br />
+                  {' '}
+                  <strong> Edad de Inicio:</strong>
+                  {' '}
+                  {' '}
+                  {' '}
+                  {patient.abuseFirstTime}
+                </>
+              )
+              : <></>}
+            {patient.abuseAttempts !== ''
+              ? (
+                <>
+                  <br />
+                  {' '}
+                  <strong> Intentos de Abuso:</strong>
+                  {' '}
+                  {' '}
+                  {' '}
+                  {patient.abuseAttempts}
+                </>
+              )
+              : <></>}
           </Typography>
           <div className={classes.icon}>
             <IconButton title="Editar" value={index} onClick={updateMember}>
@@ -276,15 +386,7 @@ function RegisterFamily() {
                 variant="outlined"
                 className={classes.formControl}
               >
-                <InputLabel>Género</InputLabel>
-                <Select
-                  required
-                  fullWidth
-                  label="Género"
-                  name="gender"
-                  value={gender}
-                  onChange={handleChange}
-                >
+                <Select>
                   <MenuItem value="Masculino"> Masculino </MenuItem>
                   <MenuItem value="Femenino"> Femenino </MenuItem>
                 </Select>
@@ -330,6 +432,99 @@ function RegisterFamily() {
                 onChange={handleChange}
               />
             </Grid>
+            <Grid item xs={12} sm={12}>
+              <Typography variant="h4"> Antecedentes </Typography>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl1}
+              >
+                <InputLabel>Motivo</InputLabel>
+                <Select
+                  required
+                  fullWidth
+                  name="motive"
+                  label="Motivo"
+                  value={motive}
+                  onChange={handleChange}
+                >
+                  {motivos.map(createFirstSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl2}
+              >
+                <InputLabel>Tipo</InputLabel>
+                <Select
+                  required
+                  fullWidth
+                  name="abuseType"
+                  label="Tipo"
+                  value={abuseType}
+                  onChange={handleChange}
+                >
+                  {tipos.map(createSecondSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl2}
+              >
+                <InputLabel>Causa</InputLabel>
+                <Select
+                  fullWidth
+                  name="abuseMotive"
+                  label="Causa"
+                  value={abuseMotive}
+                  onChange={handleChange}
+                >
+                  {causas.map(createThirdSelect)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl
+                component="fieldset"
+              >
+                <FormLabel component="legend"> Procedimiento Legal </FormLabel>
+                <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
+                  <FormControlLabel value control={<Radio />} label="Si" />
+                  <FormControlLabel value={false} control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="postalCode"
+                label="Edad de Inicio"
+                name="abuseFirstTime"
+                type="number"
+                value={abuseFirstTime}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="abuseAttempts"
+                label="Intentos de Abuso"
+                name="abuseAttempts"
+                type="number"
+                value={abuseAttempts}
+                onChange={handleChange}
+              />
+            </Grid>
             <Grid item xs={12} className={classes.submit}>
               <Button
                 type="submit"
@@ -341,28 +536,28 @@ function RegisterFamily() {
               </Button>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid container spacing={3} className={classes.cards}>
-          {family.map(createCard)}
-        </Grid>
-        {family.length !== 0
+          <Grid container spacing={3} className={classes.cards}>
+            {family.map(createCard)}
+          </Grid>
+          {family.length !== 0
 
-          ? (
-            <Grid item xs={12} className={classes.submit}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                onClick={submitPatients}
-              >
-                Registrar Pacientes
-              </Button>
-            </Grid>
-          )
-          : (
-            <>
-            </>
-          )}
+            ? (
+              <Grid item xs={12} className={classes.submit}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  onClick={submitPatients}
+                >
+                  Registrar Pacientes
+                </Button>
+              </Grid>
+            )
+            : (
+              <>
+              </>
+            )}
+        </Grid>
       </Grid>
     </MainContent>
 

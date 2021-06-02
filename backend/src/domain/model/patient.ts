@@ -39,6 +39,27 @@ export default class Patient {
   @Column({ nullable: false })
   postalCode: number;
 
+  @Column({ nullable: false })
+  motive: string;
+
+  @Column({ nullable: false })
+  legalProceeding: boolean;
+
+  @Column({ nullable: false })
+  status: boolean;
+
+  @Column({ nullable: false })
+  abuseType: string;
+
+  @Column({ nullable: true })
+  abuseFirstTime: string;
+
+  @Column({ nullable: true })
+  abuseAttempts: string;
+
+  @Column({ nullable: true })
+  abuseMotive: string;
+
   @Column({ name: 'record_id' })
   recordId: number;
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,6 +18,7 @@ import {
 import withRole from 'src/utils/withRole';
 import UserRole from 'src/fixtures/roles';
 import { v4 as uuidv4 } from 'uuid';
+import { AuthContext } from '../utils/authContext';
 
 type NavigationItem = {
   label: string;
@@ -32,6 +33,8 @@ type NavigationGroup = {
 };
 
 function Navbar() {
+  const { currUser, removeUser } = useContext(AuthContext);
+  const history = useHistory();
   const [state, setState] = useState<boolean>(false);
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (event && event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab'
@@ -216,7 +219,12 @@ function Navbar() {
   }));
   const classes = useStyles();
 
-  const history = useHistory();
+  const logOut = () => {
+    logout();
+    removeUser();
+    history.go(0);
+    // history.replace('/login');
+  };
 
   function handleNavigation(link: string) {
     history.push(link);
@@ -339,11 +347,18 @@ function Navbar() {
                 <img src="/images/logo.png" alt="logo of Psyque" className={classes.logo} />
               </Link>
             </Typography>
-            <Link to="/login" className={classes.button}>
-              <Button className={classes.button} onClick={logout}>
-                Cerrar sesión
-              </Button>
-            </Link>
+            {currUser === undefined
+              ? (
+                <>
+                </>
+              )
+              : (
+                <Link to="/login" className={classes.button}>
+                  <Button className={classes.button} onClick={logOut}>
+                    Cerrar sesión
+                  </Button>
+                </Link>
+              )}
           </Toolbar>
         </AppBar>
       </div>

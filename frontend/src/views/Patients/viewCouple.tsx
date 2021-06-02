@@ -87,6 +87,57 @@ const ViewCouple: FC<PatienstProps> = (props): JSX.Element => {
               <strong> Teléfono:</strong>
               {' '}
               {patientOne.telephone}
+              <br />
+              <strong> Motivo:</strong>
+              {' '}
+              {patientOne.motive}
+              <br />
+              <strong> Tipo:</strong>
+              {' '}
+              {patientOne.abuseType}
+              {patientOne.abuseMotive !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Causa:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientOne.abuseMotive}
+                  </>
+                )
+                : <></>}
+              <br />
+              <strong> Procedimiento Legal:</strong>
+              {' '}
+              {patientOne.legalProceeding ? <>Si</> : <>No</>}
+              {patientOne.abuseFirstTime !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Edad de Inicio:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientOne.abuseFirstTime}
+                  </>
+                )
+                : <></>}
+              {patientOne.abuseAttempts !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Intentos de Abuso:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientOne.abuseAttempts}
+                  </>
+                )
+                : <></>}
             </Typography>
             <div className={classes.icon}>
               <IconButton title="Editar" onClick={prevPreviousStep}>
@@ -133,6 +184,57 @@ const ViewCouple: FC<PatienstProps> = (props): JSX.Element => {
               <strong>Teléfono:</strong>
               {' '}
               {patientTwo.telephone}
+              <br />
+              <strong> Motivo:</strong>
+              {' '}
+              {patientTwo.motive}
+              <br />
+              <strong> Tipo:</strong>
+              {' '}
+              {patientTwo.abuseType}
+              {patientTwo.abuseMotive !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Causa:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientTwo.abuseMotive}
+                  </>
+                )
+                : <></>}
+              <br />
+              <strong> Procedimiento Legal:</strong>
+              {' '}
+              {patientTwo.legalProceeding ? <>Si</> : <>No</>}
+              {patientTwo.abuseFirstTime !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Edad de Inicio:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientTwo.abuseFirstTime}
+                  </>
+                )
+                : <></>}
+              {patientTwo.abuseAttempts !== ''
+                ? (
+                  <>
+                    <br />
+                    {' '}
+                    <strong> Intentos de Abuso:</strong>
+                    {' '}
+                    {' '}
+                    {' '}
+                    {patientTwo.abuseAttempts}
+                  </>
+                )
+                : <></>}
             </Typography>
             <div className={classes.icon}>
               <IconButton title="Editar" onClick={previousStep}>

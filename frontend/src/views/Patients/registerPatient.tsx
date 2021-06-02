@@ -11,6 +11,11 @@ import {
   makeStyles,
   FormControl,
   Button,
+  FormLabel,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Typography,
 } from '@material-ui/core';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
@@ -20,6 +25,7 @@ import {
   optionsClinica,
   optionsAsesoria,
 } from '../../interfaces/options';
+import { motivos, tipos, causas } from '../../interfaces/typeOptions';
 import { createPatient, createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
 import RegisterCouple from './registerCouple';
@@ -40,6 +46,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     minWidth: 285,
   },
+  formControl1: {
+    marginTop: '16px',
+    textAlign: 'left',
+    minWidth: 285,
+  },
+  formControl2: {
+    marginTop: '16px',
+    textAlign: 'left',
+    minWidth: 305,
+  },
   group: {
     margin: theme.spacing(1, 0, 3),
     textAlign: 'left',
@@ -47,10 +63,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputLabel: {
     paddingLeft: '10px',
-  },
-  date: {
-    marginTop: '28px',
-    marginLeft: '10px',
   },
   place: {
     marginLeft: '20px',
@@ -84,11 +96,20 @@ function RegisterPatient() {
     postalCode: 2222,
     birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const {
     name, lastName, type, gender,
-    telephone, address, birthPlace, birthDate, postalCode,
+    telephone, address, birthPlace, birthDate, postalCode, motive, abuseType, abuseMotive,
+    legalProceeding, abuseFirstTime, abuseAttempts,
   } = { ...formFields };
+
   let options = Array<Option>();
   switch (area) {
     case 'psicologia':
@@ -111,6 +132,33 @@ function RegisterPatient() {
   const createSelect = (option:any) => (
     <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
   );
+  const createFirstSelect = (option:any) => (
+    <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+  );
+  function createSecondSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
+  }
+
+  function createThirdSelect(option:any) {
+    if (motive === option.type) {
+      return (
+        <MenuItem key={option.id} value={option.name}>{option.name}</MenuItem>
+      );
+    }
+
+    return (
+      null
+    );
+  }
+
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<any>) => {
@@ -120,7 +168,8 @@ function RegisterPatient() {
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (name === '' || lastName === '' || type === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === '') {
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === ''
+      || motive === '' || abuseType === '') {
       toast.warning('¡Completar todos los campos!');
     } else {
       createPatient(formFields)
@@ -154,9 +203,16 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
-    postalCode: 0,
+    postalCode: 2222,
+    birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const [patientTwo, setPatientTwo] = useState<Patient>({
     name: '',
@@ -167,9 +223,16 @@ function RegisterPatient() {
     telephone: '',
     address: '',
     birthPlace: '',
-    birthDate: '',
-    postalCode: 0,
+    postalCode: 2222,
+    birthDate: ' ',
     recordId: 1,
+    motive: '',
+    legalProceeding: false,
+    status: true,
+    abuseType: '',
+    abuseFirstTime: '',
+    abuseAttempts: '',
+    abuseMotive: '',
   });
   const handlePatientOne = (event: React.ChangeEvent<any>) => {
     setPatientOne({ ...patientOne, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
@@ -180,10 +243,12 @@ function RegisterPatient() {
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
-      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || postalCode.toString() === '') {
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || postalCode.toString() === ''
+      || patientOne.motive === '' || patientOne.abuseType === '') {
       toast.warning('¡Completar datos del paciente uno!');
     } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
-    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || postalCode.toString() === '') {
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || postalCode.toString() === ''
+    || patientTwo.motive === '' || patientTwo.abuseType === '') {
       toast.warning('¡Completar datos del paciente dos!');
     } else {
       const array = Array<Patient>();
@@ -327,7 +392,6 @@ function RegisterPatient() {
                         id="birthDate"
                         label="Fecha de Nacimiento"
                         name="birthDate"
-                        className={classes.date}
                         value={birthDate}
                         onChange={handleChange}
                         InputLabelProps={{
@@ -405,6 +469,100 @@ function RegisterPatient() {
                         label="Teléfono"
                         name="telephone"
                         value={telephone}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <Typography variant="h4"> Antecedentes </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl1}
+                      >
+                        <InputLabel>Motivo</InputLabel>
+                        <Select
+                          required
+                          fullWidth
+                          name="motive"
+                          label="Motivo"
+                          value={motive}
+                          onChange={handleChange}
+                        >
+                          {motivos.map(createFirstSelect)}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl2}
+                      >
+                        <InputLabel>Tipo</InputLabel>
+                        <Select
+                          required
+                          fullWidth
+                          name="abuseType"
+                          label="Tipo"
+                          value={abuseType}
+                          onChange={handleChange}
+                        >
+                          {tipos.map(createSecondSelect)}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <FormControl
+                        variant="outlined"
+                        className={classes.formControl2}
+                      >
+                        <InputLabel>Causa</InputLabel>
+                        <Select
+                          fullWidth
+                          name="abuseMotive"
+                          label="Causa"
+                          value={abuseMotive}
+                          onChange={handleChange}
+                        >
+                          {causas.map(createThirdSelect)}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <FormControl
+                        component="fieldset"
+                        // className={classes.formControl1}
+                      >
+                        <FormLabel component="legend"> Procedimiento Legal </FormLabel>
+                        <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
+                          <FormControlLabel value control={<Radio />} label="Si" />
+                          <FormControlLabel value={false} control={<Radio />} label="No" />
+                        </RadioGroup>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        id="postalCode"
+                        label="Edad de Inicio"
+                        name="abuseFirstTime"
+                        type="number"
+                        value={abuseFirstTime}
+                        onChange={handleChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        id="abuseAttempts"
+                        label="Intentos de Abuso"
+                        name="abuseAttempts"
+                        type="number"
+                        value={abuseAttempts}
                         onChange={handleChange}
                       />
                     </Grid>
