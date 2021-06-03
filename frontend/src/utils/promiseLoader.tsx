@@ -15,6 +15,7 @@ function PromiseLoader<T>(
       try {
         const response = await promise;
         setData(response.data);
+        console.log(response);
       } catch (e) {
         const err = e as AxiosError;
         setError(err);

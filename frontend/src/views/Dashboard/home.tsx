@@ -53,7 +53,7 @@ function Home() {
     ],
   )(
     <Grid item xs={12} sm={6} lg={4}>
-      <Link to="/dashboard-area" className={classes.option}>
+      <Link to="/dashboard-as-psic" className={classes.option}>
         <Paper className={classes.paper}>
           <img src="/images/registrarPaciente.png" alt="registrarPaciente" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>
@@ -74,7 +74,7 @@ function Home() {
         <Paper className={classes.paper}>
           <img src="/images/usuarios.png" alt="Logo" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>
-            Panel de Usuarios
+            Usuarios
           </Typography>
         </Paper>
       </Link>
@@ -93,25 +93,6 @@ function Home() {
           <img src="/images/pacientes.png" alt="Logo" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>
             Pacientes
-          </Typography>
-        </Paper>
-      </Link>
-    </Grid>,
-  );
-
-  const newForm = withRole(
-    [
-      UserRole.Administrador,
-      UserRole.Psicólogo,
-      UserRole.Becario,
-    ],
-  )(
-    <Grid item xs={12} sm={6} lg={4}>
-      <Link to="/new-form" className={classes.option}>
-        <Paper className={classes.paper}>
-          <img src="/images/reporte.png" alt="Logo" className={classes.image} />
-          <Typography variant="h4" align="center" className={classes.subtitles}>
-            Crear nueva encuesta
           </Typography>
         </Paper>
       </Link>
@@ -147,13 +128,31 @@ function Home() {
         <Paper className={classes.paper}>
           <img src="/images/reporte.png" alt="Logo" className={classes.image} />
           <Typography variant="h4" align="center" className={classes.subtitles}>
-            Ver encuestas
+            Encuestas
           </Typography>
         </Paper>
       </Link>
     </Grid>,
   );
 
+  const stats = withRole(
+    [
+      UserRole.Administrador,
+      UserRole.Psicólogo,
+      UserRole.Becario,
+    ],
+  )(
+    <Grid item xs={12} sm={6} lg={4}>
+      <Link to="/reporte" className={classes.option}>
+        <Paper className={classes.paper}>
+          <img src="/images/estadistica.png" alt="Logo" className={classes.image} />
+          <Typography variant="h4" align="center" className={classes.subtitles}>
+            Estadísticas
+          </Typography>
+        </Paper>
+      </Link>
+    </Grid>,
+  );
   return (
     <MainContent>
       <Grid container spacing={3}>
@@ -173,8 +172,8 @@ function Home() {
       <Grid container spacing={3}>
         { registerPatient }
         { patientsList }
-        { newForm }
         { listForms }
+        { stats }
         { myProfile }
         { usersList }
       </Grid>

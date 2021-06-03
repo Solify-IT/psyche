@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     textAlign: 'center',
   },
+  date: {
+    marginLeft: '20px',
+  },
 }));
 
 interface ParamTypes {
@@ -387,6 +390,7 @@ function RegisterPatient() {
                         variant="outlined"
                         margin="normal"
                         type="date"
+                        className={classes.date}
                         required
                         fullWidth
                         id="birthDate"

@@ -12,7 +12,7 @@ export const motivos = [
   },
   {
     id: 3,
-    name: 'Transtornos Mentales',
+    name: 'Trastornos Mentales',
   },
   {
     id: 4,
@@ -106,62 +106,62 @@ export const tipos = [
   {
     id: 26,
     name: 'Psicopatía',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 27,
     name: 'Paranoide',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 28,
     name: 'Límite de la Personalidad',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 29,
     name: 'Esquizofrenia',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 30,
     name: 'Psicosis',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 31,
     name: 'Bipolaridad',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 32,
-    name: 'Transtorno de Ansiedad',
-    type: 'Transtornos Mentales',
+    name: 'Trastornos de Ansiedad',
+    type: 'Trastornos Mentales',
   },
   {
     id: 33,
-    name: 'Transtorno depresivo severo',
-    type: 'Transtornos Mentales',
+    name: 'Trastorno depresivo severo',
+    type: 'Trastornos Mentales',
   },
   {
     id: 34,
     name: 'Ansiedad simple',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 35,
     name: 'Depresión simple',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 36,
     name: 'Estrés',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 361,
     name: 'Otro',
-    type: 'Transtornos Mentales',
+    type: 'Trastornos Mentales',
   },
   {
     id: 37,
@@ -210,7 +210,7 @@ export const tipos = [
   },
   {
     id: 46,
-    name: 'Transtorno mental',
+    name: 'Trastorno mental',
     type: 'Intento de Suicidio',
   },
   {
@@ -250,7 +250,7 @@ export const tipos = [
   },
   {
     id: 54,
-    name: 'Transtorno mental',
+    name: 'Trastorno mental',
     type: 'Autolesiones',
   },
   {

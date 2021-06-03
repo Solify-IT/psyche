@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { authenticationService, logout } from 'src/api/authenticationService';
 import {
-  AccountCircle, AddCircle, Create, Group, Home, ListAltOutlined, PersonAdd, VpnKey,
+  AccountCircle, AddCircle, Create, Equalizer, Group, Home, ListAltOutlined, PersonAdd, VpnKey,
 } from '@material-ui/icons';
 import withRole from 'src/utils/withRole';
 import UserRole from 'src/fixtures/roles';
@@ -128,6 +128,21 @@ function Navbar() {
             UserRole.Administrador,
             UserRole.Becario,
             UserRole.Psicólogo,
+          ],
+        },
+      ],
+    },
+    {
+      name: 'Reportes',
+      group: [
+        {
+          label: 'Estadísticas',
+          icon: <Equalizer />,
+          link: '/reporte',
+          rolesAllowed: [
+            UserRole.Administrador,
+            UserRole.Psicólogo,
+            UserRole.Becario,
           ],
         },
       ],
