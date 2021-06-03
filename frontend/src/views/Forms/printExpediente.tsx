@@ -21,7 +21,7 @@ import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import Patient from 'src/interfaces/patient';
-// import './print.css';
+import './print.css';
 import { getPatientRecord } from 'src/api/patient';
 import PatientForm from 'src/interfaces/patientForm';
 
@@ -116,13 +116,15 @@ const useStyles = makeStyles((theme) => ({
   },
   headerSection: {
     align: 'center',
-    margin: theme.spacing(4, 2),
     flexDirection: 'column',
+    // borderRadius: 20,
+    // padding: theme.spacing(2, 6),
+    // marginTop: '2px',
+    // marginBottom: '45px',
     borderColor: '#C94B72',
-    borderRadius: 20,
-    padding: theme.spacing(2, 6),
-    marginTop: '2px',
-    marginBottom: '45px',
+    width: '20.5cm',
+    height: '26.7cm',
+    marginBottom: '30px',
   },
   patientSection: {
     align: 'center',

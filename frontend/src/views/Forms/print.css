@@ -1,9 +1,8 @@
 
 @media print {
     @page {
-        margin: 10px;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        size: A4;
+        margin: 0;
     }
     .aviso{
         position: static;
@@ -27,5 +26,14 @@
     }
     .divider {
         margin: '10px';
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font: 12pt "Tahoma";
+    }
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
     }
 }
