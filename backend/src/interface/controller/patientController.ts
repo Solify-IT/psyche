@@ -100,4 +100,19 @@ export default class PatientController {
     }
     context.response.status(200).json(record);
   }
+
+  async getPatientStatistics(context: IContext) : Promise<void> {
+    const { startDate, endDate } = context.request.body;
+
+    const [results, error] = await wrapError(
+      this.patientInteractor.getPatientStatistics(
+        new Date(startDate), new Date(endDate),
+      ),
+    );
+    if (error) {
+      context.next(error);
+      return;
+    }
+    context.response.status(200).json(results);
+  }
 }

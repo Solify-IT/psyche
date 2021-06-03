@@ -226,8 +226,7 @@ function NewForm() {
   }
   return (
     <MainContent>
-
-      <ContentTitle text="Crear Nuevo Form" />
+      <ContentTitle text="Crear Nueva Encuesta" />
       <Grid container justify="center">
         <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
           <Grid container spacing={5}>

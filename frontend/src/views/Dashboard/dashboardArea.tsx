@@ -77,27 +77,6 @@ function DasboardArea() {
             </Paper>
           </Link>
         </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Link to="/app/land-divisions" className={classes.option}>
-            <Paper className={classes.paper}>
-              <img src="/images/prevsoc.png" alt="Logo" className={classes.image} />
-              <Typography variant="h4" align="center" className={classes.subtitles}>
-                Prevención Social
-              </Typography>
-            </Paper>
-          </Link>
-        </Grid>
-
-        <Grid item xs={12} sm={6} lg={4}>
-          <Link to="/app/home-divisions" className={classes.option}>
-            <Paper className={classes.paper}>
-              <img src="/images/formacioncont.png" alt="Logo" className={classes.image} />
-              <Typography variant="h4" align="center" className={classes.subtitles}>
-                Formación Continua
-              </Typography>
-            </Paper>
-          </Link>
-        </Grid>
       </Grid>
     </MainContent>
   );

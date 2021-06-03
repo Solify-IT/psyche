@@ -50,12 +50,12 @@ function DasboarPsic() {
       <Grid container spacing={3}>
 
         <Grid item xs={12}>
-          <ContentTitle text="Atención Psicológica" />
+          <ContentTitle text="Áreas" />
         </Grid>
 
         <Grid item xs={12}>
           <Typography align="justify" className={classes.description}>
-            Selecciona el area correspondiente a la que pertenece el paciente:
+            Selecciona el área correspondiente:
           </Typography>
         </Grid>
 
