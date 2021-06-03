@@ -1,7 +1,6 @@
 
 @media print {
     @page {
-        size: auto;
         margin: 10px;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
@@ -11,7 +10,6 @@
         bottom: 20px;
         width: 100%;
     }
-  
     @page :header {
         display: none
     }
@@ -27,11 +25,7 @@
         margin: 0px;
         padding: 0px;
     }
-    .patientSection {
-        margin: 0px;
-    }
     .divider {
         margin: '10px';
     }
-  
 }

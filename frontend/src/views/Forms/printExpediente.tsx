@@ -21,7 +21,7 @@ import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import Patient from 'src/interfaces/patient';
-import './print.css';
+// import './print.css';
 import { getPatientRecord } from 'src/api/patient';
 import PatientForm from 'src/interfaces/patientForm';
 
@@ -29,15 +29,34 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(4, 0, 6),
   },
+  [`@media print`]: {
+    headerSection: {
+      breakAfter: 'always',
+      pageBreakAfter: 'always',
+    },
+    patientSection: {
+      breakBefore: 'always',
+      pageBreakBerofe: 'always',
+    },
+    aviso: {
+      breakAfter: 'always',
+      pageBreakAfter: 'always',
+    },
+  },
   group: {
     margin: theme.spacing(3, 0, 3),
     textAlign: 'left',
     fontSize: '78px',
   },
+  imageFront: {
+    height: '600px',
+    width: 'auto',
+  },
   image: {
     height: '130px',
     width: 'auto',
     marginRight: '30px',
+    alignItems: 'center',
   },
   submit: {
     textAlign: 'center',
@@ -95,6 +114,16 @@ const useStyles = makeStyles((theme) => ({
   text: {
     align: 'center',
   },
+  headerSection: {
+    align: 'center',
+    margin: theme.spacing(4, 2),
+    flexDirection: 'column',
+    borderColor: '#C94B72',
+    borderRadius: 20,
+    padding: theme.spacing(2, 6),
+    marginTop: '2px',
+    marginBottom: '45px',
+  },
   patientSection: {
     align: 'center',
     margin: theme.spacing(4, 2),
@@ -104,10 +133,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 6),
     marginTop: '2px',
     marginBottom: '7px',
-    '@media print': {
-      breakAfter: 'always !important',
-      pageBreakAfter: 'always !important',
-    },
   },
   divider: {
     marginTop: '100px',
@@ -341,12 +366,12 @@ function PrintExpediente() {
             <Grid container justify="center" alignItems="center">
               <Grid item xs={12} justify="center" alignItems="center">
                 {info.patients.map((patientPrint) => (
-                  <Paper variant="outlined" className={classes.patientSection}>
-                    <Grid container>
-                      <Grid item>
-                        <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
+                  <Paper variant="outlined" className={classes.headerSection}>
+                    <Grid container justify="center" alignItems="center">
+                      <Grid justify="center" alignItems="center">
+                        <img src="/images/loginImage.png" alt="Logo" className={classes.imageFront} />
                       </Grid>
-                      <Grid item xs={8}>
+                      <Grid justify="center" alignItems="center">
                         <Typography variant="h4" align="left" className={classes.subtitles1}>
                           Patronato Psicológico Queretano I.A.P
                         </Typography>
@@ -474,7 +499,7 @@ function PrintExpediente() {
                     {/* {field.fields.map(createComponent)} */}
                     {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
                   </Grid>
-                  <Grid container justify="center" alignItems="center">
+                  <Grid container justify="center" alignItems="center" {...{ class : 'page'}}>
                     <Grid item xs={12}>
                       <Typography align="center" className={classes.aviso}>
                         Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para

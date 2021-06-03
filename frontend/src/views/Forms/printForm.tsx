@@ -21,7 +21,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
-import './print.css';
+// import './print.css';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
