@@ -453,6 +453,9 @@ function PrintExpediente() {
                     </Grid>
                   </Paper>
                 ))}
+                <Typography align="center" className={classes.aviso}>
+                   
+                </Typography>
               </Grid>
 
               {fields.map((field) => (
