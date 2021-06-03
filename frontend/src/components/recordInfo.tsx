@@ -13,11 +13,11 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import createRecordId from 'src/utils/createRecordId';
 import FadeIn from 'react-fade-in';
+import PrintIcon from '@material-ui/icons/Print';
 import { archiveRecord } from '../api/patient';
 import ContentTitle from './contentTitle';
 import MainContent from './mainContent';
 import CornerFab from './cornerFab';
-import PrintIcon from '@material-ui/icons/Print';
 
 const useStyles = makeStyles((theme) => ({
   patientSection: {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#A3529A',
     '&:hover': {
       backgroundColor: '#803b76',
-    }
+    },
   },
   title: {
     color: '#C94B72',

@@ -120,7 +120,7 @@ function ConsultProfiles() {
 
   function Profesional() {
     switch (field.professionalLicense) {
-      case null:
+      case '':
         return (
           <Grid item lg={12} xs={12}>
             <Paper className={classes.paper}>

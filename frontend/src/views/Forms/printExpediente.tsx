@@ -20,7 +20,10 @@ import FieldOption from 'src/interfaces/fieldOptions';
 import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
+import Patient from 'src/interfaces/patient';
 import './print.css';
+import { getPatientRecord } from 'src/api/patient';
+import PatientForm from 'src/interfaces/patientForm';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -58,10 +61,19 @@ const useStyles = makeStyles((theme) => ({
   },
   subtitles1: {
     marginTop: '0px',
+    marginBottom: '7px',
     padding: '10px',
     paddingBottom: '0px',
     color: '#000000',
     fontSize: '20px',
+    fontWeight: 'bold',
+  },
+  subtitlesLabel: {
+    marginTop: '0px',
+    padding: '10px',
+    paddingBottom: '0px',
+    color: '#000000',
+    fontSize: '12px',
     fontWeight: 'bold',
   },
   texto: {
@@ -91,7 +103,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 20,
     padding: theme.spacing(2, 6),
     marginTop: '2px',
-    marginBottom: '2px',
+    marginBottom: '7px',
+    '@media print': {
+      breakAfter: 'always !important',
+      pageBreakAfter: 'always !important',
+    },
   },
   divider: {
     marginTop: '100px',
@@ -121,11 +137,24 @@ function PrintExpediente() {
   const classes = useStyles();
   const history = useHistory();
   const [fields, setFields] = useState<PatientFormField[]>([]);
+  const [info, setInfo] = useState({
+    id: 1,
+    startDate: Date,
+    active: true,
+    forms: Array<PatientForm>(),
+    patients: Array<Patient>(),
+  });
 
   useEffect(() => {
-    getFormId(recordId)
+    getPatientRecord(recordId)
       .then((response:any) => {
         console.log(response.data);
+        setInfo(response.data);
+      })
+      .catch((error:any) => console.log(error));
+
+    getFormId(recordId)
+      .then((response:any) => {
         const preOrder : PatientFormField[] = Object.values(response.data.sort(
           (a: PatientFormField, b: PatientFormField) => {
             if (a.id && b.id) {
@@ -141,7 +170,6 @@ function PrintExpediente() {
             return 0;
           },
         ));
-        console.log(preOrder);
         setFields(preOrder);
       })
       .catch((error:any) => console.log(error));
@@ -311,9 +339,97 @@ function PrintExpediente() {
         <div>
           <Container>
             <Grid container justify="center" alignItems="center">
+              <Grid item xs={12} justify="center" alignItems="center">
+                {info.patients.map((patientPrint) => (
+                  <Paper variant="outlined" className={classes.patientSection}>
+                    <Grid container>
+                      <Grid item>
+                        <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
+                      </Grid>
+                      <Grid item xs={8}>
+                        <Typography variant="h4" align="left" className={classes.subtitles1}>
+                          Patronato Psicológico Queretano I.A.P
+                        </Typography>
+                        <Typography variant="h4" align="left" className={classes.subtitles1}>
+                          Folio: PPQ-
+                          {' '}
+                          {patientPrint.recordId}
+                        </Typography>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Nombre:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.6rem' }} noWrap>
+                            {patientPrint.name}
+                            {' '}
+                            {patientPrint.lastName}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Género:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.8rem' }} noWrap>
+                            {patientPrint.gender}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Tipo de paciente:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '1.4rem' }} noWrap>
+                            {patientPrint.type}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Lugar de nacimiento:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} noWrap>
+                            {patientPrint.birthPlace}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Fecha de inicio:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2rem' }} noWrap>
+                            {patientPrint.startDate}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Teléfono:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.4rem' }} noWrap>
+                            {patientPrint.telephone}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Dirección:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.2rem' }} noWrap>
+                            {patientPrint.address}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Código postal:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2.6rem' }} noWrap>
+                            {patientPrint.postalCode}
+                          </Typography>
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                ))}
+              </Grid>
+
               {fields.map((field) => (
                 <div>
-                  <Grid container justify="center" alignItems="center">
+                  <Grid item xs={12} justify="center" alignItems="center">
                     <Paper variant="outlined" className={classes.patientSection}>
                       <Grid container>
                         <Grid item>

@@ -33,15 +33,5 @@
     .divider {
         margin: '10px';
     }
-    Paper {
-        page-break-before: auto;
-    }
-    * { 
-        float: none !important; 
-    }
-    .br, br {
-        display: block;
-        break-after: auto;
-        page-break-after: auto;
-    }
+  
 }
