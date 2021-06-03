@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(4, 0, 6),
   },
-  [`@media print`]: {
+  '@media print': {
     headerSection: {
       breakAfter: 'always',
       pageBreakAfter: 'always',
@@ -123,8 +123,9 @@ const useStyles = makeStyles((theme) => ({
     // marginBottom: '45px',
     borderColor: '#C94B72',
     width: '20.5cm',
-    height: '26.7cm',
-    marginBottom: '30px',
+    height: '27.7cm',
+    marginBottom: '3cm',
+    marginTop: '0.5cm',
   },
   patientSection: {
     align: 'center',
@@ -501,7 +502,7 @@ function PrintExpediente() {
                     {/* {field.fields.map(createComponent)} */}
                     {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
                   </Grid>
-                  <Grid container justify="center" alignItems="center" {...{ class : 'page'}}>
+                  <Grid container justify="center" alignItems="center" {...{ class: 'page' }}>
                     <Grid item xs={12}>
                       <Typography align="center" className={classes.aviso}>
                         Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
