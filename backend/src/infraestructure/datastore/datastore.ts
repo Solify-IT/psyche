@@ -49,8 +49,9 @@ export default class Datastore implements IDatastore {
     builder: GroupByAndCountBuilder,
   ): Promise<GraphData[]> {
     const connection = getConnection();
-    const select = builder.isAge ? `date_part('year', AGE(${builder.tableName}.${builder.field}))` : `${builder.tableName}.${builder.field}`;
-    const groupBy = builder.isAge ? 'age' : builder.field;
+    const column = builder.field;
+    const select = builder.isAge ? `date_part('year', AGE(${builder.field}))` : column;
+    const groupBy = builder.isAge ? 'age' : column;
     const items = await connection.getRepository<T>(
       builder.tableName,
     ).createQueryBuilder(builder.tableName)
@@ -60,19 +61,25 @@ export default class Datastore implements IDatastore {
       .groupBy(groupBy)
       .getRawMany();
 
-    console.log(items);
-
     const graphData : GraphData[] = items.map((item) => {
-      const label = item[groupBy];
+      let label;
+      if (item[groupBy] === false) {
+        label = 'No';
+      } else if (item[groupBy] === true) {
+        label = 'Si';
+      } else {
+        label = item[groupBy];
+      }
       const value = item.count;
       const newGraphData : GraphData = {
         label,
         value,
       };
-      console.log(newGraphData);
       return newGraphData;
     });
-    return graphData;
+    return builder.sort ? graphData.sort(
+      (obj1, obj2) => Number(obj1.label) - Number(obj2.label),
+    ) : graphData;
   }
 
   async delete<T>(tableName: string, id: number): Promise<T> {
@@ -81,5 +88,15 @@ export default class Datastore implements IDatastore {
     await repository.delete(id);
     const found = await repository.findOne(id);
     return found;
+  }
+
+  async count<T>(tableName: string, condition?: any): Promise<number> {
+    const connection = getConnection();
+    const repository = connection.getRepository<T>(
+      tableName,
+    );
+    const items: T[] = await repository.find(condition);
+
+    return items.length;
   }
 }

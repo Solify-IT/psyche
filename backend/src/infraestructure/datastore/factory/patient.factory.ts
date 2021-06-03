@@ -22,6 +22,7 @@ define(Patient, (faker: typeof Faker, context: { recordId: number, type: string 
   const telephone = faker.phone.phoneNumber();
   const birthPlace = faker.address.city();
   const birthDate = faker.date.past(60);
+  const startDate = faker.date.past(3);
   const patient = new Patient();
   const motives = [
     'Abuso Sexual',
@@ -153,5 +154,6 @@ define(Patient, (faker: typeof Faker, context: { recordId: number, type: string 
   patient.birthPlace = birthPlace;
   patient.recordId = context.recordId;
   patient.type = context.type;
+  patient.startDate = startDate;
   return patient;
 });

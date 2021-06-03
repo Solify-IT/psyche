@@ -1,4 +1,4 @@
-import { Graph, GraphData, GroupByAndCountBuilder } from '@types';
+import { GraphData, GroupByAndCountBuilder } from '@types';
 
 export default interface IDatastore {
   fetchAll<T>(tableName: string): Promise<T[]>;
@@ -8,5 +8,5 @@ export default interface IDatastore {
   bulkInsert<T>(tableName: string, data: T[]): Promise<T[]>;
   groupByAndCount(builder: GroupByAndCountBuilder) : Promise<GraphData[]>;
   delete<T>(tableName: string, id: number): Promise<T>;
-
+  count(tableName: string, condition?: any): Promise<number>;
 }

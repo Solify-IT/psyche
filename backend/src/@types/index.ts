@@ -19,7 +19,8 @@ export type GroupByAndCountBuilder = {
   tableName: string,
   field: string,
   isAge?: boolean,
-  condition?: string
+  condition?: string,
+  sort?: boolean
 };
 
 export type GraphGroup = {
@@ -30,6 +31,9 @@ export type GraphGroup = {
 export type Graph = {
   title: string,
   data: GraphData[],
+  type: string,
+  label?: string,
+  groupByInterval?: boolean,
 };
 
 export type GraphData = {

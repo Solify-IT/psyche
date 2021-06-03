@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 0, 6),
   },
   paper: {
-    marginTop: '20px',
-    padding: theme.spacing(12, 12),
+    margin: '20px',
+    padding: '30px',
   },
   submit: {
     textAlign: 'center',
@@ -166,7 +166,6 @@ function RegisterUser() {
         <Grid
           container
           justify="center"
-          spacing={2}
         >
           <Grid
             item
@@ -176,169 +175,160 @@ function RegisterUser() {
             elevation={6}
             square
           >
-            <Grid
-              item
-              xs={10}
-              component={Paper}
-              className={classes.paper}
-              elevation={6}
-              square
-            >
-              <Grid container justify="center" alignItems="center" spacing={3}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Nombre"
-                    name="name"
-                    value={name}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Apellidos"
-                    name="lastName"
-                    value={lastName}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="address"
-                    label="Dirección"
-                    name="address"
-                    value={address}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    inputProps={{ maxLength: 5, minLength: 5 }}
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="zipCode"
-                    label="Código Postal"
-                    name="zipCode"
-                    value={zipCode}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    variant="outlined"
-                    inputProps={{ maxLength: 10, minLength: 10 }}
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="telephone"
-                    label="Teléfono"
-                    name="telephone"
-                    value={telephone}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    type="email"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Correo"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    inputProps={{ minLength: 5 }}
-                    required
-                    fullWidth
-                    id="username"
-                    label="Usuario"
-                    name="username"
-                    value={username}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    type="password"
-                    inputProps={{ minLength: 8 }}
-                    required
-                    fullWidth
-                    id="password"
-                    label="Contraseña"
-                    name="password"
-                    error={Boolean(errors?.password)}
-                    helperText={(errors?.password)}
-                    value={newUser.password}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    variant="outlined"
-                    inputProps={{ minLength: 8 }}
-                    margin="normal"
-                    type="password"
-                    required
-                    fullWidth
-                    id="password2"
-                    value={newUser.password2}
-                    label="Repetir Contraseña"
-                    name="password2"
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={4} className={classes.rol} alignItems="center">
-                  <InputLabel id="role-label">Rol</InputLabel>
-                  <Select
-                    required
-                    labelId="role-select"
-                    fullWidth
-                    id="role-select"
-                    name="role"
-                    value={role}
-                    onChange={handleChange}
-                  >
-                    { Object.keys(roles).map((roleOption) => (
-                      <MenuItem value={roleOption} key={roleOption}>
-                        {roleOption}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </Grid>
-                <Grid item xs={12} className={classes.submit}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                  >
-                    Registrar
-                  </Button>
-                </Grid>
+            <Grid container justify="center" alignItems="center" spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Nombre"
+                  name="name"
+                  value={name}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Apellidos"
+                  name="lastName"
+                  value={lastName}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="address"
+                  label="Dirección"
+                  name="address"
+                  value={address}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  inputProps={{ maxLength: 5, minLength: 5 }}
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="zipCode"
+                  label="Código Postal"
+                  name="zipCode"
+                  value={zipCode}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  inputProps={{ maxLength: 10, minLength: 10 }}
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="telephone"
+                  label="Teléfono"
+                  name="telephone"
+                  value={telephone}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  type="email"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Correo"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  inputProps={{ minLength: 5 }}
+                  required
+                  fullWidth
+                  id="username"
+                  label="Usuario"
+                  name="username"
+                  value={username}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  type="password"
+                  inputProps={{ minLength: 8 }}
+                  required
+                  fullWidth
+                  id="password"
+                  label="Contraseña"
+                  name="password"
+                  error={Boolean(errors?.password)}
+                  helperText={(errors?.password)}
+                  value={newUser.password}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  inputProps={{ minLength: 8 }}
+                  margin="normal"
+                  type="password"
+                  required
+                  fullWidth
+                  id="password2"
+                  value={newUser.password2}
+                  label="Repetir Contraseña"
+                  name="password2"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={4} className={classes.rol} alignItems="center">
+                <InputLabel id="role-label">Rol</InputLabel>
+                <Select
+                  required
+                  labelId="role-select"
+                  fullWidth
+                  id="role-select"
+                  name="role"
+                  value={role}
+                  onChange={handleChange}
+                >
+                  { Object.keys(roles).map((roleOption) => (
+                    <MenuItem value={roleOption} key={roleOption}>
+                      {roleOption}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+              <Grid item xs={12} className={classes.submit}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                >
+                  Registrar
+                </Button>
               </Grid>
             </Grid>
           </Grid>
