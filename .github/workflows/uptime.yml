@@ -1,3 +1,5 @@
+name: Uptime
+
 on:
   schedule:
     - cron: '*/15 * * * *'
