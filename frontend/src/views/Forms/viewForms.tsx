@@ -3,6 +3,7 @@ import {
   makeStyles,
   Grid,
   IconButton,
+  Fab,
 }
   from '@material-ui/core';
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
 import {
   Edit,
   Delete,
+  Add,
 }
   from '@material-ui/icons';
 import Form from 'src/interfaces/form';
@@ -18,6 +20,7 @@ import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import { Link } from 'react-router-dom';
 
 type FormsTableProps = {
   initialForms: Form[]
@@ -121,6 +124,11 @@ function FormsTable(props: FormsTableProps) {
   return (
     <MainContent>
       <ContentTitle text="Consultar Encuestas" />
+      <Grid container justify="flex-end">
+        <Fab color="primary" aria-label="add" component={Link} to="/new-form">
+          <Add />
+        </Fab>
+      </Grid>
       <Grid container justify="center" alignItems="center">
         <Grid item className={classes.table}>
           <div style={{ height: 800, width: '100%', marginTop: '20px' }}>

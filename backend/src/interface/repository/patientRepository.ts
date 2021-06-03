@@ -1,8 +1,10 @@
-import { wrapError } from '@types';
+import { Graph, GroupByAndCountBuilder, wrapError } from '@types';
 import { Patient } from 'domain/model';
 import IPatientRepository from 'app/repository/patientRepository';
 import NotFoundError from 'utils/errors/NotFoundError';
 import Record from 'domain/model/record';
+import dateFormat from 'utils/dateFormat';
+import { Between } from 'typeorm';
 import IDatastore from './datastore';
 
 export default class PatientRepository implements IPatientRepository {
@@ -106,5 +108,209 @@ export default class PatientRepository implements IPatientRepository {
     }
 
     throw new NotFoundError('El expediente no existe');
+  }
+
+  async getAgeGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.birthDate',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+      isAge: true,
+      sort: true,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const graph : Graph = {
+      title: 'Edad',
+      data,
+      type: 'Bar',
+      label: 'Edad',
+      groupByInterval: true,
+    };
+    return graph;
+  }
+
+  async getGenderGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.gender',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Género',
+      data,
+      type: 'Pie',
+    };
+    return graph;
+  }
+
+  async getStatusGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.status',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Activo',
+      data,
+      type: 'Pie',
+    };
+    return graph;
+  }
+
+  // Legal Proceedings
+  async getLegalProceedingsGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.legalProceeding',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Procedimiento legal',
+      data,
+      type: 'Pie',
+    };
+    return graph;
+  }
+
+  // Abuse Type
+  async getAbuseTypeGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.abuseType',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Tipo',
+      data,
+      type: 'Pie',
+    };
+    return graph;
+  }
+
+  // abuseFirstTime
+  async getAbuseFirstTimeGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.abuseFirstTime',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+      sort: true,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Edad en que apareció',
+      data,
+      type: 'Bar',
+      label: 'Edad en que apareció',
+      groupByInterval: true,
+    };
+    return graph;
+  }
+
+  // abuseAttemtps
+  async getAbuseAttemptsGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.abuseAttempts',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Número de Intentos',
+      data,
+      type: 'Bar',
+      label: 'Intentos',
+    };
+    return graph;
+  }
+
+  // abuseMotive
+  async getAbuseMotiveGraph(motive: string, startDate: Date, endDate: Date): Promise<Graph> {
+    const builder : GroupByAndCountBuilder = {
+      tableName: 'Patient',
+      field: 'Patient.abuseMotive',
+      condition: `Patient.motive = '${motive}' AND Patient.startDate BETWEEN '${dateFormat(startDate)}' AND '${dateFormat(endDate)}'`,
+    };
+
+    const [data, error] = await wrapError(
+      this.datastore.groupByAndCount(builder),
+    );
+
+    if (error) {
+      throw error;
+    }
+    const graph : Graph = {
+      title: 'Medio',
+      data,
+      type: 'Pie',
+    };
+    return graph;
+  }
+
+  async getPatientsCountInRange(startDate: Date, endDate: Date) {
+    const [count, error] = await wrapError(
+      this.datastore.count('Patient', {
+        where: {
+          startDate: Between(startDate, endDate),
+        },
+      }),
+    );
+    if (error) {
+      throw error;
+    }
+    return count;
   }
 }
