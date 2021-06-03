@@ -126,7 +126,7 @@ function PrintExpediente() {
     getFormId(recordId)
       .then((response:any) => {
         console.log(response.data);
-        setFields(Object.values(response.data.sort(
+        const preOrder : PatientFormField[] = Object.values(response.data.sort(
           (a: PatientFormField, b: PatientFormField) => {
             if (a.id && b.id) {
               if (a.id < b.id!) {
@@ -140,8 +140,9 @@ function PrintExpediente() {
             console.error('Form ids not obtained. Defaulting to standard order');
             return 0;
           },
-        )));
-        setFields(response.data);
+        ));
+        console.log(preOrder);
+        setFields(preOrder);
       })
       .catch((error:any) => console.log(error));
   }, [recordId]);
@@ -337,7 +338,21 @@ function PrintExpediente() {
                   </Grid>
                   <Grid container justify="center" alignItems="center">
                     {/* {field.fields.map(createComponent)} */}
-                    {field.fields.filter((a) => a.type !== 'signature').map(createComponent)}
+                    {field.fields.filter((a) => a.type !== 'signature').sort(
+                      (a, b) => {
+                        if (a.id && b.id) {
+                          if (a.id < b.id!) {
+                            return -1;
+                          }
+                          if (a.id > b.id) {
+                            return 1;
+                          }
+                          return 0;
+                        }
+                        console.error('Form ids not obtained. Defaulting to standard order');
+                        return 0;
+                      },
+                    ).map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center">
                     {/* {field.fields.map(createComponent)} */}
