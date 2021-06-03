@@ -21,6 +21,11 @@ export async function listFormsWithRecordId(id: number) {
   return result;
 }
 
+export async function getFormId(id: number) {
+  const result = await server.get(`/recordPrint/${id}`);
+  return result;
+}
+
 export async function getFormField(id: number) {
   const result = await server.get(`/patientFormField/${id}`);
   return result;

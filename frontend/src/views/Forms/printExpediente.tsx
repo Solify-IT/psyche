@@ -15,10 +15,9 @@ import {
   Divider,
 }
   from '@material-ui/core';
-import FieldOption from 'src/interfaces/fieldOptions';
-import Field from 'src/interfaces/field';
 import PrintIcon from '@material-ui/icons/Print';
-import { getFormField } from 'src/api/forms';
+import FieldOption from 'src/interfaces/fieldOptions';
+import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import './print.css';
@@ -103,11 +102,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '40px',
     bottom: '20px',
     width: '100%',
+    maringBottom: '5px',
   },
   firma: {
     fontSize: '13px',
     textAlign: 'center',
     font: 'inherit',
+    marginBottom: '2px',
   },
   gridFirma: {
     bottom: '100px',
@@ -115,23 +116,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PrintForm() {
-  const { formId } : any = useParams();
+function PrintExpediente() {
+  const { recordId } : any = useParams();
   const classes = useStyles();
   const history = useHistory();
-  const [formInformation, setFormInformation] = useState({
-    id: 0,
-    name: '',
-    recordId: 0,
-    type: '',
-    createdData: '',
-  });
-  const [fields, setFields] = useState<Field[]>([]);
+  const [fields, setFields] = useState<PatientFormField[]>([]);
 
   useEffect(() => {
-    getFormField(formId)
+    getFormId(recordId)
       .then((response:any) => {
-        setFields(Object.values(response.data.fields.sort(
+        console.log(response.data);
+        setFields(Object.values(response.data.sort(
           (a: PatientFormField, b: PatientFormField) => {
             if (a.id && b.id) {
               if (a.id < b.id!) {
@@ -146,14 +141,14 @@ function PrintForm() {
             return 0;
           },
         )));
-        setFormInformation(response.data);
+        setFields(response.data);
       })
       .catch((error:any) => console.log(error));
-  }, [formId]);
+  }, [recordId]);
 
   function printDiv() {
     window.print();
-    history.replace(`/patient-form/${formId}`);
+    history.replace(`/expediente/${recordId}`);
   }
 
   function createComponent(field:any) {
@@ -294,65 +289,79 @@ function PrintForm() {
         );
     }
   }
+
   return (
     <div className={classes.heroContent}>
       <main>
-        <Paper variant="outlined" className={classes.patientSection}>
-          <Grid container>
-            <Grid item>
-              <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
-            </Grid>
-            <Grid item>
-              <Typography variant="h4" align="left" className={classes.subtitles1}>
-                Patronato Psicológico Queretano I.A.P
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                { formInformation.name}
-                {' '}
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                Folio: PPQ-
-                {' '}
-                {formInformation.recordId}
-              </Typography>
-            </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={printDiv}
+            >
+              Imprimir
+              <PrintIcon className={classes.icon} />
+            </Button>
           </Grid>
-        </Paper>
+        </Grid>
         <div>
           <Container>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={printDiv}
-                >
-                  Imprimir
-                  <PrintIcon className={classes.icon} />
-                </Button>
-              </Grid>
-              <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type !== 'signature').map(createComponent)}
-              </Grid>
-              <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type === 'signature').map(createComponent)}
-                <Grid item xs={12}>
-                  <Typography align="center" className={classes.aviso}>
-                    Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
-                    efectos de informar a usted, que de conformidad con lo
-                    dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
-                    de Datos Personales en posesión de Particulares,
-                    hacemos de su conocimiento que:
-                    Patronato Psicológico Queretano  IAP, con domicilio fiscal
-                    en Ignacio Allende 19 Sur,
-                    Col Centro, municipio de Querétaro es responsable de
-                    recabar sus datos personales,
-                    del uso que se le dé a  los mismos y de su protección.
-                  </Typography>
-                </Grid>
-              </Grid>
+            <Grid container justify="center" alignItems="center">
+              {fields.map((field) => (
+                <div>
+                  <Grid container justify="center" alignItems="center">
+                    <Paper variant="outlined" className={classes.patientSection}>
+                      <Grid container>
+                        <Grid item>
+                          <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="h4" align="left" className={classes.subtitles1}>
+                            Patronato Psicológico Queretano I.A.P
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles}>
+                            { field.name}
+                            {' '}
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles}>
+                            Folio: PPQ-
+                            {' '}
+                            {field.recordId}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  </Grid>
+                  <Grid container justify="center" alignItems="center">
+                    {/* {field.fields.map(createComponent)} */}
+                    {field.fields.filter((a) => a.type !== 'signature').map(createComponent)}
+                  </Grid>
+                  <Grid container justify="center" alignItems="center">
+                    {/* {field.fields.map(createComponent)} */}
+                    {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
+                  </Grid>
+                  <Grid container justify="center" alignItems="center">
+                    <Grid item xs={12}>
+                      <Typography align="center" className={classes.aviso}>
+                        Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
+                        efectos de informar a usted, que de conformidad con lo
+                        dispuesto en los artículos  15 y 16 de la Ley Federal de Protección
+                        de Datos Personales en posesión de Particulares,
+                        hacemos de su conocimiento que:
+                        Patronato Psicológico Queretano  IAP, con domicilio fiscal
+                        en Ignacio Allende 19 Sur,
+                        Col Centro, municipio de Querétaro es responsable de
+                        recabar sus datos personales,
+                        del uso que se le dé a  los mismos y de su protección.
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <br />
+                </div>
+              ))}
             </Grid>
           </Container>
         </div>
@@ -361,4 +370,4 @@ function PrintForm() {
   );
 }
 
-export default PrintForm;
+export default PrintExpediente;

@@ -6,7 +6,6 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-
     .aviso{
         position: static;
         bottom: 20px;
@@ -20,9 +19,6 @@
         visibility: collapse;
         display: none;
     }
-     ul,table, checkbox, Checkbox, div {
-        page-break-after: avoid;
-    }
     h2 {
         font-size: 30%;
         margin: 0px;
@@ -30,12 +26,22 @@
     main, div {
         margin: 0px;
         padding: 0px;
-        page-break-after: avoid;
     }
     .patientSection {
         margin: 0px;
     }
     .divider {
         margin: '10px';
+    }
+    Paper {
+        page-break-before: auto;
+    }
+    * { 
+        float: none !important; 
+    }
+    .br, br {
+        display: block;
+        break-after: auto;
+        page-break-after: auto;
     }
 }
