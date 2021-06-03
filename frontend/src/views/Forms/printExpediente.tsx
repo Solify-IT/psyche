@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '78px',
   },
   imageFront: {
-    height: '600px',
+    height: '700px',
     width: 'auto',
   },
   image: {
@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     // marginBottom: '45px',
     borderColor: '#C94B72',
     width: '20.5cm',
-    height: '27.7cm',
+    height: '27.2cm',
     marginBottom: '3cm',
     marginTop: '0.5cm',
   },
@@ -453,9 +453,7 @@ function PrintExpediente() {
                     </Grid>
                   </Paper>
                 ))}
-                <Typography align="center" className={classes.aviso}>
-                   
-                </Typography>
+                <Typography align="center" className={classes.aviso} />
               </Grid>
 
               {fields.map((field) => (
