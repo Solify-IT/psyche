@@ -73,7 +73,7 @@ function UpdatePatientForm() {
               }
               return 0;
             }
-            console.error('Form ids not obtained. Defaulting to standard order');
+            console.error('Form its not obtained. Defaulting to standard order');
             return 0;
           },
         )));
