@@ -26,7 +26,6 @@ import {
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { motivos, tipos, causas } from 'src/interfaces/typeOptions';
-import MainContent from 'src/components/mainContent';
 import { createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
 
@@ -122,9 +121,17 @@ function RegisterFamily() {
     setFormFields({ ...formFields, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
   };
 
+  const handleLegalProceeding = (event: React.ChangeEvent<any>) => {
+    let aux = true;
+    if (event.target.value === 'false') {
+      aux = false;
+    }
+    setFormFields({ ...formFields, legalProceeding: aux });
+  };
+
   function addField() {
     if (name === '' || lastName === '' || gender === ''
-      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === ''
+      || telephone === '' || address === '' || birthPlace === '' || birthDate === '' || postalCode.toString() === 'NaN'
       || motive === '' || abuseType === '') {
       toast.warning('¡Completar todos los campos!');
     } else {
@@ -311,256 +318,260 @@ function RegisterFamily() {
   );
 
   return (
-    <MainContent>
+    <Grid container justify="center">
+      <Grid
+        item
+        xs={10}
+        component={Paper}
+        className={classes.paper}
+        elevation={6}
+        justify="center"
+      >
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Nombre"
+              name="name"
+              value={name}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="lastName"
+              label="Apellido(s)"
+              name="lastName"
+              value={lastName}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid xs={12} sm={4}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              type="date"
+              required
+              fullWidth
+              id="birthDate"
+              label="Fecha de Nacimiento"
+              name="birthDate"
+              className={classes.date}
+              value={birthDate}
+              onChange={handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              className={classes.place}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="birthPlace"
+              label="Lugar de Nacimiento"
+              name="birthPlace"
+              value={birthPlace}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl}
+            >
+              <InputLabel>Género</InputLabel>
+              <Select
+                required
+                fullWidth
+                label="Género"
+                name="gender"
+                value={gender}
+                onChange={handleChange}
+              >
+                <MenuItem value="Masculino"> Masculino </MenuItem>
+                <MenuItem value="Femenino"> Femenino </MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="address"
+              label="Domicilio"
+              name="address"
+              value={address}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="postalCode"
+              label="Código Postal"
+              name="postalCode"
+              type="number"
+              value={postalCode}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="telephone"
+              label="Teléfono"
+              name="telephone"
+              value={telephone}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Typography variant="h4"> Antecedentes </Typography>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl1}
+            >
+              <InputLabel>Motivo</InputLabel>
+              <Select
+                required
+                fullWidth
+                name="motive"
+                label="Motivo"
+                value={motive}
+                onChange={handleChange}
+              >
+                {motivos.map(createFirstSelect)}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl2}
+            >
+              <InputLabel>Tipo</InputLabel>
+              <Select
+                required
+                fullWidth
+                name="abuseType"
+                label="Tipo"
+                value={abuseType}
+                onChange={handleChange}
+              >
+                {tipos.map(createSecondSelect)}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl
+              variant="outlined"
+              className={classes.formControl2}
+            >
+              <InputLabel>Causa</InputLabel>
+              <Select
+                fullWidth
+                name="abuseMotive"
+                label="Causa"
+                value={abuseMotive}
+                onChange={handleChange}
+              >
+                {causas.map(createThirdSelect)}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl
+              component="fieldset"
+            >
+              <FormLabel component="legend"> Procedimiento Legal </FormLabel>
+              <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleLegalProceeding}>
+                <FormControlLabel value control={<Radio />} label="Si" />
+                <FormControlLabel value={false} control={<Radio />} label="No" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="postalCode"
+              label="Edad de Inicio"
+              name="abuseFirstTime"
+              type="number"
+              value={abuseFirstTime}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="abuseAttempts"
+              label="Intentos de Abuso"
+              name="abuseAttempts"
+              type="number"
+              value={abuseAttempts}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} className={classes.submit}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={addField}
+            >
+              Agregar miembro
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} className={classes.cards}>
+          {family.map(createCard)}
+        </Grid>
+        {family.length !== 0
 
-      <Grid container justify="center">
-        <Grid
-          item
-          xs={10}
-          component={Paper}
-          className={classes.paper}
-          elevation={6}
-          justify="center"
-        >
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Nombre"
-                name="name"
-                value={name}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="lastName"
-                label="Apellido(s)"
-                name="lastName"
-                value={lastName}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid xs={12} sm={4}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                type="date"
-                required
-                fullWidth
-                id="birthDate"
-                label="Fecha de Nacimiento"
-                name="birthDate"
-                className={classes.date}
-                value={birthDate}
-                onChange={handleChange}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                className={classes.place}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="birthPlace"
-                label="Lugar de Nacimiento"
-                name="birthPlace"
-                value={birthPlace}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FormControl
-                variant="outlined"
-                className={classes.formControl}
-              >
-                <Select>
-                  <MenuItem value="Masculino"> Masculino </MenuItem>
-                  <MenuItem value="Femenino"> Femenino </MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="address"
-                label="Domicilio"
-                name="address"
-                value={address}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="postalCode"
-                label="Código Postal"
-                name="postalCode"
-                type="number"
-                value={postalCode}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="telephone"
-                label="Teléfono"
-                name="telephone"
-                value={telephone}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <Typography variant="h4"> Antecedentes </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FormControl
-                variant="outlined"
-                className={classes.formControl1}
-              >
-                <InputLabel>Motivo</InputLabel>
-                <Select
-                  required
-                  fullWidth
-                  name="motive"
-                  label="Motivo"
-                  value={motive}
-                  onChange={handleChange}
-                >
-                  {motivos.map(createFirstSelect)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FormControl
-                variant="outlined"
-                className={classes.formControl2}
-              >
-                <InputLabel>Tipo</InputLabel>
-                <Select
-                  required
-                  fullWidth
-                  name="abuseType"
-                  label="Tipo"
-                  value={abuseType}
-                  onChange={handleChange}
-                >
-                  {tipos.map(createSecondSelect)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FormControl
-                variant="outlined"
-                className={classes.formControl2}
-              >
-                <InputLabel>Causa</InputLabel>
-                <Select
-                  fullWidth
-                  name="abuseMotive"
-                  label="Causa"
-                  value={abuseMotive}
-                  onChange={handleChange}
-                >
-                  {causas.map(createThirdSelect)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FormControl
-                component="fieldset"
-              >
-                <FormLabel component="legend"> Procedimiento Legal </FormLabel>
-                <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
-                  <FormControlLabel value control={<Radio />} label="Si" />
-                  <FormControlLabel value={false} control={<Radio />} label="No" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                id="postalCode"
-                label="Edad de Inicio"
-                name="abuseFirstTime"
-                type="number"
-                value={abuseFirstTime}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                id="abuseAttempts"
-                label="Intentos de Abuso"
-                name="abuseAttempts"
-                type="number"
-                value={abuseAttempts}
-                onChange={handleChange}
-              />
-            </Grid>
+          ? (
             <Grid item xs={12} className={classes.submit}>
               <Button
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={addField}
+                onClick={submitPatients}
               >
-                Agregar miembro
+                Registrar Pacientes
               </Button>
             </Grid>
-          </Grid>
-          <Grid container spacing={3} className={classes.cards}>
-            {family.map(createCard)}
-          </Grid>
-          {family.length !== 0
-
-            ? (
-              <Grid item xs={12} className={classes.submit}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  onClick={submitPatients}
-                >
-                  Registrar Pacientes
-                </Button>
-              </Grid>
-            )
-            : (
-              <>
-              </>
-            )}
-        </Grid>
+          )
+          : (
+            <>
+            </>
+          )}
       </Grid>
-    </MainContent>
-
+    </Grid>
   );
 }
 

@@ -71,7 +71,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   date: {
-    marginLeft: '20px',
+    marginTop: '28px',
+    marginLeft: '10px',
   },
 }));
 
@@ -167,6 +168,13 @@ function RegisterPatient() {
   const handleChange = (event: React.ChangeEvent<any>) => {
     setFormFields({ ...formFields, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
   };
+  const handleLegalProceeding = (event: React.ChangeEvent<any>) => {
+    let aux = true;
+    if (event.target.value === 'false') {
+      aux = false;
+    }
+    setFormFields({ ...formFields, legalProceeding: aux });
+  };
   const [step, setStep] = useState(1);
   const handleSubmit = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
@@ -243,14 +251,28 @@ function RegisterPatient() {
   const handlePatientTwo = (event: React.ChangeEvent<any>) => {
     setPatientTwo({ ...patientTwo, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value, 10) : event.target.value });
   };
+  const handleLegalProceedingPatientOne = (event: React.ChangeEvent<any>) => {
+    let aux = true;
+    if (event.target.value === 'false') {
+      aux = false;
+    }
+    setPatientOne({ ...patientOne, legalProceeding: aux });
+  };
+  const handleLegalProceedingPatientTwo = (event: React.ChangeEvent<any>) => {
+    let aux = true;
+    if (event.target.value === 'false') {
+      aux = false;
+    }
+    setPatientTwo({ ...patientTwo, legalProceeding: aux });
+  };
   const submitPatients = (event: React.ChangeEvent<any>) => {
     event.preventDefault();
     if (patientOne.name === '' || patientOne.lastName === '' || patientOne.gender === ''
-      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || postalCode.toString() === ''
+      || patientOne.telephone === '' || patientOne.address === '' || patientOne.birthPlace === '' || patientOne.birthDate === '' || patientOne.postalCode.toString() === 'NaN'
       || patientOne.motive === '' || patientOne.abuseType === '') {
       toast.warning('¡Completar datos del paciente uno!');
     } else if (patientTwo.name === '' || patientTwo.lastName === '' || patientTwo.gender === ''
-    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || postalCode.toString() === ''
+    || patientTwo.telephone === '' || patientTwo.address === '' || patientTwo.birthPlace === '' || patientTwo.birthDate === '' || patientTwo.postalCode.toString() === 'NaN'
     || patientTwo.motive === '' || patientTwo.abuseType === '') {
       toast.warning('¡Completar datos del paciente dos!');
     } else {
@@ -274,42 +296,38 @@ function RegisterPatient() {
     switch (step) {
       case 1:
         return (
-          <MainContent>
 
-            <RegisterCouple
-              previousStep={previousStep}
-              nextStep={nextStep}
-              step={step}
-              patient={patientOne}
-              handlePatient={handlePatientOne}
-            />
-          </MainContent>
+          <RegisterCouple
+            previousStep={previousStep}
+            nextStep={nextStep}
+            step={step}
+            patient={patientOne}
+            handlePatient={handlePatientOne}
+            handleLegalProceeding={handleLegalProceedingPatientOne}
+          />
 
         );
       case 2:
         return (
-          <MainContent>
 
-            <RegisterCouple
-              previousStep={previousStep}
-              nextStep={nextStep}
-              step={step}
-              patient={patientTwo}
-              handlePatient={handlePatientTwo}
-            />
-          </MainContent>
+          <RegisterCouple
+            previousStep={previousStep}
+            nextStep={nextStep}
+            step={step}
+            patient={patientTwo}
+            handlePatient={handlePatientTwo}
+            handleLegalProceeding={handleLegalProceedingPatientTwo}
+          />
         );
       case 3:
         return (
-          <MainContent>
-            <ViewCouple
-              previousStep={previousStep}
-              prevPreviousStep={prevPreviousStep}
-              patientOne={patientOne}
-              patientTwo={patientTwo}
-              submitPatients={submitPatients}
-            />
-          </MainContent>
+          <ViewCouple
+            previousStep={previousStep}
+            prevPreviousStep={prevPreviousStep}
+            patientOne={patientOne}
+            patientTwo={patientTwo}
+            submitPatients={submitPatients}
+          />
         );
       default:
         return null;
@@ -318,8 +336,11 @@ function RegisterPatient() {
 
   return (
     <MainContent>
-
-      <ContentTitle text="Registrar Paciente" />
+      {type === 'Psicología Familia' || type === 'Psicología Pareja'
+        ? (
+          <ContentTitle text="Registrar Pacientes " />
+        )
+        : <ContentTitle text="Registrar Paciente" />}
       {type === 'Psicología Familia' || type === 'Psicología Pareja'
         ? (
           <>
@@ -336,7 +357,6 @@ function RegisterPatient() {
                   component={Paper}
                   className={classes.paper}
                   elevation={6}
-                  justify="center"
                 >
                   <Grid container justify="flex-end" alignItems="center">
                     <Grid item xs={12} sm={4}>
@@ -538,7 +558,7 @@ function RegisterPatient() {
                         // className={classes.formControl1}
                       >
                         <FormLabel component="legend"> Procedimiento Legal </FormLabel>
-                        <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleChange}>
+                        <RadioGroup aria-label="legalProceeding" name="legalProceeding" value={legalProceeding} onChange={handleLegalProceeding}>
                           <FormControlLabel value control={<Radio />} label="Si" />
                           <FormControlLabel value={false} control={<Radio />} label="No" />
                         </RadioGroup>
