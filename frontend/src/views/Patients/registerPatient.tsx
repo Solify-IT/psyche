@@ -19,6 +19,7 @@ import {
 } from '@material-ui/core';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 import {
   optionsPsicologia,
   optionsPsiquiatria,
@@ -178,11 +179,19 @@ function RegisterPatient() {
       createPatient(formFields)
         .then((response:any) => {
           console.log(response);
-          toast.success('¡Se ha registrado el paciente! 😃');
+          Swal.fire(
+            '¡Paciente Registrado!',
+            'El paciente ha sido registrado de manera exitosa.',
+            'success',
+          );
           history.replace('/home');
         })
         .catch((error:any) => {
-          toast.warning('Algo ha salido mal!');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error interno!',
+          });
           console.log(error);
         });
     }

@@ -25,13 +25,13 @@ import FieldOption from 'src/interfaces/fieldOptions';
 import { v4 as uuid4 } from 'uuid';
 import { getForm, registerForm } from 'src/api/forms';
 import Form from 'src/interfaces/form';
-import { toast } from 'react-toastify';
 import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
 import { useParams, useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -135,12 +135,20 @@ function UpdateForm() {
 
     try {
       await registerForm(form);
-      toast.success('Se ha modificado la encuesta exitosamente.');
+      Swal.fire(
+        '¡Encuesta Actualizada!',
+        'Se han guardado los cambios de la encuesta de manera exitosa',
+        'success',
+      );
       // TODO: Redireccionar a el detail de la pagina
       history.replace('/view-forms');
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar modificar el form');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error al guardar los cambios!',
+      });
     } finally {
       setLoading(false);
     }

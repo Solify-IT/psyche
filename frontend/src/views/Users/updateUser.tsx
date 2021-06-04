@@ -21,6 +21,7 @@ import { consultProfile, updateUser } from 'src/api/user';
 import { authenticationService } from 'src/api/authenticationService';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -85,11 +86,19 @@ function UpdateUser() {
     setLoading(true);
     try {
       await updateUser(parseInt(userId, 10), userInformation);
-      toast.success('Se ha modificado la información del usuario.');
+      Swal.fire(
+        '¡Perfil Actualizado!',
+        'Tu información ha sido actualizado de manera correcta.',
+        'success',
+      );
       history.replace(`/user-profile/${currentUser.user.id}`);
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar editar el usuario');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error interno!',
+      });
     } finally {
       setLoading(false);
     }
