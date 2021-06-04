@@ -279,7 +279,7 @@ function Navbar() {
                  >
                    <Paper className={classes.navigationHeader} key="user-info" elevation={3} square>
                      <Grid container alignItems="center">
-                       <Grid item xs={2} alignContent="center" alignItems="center">
+                       <Grid item xs={2}>
                          <Container key="nav-username">
                            <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
                          </Container>
