@@ -11,7 +11,6 @@ import {
 import { toast } from 'react-toastify';
 import { changePasswordAdmin } from 'src/api/user';
 import LoadingSpinner from 'src/components/loadingSpinner';
-import User from 'src/interfaces/user';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
 
@@ -61,8 +60,7 @@ function ChangePasswordAdmin() {
     } else {
       setLoading(true);
       try {
-        const user : User = await changePasswordAdmin(id, fields.confirmNewPassword);
-        console.log(user);
+        await changePasswordAdmin(id, fields.confirmNewPassword);
         toast.success('¡Actualización completada! 😃');
         history.push('/view-users');
       } catch (error) {

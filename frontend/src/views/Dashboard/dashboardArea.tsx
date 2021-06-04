@@ -36,7 +36,9 @@ function DasboardArea() {
     option: {
       textDecoration: 'none',
     },
-
+    p: {
+      textAlign: 'left',
+    },
   }));
 
   const classes = useStyles();
