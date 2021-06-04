@@ -25,6 +25,7 @@ import { authenticationService, profileSet, setPatientAreas } from 'src/api/auth
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -80,9 +81,17 @@ function RegisterProfile() {
       setPatientAreas(patientAreas);
       profileSet();
       history.replace('/');
-      toast.success('Se ha registrado su perfil de psicólogo exitosamente');
+      Swal.fire(
+        '¡Perfil de Psicólogo registrado!',
+        'Se ha guardado sus preferencias de su paciente.',
+        'success',
+      );
     } catch (error) {
-      toast.error('Ocurrió un error al intentar registrar el perfil.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error al registrar el perfil de preferencias!',
+      });
       console.error(error);
     } finally {
       setLoading(false);

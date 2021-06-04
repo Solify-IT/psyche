@@ -14,6 +14,7 @@ import LoadingSpinner from 'src/components/loadingSpinner';
 import User from 'src/interfaces/user';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -61,13 +62,25 @@ function ChangePassword() {
       setLoading(true);
       try {
         const user : User = await changePassword(fields.password, fields.confirmNewPassword);
-        toast.success('¡Actualización completada! 😃');
+        Swal.fire(
+          '¡Contraseña actualizada!',
+          'Tu contraseña ha sido guardada de manera exitosa..',
+          'success',
+        );
         history.push(`/patient-profile/${user.id}`);
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          toast.error('No se encontró un usuario con los datos proporcionados.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El usuario no fue encontrado',
+          });
         } else {
-          toast.error('Ocurrió un error de conexión.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error interno!',
+          });
         }
       } finally {
         setLoading(false);

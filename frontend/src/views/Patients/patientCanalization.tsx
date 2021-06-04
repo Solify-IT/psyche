@@ -6,13 +6,13 @@ import {
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { canalizePatient, getPatientRecord } from 'src/api/patient';
 import { getUsers } from 'src/api/user';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
 import Patient from 'src/interfaces/patient';
 import Psychologist from 'src/interfaces/psychologist';
+import Swal from 'sweetalert2';
 
 interface ParamTypes {
   patientId: string
@@ -101,11 +101,19 @@ function PatientCanalization() {
     canalizePatient(patients)
       .then((response:any) => {
         console.log(response);
-        toast.success('¡Canalización exitosa!');
+        Swal.fire(
+          '¡Paciente Canalizado!',
+          'A partir de ahora, el paciente podrá empezar su tratamiento',
+          'success',
+        );
         history.replace('/view-patients');
       })
       .catch((error:any) => {
-        toast.warning('¡Algo ha salido mal!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocurrió un error interno!',
+        });
         console.log(error);
       });
   }
