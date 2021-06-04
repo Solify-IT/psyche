@@ -46,7 +46,6 @@ function PatientsTable(props: PatientsTableProps) {
 
   const addUser = (event: React.ChangeEvent<any>) => {
     const patientId = event.currentTarget.dataset.patientid;
-    console.log(event.currentTarget.dataset);
     history.push(`/patient-canalization/${patientId}`);
   };
 
