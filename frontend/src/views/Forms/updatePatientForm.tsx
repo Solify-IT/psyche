@@ -20,11 +20,11 @@ import FieldOption from 'src/interfaces/fieldOptions';
 import Field from 'src/interfaces/field';
 import { updatePatientForm, getFormField } from 'src/api/forms';
 import LoadingSpinner from 'src/components/loadingSpinner';
-import { toast } from 'react-toastify';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -73,7 +73,7 @@ function UpdatePatientForm() {
               }
               return 0;
             }
-            console.error('Form ids not obtained. Defaulting to standard order');
+            console.error('Form its not obtained. Defaulting to standard order');
             return 0;
           },
         )));
@@ -143,11 +143,19 @@ function UpdatePatientForm() {
     setLoading(true);
     try {
       await updatePatientForm(formId, patientForm);
-      toast.success('Se ha modificado el formato del paciente.');
+      Swal.fire(
+        '¡Encuesta registrada!',
+        'Se ha guardado la encuesta del paciente',
+        'success',
+      );
       history.replace(`/expediente/${formInformation.recordId}`);
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar registrar el formato');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error interno!',
+      });
     } finally {
       setLoading(false);
     }

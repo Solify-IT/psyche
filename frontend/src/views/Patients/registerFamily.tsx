@@ -26,6 +26,7 @@ import {
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { motivos, tipos, causas } from 'src/interfaces/typeOptions';
+import Swal from 'sweetalert2';
 import { createCouple } from '../../api/patient';
 import Patient from '../../interfaces/patient';
 
@@ -205,11 +206,19 @@ function RegisterFamily() {
     createCouple(family)
       .then((response:any) => {
         console.log(response);
-        toast.success('¡Se han registrado los pacientes! 😃');
+        Swal.fire(
+          '¡Pacientes Registrados!',
+          'Los pacientes han sido registrados de manera exitosa.',
+          'success',
+        );
         history.replace('/home');
       })
       .catch((error:any) => {
-        toast.warning('Algo ha salido mal!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocurrió un error interno!',
+        });
         console.log(error);
       });
   };
