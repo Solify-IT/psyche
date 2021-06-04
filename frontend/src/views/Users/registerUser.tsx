@@ -20,6 +20,7 @@ import { CreateUser, getUser, getUserByEmail } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -68,6 +69,13 @@ function RegisterUser() {
 
   const classes = useStyles();
 
+  function validPassword(passwordV: string) : boolean {
+    const strongRegex = new RegExp(
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+    );
+    return strongRegex.test(passwordV);
+  }
+
   const handleChange = (event: React.ChangeEvent<any>) => {
     const newUserV: User = {
       ...newUser,
@@ -94,20 +102,6 @@ function RegisterUser() {
     } catch (error) {
       return false;
     }
-
-    /*
-    console.log(usernameUser);
-    const isRegistered: boolean = false;
-    getUser(usernameValidate).then((responses:any) => {
-      errors.username = 'Usuario ocupado';
-      console.log('retornará true');
-      return !isRegistered;
-    }).catch((error:any) => {
-      errors.username = '';
-      console.log('retornará false');
-      return isRegistered;
-    });
-    return isRegistered; */
   }
 
   async function emailExist(emailValidate: string): Promise<boolean> {
@@ -117,16 +111,6 @@ function RegisterUser() {
     } catch (error) {
       return false;
     }
-
-    /*
-    await getUserByEmail(emailValidate).then((responses:any) => {
-      errors.email = 'Email ocupado';
-      return true;
-    }).catch((error:any) => {
-      errors.email = '';
-      return false;
-    });
-    return false; */
   }
 
   const handleSubmit = async (event: React.ChangeEvent<any>) => {
@@ -144,12 +128,18 @@ function RegisterUser() {
       toast.warning('El correo electrónico ya esta ocupado, intente con otro');
     }
     if (await usernameExist(newUserV.username)) {
-      console.log('ok');
       toast.warning('El nombre de usuario ya esta ocupado, intente con otro');
+    }
+    if (!validPassword(newUserV.password)) {
+      toast.warning('La contraseña debe ser mayor a 8 carácteres y contener al menos una minúscula, una mayúscula, un número y un carácter especial');
     }
 
     await CreateUser(newUser).then((response:any) => {
-      toast.success('Se ha registrado el nuevo usuario');
+      Swal.fire(
+        '¡Usuario Registrado!',
+        'El usuario ha sido registrado y podrá acceder a partir de este momento.',
+        'success',
+      );
       history.replace('/view-users');
     });
 

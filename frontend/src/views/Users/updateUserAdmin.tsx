@@ -12,12 +12,12 @@ import {
 }
   from '@material-ui/core';
 import User from 'src/interfaces/user';
-import { toast } from 'react-toastify';
 import LoadingSpinner from 'src/components/loadingSpinner';
 import { getUser, updateUser } from 'src/api/user';
 import roles from 'src/fixtures/roles';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -93,11 +93,19 @@ function UpdateUserAdmin() {
     try {
       console.log(userInformation);
       await updateUser(parseInt(id, 10), userInformation);
-      toast.success('Se ha modificado la información del usuario.');
+      Swal.fire(
+        '¡Usuario Actualizado!',
+        'La información del usuario ha sido actualizada de manera correcta',
+        'success',
+      );
       history.replace('/view-users');
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar editar el usuario');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error interno!',
+      });
     } finally {
       setLoading(false);
       console.log('falso');
