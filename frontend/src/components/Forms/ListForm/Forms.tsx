@@ -43,13 +43,13 @@ function Forms(props: FormProps) {
         <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
           <Grid container justify="center">
             <Typography variant="h5" className={classes.title}>
-              No se encontraron encuestas disponibles para este expediente.
+              No se encontraron formularios disponibles para este expediente.
             </Typography>
 
           </Grid>
           <Grid container justify="center">
             <Button variant="contained" color="primary" component={Link} to="/new-form">
-              Registrar una nueva encuesta
+              Registrar un nuevo formulario
             </Button>
           </Grid>
 
@@ -60,11 +60,11 @@ function Forms(props: FormProps) {
   }
   return (
     <MainContent>
-      <ContentTitle text="Encuestas" />
+      <ContentTitle text="Formularios" />
       <Grid container justify="center" component={Paper} className={classes.paper} elevation={6} square>
         <Grid container justify="center">
           <Typography variant="h5" className={classes.title}>
-            Encuestas disponibles para:
+            Formularios disponibles para:
             {' '}
             {forms[0].type}
           </Typography>
