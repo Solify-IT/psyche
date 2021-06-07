@@ -100,4 +100,13 @@ export default class FormInteractor {
 
     return this.patientPresenter.record(record);
   }
+
+  async getFormId(id: number): Promise<PatientForm[]> {
+    const [result, error] = await wrapError(this.formRepository.getFormId(id));
+
+    if (error) {
+      throw error;
+    }
+    return this.formPresenter.getFormId(result);
+  }
 }

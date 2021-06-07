@@ -24,6 +24,9 @@ export default class Router {
     app.get('/records/:id/forms', async (request, response, next) => {
       await wrapError(controller.forms.getFormsWithRecordId({ request, response, next }));
     });
+    app.get('/recordPrint/:id', async (request, response, next) => {
+      await wrapError(controller.forms.getFormId({ request, response, next }));
+    });
     app.get('/records/:id', authorize([Role.Admin, Role.Psicologo]), async (request, response, next) => {
       await wrapError(controller.patients.getRecordDetail({ request, response, next }));
     });

@@ -5,6 +5,6 @@ export default interface Record {
   id: number;
   startDate: Date;
   active: boolean;
-  forms: PatientForm[];
-  patients: Patient[];
+  forms: Array<PatientForm>;
+  patients: Array<Patient>;
 }

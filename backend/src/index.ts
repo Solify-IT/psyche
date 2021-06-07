@@ -43,8 +43,9 @@ const initServer = () => {
   app.use(express.static(path.join(__dirname, '../public')));
   setMorgan();
   app.use(
-    jwt({ secret: jwtConfig.secret, algorithms: jwtConfig.algorithms }).unless({ path: ['/login'] }),
-  );
+    jwt({ secret: jwtConfig.secret, algorithms:
+      jwtConfig.algorithms }).unless({ path: ['/login'] }),
+  ); 
 };
 
 async function initDatabase() {

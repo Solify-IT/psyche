@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import createRecordId from 'src/utils/createRecordId';
 import FadeIn from 'react-fade-in';
+import PrintIcon from '@material-ui/icons/Print';
 import { archiveRecord } from '../api/patient';
 import ContentTitle from './contentTitle';
 import MainContent from './mainContent';
@@ -31,11 +32,20 @@ const useStyles = makeStyles((theme) => ({
   patientSectionTitle: {
     marginBottom: 20,
   },
+  icon: {
+    paddingLeft: '5px',
+  },
   patientSectionRow: {
     margin: theme.spacing(1, 0),
   },
   patientFileRow: {
     margin: theme.spacing(2, 0),
+  },
+  printB: {
+    backgroundColor: '#A3529A',
+    '&:hover': {
+      backgroundColor: '#803b76',
+    },
   },
   title: {
     color: '#C94B72',
@@ -167,6 +177,11 @@ function RecordInfo(props: RecordInfoProps) {
     history.push(`/update-patient-canalization/${recordid}`);
   }
 
+  function printRecord(event: React.ChangeEvent<any>) {
+    const { recordid } = event.currentTarget.dataset;
+    history.push(`/record-print/${recordid}`);
+  }
+
   const handleArchiveRecord = async (id: number) => {
     setLoading(true);
     try {
@@ -263,6 +278,18 @@ function RecordInfo(props: RecordInfoProps) {
                 onClick={updateCanalization}
               >
                 Modificar Canalización
+              </Button>
+              {'  '}
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                data-recordid={record.id}
+                onClick={printRecord}
+                className={classes.printB}
+              >
+                Formato de Impresión
+                <PrintIcon className={classes.icon} />
               </Button>
             </div>
           </Grid>

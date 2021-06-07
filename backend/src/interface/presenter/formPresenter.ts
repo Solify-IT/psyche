@@ -27,4 +27,8 @@ export default class FormPresenter implements IFormPresenter {
   detailField(form: PatientFormField): PatientFormField {
     return form;
   }
+
+  getFormId(form: PatientForm[]): PatientForm[] {
+    return form;
+  }
 }

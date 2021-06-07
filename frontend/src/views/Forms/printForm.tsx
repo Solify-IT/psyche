@@ -101,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
   aviso: {
     fontSize: '9px',
     marginTop: '40px',
-    position: 'absolute',
     bottom: '20px',
     width: '100%',
   },
@@ -111,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
     font: 'inherit',
   },
   gridFirma: {
-    position: 'absolute',
     bottom: '100px',
     width: '100%',
   },

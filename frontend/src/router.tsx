@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import PrintForm from 'src/views/Forms/printForm';
+import PrintExpediente from 'src/views/Forms/printExpediente';
 import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
@@ -88,6 +89,7 @@ const AppRouter = () => (
     <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
+    <PrivateRoute path="/record-print/:recordId(\d+)" exact component={PrintExpediente} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} />
     <PrivateRoute path="/view-patients" exact component={ViewPatients} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
