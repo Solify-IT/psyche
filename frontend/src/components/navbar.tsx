@@ -108,7 +108,7 @@ function Navbar() {
       ],
     },
     {
-      name: 'Encuestas',
+      name: 'Formularios',
       group: [
         {
           label: 'Crear Formulario',
