@@ -52,7 +52,7 @@ function Navbar() {
     {
       group: [
         {
-          label: 'Home',
+          label: 'Menú principal',
           icon: <Home />,
           link: '/',
           rolesAllowed: [
@@ -111,7 +111,7 @@ function Navbar() {
       name: 'Encuestas',
       group: [
         {
-          label: 'Crear Encuesta',
+          label: 'Crear Formulario',
           icon: <Create />,
           link: '/new-form',
           rolesAllowed: [
@@ -121,7 +121,7 @@ function Navbar() {
           ],
         },
         {
-          label: 'Consultar Encuestas',
+          label: 'Consultar Formularios',
           icon: <ListAltOutlined />,
           link: '/view-forms',
           rolesAllowed: [
