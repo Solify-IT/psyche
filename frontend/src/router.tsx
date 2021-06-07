@@ -51,6 +51,7 @@ import ChangePassword from './views/Users/changePassword';
 import NotFound from './components/NotFound';
 import UserRole from './fixtures/roles';
 import ChangePasswordAdmin from './views/Users/changePasswordAdmin';
+import Report from './views/Patients/report';
 
 const AppRouter = () => (
   <Switch>
@@ -85,6 +86,7 @@ const AppRouter = () => (
     <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/user-update/:id/" exact component={UpdateUserAdmin} roles={[UserRole.Administrador]} />
     <Route path="/soolers" exact component={Soolers} />
+    <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} />
     <PrivateRoute path="/view-forms" exact component={ViewForms} />
     <PrivateRoute path="/patient-print/:formId(\d+)" exact component={PrintForm} />
     <PrivateRoute path="/record-print/:recordId(\d+)" exact component={PrintExpediente} />
@@ -92,6 +94,7 @@ const AppRouter = () => (
     <PrivateRoute path="/view-patients" exact component={ViewPatients} />
     <PrivateRoute path="/update-form/:id" exact component={UpdateForm} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/change-password/:id" exact component={ChangePasswordAdmin} roles={[UserRole.Administrador]} />
+    <PrivateRoute path="/reporte" exact component={Report} roles={[UserRole.Becario, UserRole.Administrador, UserRole.Psicólogo]} />
     <Route component={NotFound} />
   </Switch>
 );

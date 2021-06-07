@@ -18,6 +18,7 @@ import { getPatients } from 'src/api/patient';
 import { getForms } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
+import ContentTitle from 'src/components/contentTitle';
 
 type PatientsTableProps = {
   initialPatients: Patient[]
@@ -45,7 +46,6 @@ function PatientsTable(props: PatientsTableProps) {
 
   const addUser = (event: React.ChangeEvent<any>) => {
     const patientId = event.currentTarget.dataset.patientid;
-    console.log(event.currentTarget.dataset);
     history.push(`/patient-canalization/${patientId}`);
   };
 
@@ -84,9 +84,7 @@ function PatientsTable(props: PatientsTableProps) {
   return (
     <main>
       <div className={classes.heroContent}>
-        <Typography variant="h2" align="center">
-          Consultar Pacientes
-        </Typography>
+        <ContentTitle text="Consultar Pacientes" />
         <Grid container justify="center" alignItems="center">
           <Grid item className={classes.table}>
             <div style={{ height: 800, width: '100%', marginTop: '20px' }}>

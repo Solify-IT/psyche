@@ -25,13 +25,13 @@ import FieldOption from 'src/interfaces/fieldOptions';
 import { v4 as uuid4 } from 'uuid';
 import { registerForm } from 'src/api/forms';
 import Form from 'src/interfaces/form';
-import { toast } from 'react-toastify';
 import {
   optionsAsesoria, optionsClinica, optionsPsicologia, optionsPsiquiatria,
 } from 'src/interfaces/options';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -114,12 +114,20 @@ function NewForm() {
 
     try {
       await registerForm(form);
-      toast.success('Se ha registrado la nueva encuesta exitosamente.');
+      Swal.fire(
+        '¡Encuesta Guardada!',
+        'Se ha guardado la encuesta de manera exitosa',
+        'success',
+      );
       // TODO: Redireccionar a el detail de la pagina
       history.replace('/');
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar registrar el form');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error al registrar el perfil de preferencias!',
+      });
     } finally {
       setLoading(false);
     }
@@ -226,8 +234,7 @@ function NewForm() {
   }
   return (
     <MainContent>
-
-      <ContentTitle text="Crear Nuevo Form" />
+      <ContentTitle text="Crear Nueva Encuesta" />
       <Grid container justify="center">
         <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
           <Grid container spacing={5}>

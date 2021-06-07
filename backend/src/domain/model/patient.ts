@@ -39,16 +39,16 @@ export default class Patient {
   @Column({ nullable: false })
   postalCode: number;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   motive: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   legalProceeding: boolean;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true, default: true })
   status: boolean;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   abuseType: string;
 
   @Column({ nullable: true })

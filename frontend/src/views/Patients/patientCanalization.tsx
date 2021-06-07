@@ -6,13 +6,13 @@ import {
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { canalizePatient, getPatientRecord } from 'src/api/patient';
 import { getUsers } from 'src/api/user';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
 import Patient from 'src/interfaces/patient';
 import Psychologist from 'src/interfaces/psychologist';
+import Swal from 'sweetalert2';
 
 interface ParamTypes {
   patientId: string
@@ -79,6 +79,7 @@ function PatientCanalization() {
     getUsers()
       .then((response:any) => {
         setUsers(Object.values(response));
+        console.log(response);
       })
       .catch((error:any) => console.log(error));
   }, []);
@@ -101,26 +102,42 @@ function PatientCanalization() {
     canalizePatient(patients)
       .then((response:any) => {
         console.log(response);
-        toast.success('¡Canalización exitosa!');
+        Swal.fire(
+          '¡Paciente Canalizado!',
+          'A partir de ahora, el paciente podrá empezar su tratamiento',
+          'success',
+        );
         history.replace('/view-patients');
       })
       .catch((error:any) => {
-        toast.warning('¡Algo ha salido mal!');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocurrió un error interno!',
+        });
         console.log(error);
       });
   }
 
   const doctorAreas = (patientArea:any) => (
-    <Typography component="p" key={patientArea.name}>
-      {patientArea.name}
-    </Typography>
+    <>
+      {patientArea.checked
+        ? (
+          <>
+            <Typography component="p" key={patientArea.name}>
+              {patientArea.name}
+            </Typography>
+          </>
+        )
+        : <></>}
+    </>
   );
 
   const createCard = (user:Psychologist) => (
     <>
       {user.patientAreas.length > 0
         ? (
-          <Grid item xs={10} sm={5} key={user.id}>
+          <Grid item xs={10} key={user.id}>
             <Card className={classes.root}>
               <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -129,13 +146,18 @@ function PatientCanalization() {
                 <Typography variant="h5" component="h2">
                   {user.name}
                 </Typography>
-                <Typography className={classes.pos}>
+                <Typography>
                   <strong> Correo: </strong>
                   {' '}
                   {user.email}
                 </Typography>
+                <Typography component="h6" className={classes.pos}>
+                  <strong>Horario de Especialista:</strong>
+                  {' '}
+                  {user.workSchedule}
+                </Typography>
                 <Typography component="h6">
-                  Áreas:
+                  <strong>Áreas:</strong>
                   {' '}
                   {user.patientAreas.map(doctorAreas)}
                 </Typography>

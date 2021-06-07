@@ -8,5 +8,6 @@ export default interface Psychologist {
   password: string;
   email: string;
   role: string;
+  workSchedule: string;
   patientAreas: Array<any>,
 }
