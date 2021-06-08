@@ -210,7 +210,7 @@ function PrintExpediente() {
 
   function createComponent(field:any) {
     switch (field.type) {
-      case 'text':
+      case 'Campo de texto':
         return (
           <Grid item xs={4}>
             <TextField
@@ -228,7 +228,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'number':
+      case 'Campo de número':
         return (
           <Grid item xs={4}>
             <TextField
@@ -246,7 +246,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'datepicker':
+      case 'Selección de fecha':
         return (
           <Grid item xs={4}>
             <TextField
@@ -264,7 +264,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'select':
+      case 'Selección de opciones':
         return (
           <Grid item xs={4}>
             <TextField
@@ -282,7 +282,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'signature':
+      case 'Firma':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
             <div>
@@ -293,7 +293,7 @@ function PrintExpediente() {
             </div>
           </Grid>
         );
-      case 'checkbox': {
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl

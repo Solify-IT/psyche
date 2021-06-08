@@ -158,7 +158,7 @@ function PrintForm() {
 
   function createComponent(field:any) {
     switch (field.type) {
-      case 'text':
+      case 'Campo de texto':
         return (
           <Grid item xs={4}>
             <TextField
@@ -176,7 +176,7 @@ function PrintForm() {
             />
           </Grid>
         );
-      case 'number':
+      case 'Campo de número':
         return (
           <Grid item xs={4}>
             <TextField
@@ -194,7 +194,7 @@ function PrintForm() {
             />
           </Grid>
         );
-      case 'datepicker':
+      case 'Selección de fecha':
         return (
           <Grid item xs={4}>
             <TextField
@@ -212,7 +212,7 @@ function PrintForm() {
             />
           </Grid>
         );
-      case 'select':
+      case 'Selección de opciones':
         return (
           <Grid item xs={4}>
             <TextField
@@ -230,7 +230,7 @@ function PrintForm() {
             />
           </Grid>
         );
-      case 'signature':
+      case 'Firma':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
             <div>
@@ -241,7 +241,7 @@ function PrintForm() {
             </div>
           </Grid>
         );
-      case 'checkbox': {
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl
@@ -334,10 +334,10 @@ function PrintForm() {
                 </Button>
               </Grid>
               <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type !== 'signature').map(createComponent)}
+                {fields.filter((field) => field.type !== 'Firma').map(createComponent)}
               </Grid>
               <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type === 'signature').map(createComponent)}
+                {fields.filter((field) => field.type === 'Firma').map(createComponent)}
                 <Grid item xs={12}>
                   <Typography align="center" className={classes.aviso}>
                     Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para

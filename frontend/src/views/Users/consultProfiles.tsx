@@ -4,7 +4,6 @@ import {
   Grid,
   Button,
   Paper,
-  Typography,
   Box,
 }
   from '@material-ui/core';
@@ -14,7 +13,7 @@ import { useHistory, useParams } from 'react-router';
 import ConsultProfile from 'src/interfaces/consultProfile';
 import PatientArea from 'src/interfaces/patientArea';
 import { authenticationService } from 'src/api/authenticationService';
-// import ContentTitle from 'src/components/contentTitle';
+import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
 
 function ConsultProfiles() {
@@ -266,15 +265,12 @@ function ConsultProfiles() {
         );
     }
   }
-
   return (
     <div className={classes.heroContent}>
       <MainContent>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h2" align="center" className={classes.subtitles}>
-              Mi perfil
-            </Typography>
+            <ContentTitle text="Mi Perfil" />
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -295,7 +291,7 @@ function ConsultProfiles() {
               onClick={updateProfile}
               className={classes.button}
             >
-              Editar Perfil
+              Modificar Perfil
               {'     '}
               <EditIcon className={classes.icon} />
             </Button>

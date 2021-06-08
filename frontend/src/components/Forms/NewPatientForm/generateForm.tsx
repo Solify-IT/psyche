@@ -141,7 +141,7 @@ function GenerateForm(props: GenerateFormProps) {
 
   function createComponent(field:any) {
     switch (field.type) {
-      case 'text':
+      case 'Campo de texto':
         return (
           <Grid item xs={4}>
             <TextField
@@ -158,7 +158,7 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
-      case 'signature':
+      case 'Firma':
         return (
           <Grid item xs={4}>
             <TextField
@@ -175,7 +175,7 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
-      case 'number':
+      case 'Campo de número':
         return (
           <Grid item xs={4}>
             <TextField
@@ -193,7 +193,7 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
-      case 'datepicker':
+      case 'Selección de fecha':
         return (
           <Grid item xs={4}>
             <TextField
@@ -214,7 +214,7 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
-      case 'select':
+      case 'Selección de opciones':
         return (
           <Grid item xs={4}>
             <div className={classes.group}>
@@ -233,7 +233,7 @@ function GenerateForm(props: GenerateFormProps) {
             </div>
           </Grid>
         );
-      case 'checkbox': {
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>

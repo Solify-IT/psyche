@@ -105,7 +105,7 @@ function UpdateUser() {
   };
   return (
     <MainContent>
-      <ContentTitle text={`Editar Usuario - ${username}`} />
+      <ContentTitle text={`Modificar Usuario - ${username}`} />
       <Grid
         container
         justify="center"

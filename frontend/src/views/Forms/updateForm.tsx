@@ -187,13 +187,14 @@ function UpdateForm() {
 
   function renderCustomForm() {
     switch (type) {
-      case 'text':
-      case 'number':
-      case 'datepicker':
+      case 'Campo de texto':
+      case 'Campo de número':
+      case 'Firma':
+      case 'Selección de fecha':
         return null;
 
-      case 'checkbox':
-      case 'select':
+      case 'Selección múltiple':
+      case 'Selección de opciones':
         return (
           <AddOptionField setOptionsInForm={setOptions} />
         );
@@ -308,11 +309,12 @@ function UpdateForm() {
                 value={type}
                 onChange={handleNewField}
               >
-                <MenuItem value="text">Text Field</MenuItem>
-                <MenuItem value="number">Number Field</MenuItem>
-                <MenuItem value="select">Select</MenuItem>
-                <MenuItem value="checkbox">Checkbox</MenuItem>
-                <MenuItem value="datepicker">Date Picker</MenuItem>
+                <MenuItem value="Campo de texto">Campo de texto</MenuItem>
+                <MenuItem value="Campo de número">Campo de número</MenuItem>
+                <MenuItem value="Selección de opciones">Selección de opciones</MenuItem>
+                <MenuItem value="Selección múltiple">Selección múltiple</MenuItem>
+                <MenuItem value="Selección de fecha">Selección de fecha</MenuItem>
+                <MenuItem value="Firma">Firma</MenuItem>
               </Select>
             </Grid>
             <Grid item xs={12} sm={8}>
