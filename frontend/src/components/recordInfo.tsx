@@ -269,7 +269,7 @@ function RecordInfo(props: RecordInfoProps) {
                 data-recordid={record.id}
                 onClick={confirmationArchive}
               >
-                Archivar Expediente
+                Archivar
               </Button>
               {'  '}
               <Button
@@ -290,7 +290,7 @@ function RecordInfo(props: RecordInfoProps) {
                 onClick={printRecord}
                 className={classes.printB}
               >
-                Formato de Impresión
+                Imprimir
                 <PrintIcon className={classes.icon} />
               </Button>
             </div>

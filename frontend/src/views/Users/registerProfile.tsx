@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
   },
   checkboxRow: {
-    margin: theme.spacing(2.5, 0),
+    margin: theme.spacing(1, 0),
+    marginLeft: '10px',
   },
   formControl: {
     margin: theme.spacing(3),
@@ -82,15 +83,15 @@ function RegisterProfile() {
       profileSet();
       history.replace('/');
       Swal.fire(
-        '¡Perfil de Psicólogo registrado!',
-        'Se ha guardado sus preferencias de su paciente.',
+        '¡Perfil registrado!',
+        'Se han guardado los detalles del usuario',
         'success',
       );
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ocurrió un error al registrar el perfil de preferencias!',
+        text: 'Ocurrió un error al registrar el perfil!',
       });
       console.error(error);
     } finally {
@@ -111,7 +112,7 @@ function RegisterProfile() {
   const checkboxError = patientAreas.filter((area) => area.checked).length === 0;
   return (
     <MainContent>
-      <ContentTitle text="Registrar areas de tratamiento" />
+      <ContentTitle text="Registrar Áreas de Tratamiento" />
       <Container>
         <Grid
           container
@@ -130,8 +131,8 @@ function RegisterProfile() {
               alignContent="stretch"
             >
               <FormControl required error={checkboxError} component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Areas</FormLabel>
-                <FormHelperText>Elige por lo menos una opción</FormHelperText>
+                <FormLabel component="legend">Áreas</FormLabel>
+                <FormHelperText>Elige por lo menos una opción:</FormHelperText>
                 <FormGroup>
                   { patientAreas.map((area, index) => (
                     <div className={classes.checkboxRow} key={area.name}>
@@ -155,8 +156,8 @@ function RegisterProfile() {
             </Grid>
             <Grid container>
               <FormControl component="fieldset" className={classes.formControl} fullWidth>
-                <FormLabel component="legend">Horarios</FormLabel>
-                <FormHelperText>Ingresa tus horarios</FormHelperText>
+                <FormLabel component="legend">Horario</FormLabel>
+                <FormHelperText>Introduce tus horas de trabajo </FormHelperText>
 
                 <Grid item xs={12}>
                   <TextField
@@ -167,7 +168,7 @@ function RegisterProfile() {
                     multiline
                     rows={4}
                     id="workSchedule"
-                    label="Horario"
+                    label="Disponibilidad"
                     name="workSchedule"
                     onChange={handleChangeTextArea}
                     value={workSchedule}

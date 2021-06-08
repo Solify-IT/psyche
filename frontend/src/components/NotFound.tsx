@@ -1,21 +1,31 @@
-import { makeStyles, Paper, Typography } from '@material-ui/core';
+import {
+  Grid, makeStyles, Paper, Typography,
+} from '@material-ui/core';
 import React from 'react';
 import MainContent from './mainContent';
 
 function NotFound() {
   const useStyles = makeStyles((theme) => ({
     errorContent: {
-      padding: theme.spacing(6, 6, 6, 6),
+      padding: theme.spacing(1, 1, 1, 1),
       textAlign: 'center',
+    },
+    image: {
+      height: '50%',
+      width: 'auto',
     },
   }));
   const classes = useStyles();
   return (
     <MainContent>
-      <Paper className={classes.errorContent}>
-        <Typography variant="h3">No se encontró la vista solicitada :(</Typography>
-      </Paper>
-
+      <Grid container>
+        <Paper className={classes.errorContent}>
+          <img src="/images/notFound.png" alt="NotFound" className={classes.image} />
+          <Typography variant="h3" align="center">
+            No se ha encontrado la ruta introducida
+          </Typography>
+        </Paper>
+      </Grid>
     </MainContent>
   );
 }

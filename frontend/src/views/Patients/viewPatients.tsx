@@ -9,8 +9,7 @@ import {
   from '@material-ui/core';
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import {
-  Edit,
-  Delete,
+  Search,
 }
   from '@material-ui/icons';
 import Patient from 'src/interfaces/patient';
@@ -44,6 +43,11 @@ function PatientsTable(props: PatientsTableProps) {
     history.push(`/patient-canalization/${patientId}`);
   };
 
+  const viewRecord = (event: React.ChangeEvent<any>) => {
+    const patientId = event.currentTarget.dataset.patientid;
+    history.push(`/expediente/${patientId}`);
+  };
+
   const columns = [
     {
       field: 'recordId', headerName: 'Follio', width: 110,
@@ -56,6 +60,16 @@ function PatientsTable(props: PatientsTableProps) {
     },
     {
       field: 'type', headerName: 'Área', width: 400,
+    },
+    {
+      field: 'consultar',
+      headerName: 'Consultar',
+      width: 145,
+      renderCell: function createSelect(params:any) {
+        return (
+          <Search data-patientid={params.row.recordId.toString()} onClick={viewRecord} fontSize="large" style={{ color: '#A3529A' }} />
+        );
+      },
     },
     {
       field: 'canalizar',

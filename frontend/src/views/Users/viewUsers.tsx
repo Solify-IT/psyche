@@ -45,11 +45,13 @@ function ViewUsers() {
     setLoading(true);
     try {
       await deactivateAccount(id);
+      history.replace('/view-users');
       Swal.fire(
         '¡Cuenta desactivada!',
         'El usuario no tiene acceso al sistema a partir de este momento.',
         'success',
       );
+      history.push('/view-users');
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -58,9 +60,7 @@ function ViewUsers() {
       });
       console.log(error);
     } finally {
-      console.log('finally');
       setLoading(false);
-      history.replace('/view-users');
     }
   };
 
@@ -77,6 +77,7 @@ function ViewUsers() {
     }).then((result) => {
       if (result.isConfirmed) {
         handleSubmit(id);
+        history.replace('/');
       }
     });
   }
