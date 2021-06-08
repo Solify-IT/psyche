@@ -231,6 +231,9 @@ function Navbar() {
       verticalAlign: 'middle',
       fontSize: 45,
     },
+    dataUser: {
+      paddingLeft: 15,
+    },
   }));
   const classes = useStyles();
 
@@ -284,9 +287,9 @@ function Navbar() {
                            <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
                          </Container>
                        </Grid>
-                       <Grid item xs={10}>
+                       <Grid item xs={10} className={classes.dataUser}>
                          <Container key="nav-username">
-                           <Typography variant="h5">
+                           <Typography variant="h6">
                              { authenticationService.currentUserValue.user.username }
                            </Typography>
                          </Container>
