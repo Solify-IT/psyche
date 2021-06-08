@@ -136,8 +136,8 @@ function UpdateForm() {
     try {
       await registerForm(form);
       Swal.fire(
-        '¡Encuesta Actualizada!',
-        'Se han guardado los cambios de la encuesta de manera exitosa',
+        '¡Formulario Actualizado!',
+        'Se han guardado los cambios del formulario de manera exitosa',
         'success',
       );
       // TODO: Redireccionar a el detail de la pagina
@@ -256,7 +256,7 @@ function UpdateForm() {
   return (
     <MainContent>
 
-      <ContentTitle text="Modificar Encuesta" />
+      <ContentTitle text="Modificar Formulario" />
       <Grid container justify="center">
         <Grid item xs={10} component={Paper} className={classes.paper} elevation={6}>
           <Grid container spacing={5}>

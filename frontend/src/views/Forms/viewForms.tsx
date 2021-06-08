@@ -123,7 +123,7 @@ function FormsTable(props: FormsTableProps) {
 
   return (
     <MainContent>
-      <ContentTitle text="Consultar Encuestas" />
+      <ContentTitle text="Consultar Formularios" />
       <Grid container justify="flex-end">
         <Fab color="primary" aria-label="add" component={Link} to="/new-form">
           <Add />

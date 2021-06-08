@@ -129,11 +129,11 @@ function GenerateForm(props: GenerateFormProps) {
     setLoading(true);
     try {
       await registerPatientForm(id, patientForm);
-      toast.success('Se han llenado los datos de la encuesta exitosamente.');
+      toast.success('Se han llenado los datos del formulario exitosamente.');
       history.replace(`/expediente/${id}`);
     } catch (error) {
       console.error(error);
-      toast.error('Ocurrió un error al intentar registrar la encuesta');
+      toast.error('Ocurrió un error al intentar registrar el formulario');
     } finally {
       setLoading(false);
     }

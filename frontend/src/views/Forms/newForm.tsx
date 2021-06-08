@@ -115,8 +115,8 @@ function NewForm() {
     try {
       await registerForm(form);
       Swal.fire(
-        '¡Encuesta Guardada!',
-        'Se ha guardado la encuesta de manera exitosa',
+        '¡Formulario Guardado!',
+        'Se ha guardado el formulario de manera exitosa',
         'success',
       );
       // TODO: Redireccionar a el detail de la pagina
@@ -234,7 +234,7 @@ function NewForm() {
   }
   return (
     <MainContent>
-      <ContentTitle text="Crear Nueva Encuesta" />
+      <ContentTitle text="Crear Nuevo Formulario" />
       <Grid container justify="center">
         <Grid item xs={10} component={Paper} className={classes.paper} elevation={6} justify="center">
           <Grid container spacing={5}>
@@ -286,11 +286,11 @@ function NewForm() {
                 value={type}
                 onChange={handleNewField}
               >
-                <MenuItem value="text">Text Field</MenuItem>
-                <MenuItem value="number">Number Field</MenuItem>
-                <MenuItem value="select">Select</MenuItem>
-                <MenuItem value="checkbox">Checkbox</MenuItem>
-                <MenuItem value="datepicker">Date Picker</MenuItem>
+                <MenuItem value="text">Campo de texto</MenuItem>
+                <MenuItem value="number">Campo de número</MenuItem>
+                <MenuItem value="select">Selección de opciones</MenuItem>
+                <MenuItem value="checkbox">Selección multiple</MenuItem>
+                <MenuItem value="datepicker">Selección de fecha</MenuItem>
                 <MenuItem value="signature">Firma</MenuItem>
               </Select>
             </Grid>
