@@ -10,12 +10,12 @@ export = {
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || '',
   database: process.env.DB_NAME || 'localhost',
-  synchronize: true,
+  synchronize: false,
   migrationsTableName: 'migration',
   entities: [
     'src/domain/model/**/*.ts',
   ],
-  migrations: ['src/infraestructure/orm/migration/*.js'],
+  migrations: ['src/infraestructure/orm/migration/*.ts'],
   cli: {
     migrationsDir: 'src/infraestructure/orm/migration',
   },
