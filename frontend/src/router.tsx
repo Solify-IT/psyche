@@ -4,7 +4,6 @@ import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import PrintForm from 'src/views/Forms/printForm';
 import PrintExpediente from 'src/views/Forms/printExpediente';
-import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
 
@@ -63,7 +62,6 @@ const AppRouter = () => (
     <PrivateRoute path="/expediente/:id(\d+)/encuestas" exact component={PatientAvailableForms} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/" exact component={Home} />
     <PrivateRoute path="/read-form" exact component={GenerateForm} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
-    <PrivateRoute path="/consult-patient" exact component={ConsultPatient} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />

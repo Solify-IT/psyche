@@ -93,12 +93,14 @@ function PatientCanalization() {
   }, []);
 
   function handleSubmit(event: React.ChangeEvent<any>) {
-    const { userid } = event.currentTarget.dataset;
-    patients.forEach((patient) => {
-      // eslint-disable-next-line no-param-reassign
-      patient.userId = parseInt(userid, 10);
-    });
-    console.log(patients);
+    const { userId } = event.currentTarget.dataset;
+    const user = users.find((findUser) => (findUser.id === userId));
+    if (user) {
+      patients.forEach((patient) => {
+        patient.users?.push(user);
+      });
+    }
+
     canalizePatient(patients)
       .then((response:any) => {
         console.log(response);
@@ -117,6 +119,7 @@ function PatientCanalization() {
         });
         console.log(error);
       });
+    console.error('User not found');
   }
 
   const doctorAreas = (patientArea:any) => (
@@ -133,7 +136,7 @@ function PatientCanalization() {
     </>
   );
 
-  const createCard = (user:Psychologist) => (
+  const createCard = (user: Psychologist) => (
     <>
       {user.patientAreas.length > 0
         ? (

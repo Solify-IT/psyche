@@ -39,11 +39,6 @@ function PatientsTable(props: PatientsTableProps) {
   }));
   const classes = useStyles();
 
-  // function updateForm(event: React.ChangeEvent<any>) {
-  //   const { formid } = event.currentTarget.dataset;
-  //   history.push(`update-form/${formid}`);
-  // }
-
   const addUser = (event: React.ChangeEvent<any>) => {
     const patientId = event.currentTarget.dataset.patientid;
     history.push(`/patient-canalization/${patientId}`);
