@@ -134,6 +134,8 @@ function FormSection(props: FormSectionProps) {
           </Grid>
           <Grid item xs={6} md={4}>
             <Typography component="h4" variant="h5">
+              Fecha:
+              {' '}
               { Moment(form.createdDate).format('DD-MM-YYYY')}
             </Typography>
           </Grid>
