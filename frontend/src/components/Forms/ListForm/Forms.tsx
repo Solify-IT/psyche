@@ -76,11 +76,7 @@ function Forms(props: FormProps) {
               <Grid item xs={6}>
                 {form.name}
               </Grid>
-              <Grid item xs={3}>
-                Creado en:
-                {' '}
-                {form.startDate}
-              </Grid>
+              <Grid item xs={3} />
               <Grid item xs={1}>
                 <Button
                   variant="contained"
