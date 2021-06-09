@@ -18,11 +18,6 @@ export async function consultProfile(id: number) {
   return result;
 }
 
-export async function getPatients() {
-  const result = await server.get('/patients').then(handleResponse).catch(handleResponse);
-  console.log(result);
-}
-
 export async function getUsers() {
   const result = await server.get('/allUsers').then(handleResponse).catch(handleResponse);
   return result;

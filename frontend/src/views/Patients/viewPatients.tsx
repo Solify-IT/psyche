@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Grid,
@@ -14,13 +14,12 @@ import {
   from '@material-ui/icons';
 import Patient from 'src/interfaces/patient';
 import { getPatients } from 'src/api/patient';
-import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import User from 'src/interfaces/user';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import UserRole from 'src/fixtures/roles';
 import { authenticationService } from 'src/api/authenticationService';
+import LoadingSpinner from 'src/components/loadingSpinner';
 
 type PatientsTableProps = {
   initialPatients: Patient[]
@@ -43,7 +42,7 @@ function PatientsTable(props: PatientsTableProps) {
     },
   }));
   const classes = useStyles();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const { role } = authenticationService.currentUserValue.user;
 
   const addUser = (event: React.ChangeEvent<any>) => {
@@ -85,7 +84,7 @@ function PatientsTable(props: PatientsTableProps) {
       width: 300,
       renderCell: function createSelect(params:any) {
         return params.row.users.map((user: User, index: number) => (
-          <div className={classes.listUsers}>
+          <div className={classes.listUsers} key={user.id}>
             {user.name}
             {params.row.users.length - 1 > index ? ', ' : '' }
           </div>
@@ -94,7 +93,6 @@ function PatientsTable(props: PatientsTableProps) {
     },
   ];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const adminColumns = [
     {
       field: 'recordId', headerName: 'Follio', width: 110,
@@ -124,7 +122,7 @@ function PatientsTable(props: PatientsTableProps) {
       width: 300,
       renderCell: function createSelect(params:any) {
         return params.row.users.map((user: User, index: number) => (
-          <div className={classes.listUsers}>
+          <div className={classes.listUsers} key={user.id}>
             {user.name}
             {params.row.users.length - 1 > index ? ', ' : '' }
           </div>
@@ -155,7 +153,7 @@ function PatientsTable(props: PatientsTableProps) {
               <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
                 <DataGrid
                   rows={patients}
-                  columns={columns}
+                  columns={role === UserRole.Administrador ? adminColumns : columns}
                   pageSize={20}
                   components={{
                     Toolbar: GridToolbar,
@@ -171,20 +169,24 @@ function PatientsTable(props: PatientsTableProps) {
 }
 
 function ViewPatients() {
-  const promise = getPatients();
-  const content = PromiseLoader(
-    promise,
-    (data: any) => <PatientsTable initialPatients={data} />,
-    (error) => {
-      switch (error.response?.status) {
-        case 404:
-          return <h2>No se encontraron pacientes</h2>;
-        default:
-          return <h2>Ocurrió un error de conexión.</h2>;
-      }
-    },
-  );
-  return content;
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    getPatients().then((response: any) => {
+      setData(response.data);
+      console.log(response.data);
+      setLoading(false);
+    }).catch((error:any) => {
+      console.error(error);
+      setLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  return <PatientsTable initialPatients={data} />;
 }
 
 export default ViewPatients;
