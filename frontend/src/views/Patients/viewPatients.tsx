@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
   makeStyles,
   Grid,
-  Typography,
   Button,
   Container,
 }
@@ -15,7 +13,6 @@ import {
   from '@material-ui/icons';
 import Patient from 'src/interfaces/patient';
 import { getPatients } from 'src/api/patient';
-import { getForms } from 'src/api/forms';
 import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
@@ -31,7 +28,7 @@ function PatientsTable(props: PatientsTableProps) {
   const { initialPatients } = props;
   const history = useHistory();
 
-  const [patients, setPatients] = useState<Patient[]>(initialPatients);
+  const [patients] = useState<Patient[]>(initialPatients);
   const useStyles = makeStyles((theme) => ({
     heroContent: {
       padding: theme.spacing(6, 0, 6),
@@ -45,6 +42,7 @@ function PatientsTable(props: PatientsTableProps) {
   }));
   const classes = useStyles();
   const { role } = authenticationService.currentUserValue.user;
+
 
   const addUser = (event: React.ChangeEvent<any>) => {
     const patientId = event.currentTarget.dataset.patientid;

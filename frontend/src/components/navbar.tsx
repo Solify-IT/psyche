@@ -52,7 +52,7 @@ function Navbar() {
     {
       group: [
         {
-          label: 'Menú principal',
+          label: 'Menú Principal',
           icon: <Home />,
           link: '/',
           rolesAllowed: [
@@ -231,6 +231,9 @@ function Navbar() {
       verticalAlign: 'middle',
       fontSize: 45,
     },
+    dataUser: {
+      paddingLeft: 15,
+    },
   }));
   const classes = useStyles();
 
@@ -238,7 +241,6 @@ function Navbar() {
     logout();
     removeUser();
     history.go(0);
-    // history.replace('/login');
   };
 
   function handleNavigation(link: string) {
@@ -284,9 +286,9 @@ function Navbar() {
                            <AccountCircle fontSize="large" className={classes.navigationHeaderIcon} />
                          </Container>
                        </Grid>
-                       <Grid item xs={10}>
+                       <Grid item xs={10} className={classes.dataUser}>
                          <Container key="nav-username">
-                           <Typography variant="h5">
+                           <Typography variant="h6">
                              { authenticationService.currentUserValue.user.username }
                            </Typography>
                          </Container>
@@ -368,11 +370,18 @@ function Navbar() {
                 </>
               )
               : (
-                <Link to="/login" className={classes.button}>
-                  <Button className={classes.button} onClick={logOut}>
-                    Cerrar sesión
-                  </Button>
-                </Link>
+                <>
+                  <Link to="/" className={classes.button}>
+                    <Button className={classes.button}>
+                      Menú Principal
+                    </Button>
+                  </Link>
+                  <Link to="/login" className={classes.button}>
+                    <Button className={classes.button} onClick={logOut}>
+                      Cerrar sesión
+                    </Button>
+                  </Link>
+                </>
               )}
           </Toolbar>
         </AppBar>
