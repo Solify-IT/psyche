@@ -34,9 +34,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '78px',
   },
   image: {
-    height: '130px',
+    height: '250px',
     width: 'auto',
-    marginRight: '30px',
+    marginRight: '80px',
+    marginLeft: '20px',
+    marginTop: '22px',
   },
   submit: {
     textAlign: 'center',
@@ -457,26 +459,95 @@ function PrintForm() {
                 <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
               </Grid>
               <Grid item>
-                {info.patients.map((patientPrint) => (
-                  <Typography variant="h4" align="left" className={classes.subtitles1}>
-                    {patientPrint.name}
-                  </Typography>
-                ))}
-                <Typography variant="h4" align="left" className={classes.subtitles1}>
-                  {formInformation.recordId}
-                </Typography>
                 <Typography variant="h4" align="left" className={classes.subtitles1}>
                   Patronato Psicológico Queretano I.A.P
                 </Typography>
-                <Typography align="left" className={classes.subtitles}>
-                  { formInformation.name}
-                  {' '}
-                </Typography>
-                <Typography align="left" className={classes.subtitles}>
-                  Folio: PPQ-
-                  {' '}
-                  {formInformation.recordId}
-                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                    Formato:
+                  </Typography>
+                  <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.5rem' }} noWrap>
+                    { formInformation.name}
+                  </Typography>
+                </div>
+                <div style={{ display: 'flex' }}>
+                  <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                    Folio:
+                  </Typography>
+                  <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.7rem' }} noWrap>
+                   PPQ-{ formInformation.recordId}
+                  </Typography>
+                </div>
+                {info.patients.map((patientPrint) => (
+                  <div>
+                    <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Nombre:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.6rem' }} noWrap>
+                            {patientPrint.name}
+                            {' '}
+                            {patientPrint.lastName}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Género:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.8rem' }} noWrap>
+                            {patientPrint.gender}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Tipo de paciente:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '1.4rem' }} noWrap>
+                            {patientPrint.type}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Lugar de nacimiento:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} noWrap>
+                            {patientPrint.birthPlace}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Fecha de inicio:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2rem' }} noWrap>
+                            {patientPrint.startDate}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Teléfono:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.4rem' }} noWrap>
+                            {patientPrint.telephone}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Dirección:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.2rem' }} noWrap>
+                            {patientPrint.address}
+                          </Typography>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                          <Typography align="left" className={classes.subtitlesLabel} noWrap>
+                            Código postal:
+                          </Typography>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2.6rem' }} noWrap>
+                            {patientPrint.postalCode}
+                          </Typography>
+                        </div>
+                  </div>
+               ))}
               </Grid>
             </Grid>
           </Paper>
