@@ -141,7 +141,6 @@ function PatientsTable(props: PatientsTableProps) {
                   rows={patients}
                   columns={columns}
                   pageSize={20}
-                  filterModel={riceFilterModel}
                   components={{
                     Toolbar: GridToolbar,
                   }}
