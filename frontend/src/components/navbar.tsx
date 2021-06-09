@@ -52,7 +52,7 @@ function Navbar() {
     {
       group: [
         {
-          label: 'Menú principal',
+          label: 'Menú Principal',
           icon: <Home />,
           link: '/',
           rolesAllowed: [
@@ -241,7 +241,6 @@ function Navbar() {
     logout();
     removeUser();
     history.go(0);
-    // history.replace('/login');
   };
 
   function handleNavigation(link: string) {
@@ -371,11 +370,18 @@ function Navbar() {
                 </>
               )
               : (
-                <Link to="/login" className={classes.button}>
-                  <Button className={classes.button} onClick={logOut}>
-                    Cerrar sesión
-                  </Button>
-                </Link>
+                <>
+                  <Link to="/" className={classes.button}>
+                    <Button className={classes.button}>
+                      Menú Principal
+                    </Button>
+                  </Link>
+                  <Link to="/login" className={classes.button}>
+                    <Button className={classes.button} onClick={logOut}>
+                      Cerrar sesión
+                    </Button>
+                  </Link>
+                </>
               )}
           </Toolbar>
         </AppBar>

@@ -8,7 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import FadeIn from 'react-fade-in';
 import { useHistory } from 'react-router-dom';
 import ContentTitle from 'src/components/contentTitle';
@@ -123,15 +122,6 @@ export default function SignInSide() {
               >
                 Ingresar
               </Button>
-
-              <Grid container>
-                <Grid item xs />
-                <Grid item>
-                  <Link href="/#" variant="body2">
-                    Olvide mi contraseña
-                  </Link>
-                </Grid>
-              </Grid>
 
             </form>
           </div>
