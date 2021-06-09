@@ -5,9 +5,11 @@ import {
   Grid,
   Typography,
   Button,
+  createMuiTheme,
+  ThemeProvider,
 }
   from '@material-ui/core';
-import { DataGrid, GridToolbar } from '@material-ui/data-grid';
+import { DataGrid, GridToolbar, esES } from '@material-ui/data-grid';
 import {
   Search,
 }
@@ -99,21 +101,23 @@ function PatientsTable(props: PatientsTableProps) {
     <main>
       <div className={classes.heroContent}>
         <ContentTitle text="Consultar Pacientes" />
-        <Grid container justify="center" alignItems="center">
-          <Grid item className={classes.table}>
-            <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
-              <DataGrid
-                rows={patients}
-                columns={columns}
-                pageSize={20}
+        <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, esES)}>
+          <Grid container justify="center" alignItems="center">
+            <Grid item className={classes.table}>
+              <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
+                <DataGrid
+                  rows={patients}
+                  columns={columns}
+                  pageSize={20}
                 // filterModel={riceFilterModel}
-                components={{
-                  Toolbar: GridToolbar,
-                }}
-              />
-            </div>
+                  components={{
+                    Toolbar: GridToolbar,
+                  }}
+                />
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
+        </ThemeProvider>
       </div>
     </main>
   );
