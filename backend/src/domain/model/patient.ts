@@ -1,7 +1,8 @@
 import Record from 'domain/model/record';
 import User from 'domain/model/user/user';
 import {
-  Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn,
+  Entity,
+  Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn, ManyToMany, JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -63,14 +64,13 @@ export default class Patient {
   @Column({ name: 'record_id' })
   recordId: number;
 
-  @Column({ name: 'user_id', nullable: true })
-  userId?: number;
-
   @ManyToOne(() => Record, (record) => record.patients)
   @JoinColumn({ name: 'record_id' })
   record?: Record;
 
-  @ManyToOne(() => User, (user) => user.patients)
-  @JoinColumn({ name: 'user_id' })
-  user?: User;
+  @ManyToMany(() => User, (user) => user.patients, { eager: true })
+  @JoinTable()
+  users?: User[];
+
+  userId: number;
 }

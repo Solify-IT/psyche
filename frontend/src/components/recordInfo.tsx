@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 import createRecordId from 'src/utils/createRecordId';
 import FadeIn from 'react-fade-in';
 import PrintIcon from '@material-ui/icons/Print';
+import withRole from 'src/utils/withRole';
+import UserRole from 'src/fixtures/roles';
 import { archiveRecord } from '../api/patient';
 import ContentTitle from './contentTitle';
 import MainContent from './mainContent';
@@ -134,6 +136,8 @@ function FormSection(props: FormSectionProps) {
           </Grid>
           <Grid item xs={6} md={4}>
             <Typography component="h4" variant="h5">
+              Fecha:
+              {' '}
               { Moment(form.createdDate).format('DD-MM-YYYY')}
             </Typography>
           </Grid>
@@ -174,7 +178,7 @@ function RecordInfo(props: RecordInfoProps) {
 
   function updateCanalization(event: React.ChangeEvent<any>) {
     const { recordid } = event.currentTarget.dataset;
-    history.push(`/update-patient-canalization/${recordid}`);
+    history.push(`/patient-canalization/${recordid}`);
   }
 
   function printRecord(event: React.ChangeEvent<any>) {
@@ -267,19 +271,20 @@ function RecordInfo(props: RecordInfoProps) {
                 data-recordid={record.id}
                 onClick={confirmationArchive}
               >
-                Archivar Expediente
+                Archivar
               </Button>
               {'  '}
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                data-recordid={record.id}
-                onClick={updateCanalization}
-              >
-                Modificar Canalización
-              </Button>
-              {'  '}
+              { withRole([UserRole.Administrador])(
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  data-recordid={record.id}
+                  onClick={updateCanalization}
+                >
+                  Modificar Canalización
+                </Button>,
+              )}
               <Button
                 type="submit"
                 variant="contained"
@@ -301,7 +306,7 @@ function RecordInfo(props: RecordInfoProps) {
           )) : false}
         </Grid>
       </MainContent>
-      <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
+      <CornerFab extended text="Agregar Formulario" link={`/expediente/${record.id}/encuestas`} />
     </div>
   );
 }

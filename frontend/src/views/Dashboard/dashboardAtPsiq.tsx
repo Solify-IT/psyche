@@ -51,7 +51,7 @@ function DashboardAtPsiq() {
             <Paper className={classes.paper}>
               <img src="/images/menorEdad.png" alt="registrarPaciente" className={classes.image} />
               <Typography variant="h4" align="center" className={classes.subtitles}>
-                Individual Menor de Edad
+                Menor de Edad
               </Typography>
             </Paper>
           </Link>
@@ -66,7 +66,7 @@ function DashboardAtPsiq() {
             <Paper className={classes.paper}>
               <img src="/images/adulto2.png" alt="Logo" className={classes.image} />
               <Typography variant="h4" align="center" className={classes.subtitles}>
-                Individual Adulto
+                Adulto
               </Typography>
             </Paper>
           </Link>
@@ -87,7 +87,7 @@ function DashboardAtPsiq() {
             {
                   areaList().length !== 0
                     ? 'Selecciona el grupo al que pertenece el paciente:'
-                    : 'No se encontraron areas en las que pueda manejar.'
+                    : 'No se encontraron áreas en las que pueda manejar.'
                 }
           </Typography>
         </Grid>

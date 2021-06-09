@@ -23,6 +23,7 @@ const patients : Patient[] = [patientFixture, {
   abuseAttempts: '5',
   abuseMotive: 'Nomal',
   recordId: 1,
+  users: [],
 }];
 
 const recordFixture : Record = {
