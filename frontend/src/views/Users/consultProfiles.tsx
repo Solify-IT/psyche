@@ -15,6 +15,7 @@ import PatientArea from 'src/interfaces/patientArea';
 import { authenticationService } from 'src/api/authenticationService';
 import ContentTitle from 'src/components/contentTitle';
 import MainContent from 'src/components/mainContent';
+import UserRole from 'src/fixtures/roles';
 
 function ConsultProfiles() {
   const [field, setField] = useState<ConsultProfile>({
@@ -121,7 +122,8 @@ function ConsultProfiles() {
   };
 
   function Psicologo() {
-    if (currentUser.user.role === 'Psicólogo') {
+    if (currentUser.user.role === UserRole.Administrador
+      || currentUser.user.role === UserRole.Psicólogo) {
       return (
         <Button
           type="submit"
