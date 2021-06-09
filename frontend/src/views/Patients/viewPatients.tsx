@@ -42,6 +42,7 @@ function PatientsTable(props: PatientsTableProps) {
   const classes = useStyles();
   const { role } = authenticationService.currentUserValue.user;
 
+
   const addUser = (event: React.ChangeEvent<any>) => {
     const patientId = event.currentTarget.dataset.patientid;
     history.push(`/patient-canalization/${patientId}`);
