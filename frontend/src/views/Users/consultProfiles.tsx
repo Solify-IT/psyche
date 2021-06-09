@@ -40,10 +40,9 @@ function ConsultProfiles() {
     consultProfile(id)
       .then((response:any) => {
         setField(response.data);
-        console.log(response);
       })
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .catch((error:any) => {
-        console.log(error);
       });
   }, [id]);
 
@@ -113,9 +112,31 @@ function ConsultProfiles() {
     history.push(`/user-profile/update/${currentUser.user.id}`);
   };
 
+  const modifyAreas = () => {
+    history.push('/modify-profile');
+  };
+
   const newPassword = () => {
     history.push('/change-password/');
   };
+
+  function Psicologo() {
+    if (currentUser.user.role === 'Psicólogo') {
+      return (
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          onClick={modifyAreas}
+        >
+          Modificar Áreas
+          {'     '}
+          <EditIcon className={classes.icon} />
+        </Button>
+      );
+    }
+  }
 
   function Profesional() {
     switch (field.professionalLicense) {
@@ -273,6 +294,7 @@ function ConsultProfiles() {
             <ContentTitle text="Mi Perfil" />
           </Grid>
           <Grid item xs={12}>
+            {Psicologo()}
             <Button
               type="submit"
               variant="contained"

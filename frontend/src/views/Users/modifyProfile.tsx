@@ -14,7 +14,6 @@ function ModifyProfile() {
   const content = PromiseLoader<PsychProfileResponse>(
     mPromise,
     (response) => {
-      console.log(response);
       const { patientAreas, workSchedule } = response;
       return <EditProfile areas={patientAreas} workSchedule={workSchedule} />;
     },

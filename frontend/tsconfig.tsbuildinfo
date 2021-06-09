@@ -2492,13 +2492,13 @@
         "affectsGlobalScope": false
       },
       "./src/utils/server.tsx": {
-        "version": "cd28c7fc61fb13eeff6c60ea3a0b82729f6ca22aab22029825d44bdb8905550c",
-        "signature": "4907d64ffb79e3cbc79783a6e13c54e23fcc0b783f18a12951c2c0f5fa7cc5a1",
+        "version": "28ee892d69db47ddce7255294e27b27cd76d9de038e7de3c2183de4e9d64fc08",
+        "signature": "2065466e0fae661507f90838af25cca278718331d3233be40b6684d342a86e3f",
         "affectsGlobalScope": false
       },
       "./src/api/authenticationservice.tsx": {
-        "version": "828b64e118051a074744adfbf50884e9506b45cd6a0c03a106c27be99f1fd42b",
-        "signature": "b15a5db0caf0a79250b6043b98854e5055a62c1e3ffc9006b65cff8212d97d76",
+        "version": "ef9a0002009115f90569fed8e4b1b81abf9137fb13829eda7014c2e7327e376d",
+        "signature": "83a4e5524de8d8fce93a385a7f3e4cf9c223d117791721429bdb6b8f9c85cc40",
         "affectsGlobalScope": false
       },
       "./node_modules/@material-ui/icons/index.d.ts": {
@@ -2508,7 +2508,7 @@
       },
       "./src/utils/withrole.tsx": {
         "version": "6dc8d87f16f33140e9d15eb91507f16db86d97698aa7cd9c59e2c32155c07f98",
-        "signature": "afbb7e87bf90b40404a87b80a5a9110c88dd7ebaf6dd9f791971d5ca1999e91d",
+        "signature": "ae18be57a5a841ed2c578b3efa54eff15ea44ad2e975c13b9e7f396404721bd4",
         "affectsGlobalScope": false
       },
       "./src/fixtures/roles.tsx": {
@@ -2522,23 +2522,23 @@
         "affectsGlobalScope": false
       },
       "./src/utils/useauth.tsx": {
-        "version": "002c19652256235b3c82c8aa7eaf2e7040825449e3b33c275c69ea24615efe7f",
-        "signature": "215563e5d5dbbff79f48ce1daf09d23b171e8bb6ecbb8840d1877bd1623b4fad",
+        "version": "1124f88144014f90fc39885a6166766fc0bbc3e436f1e647d89d373acde28707",
+        "signature": "161e691ed4188b993aab4ffa1463e80479e89e9661735030d60ca5ac06b555eb",
         "affectsGlobalScope": false
       },
       "./src/utils/getstoreduser.js": {
-        "version": "a344c87dd518e0b78901015c1ec2c1d6d5cd8df92b959f6f76512f0e7a301990",
-        "signature": "b1bbc0f98f2332e31084ed0846e92215c0f3431c904e69f2663cfd4d161916aa",
+        "version": "5864759c5e6d7b5c3101faaed9e2196f8fc08325460027a83bd6343315176c6d",
+        "signature": "3acc434549513f4f2e37a61d7b8318a6d6e419b8027c8ff17d70083c5265390d",
         "affectsGlobalScope": false
       },
       "./src/utils/authcontext.tsx": {
-        "version": "c94292d7f870b1671f7b6741d6a2841781cb0e9d1ead136e74b803009ba40a80",
-        "signature": "b8fddbc0d4c7761ffbba589766ef0d7ce6bf40b0f2d1f2cf77048533e427b020",
+        "version": "404ded5e4fd95158f2c835e9d0ae1b8c11c78dd83d528b37813e287ac6572b8d",
+        "signature": "6ec52481b6bb2379a32ce410536be322213fd2070987844424ed9256de7e6bec",
         "affectsGlobalScope": false
       },
       "./src/components/navbar.tsx": {
-        "version": "50706f3dc118f70630ebc102176bd4293864508334eb3fa925a100d3af74fb59",
-        "signature": "8c976701a8625214173fb99f551fe843158ebdc04f0e6a62de97a2d47fd7e9f9",
+        "version": "c80cd95214428fbda94f792911f19f3ce04bec75cc3c5da32baf271297c705b9",
+        "signature": "d230d1fd673bd4f45966c68b47728a62b57241614ebe9767477caee13e112877",
         "affectsGlobalScope": false
       },
       "./src/components/footer.tsx": {
@@ -2547,28 +2547,28 @@
         "affectsGlobalScope": false
       },
       "./src/interfaces/options.js": {
-        "version": "874ea699cbf0f9017e804fc04847f8ab32c97fe31ac66ce01da6b11e8c9d500d",
-        "signature": "510b03dd028923d52f5b9cb76af8886f9e5c52531df279f6697b2f61180f1e76",
+        "version": "b4da5c8f8a726daef4278b2ce25665371988baa84f2f83655862a7a46194efb3",
+        "signature": "247cfae3dc88542fb9dbb64de98b8a39e6ad69bb33aaa526f4e9a9d9333ba818",
         "affectsGlobalScope": false
       },
       "./src/interfaces/user.ts": {
-        "version": "0e5d122a3317d62d6270d1685d4b71d7a50c8927d2ff1a4c1037f53bb5c11b85",
-        "signature": "e052edb09a0b7f06cc1210f74116b050e9ae867991edbdf20b831404a3bb1531",
+        "version": "baec310b232cedf3e91876101bc4640d4a112aef1790076b1fe1e542ecd9da29",
+        "signature": "8c9ba3279ab5fdb23e9d5a4d8943cf285470c8b26815cb1461b6aea4befd5112",
         "affectsGlobalScope": false
       },
       "./src/utils/handleresponse.tsx": {
-        "version": "6ef06a2e612716459a7cfed3e78cc0546bce79e81441e984877d74e969e54385",
-        "signature": "c6be5dca335f336aed68d04c38e26ef848c6bdfe15450929ab6331030ee95345",
+        "version": "abe4a600099b6d863efee619136f4dd5dfb7afae3fc9d69883925f6dc470a734",
+        "signature": "6e6148360ce17b0525646fc56d39be429bd1cd2963bf96f0de8380b94b36fcbd",
         "affectsGlobalScope": false
       },
       "./src/api/user.tsx": {
-        "version": "7a07dd0f97b6536eafba86ebf2651f7d40c31bd8ecab8c558ad1ba5097906a92",
-        "signature": "25696f6c9052fb5d4c5ee8cfb6f4e46401de7e4f3f9d8401cf4c1f2fef5f0a50",
+        "version": "826462712ffc2a5732462bee11756572fa3464fb611d77b0fd04921b002dfa01",
+        "signature": "32f3f045e2076917d2fef92d76f62ccd96a9357e25f8c3555b02132cb0366167",
         "affectsGlobalScope": false
       },
       "./src/components/loadingspinner.tsx": {
-        "version": "790395cccfc885462eeed6a18a522cc3c7c74d1f0374256fad2d3d1721375fbb",
-        "signature": "8074796693e07ec0d7a0c3358a49a39792b587dcce6d355cc213d0c2314b8145",
+        "version": "e68d48090b0a723b26e45d04a7dc894c5c5b865144151bbdcae08cf8d7786f7a",
+        "signature": "e00b18b46b6ace8861da09f54de6637f1b38d73f8bb62f87e9408a41670d95af",
         "affectsGlobalScope": false
       },
       "./src/components/contenttitle.tsx": {
@@ -2591,219 +2591,19 @@
         "signature": "eff6739c78075f04680df62ce4b14b4bfac565aa826a9441ef6e533ca11c730f",
         "affectsGlobalScope": false
       },
-      "./src/views/users/registerprofile.tsx": {
-        "version": "caf15b875534fa18402d9c736e6a637309eda32c0df775886b3d82194b136644",
-        "signature": "34d40d7bd15d1e71e5a4d5d1ee65790bf184c1180892f4a504e29695f3afaf11",
-        "affectsGlobalScope": false
-      },
-      "./src/components/privateroute.tsx": {
-        "version": "2ca3eba0ac970b0fbc6faf33bc0e4cd6aed12bff2d390cf6cbd7b351cffadd8b",
-        "signature": "bb7cd573bb6500b2b079f81d24659643f8eff55ab75bcddf7926f48a76cda19d",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/patient.ts": {
-        "version": "78ea350dd6c6e1c68ea02c65cfbc81bb05cf8c801570b2eb2abbe08cfc729dff",
-        "signature": "44eeef247df5dfd0ef8b36a314dbb4a5f8e9ce822d7d3f8d5bd00cffec752807",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/index.ts": {
-        "version": "f258074a2f278a1b95014230bce7877d94203c82984ef0b17ab798bd473094a1",
-        "signature": "d0e2c20978ffb59cc6172027549f018f7bac9bb9593f7cbb62449359e5f34887",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/react-csv/components/commonproptypes.d.ts": {
-        "version": "9d490b475f0fe0031f0da436757caf07831b7c4cf960f351571b7582a45ed1f2",
-        "signature": "9d490b475f0fe0031f0da436757caf07831b7c4cf960f351571b7582a45ed1f2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/react-csv/components/link.d.ts": {
-        "version": "d0d5feeefe5b6fb7dbb0bee46f8b1bc00df806278ae25dc7e9e48097df322228",
-        "signature": "d0d5feeefe5b6fb7dbb0bee46f8b1bc00df806278ae25dc7e9e48097df322228",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/react-csv/components/download.d.ts": {
-        "version": "9f4e6e231d93a85d19da803f327906d183c9a1aa3152c664e79b52d8435ef7ac",
-        "signature": "9f4e6e231d93a85d19da803f327906d183c9a1aa3152c664e79b52d8435ef7ac",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/react-csv/index.d.ts": {
-        "version": "1c5b7f58267564756ad2a57060496c2b094b2f92212be9462e6f228996f3dbe5",
-        "signature": "1c5b7f58267564756ad2a57060496c2b094b2f92212be9462e6f228996f3dbe5",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/patientform.ts": {
-        "version": "6ede1b175f1b9533ce3fb9929c55ee6539e9d04d6119321618c9fec8a0546c58",
-        "signature": "1f1b572ebb9d1ef8f0b03dea85da5d3e424cfcf2ad1a4627c0b5dbda1034b71d",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/record.ts": {
-        "version": "76d7d05f2669c0f381c35d7fb4426a68856840e9fee5790dcd247a4bc284b484",
-        "signature": "dfa4685038826c7539cb8c92a6f7bced7f6df3bd75d41d8d86337cb5725c65e6",
-        "affectsGlobalScope": false
-      },
-      "./src/api/patient.tsx": {
-        "version": "9e9eb90cd22cc14a85c725af62a51ab7e70624e4bc3c4143887a782f27261d52",
-        "signature": "337bfe0c595097cd9eed5f6a7429410ec3fc2f23451bd54f8ad28bb1bbb19976",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/consultpatient.tsx": {
-        "version": "654c819a5861c6bc1e8b94510578c10b1fe280335fe00480ffdccb51a584294d",
-        "signature": "f379e1ec045b462c8863b84b7404d38402d5d69b70eb19ef9783db4a31b7d5b7",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/home.tsx": {
-        "version": "c99cc3973308fbca6fab959541302434d3bb4e82294221585a3bc02bd886227c",
-        "signature": "6fad3cf0b34f373fbe1bb6820645cad752b741e147c94220af5afc6de9ef4b53",
-        "affectsGlobalScope": false
-      },
-      "./src/utils/promiseloader.tsx": {
-        "version": "9a6b1e93509f11f1dd2a63fb738a310d455d8379d8b2225ac087c5b7be7a4f9c",
-        "signature": "8ca3f98265dbbfd8f9d6c4276d3c8860c60cd520937aeb2e9aaa4f0645efd16b",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/moment/ts3.1-typings/moment.d.ts": {
-        "version": "f97edc4d3b4dd0b32766e9633086497565c37657fb591cc84a35864db4bc2fc5",
-        "signature": "f97edc4d3b4dd0b32766e9633086497565c37657fb591cc84a35864db4bc2fc5",
-        "affectsGlobalScope": false
-      },
-      "./src/utils/groupby.ts": {
-        "version": "e52cc44489e5700d851aba82b83d08b0bab2c34115e2e352727cf7e2a3079353",
-        "signature": "02671f17641f67df9f1fef4e4bbf1201f6096e553edfeced45f8f2d35ad55834",
-        "affectsGlobalScope": false
-      },
       "./node_modules/sweetalert2/sweetalert2.d.ts": {
         "version": "292393fb07691704463a231bf4aaa44930d64733ec48c794ea0ad2c8205a912d",
         "signature": "292393fb07691704463a231bf4aaa44930d64733ec48c794ea0ad2c8205a912d",
         "affectsGlobalScope": true
       },
-      "./src/utils/createrecordid.tsx": {
-        "version": "a3594bc53985d6c2ba81e705661bcaa26479f3465656c1c36f23c75f641b200e",
-        "signature": "d1445d256fd522b406364b3dab5fc3c96704ad81b22c3948596f21b29d0c4ac3",
+      "./src/views/users/registerprofile.tsx": {
+        "version": "da45fd88fb5db1f527b89472db2e3a64332433bbf60ad7f051d2b3e5ee4cd9cd",
+        "signature": "01fb1410ba97de0a0337915a5e1cdd8ab59906690eac4230f8cc02ae807b2e1d",
         "affectsGlobalScope": false
       },
-      "./src/components/cornerfab.tsx": {
-        "version": "0ff73b0a38a2b5c793fcc50158709447adbf40e1b94227e8157cd94987318984",
-        "signature": "b9506b7ca61d00b414ecaa2897debd948d16fb567433ed5c31b17d77b40ea60a",
-        "affectsGlobalScope": false
-      },
-      "./src/components/recordinfo.tsx": {
-        "version": "9c47f184eba9c22cc0799566dd797ef36212541300aa36dd03ca4d7de866d2c7",
-        "signature": "c07937bafeba523b635f03388f6767783eb4ffc9194b138bd2278a0e6ee98bed",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/recorddetail.tsx": {
-        "version": "6b389bd01b84035a2f90791191f6b4538d001a1e9b7396fc7a80170cb9454447",
-        "signature": "b99b9441033c2a39b322f302a543056b4e3f9b1272cb163f845b28f0467be937",
-        "affectsGlobalScope": false
-      },
-      "./src/views/users/registeruser.tsx": {
-        "version": "02ee0b91a0eb5a490fe60b9d96a8f1edb023ee3528c4f6fc3dfcbc8e76552db1",
-        "signature": "a5d25f6b83fefe00e2cee9bcf2b3f16f519aa0da687482b96fb328471f4f7722",
-        "affectsGlobalScope": false
-      },
-      "./src/views/login.tsx": {
-        "version": "16b5775f549584ee70b0ea831c8c9cb9e388f752fb0eb1174decd148384e912c",
-        "signature": "3ee4957fd056bd9bed2e82c4107cdc2ae815e68e9769c5db37429ade65c3f46e",
-        "affectsGlobalScope": false
-      },
-      "./src/components/users/editprofile.tsx": {
-        "version": "b9cbfcfb3e6172598bc11c891b93abae4859cff5e02bf9d56a81cc39b845a650",
-        "signature": "e656a82404547ca540597f61836bca108e5c53b7e4f5a39ef716100969c58648",
-        "affectsGlobalScope": false
-      },
-      "./src/views/users/modifyprofile.tsx": {
-        "version": "508cac72a2e4aa7a9b5226d846cf6f798957f184ce4ecd423521b777f1f2c5cd",
-        "signature": "ce9825d52b62ce37b218211a7cbbb5a52150938a01a0eae470337b5a0a924ba1",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/users.ts": {
-        "version": "fb4a68750f50e62474e89cb1b54047061db795fc431d809fce550eb7568d7327",
-        "signature": "8876f1989c0e80fa347795e3f9ae809e28d8394d74a33d87993aa1009e872ed2",
-        "affectsGlobalScope": false
-      },
-      "./src/views/users/viewusers.tsx": {
-        "version": "193fd0a6212a97495d4bbef2cabf211b85806705793529d9e3209781045b25ee",
-        "signature": "f1548c45d1744ba4132fcb3b72ca3791888bcc0a1e38d2473d671e5ca7fc3566",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/soolers.tsx": {
-        "version": "37681f4aaa0be69303f3dad01259402fa56d424f0378b4a77c10adf32dcce99a",
-        "signature": "160d1a2edcfe99b0063cbd692beffc0698258547228df34e9dde52f22122f642",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardarea.tsx": {
-        "version": "228c82731ff02f3f3a08783186603698eca0020b976c5cac3ea3917e62a45424",
-        "signature": "95a679a3849162941a3cc13009be6acfd9a3c5d571c30695c8d832ccf8f572e0",
-        "affectsGlobalScope": false
-      },
-      "./src/utils/haspatientarea.ts": {
-        "version": "afc0d00cf084dcc8e10fea57410e0747216fe1e7b86815ea491fb5f76cf87a98",
-        "signature": "3d0dcc79165a2ef707e9a3d1234bdd04dadf4477829a8c48b1fa625f082a0c66",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardatpsic.tsx": {
-        "version": "9d98e86192fe26bdf7b20d11758c380ed93cf0c414a3a63060990d4c5db5494e",
-        "signature": "b1de18448b781f83381d34f63d2abc40d7419c5c980b2de919d485bbc23c5e69",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardatpsiq.tsx": {
-        "version": "c62cab5578d8f2be6c61aade3b6cfb3e74f3165e7a6275eb5540f49ee57192f7",
-        "signature": "93d43271e544b760123987f89e7cb8f1664ed3c2fe8b421b7e85c980437baee9",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardevaluacion.tsx": {
-        "version": "2500efaff1c7cb2e55244d9fb481f617151a80d3be0329dffa1f06c084434652",
-        "signature": "ddf7ebaef443cdb88aea058b18c328ae9df9e964599b012d75a29bc7714b22bc",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardasesoria.tsx": {
-        "version": "15470892def75c1ee048e14213b9ca43cdb0758547b16f0eaa3510403e59a401",
-        "signature": "8fc3cd150162682f4b1869dce71dc16709b7ef735eef2c9f8ad6f49ef9e0a83d",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/typeoptions.js": {
-        "version": "0072018e1fbb60bd76e951a6eef382aa73206becdae280db812baf4a7978b470",
-        "signature": "03b7d9cb59c5791ec375877a6e0302fa901fd24da60ab3e2b5d8d203c09de5d1",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/registercouple.tsx": {
-        "version": "aa7ee7e9e79cbe08a02449d10a7caee39ed21b24c21ea0bbc50617037793a9af",
-        "signature": "a7d61c10d7d8fee5180eb6c33b2846ec8406d84f789c1bc3330baf642cccf297",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/registerfamily.tsx": {
-        "version": "4c37edc164f3c4007d1e1bd4cb35542e38b0bc1cd614d0e63146abb1a9056ff6",
-        "signature": "4d5a593c5852175c1e212399c4ac04e6cacbee3309aaba92e236f3a75dffff58",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/viewcouple.tsx": {
-        "version": "4fcb0b371da01f60ea8d58b0d4f35395d36d4ec66e6548965558d2150255462e",
-        "signature": "2c75f096f9adfd596d2996feec488fc0d737eb58339d109fecc1b897d8924444",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/registerpatient.tsx": {
-        "version": "8cd0da6e191d547c1fa4334bfdc75888e761db3f495d318b0a519de5e3b6c371",
-        "signature": "c7fb3888569484bd9da141aef7d4ac0b71e1e137d069a864fd2c987d67470e66",
-        "affectsGlobalScope": false
-      },
-      "./src/views/dashboard/dashboardaspsic.tsx": {
-        "version": "2ce792cb060972bcd1b8eb7d62b5d358c3e322b38fda9e8e9c8bddbd8d0ad163",
-        "signature": "5de4d2ac8e11cf723008f48287bf3f00addca9fd9c5eeb191572d16122dbf46a",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/psychologist.ts": {
-        "version": "8e0c628982c4b9192ffca7f33d663b52f69993923d7aa879212634894a8ed02a",
-        "signature": "1bf31130711539e99f831a8db76c8e39d7184b089febd45420fa890973f398c7",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/patientcanalization.tsx": {
-        "version": "39bbdfda8f99459734dba9a06240dc090be0fb6cb252f466c480e35023075c1a",
-        "signature": "cd43000de1dff6d0343e7c34998ba7981cef0409721e1b51a3e9e2777dc1b7b4",
-        "affectsGlobalScope": false
-      },
-      "./src/views/patients/updatepatientcanalization.tsx": {
-        "version": "5727c80c23ba7dc44a5bb5fb29ba78c812a423ae1a47dfea1c24f4c3b61dd437",
-        "signature": "86be1f7287ff3fcaedcddab8d44e9fd6a54267879aefb3ab49183caa1452c60a",
+      "./src/components/privateroute.tsx": {
+        "version": "69151a6cd14bc3a66409bfe8e285bee05eae37a9f84426cda138c6ca27c4e563",
+        "signature": "3d44de706d891f1766763b9f87992b4eb08a861893d8402b6244c93c671d1b30",
         "affectsGlobalScope": false
       },
       "./src/interfaces/fieldoptions.ts": {
@@ -2816,19 +2616,214 @@
         "signature": "d1e0e98b94b7f0b570e64a54ef3ba4b7419812dd6f5caeb83936bec57854f6a4",
         "affectsGlobalScope": false
       },
+      "./node_modules/@material-ui/icons/print.d.ts": {
+        "version": "865950dbe055cab1e6850f12d921894f46972e039f3f557791d77a214eb4d090",
+        "signature": "865950dbe055cab1e6850f12d921894f46972e039f3f557791d77a214eb4d090",
+        "affectsGlobalScope": false
+      },
       "./src/interfaces/form.ts": {
-        "version": "8c153863c044bd96d9425d168697d86e2f02464fcd1f693d300601bf462d213b",
-        "signature": "643e511814cccc7367f9b9e5a8860b508da187cbff85c7c37c78b6c72f845deb",
+        "version": "16faa2089ed0a3b8e05c09f6b35fe0ca091d1d580fd1e104f85acef425c7c30c",
+        "signature": "d55f1c4e78043d0999d42a6f58296fb6dcede2e744803399f3f3e000bc1dc592",
         "affectsGlobalScope": false
       },
       "./src/api/forms.ts": {
-        "version": "0da3a84c615f80a73b5247503b6f0e94c57df4febd9448b181481f4a36dd3e26",
-        "signature": "935bb4fc79c93979fcd7caa9eb758d3835b8d3cc94fa596c498574aa05e6492d",
+        "version": "7d8628e3fa82b5ad448200aa0a835d78153f1bae760f1dec2988d89d2507e7e2",
+        "signature": "28070bb365fd1236ad37f10bb558026968066db8cc9840c35234e9858b2ea303",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/patientforms.ts": {
+        "version": "1054809f9f045b538891b9c58f46903074853d7ac6883f76744d823c07759f29",
+        "signature": "30eaa79e0aabde46c12f09c387fddc70f624816b3370f786780b871b54fa4177",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/patientformfield.ts": {
+        "version": "51ae44b295f893633c81730b239b8a618b3543629323efad10db8da69bd0b6f4",
+        "signature": "55951d8cc372ff10d8e9ea455d7d73e04be051fe6fbc9e89aebad7bd32e302c0",
+        "affectsGlobalScope": false
+      },
+      "./src/views/forms/printform.tsx": {
+        "version": "144a50632224c28567ff931781d0ef67734652a393017523338bb94a53dd0e37",
+        "signature": "c38f30129f1d2e099e8b75aceb085123754bdc85cb1d9f02524793244e209630",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/patient.ts": {
+        "version": "ebc33f64fdc334801f24ce2ee28f16ddd90b485f35f6a40ca963cbf5d2d01b8d",
+        "signature": "69872cd2717cb9b5c7899930f02c3bc50a94e0ba40243b4e65b6269529a72080",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/patientform.ts": {
+        "version": "6ede1b175f1b9533ce3fb9929c55ee6539e9d04d6119321618c9fec8a0546c58",
+        "signature": "1f1b572ebb9d1ef8f0b03dea85da5d3e424cfcf2ad1a4627c0b5dbda1034b71d",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/record.ts": {
+        "version": "dbf0455583d1c03107ab1f3a9e5b122184e62a23a9456fb08911e83006b50c0f",
+        "signature": "703e5e209df4df82ebaad1f7e7c7fc617b9ca307752d0d650fbcbcb427b575c5",
+        "affectsGlobalScope": false
+      },
+      "./src/api/patient.tsx": {
+        "version": "1bb51c05031cfec4ba168dde74b0e85487bc6e58e5a1703d809b791a8cce00ae",
+        "signature": "18e45a19a18aa2740039637bc74683a8646bbe625865d58614a1aef8115ecc2e",
+        "affectsGlobalScope": false
+      },
+      "./src/views/forms/printexpediente.tsx": {
+        "version": "1b74e597aa6181483f2521119c86235434baa268f0d0fd02b46101c003626a65",
+        "signature": "545edb0a1de64c271c008b628ca70e1df89e90046816f0fa608937713bb63dee",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/home.tsx": {
+        "version": "c342ddd9a6b17ca7a7be37c512eb3856df858ad83c544b454824a628bdeaded9",
+        "signature": "205fbbb8bbcd07778b401d3ef8afe4aa5b0252eb420d0b0f99d589e908636406",
+        "affectsGlobalScope": false
+      },
+      "./src/utils/promiseloader.tsx": {
+        "version": "821beef38a2d1ff792aeeb867b1062cb080d388f7c0df8ee9da83384eb60cbff",
+        "signature": "4525ed3cad83c523a90425e7f06ea94eec6aaee629e6473ed07d38e9a2042b84",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/moment/ts3.1-typings/moment.d.ts": {
+        "version": "f97edc4d3b4dd0b32766e9633086497565c37657fb591cc84a35864db4bc2fc5",
+        "signature": "f97edc4d3b4dd0b32766e9633086497565c37657fb591cc84a35864db4bc2fc5",
+        "affectsGlobalScope": false
+      },
+      "./src/utils/groupby.ts": {
+        "version": "e52cc44489e5700d851aba82b83d08b0bab2c34115e2e352727cf7e2a3079353",
+        "signature": "02671f17641f67df9f1fef4e4bbf1201f6096e553edfeced45f8f2d35ad55834",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/index.ts": {
+        "version": "f258074a2f278a1b95014230bce7877d94203c82984ef0b17ab798bd473094a1",
+        "signature": "37103d8845592a6bf48e89ec8e2f4a59105f88dbca460bc0a62331f21dbdcb64",
+        "affectsGlobalScope": false
+      },
+      "./src/utils/createrecordid.tsx": {
+        "version": "a3594bc53985d6c2ba81e705661bcaa26479f3465656c1c36f23c75f641b200e",
+        "signature": "d1445d256fd522b406364b3dab5fc3c96704ad81b22c3948596f21b29d0c4ac3",
+        "affectsGlobalScope": false
+      },
+      "./src/components/cornerfab.tsx": {
+        "version": "0ff73b0a38a2b5c793fcc50158709447adbf40e1b94227e8157cd94987318984",
+        "signature": "b9506b7ca61d00b414ecaa2897debd948d16fb567433ed5c31b17d77b40ea60a",
+        "affectsGlobalScope": false
+      },
+      "./src/components/recordinfo.tsx": {
+        "version": "795ce6a30d2052ceb562ed81a40661d00aaaf9b4a3db44b7b5b661aecdaa3663",
+        "signature": "06fecdf78f2a4c20b2f6e3012e999277d6c62b9256c3999cbdd0e004104f41e6",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/recorddetail.tsx": {
+        "version": "6b389bd01b84035a2f90791191f6b4538d001a1e9b7396fc7a80170cb9454447",
+        "signature": "544e5536822bcb1a76f51e117379791e7ce00539dcdc62e3728a2298e65e1586",
+        "affectsGlobalScope": false
+      },
+      "./src/views/users/registeruser.tsx": {
+        "version": "2babc161817936c5e29b2e3d081cfebc4065f6424c7669bd2ab4beaa9d13dd94",
+        "signature": "a6ebdbde5ea3964cb178cc910c463665b89a584fcd2785e571cc3d8d6da70cec",
+        "affectsGlobalScope": false
+      },
+      "./src/views/login.tsx": {
+        "version": "11d5fd98b4c41a6dbbb490e5fd40495193e889a7a91912a94050cbaf73cd5640",
+        "signature": "737b5358d23254e86b8fc777d43462c3062cd5b56a5cd569b3606c52fafa2586",
+        "affectsGlobalScope": false
+      },
+      "./src/components/users/editprofile.tsx": {
+        "version": "b9cbfcfb3e6172598bc11c891b93abae4859cff5e02bf9d56a81cc39b845a650",
+        "signature": "c565838f192fd60d4e16cff3838582a85b5293a68389ef136260f9e52d6a6c68",
+        "affectsGlobalScope": false
+      },
+      "./src/views/users/modifyprofile.tsx": {
+        "version": "508cac72a2e4aa7a9b5226d846cf6f798957f184ce4ecd423521b777f1f2c5cd",
+        "signature": "b43ec97b81ed47c840d74e5556199e1db4bd907fa3383274be057e695dbecc8d",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/users.ts": {
+        "version": "a720ad6b0cdcbc5350efb3d35c0bb4303e9e1ae76ce37e619c8cb947b1cafed7",
+        "signature": "1d9faf821b535e2ceab85b6722e05575d128f65db6b01256d27ee415bf1632d0",
+        "affectsGlobalScope": false
+      },
+      "./src/views/users/viewusers.tsx": {
+        "version": "3008a1220fb0f9eeedea87ebbd92daa01a4f64f202a726078ecf3c05a2d390a4",
+        "signature": "3933b2dbf1b99091751e6429a063e4d900c5d756cc0a78f6fbbbd7013d99ee63",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/soolers.tsx": {
+        "version": "048d88ba3c5ce21ed8c9fe23cb148b386c8bf9963d7c5db8c9a9eca622d3f078",
+        "signature": "8552187cb8fa0258873b16142360ccfd8c4673a22a46a06d2bdfddd30903c3fc",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardarea.tsx": {
+        "version": "abec33069d1918b9815c5d0c894e65781442ddc25286a85f5c9bef2da6d72893",
+        "signature": "ae52214be6e30a219c12efb3429f2996222efec88c887a4d5fe1152274d43013",
+        "affectsGlobalScope": false
+      },
+      "./src/utils/haspatientarea.ts": {
+        "version": "afc0d00cf084dcc8e10fea57410e0747216fe1e7b86815ea491fb5f76cf87a98",
+        "signature": "3d0dcc79165a2ef707e9a3d1234bdd04dadf4477829a8c48b1fa625f082a0c66",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardatpsic.tsx": {
+        "version": "97866c31595d01b91558aed25f28d6663dd3adfba830105bc87f6eff28c7145c",
+        "signature": "9690e3804dde7e1712d27867ecee7dec524d7c1cae5b35d7aa7636766c3d3c71",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardatpsiq.tsx": {
+        "version": "74afd8a4e498442439722f263db147ca01b94de70c60be9a9dca8f87e771c07c",
+        "signature": "3fdfd7ed094afee076a8fe2dabb11f65e5ab7fdc8dc3e584d05b8b9b8d298ae8",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardevaluacion.tsx": {
+        "version": "e91e901ab5009dec1b019c72b2afcc4853ab523b6422d86f33b3abd9b07915bc",
+        "signature": "1d1638c5b89b05f91b93e0326336664e184d45d408ab4fc1083c54e52a4163a0",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardasesoria.tsx": {
+        "version": "9b1ea7a0791e194aa989438cde4c46856d66f956a7781e9d96ff6c161018c0f1",
+        "signature": "dc7f9ea1a78bd8734ed760544d0b8732818cac6f364cf97350703ba66067d465",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/typeoptions.js": {
+        "version": "4111111e20f0be16879d776bfae388cd319c953db167407d2544a586ba9ddc2b",
+        "signature": "8e0590c1aeac9c803f43cdb0aa5f37597af9643de384b32be5d6bf70a7bb8e9d",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/registercouple.tsx": {
+        "version": "a0f2d3cd6323875445a0db7e6a10fdf1354a66090347172deb9031a3d167ca92",
+        "signature": "2b098d48b3a711d8a8d05c8e9040431ad3365983271274722e0b1f96d2b765de",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/registerfamily.tsx": {
+        "version": "e1e9a7a9e35bdda3a75f38a970f22885185af2253e05a4afb31f1fe956b906dc",
+        "signature": "290f35fa58c780cc58d9f02887a7adccd7ee22235dc7324e97ea605249efc2e0",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/viewcouple.tsx": {
+        "version": "70c9339e45f624e3fc924f777a701f7c61950b09b5a52c6614ae421aa2c9e39d",
+        "signature": "6a9578a04cab88c975281ef6aba890be8fc075d291429ed70d5dc10a0f5e08d5",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/registerpatient.tsx": {
+        "version": "6af6c65192703dfc5375040b14288e2a67a72b07e561d8949a5a8d6ad8e6f9cb",
+        "signature": "545c4255d29b11f8e4ed21f09e363e67f5dd867b9cb162e9a87d15f8f5fbaff2",
+        "affectsGlobalScope": false
+      },
+      "./src/views/dashboard/dashboardaspsic.tsx": {
+        "version": "9d6a4b194e3947087f120c25e62027d57c6bc7a25820704abdcac9089963778f",
+        "signature": "a503b51e1417911db221e45e6624c303db555b2f56865fc407d59849a1d591e3",
+        "affectsGlobalScope": false
+      },
+      "./src/interfaces/psychologist.ts": {
+        "version": "057bb9956ec90ff88ffc2f130299713c4071f4f2dfb30186b67f6b9e87cddf4f",
+        "signature": "bfecf70a141d5b05cc5b869caadbc6c080514882c56c8008a4002f08db0324f0",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/patientcanalization.tsx": {
+        "version": "f3a31771842b128693f5e109ddb4ca4e2dd019c2cdb5fe1d810a1ebfe99fdb39",
+        "signature": "5333d7d3a447cf06409726ec24d869118a126c69e2c7f5f985fbfe6597c1ee7c",
         "affectsGlobalScope": false
       },
       "./src/components/forms/newpatientform/generateform.tsx": {
-        "version": "e01d8e03071473585f3356d0c3ef97e15d9c7cbc81e3b5bcac252591c80c3735",
-        "signature": "c0e1b26b469f971a589fd212542948a735fe4a1665a11f3792ab407b2e682374",
+        "version": "42c3429a025791197a2813d316d46fd922f823c894e1f57c900a8248cb19c3fd",
+        "signature": "1d42ad10be27a8f85281230c99c83a1791a0b280c825b7c614c63925aa6b9902",
         "affectsGlobalScope": false
       },
       "./src/components/forms/newform/fieldrow.tsx": {
@@ -2842,8 +2837,8 @@
         "affectsGlobalScope": false
       },
       "./src/views/forms/updateform.tsx": {
-        "version": "afaa7e17ca5b09c6883addd9e60bdbe3d2737ce55ad5ae5297382ec45c80163b",
-        "signature": "4e0fb51aefd0e34d74fc2aa3a56f2f523b1cb5f8903b2ce11472ab3ef0ccade9",
+        "version": "b26eb41fff205d3859fef050870df75618b4980a375b2075fc70e11133cb0410",
+        "signature": "3f0da04f404f1d4d751aaa4497396c967e0075605363f49a9bee5e8f9c218ae0",
         "affectsGlobalScope": false
       },
       "./node_modules/reselect/lib/index.d.ts": {
@@ -2857,13 +2852,13 @@
         "affectsGlobalScope": false
       },
       "./src/views/patients/viewpatients.tsx": {
-        "version": "936097759bc4d02b1c02f15e6c5460407e94519967b6412a9e66199aa8596aae",
-        "signature": "66a2177c2c0d83d5bd4de0059b30c88323e5141c52e3e32255d5bc2e9f60e784",
+        "version": "93216369173cec2fb09c0c59752b9e7d089dbe0e419ef908789487c8c14bb84b",
+        "signature": "49ce00400a25d97580f1e768bc0268106bd03e5ba3f44304725ce2ad4cbe8723",
         "affectsGlobalScope": false
       },
       "./src/views/forms/viewforms.tsx": {
-        "version": "cd94d825e54715ebde5df1763ca871e1abc41fb0c2fd74af27761ffa2ff59d69",
-        "signature": "cc27929cdeba76d45534aa8601a937f19ec3eccca3ccf9dc6728351de0dfff16",
+        "version": "824a9daf0bce1c97d27cc9437af40fe3cc6333cdcac0ef4390f9e4d9ce5048b3",
+        "signature": "67f838c2843cfc536eb2bf72dacac5151701ba5b38d8e6d2be70405423ab5fb9",
         "affectsGlobalScope": false
       },
       "./node_modules/@material-ui/icons/edit.d.ts": {
@@ -2871,94 +2866,164 @@
         "signature": "865950dbe055cab1e6850f12d921894f46972e039f3f557791d77a214eb4d090",
         "affectsGlobalScope": false
       },
-      "./node_modules/@material-ui/icons/print.d.ts": {
-        "version": "865950dbe055cab1e6850f12d921894f46972e039f3f557791d77a214eb4d090",
-        "signature": "865950dbe055cab1e6850f12d921894f46972e039f3f557791d77a214eb4d090",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/patientforms.ts": {
-        "version": "fbcdb687b90beedfb461f0c66c6778762ad6c8bf73fe2946fba659671fb4921c",
-        "signature": "73d28e0f0db608c9c0d82d214e32d640cdd6ee534c8e7d027f76d4eb356f7a32",
-        "affectsGlobalScope": false
-      },
-      "./src/interfaces/patientformfield.ts": {
-        "version": "026e6d6272d9c889ea8b5b2988e8553736cac74cfe7a23f062dbbff44e6c6ccf",
-        "signature": "3da1aaf74004221c0757644eb3d119100b57094a92c18f76a77cebb72a641a3d",
-        "affectsGlobalScope": false
-      },
       "./src/views/forms/consultpatientform.tsx": {
-        "version": "9c366f8561220dbe064e0bfde4d82adab88f44dcf3f78d923671fd96b75f8290",
-        "signature": "325fc89951378e0570f96ad82b2d9e740397840d87ead6faf17934fec653fb98",
+        "version": "ae36b1bd93e9981c12706f9c5795af945a8daa89e42f48354d01ba9613b35bdd",
+        "signature": "51583900bc86d5280ad03cf9ca5d18e7782e620b676fa16418fe6b19d5094941",
         "affectsGlobalScope": false
       },
       "./src/views/forms/updatepatientform.tsx": {
-        "version": "fe76ace7baa6988eeca71077ef207fdb552d85a7596bf4d7694384ae29ccc9f8",
-        "signature": "b760bcd8c9dad1f34e4fc2e2ada96f0f41deb21ee39f40a51daaa197a00f4410",
+        "version": "f86c1975a8375e24342559f803ebfc4c5e12bdb6f78f68334b10a1ef284507cc",
+        "signature": "fafd215cd6e7154ddda764f352377b27b46d12d6b6f3be5dd07e19ce7dac4a7e",
         "affectsGlobalScope": false
       },
       "./src/components/forms/listform/forms.tsx": {
-        "version": "35722426675d7dc1aefad1fe51fbe6673d1b531b97da93d3ec9615bdcef564ee",
-        "signature": "e219503688d3b3ea0b6c8c60e9b93ba2d239f6b145baaefefd676e0edcf9ce2f",
+        "version": "2c908ed857ec4ce7a842c8c5314799b48f46970c64f9a16d01d1afe11fd07842",
+        "signature": "7331210f7f4ef09291e0404b1439aea87aadc2515ce4a6c68b872960292f3f83",
         "affectsGlobalScope": false
       },
       "./src/views/forms/patientavailableforms.tsx": {
-        "version": "aa4dcce24a48f5aabf5d57ec42ae2e025944478d712f331476239f0a647a0304",
-        "signature": "cdb01f37dcc3f738152f296537d6bb9a2b158e1f89b31704f6ee0aaf31d1c3b9",
+        "version": "d7520fbbd4c14ae7fd3096f8b9cd4f496fc8ed8b6e313c59b6411c0678b41d6a",
+        "signature": "5f985bebad3ce343a86f06bf30b69a24114533fb2cfeee02ca5e1a323ed100f9",
         "affectsGlobalScope": false
       },
       "./src/views/forms/newpatientform.tsx": {
         "version": "2e669b669afc25c02fcc58cf76b30ff40b95940d89962bb38aadf4d2a1344089",
-        "signature": "65c0de11df28fc04d91d6af57f17b1731b08f0eff7397337f91a561862e9810a",
+        "signature": "09f5c462a1d3292ad5962872ee5b43a825d324bdc1b701504e99a218168905c8",
         "affectsGlobalScope": false
       },
       "./src/views/forms/newform.tsx": {
-        "version": "66dcfdfaf9ebb9551596f661ac0bf34e00809935c1e86a671d2ce789d6ea2ffd",
-        "signature": "9c013e60540cfdfcac779057144c05a3e44d9e178486ac33ce6bd2d402e6d87c",
+        "version": "66f29b698f3110a3a37dcaa468a59ee292244be94ac0f9db96977845cd816e19",
+        "signature": "7d03ff8291b9f8c5f128a4b998dfcd71301da4a6e398ca517fb86b82a809322a",
         "affectsGlobalScope": false
       },
       "./src/views/forms/index.ts": {
         "version": "8c0dbd696729a155b48773b6eaa44dc0dd1b2387df750601654d92bb46a8db38",
-        "signature": "1a39e8f635ac5087d19b9aeb3a6e4d0b9cbedea72853d87b0dcf48307cfac6ed",
+        "signature": "d740c4c68a3c3bf3f854d68698ff0cb04d02919c7357a25f4228ed7cb696528e",
         "affectsGlobalScope": false
       },
       "./src/interfaces/consultprofile.tsx": {
-        "version": "1ffc2d7be2d93355081d37c94bc9f86bb3ca1ac8a7b354f8c79a9f235325bbda",
-        "signature": "31ca19be2aa7eb2c7c5f6aed018dba3912ae176ce02531e6f9dbad9b15b5eb58",
+        "version": "39bb500cbb7ca76d2e8ff78090a065b954a42af52514b2471e5b1bb0dbd85d72",
+        "signature": "3566ed7f76f728af09436c3471cad47a7caea572ebe93d06b7d9466c67055319",
         "affectsGlobalScope": false
       },
       "./src/views/users/consultprofiles.tsx": {
-        "version": "856f03e730120b1995289a9b83f413dce71e42d7cf8de4cb2d6d9be71df6630c",
-        "signature": "eaf9115ba9c8324e62fd3d5c764a93cde9f618b2cea5a399ad02d5832cccd5df",
+        "version": "3996cbfe4c07d7e0e44109324bde1d22c0c36b14acd1b4edb7ded72ceeda29bf",
+        "signature": "5db88362890182c79e7579de28607d59221ae38c179d8919f98567f027baf64d",
         "affectsGlobalScope": false
       },
       "./src/views/users/updateuseradmin.tsx": {
-        "version": "21b5540d8a3293f281ea8ba58f4226c96e9bb9fb0d54b6e5034064d65bce9a9c",
-        "signature": "670e7ea5c3c71d2cb414e18ecb1dcc228ad4163f2b4eddf24a226aa658ab82c4",
+        "version": "b2262357349db9dc43fa9dc13807f6271c63d3e947119d68629f8b102bec723e",
+        "signature": "acc30645938b815debeea9a8726e70de0c25742fe833f30d68400f96625db9ed",
         "affectsGlobalScope": false
       },
       "./src/views/users/updateuser.tsx": {
-        "version": "abe6f8d93569bca363000befe3425cd387531d79f84e0c58485b438f48a6960f",
-        "signature": "44ad63dd829b898c303c10749537752e4368ced8f883c4dcff3e753d3b876cd4",
+        "version": "7d99b6c6e875286eb746d8b60f0e017129d985f1405be1f1dc24d0e5ad5e6b15",
+        "signature": "7b0979e103eece348517aff6ac9776c9c252901067299fe83189dd7a6f90219b",
         "affectsGlobalScope": false
       },
       "./src/views/users/changepassword.tsx": {
-        "version": "8aae7789e892a7c160e5bf13f0ced16e320f3d0485c02e01dfdcccbea7f29f35",
-        "signature": "96e9afbe00212110dde3a34b8b6e748a7934ccfb2de9f691bd4d26d3e5c5b169",
+        "version": "d057b249a94c44f475df655265092840001ea6f6db1694d6435cd92997800d7b",
+        "signature": "1999929169dc2ac20ae6d62b62634a240c62b706716eee74e3b04f943237daba",
         "affectsGlobalScope": false
       },
       "./src/components/notfound.tsx": {
-        "version": "fc398e13d3dfaed3d6fab08c30f7113db6e8be930dae5bac9bb7e03d8f090a4d",
-        "signature": "88271940ec672373540c6efaa882831fd977fea80cb816ba976a80e07fafdb94",
+        "version": "1a4ff2044cb7d4dcd3c303e5b9c7b31b296cd2b38ec25154a32a4a582d75febb",
+        "signature": "109149ec328551cf89b72f958218537c49011c8c82294bbecb91212ab7b21835",
+        "affectsGlobalScope": false
+      },
+      "./src/views/users/changepasswordadmin.tsx": {
+        "version": "2a93a091541dbab30f693cd00b7335d9a9ec1ace470815fa90dc2b0cc1718194",
+        "signature": "d0e75c5cb7a9757df12b446c7204f1f7635633cca2da48a5b1a83a7cfad2d586",
+        "affectsGlobalScope": false
+      },
+      "./src/api/report.tsx": {
+        "version": "a395bc413e9c430a692ba82d619af7d5dfb5a64b671c20ba051ff70667a4d2e9",
+        "signature": "db3306accbf4a7f943ef4c0f653da3c78c4d8d8e4e2fd9c8053c29075ec71d83",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/auto/auto.esm.d.ts": {
+        "version": "fbe30b0cda495ba6d208f3a8777078c1ef570c49a324013c16ff269273ed6b76",
+        "signature": "fbe30b0cda495ba6d208f3a8777078c1ef570c49a324013c16ff269273ed6b76",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/react-chartjs-2/dist/types.d.ts": {
+        "version": "f77f55be1fde3aae9c4d2791c3a04c558e12ce1956f7ea7553c3c2f47f039575",
+        "signature": "f77f55be1fde3aae9c4d2791c3a04c558e12ce1956f7ea7553c3c2f47f039575",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/react-chartjs-2/dist/chart.d.ts": {
+        "version": "b189ba76cd25e8f914dcff4df226a805f9757aeac4c002e54c70aafdefc76e08",
+        "signature": "b189ba76cd25e8f914dcff4df226a805f9757aeac4c002e54c70aafdefc76e08",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/utils.d.ts": {
+        "version": "fc5db7a2359c8edf6cd402ba3d1e5d48b55fc52d8a3497c77c33d71ad54e0832",
+        "signature": "fc5db7a2359c8edf6cd402ba3d1e5d48b55fc52d8a3497c77c33d71ad54e0832",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/adapters.d.ts": {
+        "version": "4e2e0b0cd1fe009e6e7b02ac9f1939ef5d9d003ddab9435d7d58d325ac5e9c73",
+        "signature": "4e2e0b0cd1fe009e6e7b02ac9f1939ef5d9d003ddab9435d7d58d325ac5e9c73",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/basic.d.ts": {
+        "version": "18103f01db6b9e920b88fd304598e41611d48810930c8d2be1c698cfcce80a97",
+        "signature": "18103f01db6b9e920b88fd304598e41611d48810930c8d2be1c698cfcce80a97",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/animation.d.ts": {
+        "version": "aea53f2b0e2b2c55c5d425d9f9257b9c66334c21c765f3d348d7c206aa7eb378",
+        "signature": "aea53f2b0e2b2c55c5d425d9f9257b9c66334c21c765f3d348d7c206aa7eb378",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/color.d.ts": {
+        "version": "9c88eebb75b82b4ccb9412c7e3035e40e188ea3d7dcb010ff87986b7ff629555",
+        "signature": "9c88eebb75b82b4ccb9412c7e3035e40e188ea3d7dcb010ff87986b7ff629555",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/geometric.d.ts": {
+        "version": "a05e22a997dd5f8f9d9d6d6ca60c4673552d48da27757a136eed262044947954",
+        "signature": "a05e22a997dd5f8f9d9d6d6ca60c4673552d48da27757a136eed262044947954",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/element.d.ts": {
+        "version": "27e4ceeef93fb248ba7d02391cf73f77e42d4bee18d233d0a3fadcaa1a2d0944",
+        "signature": "27e4ceeef93fb248ba7d02391cf73f77e42d4bee18d233d0a3fadcaa1a2d0944",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/layout.d.ts": {
+        "version": "9d01cd4f12ab3fa736274159f8e671b9b9ff15872a8164df1e46736117c43799",
+        "signature": "9d01cd4f12ab3fa736274159f8e671b9b9ff15872a8164df1e46736117c43799",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chart.js/types/index.esm.d.ts": {
+        "version": "19eced3c9a56cb51553898c2cc2bb21489603803bba1e36486be1e317a518339",
+        "signature": "19eced3c9a56cb51553898c2cc2bb21489603803bba1e36486be1e317a518339",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/react-chartjs-2/dist/index.d.ts": {
+        "version": "5172c6bcbdada6bde42097b06d1a12982f864e679588404a662d891a683c5ca0",
+        "signature": "5172c6bcbdada6bde42097b06d1a12982f864e679588404a662d891a683c5ca0",
+        "affectsGlobalScope": false
+      },
+      "./src/components/graph.tsx": {
+        "version": "b09f12d13e8f34c49ad975b3a6f4760773bf38d4eafa3ac493df03c1378e8df4",
+        "signature": "21712ccb4366876df667be7845d94d4d4578bab310c8e776bd7a67abbd2d8a53",
+        "affectsGlobalScope": false
+      },
+      "./src/views/patients/report.tsx": {
+        "version": "31d40db143b68cb56ac9fee776243ac4e2537bf4b5ec9cd7156a30c2e2cb3af4",
+        "signature": "6b704268bc6328736deb475165473f2981213d3c792c322d378277db335ae41a",
         "affectsGlobalScope": false
       },
       "./src/router.tsx": {
-        "version": "1ea2b7501f602409d6387724e87df4190fb53bde927129bf8c9b58f4a4ef6117",
-        "signature": "f88db5ebd929d7a5519080e79375a8b774c940e6be1500da65d9c6c2514f2b11",
+        "version": "a42280f3e7dc1b53fc8a32e48c1cfac1e3e2544329dfd03a717f36b2f24c3c99",
+        "signature": "4d5690fcae72a2d9f23b0fbd17cdb2dbf73129cae9c5587d11ab2da798553df7",
         "affectsGlobalScope": false
       },
       "./src/app.tsx": {
         "version": "d9daa98a64851c9c59319578b1842f3a1f5c2002486719e9219ec2b3bf13a9e9",
-        "signature": "2ad06e0df03bcf15d161c081d03eda3afee981da94b28959305966ba1c49606b",
+        "signature": "3ac1fd5b1a1a162f7ccac4ca3d5219d774885fe84502e12f02180f8fee9d15c9",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react-dom/index.d.ts": {
@@ -2967,8 +3032,8 @@
         "affectsGlobalScope": false
       },
       "./src/index.tsx": {
-        "version": "282d38d20592ff7f41cf0bc5444a3a380a3783f01012f22165a4dd6d7d9b49f8",
-        "signature": "928be7656b2589472a8fd103ccbf4c32e33bd974dc6e7edf307cb82fb28790a6",
+        "version": "b1b7c3ef6f73d4164c5482d8b88678aecda5674008373f922ea23b46990b09bf",
+        "signature": "5e27e58e235a551ef56cb47dbd7c7f4686e88886a9cf1d8b6226833f84013fff",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/node/globals.d.ts": {
@@ -3262,57 +3327,27 @@
         "affectsGlobalScope": false
       },
       "./src/fixtures/formfixture.js": {
-        "version": "4098b8f463fdb910c8e0a317a7b4c5f25801bdccb81308c562aa192a69ca5606",
-        "signature": "9d4af07935bfc8359976e07591ded879954a456af4a622740b018b346801e287",
+        "version": "a2be23c45488ee4a2d4c4b269a02b1e9db80d8727c710529a737fac34c524773",
+        "signature": "ff932a491681c4794dd97606f2a2370cdd106e3491585cd544254bf5668fb60b",
         "affectsGlobalScope": false
       },
       "./src/fixtures/patientfixture.ts": {
-        "version": "340a0ebed2da2d15664c44ebc34a8180974803fc8d705a4db8c3597f467dd544",
-        "signature": "a7b430f55cbab50de7c890f7d77dd6aef9a9f597d1ac73878cc27f4ff52567a6",
+        "version": "16d52664cec3a471bc0348fc7bc5895baa11df3b8ea673a3d9db3420c7a23057",
+        "signature": "6035cc44b587e5a814cfacbebbca6f531f9143b8176504417ed0a7fd6199c150",
         "affectsGlobalScope": false
       },
       "./src/fixtures/recordfixture.ts": {
-        "version": "57dee01bd3b4333d65d1f949fe173cede84d3035aceecdab5efed2b384c0f298",
-        "signature": "d49ab1c8dfd51945e9f8078d698644385dd474b5eee74dd0e9a7a6cd20162328",
+        "version": "ff10c8a9443f56efdcd09c4d35c096639a040d75109d42049a9b0d6cdc31fe85",
+        "signature": "5a9cf658283d1806f6b26159db408984cb80299741a954e3ddaa30b62a2384fa",
         "affectsGlobalScope": false
       },
       "./src/interfaces/patients.ts": {
-        "version": "074c7596e1250451b367ea44cb398ecb2023f997f6e8105720068272acee579c",
-        "signature": "48a87961143f64a7b1b98dee7b6dc463da6aa522a667ddd1ef11e3c5e611e2c4",
+        "version": "021575d91ed9ffff00f954578297b08777c19de9fafcbbffbe297cecc6a39e31",
+        "signature": "07fee7634f0a4e4c587534dfa1ff61c3a70ca3591885b7eeacc74360fd0b8595",
         "affectsGlobalScope": false
       },
       "./src/test/base.test.tsx": {
         "version": "fd6932d26e814e9eca9d61159ee3b072952f2a7ca5d0d77e646ca4748ff0470f",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/react-test-renderer/index.d.ts": {
-        "version": "60aaac5fb1858fbd4c4eb40e01706eb227eed9eca5c665564bd146971280dbd3",
-        "signature": "60aaac5fb1858fbd4c4eb40e01706eb227eed9eca5c665564bd146971280dbd3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/cheerio/index.d.ts": {
-        "version": "496086e48c978c6410a7dd1fee3c2c8f7abf297ed9f32e92672358c5ff9d1035",
-        "signature": "496086e48c978c6410a7dd1fee3c2c8f7abf297ed9f32e92672358c5ff9d1035",
-        "affectsGlobalScope": true
-      },
-      "./node_modules/@types/enzyme/index.d.ts": {
-        "version": "c9f092fa413eb709080f1494dcbb4a18757e84eb5d2b8bb0cc84f73d84a70dd7",
-        "signature": "c9f092fa413eb709080f1494dcbb4a18757e84eb5d2b8bb0cc84f73d84a70dd7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts": {
-        "version": "436b0d7b3bbe06db043a84afabc28bd6d6e28d521dd7a533c0070017603e510c",
-        "signature": "436b0d7b3bbe06db043a84afabc28bd6d6e28d521dd7a533c0070017603e510c",
-        "affectsGlobalScope": false
-      },
-      "./src/test/patientinfo.test.tsx": {
-        "version": "120d2c7970af8c0453982ad1f91f3e343be232e10cc22f82823d465e9f7e6b9f",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
-        "affectsGlobalScope": false
-      },
-      "./src/test/components/patientinfo.test.tsx": {
-        "version": "120d2c7970af8c0453982ad1f91f3e343be232e10cc22f82823d465e9f7e6b9f",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
@@ -3321,14 +3356,19 @@
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/react-test-renderer/index.d.ts": {
+        "version": "60aaac5fb1858fbd4c4eb40e01706eb227eed9eca5c665564bd146971280dbd3",
+        "signature": "60aaac5fb1858fbd4c4eb40e01706eb227eed9eca5c665564bd146971280dbd3",
+        "affectsGlobalScope": false
+      },
       "./src/test/views/newform.test.tsx": {
         "version": "6f314e2d77f0ac8990d4204d2f8627f0b9b164217b5fe7f306e6a5f02bfb1000",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
       "./src/utils/authheader.tsx": {
         "version": "33d3a8f6f705d1791f69a5a34e87d045ae4b02e8bc7139134a5a7d4523a815da",
-        "signature": "8bb1e73eb1b5ffa7805df5d7259a761ab3f2eec067f3fc9709cecd891dac1a88",
+        "signature": "e36e11adf57b7ee1a8e89c6b1a9e5eadba6f0d0a6d20509d055ef8b60e41c26c",
         "affectsGlobalScope": false
       },
       "./src/utils/calculateage.tsx": {
@@ -3337,8 +3377,13 @@
         "affectsGlobalScope": false
       },
       "./src/views/dataform.js": {
-        "version": "cf337f1df044c250a106645475a8b5dfb9bf9dba414802885dee5c826bda2057",
-        "signature": "e308f915815bc076c456dbc26b189b2f6da6f6f3e771501bc610635a18c89e64",
+        "version": "fb7c550c4d4b14032e417fea53148bdaebe68308ca2ce04a5a6a52f92ff12d67",
+        "signature": "5b447094db3b258c256e390f367fb9407e1433d5496af2fbc633cea16f3e4708",
+        "affectsGlobalScope": false
+      },
+      "./src/views/forms/document.tsx": {
+        "version": "e0674a0d0a3800f01efda381fa51a02c58f613243426b26d48bffeca19e4c7f6",
+        "signature": "db08961c5dfc0b961b785d23ac1889dd9e873cc48f78bcba1caf1c00c4f05264",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/anymatch/index.d.ts": {
@@ -3379,6 +3424,16 @@
       "./node_modules/@types/babel__core/index.d.ts": {
         "version": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
         "signature": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/cheerio/index.d.ts": {
+        "version": "496086e48c978c6410a7dd1fee3c2c8f7abf297ed9f32e92672358c5ff9d1035",
+        "signature": "496086e48c978c6410a7dd1fee3c2c8f7abf297ed9f32e92672358c5ff9d1035",
+        "affectsGlobalScope": true
+      },
+      "./node_modules/@types/enzyme/index.d.ts": {
+        "version": "c9f092fa413eb709080f1494dcbb4a18757e84eb5d2b8bb0cc84f73d84a70dd7",
+        "signature": "c9f092fa413eb709080f1494dcbb4a18757e84eb5d2b8bb0cc84f73d84a70dd7",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/enzyme-adapter-react-16/index.d.ts": {
@@ -3499,6 +3554,31 @@
       "./node_modules/@types/q/index.d.ts": {
         "version": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
         "signature": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/raf/index.d.ts": {
+        "version": "bd85e061719661505dc7c273cb72a4c7fba05fb4e24520e8caca9f9f074462c3",
+        "signature": "bd85e061719661505dc7c273cb72a4c7fba05fb4e24520e8caca9f9f074462c3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react-csv/components/commonproptypes.d.ts": {
+        "version": "9d490b475f0fe0031f0da436757caf07831b7c4cf960f351571b7582a45ed1f2",
+        "signature": "9d490b475f0fe0031f0da436757caf07831b7c4cf960f351571b7582a45ed1f2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react-csv/components/link.d.ts": {
+        "version": "d0d5feeefe5b6fb7dbb0bee46f8b1bc00df806278ae25dc7e9e48097df322228",
+        "signature": "d0d5feeefe5b6fb7dbb0bee46f8b1bc00df806278ae25dc7e9e48097df322228",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react-csv/components/download.d.ts": {
+        "version": "9f4e6e231d93a85d19da803f327906d183c9a1aa3152c664e79b52d8435ef7ac",
+        "signature": "9f4e6e231d93a85d19da803f327906d183c9a1aa3152c664e79b52d8435ef7ac",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react-csv/index.d.ts": {
+        "version": "1c5b7f58267564756ad2a57060496c2b094b2f92212be9462e6f228996f3dbe5",
+        "signature": "1c5b7f58267564756ad2a57060496c2b094b2f92212be9462e6f228996f3dbe5",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react-is/index.d.ts": {
@@ -3659,6 +3739,11 @@
       "./node_modules/@types/yargs/index.d.ts": {
         "version": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
         "signature": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/yoga-layout/index.d.ts": {
+        "version": "264c3c7a0c91314c41cce534b85670d93d8c68d3e50fa925d4cfa8adc941f37b",
+        "signature": "264c3c7a0c91314c41cce534b85670d93d8c68d3e50fa925d4cfa8adc941f37b",
         "affectsGlobalScope": false
       }
     },
@@ -5738,8 +5823,25 @@
       "./node_modules/@types/yargs/index.d.ts": [
         "./node_modules/@types/yargs-parser/index.d.ts"
       ],
-      "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts": [
-        "./node_modules/@types/enzyme/index.d.ts"
+      "./node_modules/chart.js/types/animation.d.ts": [
+        "./node_modules/chart.js/types/basic.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts"
+      ],
+      "./node_modules/chart.js/types/element.d.ts": [
+        "./node_modules/chart.js/types/geometric.d.ts"
+      ],
+      "./node_modules/chart.js/types/index.esm.d.ts": [
+        "./node_modules/chart.js/types/adapters.d.ts",
+        "./node_modules/chart.js/types/animation.d.ts",
+        "./node_modules/chart.js/types/basic.d.ts",
+        "./node_modules/chart.js/types/color.d.ts",
+        "./node_modules/chart.js/types/element.d.ts",
+        "./node_modules/chart.js/types/geometric.d.ts",
+        "./node_modules/chart.js/types/layout.d.ts",
+        "./node_modules/chart.js/types/utils.d.ts"
+      ],
+      "./node_modules/chart.js/types/layout.d.ts": [
+        "./node_modules/chart.js/types/geometric.d.ts"
       ],
       "./node_modules/indefinite-observable/dist/indefiniteobservable.d.ts": [
         "./node_modules/indefinite-observable/dist/types.d.ts"
@@ -5772,6 +5874,20 @@
       ],
       "./node_modules/pretty-format/build/index.d.ts": [
         "./node_modules/pretty-format/build/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/chart.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/react-chartjs-2/dist/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/index.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts",
+        "./node_modules/react-chartjs-2/dist/chart.d.ts",
+        "./node_modules/react-chartjs-2/dist/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/types.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/chart.js/auto/auto.esm.d.ts"
       ],
       "./node_modules/react-fade-in/lib/fadein.d.ts": [
         "./node_modules/@types/react/index.d.ts"
@@ -6186,6 +6302,10 @@
         "./src/utils/handleresponse.tsx",
         "./src/utils/server.tsx"
       ],
+      "./src/api/report.tsx": [
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./src/utils/server.tsx"
+      ],
       "./src/api/user.tsx": [
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./src/interfaces/patientarea.ts",
@@ -6259,6 +6379,12 @@
         "./src/interfaces/fieldoptions.ts",
         "./src/interfaces/form.ts"
       ],
+      "./src/components/graph.tsx": [
+        "./node_modules/@material-ui/core/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./node_modules/react-chartjs-2/dist/index.d.ts"
+      ],
       "./src/components/index.ts": [
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./src/components/contenttitle.tsx"
@@ -6307,6 +6433,7 @@
       ],
       "./src/components/recordinfo.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
+        "./node_modules/@material-ui/icons/print.d.ts",
         "./node_modules/@types/react-router-dom/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
@@ -6317,11 +6444,13 @@
         "./src/components/contenttitle.tsx",
         "./src/components/cornerfab.tsx",
         "./src/components/maincontent.tsx",
+        "./src/fixtures/roles.tsx",
         "./src/interfaces/index.ts",
         "./src/interfaces/patientform.ts",
         "./src/interfaces/record.ts",
         "./src/utils/createrecordid.tsx",
-        "./src/utils/groupby.ts"
+        "./src/utils/groupby.ts",
+        "./src/utils/withrole.tsx"
       ],
       "./src/components/users/editprofile.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
@@ -6395,7 +6524,8 @@
         "./src/interfaces/patientforms.ts"
       ],
       "./src/interfaces/patientforms.ts": [
-        "./node_modules/@types/react/jsx-runtime.d.ts"
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./src/interfaces/fieldoptions.ts"
       ],
       "./src/interfaces/patients.ts": [
         "./node_modules/@types/react/jsx-runtime.d.ts"
@@ -6437,15 +6567,17 @@
         "./src/views/dashboard/home.tsx",
         "./src/views/dashboard/soolers.tsx",
         "./src/views/forms/index.ts",
+        "./src/views/forms/printexpediente.tsx",
+        "./src/views/forms/printform.tsx",
         "./src/views/forms/updateform.tsx",
         "./src/views/login.tsx",
-        "./src/views/patients/consultpatient.tsx",
         "./src/views/patients/patientcanalization.tsx",
         "./src/views/patients/recorddetail.tsx",
         "./src/views/patients/registerpatient.tsx",
-        "./src/views/patients/updatepatientcanalization.tsx",
+        "./src/views/patients/report.tsx",
         "./src/views/patients/viewpatients.tsx",
         "./src/views/users/changepassword.tsx",
+        "./src/views/users/changepasswordadmin.tsx",
         "./src/views/users/consultprofiles.tsx",
         "./src/views/users/modifyprofile.tsx",
         "./src/views/users/registerprofile.tsx",
@@ -6462,28 +6594,6 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./src/app.tsx"
-      ],
-      "./src/test/components/patientinfo.test.tsx": [
-        "./node_modules/@types/enzyme/index.d.ts",
-        "./node_modules/@types/react-router-dom/index.d.ts",
-        "./node_modules/@types/react-test-renderer/index.d.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts",
-        "./src/components/cornerfab.tsx",
-        "./src/components/recordinfo.tsx",
-        "./src/fixtures/recordfixture.ts"
-      ],
-      "./src/test/patientinfo.test.tsx": [
-        "./node_modules/@types/enzyme/index.d.ts",
-        "./node_modules/@types/react-router-dom/index.d.ts",
-        "./node_modules/@types/react-test-renderer/index.d.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts",
-        "./src/components/cornerfab.tsx",
-        "./src/components/recordinfo.tsx",
-        "./src/fixtures/recordfixture.ts"
       ],
       "./src/test/utils/haspatientareas.test.tsx": [
         "./node_modules/@types/react/jsx-runtime.d.ts",
@@ -6571,6 +6681,7 @@
         "./node_modules/@types/react-router-dom/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/components/contenttitle.tsx",
         "./src/components/maincontent.tsx"
       ],
@@ -6636,8 +6747,12 @@
         "./src/api/forms.ts",
         "./src/components/contenttitle.tsx",
         "./src/components/maincontent.tsx",
-        "./src/interfaces/patientformfield.ts",
-        "./src/interfaces/patientforms.ts"
+        "./src/interfaces/field.ts",
+        "./src/interfaces/fieldoptions.ts",
+        "./src/interfaces/patientformfield.ts"
+      ],
+      "./src/views/forms/document.tsx": [
+        "./node_modules/@types/react/jsx-runtime.d.ts"
       ],
       "./src/views/forms/index.ts": [
         "./node_modules/@types/react/jsx-runtime.d.ts",
@@ -6654,7 +6769,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/@types/uuid/index.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/forms.ts",
         "./src/components/contenttitle.tsx",
         "./src/components/forms/newform/addoptionfield.tsx",
@@ -6683,13 +6798,37 @@
         "./src/interfaces/form.ts",
         "./src/utils/promiseloader.tsx"
       ],
+      "./src/views/forms/printexpediente.tsx": [
+        "./node_modules/@material-ui/core/index.d.ts",
+        "./node_modules/@material-ui/icons/print.d.ts",
+        "./node_modules/@types/react-router/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./src/api/forms.ts",
+        "./src/api/patient.tsx",
+        "./src/interfaces/fieldoptions.ts",
+        "./src/interfaces/patient.ts",
+        "./src/interfaces/patientform.ts",
+        "./src/interfaces/patientformfield.ts"
+      ],
+      "./src/views/forms/printform.tsx": [
+        "./node_modules/@material-ui/core/index.d.ts",
+        "./node_modules/@material-ui/icons/print.d.ts",
+        "./node_modules/@types/react-router/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./src/api/forms.ts",
+        "./src/interfaces/field.ts",
+        "./src/interfaces/fieldoptions.ts",
+        "./src/interfaces/patientformfield.ts"
+      ],
       "./src/views/forms/updateform.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
         "./node_modules/@types/react-router/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/@types/uuid/index.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/forms.ts",
         "./src/components/contenttitle.tsx",
         "./src/components/forms/newform/addoptionfield.tsx",
@@ -6705,7 +6844,7 @@
         "./node_modules/@types/react-router/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/forms.ts",
         "./src/components/contenttitle.tsx",
         "./src/components/loadingspinner.tsx",
@@ -6718,6 +6857,7 @@
         "./node_modules/@material-ui/core/index.d.ts",
         "./node_modules/@material-ui/data-grid/dist/data-grid.d.ts",
         "./node_modules/@material-ui/icons/index.d.ts",
+        "./node_modules/@types/react-router-dom/index.d.ts",
         "./node_modules/@types/react-router/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
@@ -6734,7 +6874,6 @@
         "./node_modules/@material-ui/core/cssbaseline/index.d.ts",
         "./node_modules/@material-ui/core/formcontrollabel/index.d.ts",
         "./node_modules/@material-ui/core/grid/index.d.ts",
-        "./node_modules/@material-ui/core/link/index.d.ts",
         "./node_modules/@material-ui/core/paper/index.d.ts",
         "./node_modules/@material-ui/core/styles/index.d.ts",
         "./node_modules/@material-ui/core/textfield/index.d.ts",
@@ -6747,39 +6886,12 @@
         "./src/components/contenttitle.tsx",
         "./src/utils/authcontext.tsx"
       ],
-      "./src/views/patients/consultpatient.tsx": [
-        "./node_modules/@material-ui/core/button/index.d.ts",
-        "./node_modules/@material-ui/core/formcontrol/index.d.ts",
-        "./node_modules/@material-ui/core/formcontrollabel/index.d.ts",
-        "./node_modules/@material-ui/core/formlabel/index.d.ts",
-        "./node_modules/@material-ui/core/grid/index.d.ts",
-        "./node_modules/@material-ui/core/gridlist/index.d.ts",
-        "./node_modules/@material-ui/core/paper/index.d.ts",
-        "./node_modules/@material-ui/core/radio/index.d.ts",
-        "./node_modules/@material-ui/core/radiogroup/index.d.ts",
-        "./node_modules/@material-ui/core/styles/index.d.ts",
-        "./node_modules/@material-ui/core/table/index.d.ts",
-        "./node_modules/@material-ui/core/tablebody/index.d.ts",
-        "./node_modules/@material-ui/core/tablecell/index.d.ts",
-        "./node_modules/@material-ui/core/tablerow/index.d.ts",
-        "./node_modules/@material-ui/core/textfield/index.d.ts",
-        "./node_modules/@material-ui/core/typography/index.d.ts",
-        "./node_modules/@types/react-csv/index.d.ts",
-        "./node_modules/@types/react-router-dom/index.d.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./src/api/patient.tsx",
-        "./src/components/contenttitle.tsx",
-        "./src/components/maincontent.tsx",
-        "./src/interfaces/index.ts",
-        "./src/interfaces/options.js"
-      ],
       "./src/views/patients/patientcanalization.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
         "./node_modules/@types/react-router-dom/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/patient.tsx",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
@@ -6800,7 +6912,6 @@
         "./node_modules/@material-ui/core/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./src/components/maincontent.tsx",
         "./src/interfaces/patient.ts",
         "./src/interfaces/typeoptions.js"
       ],
@@ -6811,8 +6922,8 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/patient.tsx",
-        "./src/components/maincontent.tsx",
         "./src/interfaces/patient.ts",
         "./src/interfaces/typeoptions.js"
       ],
@@ -6822,6 +6933,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/patient.tsx",
         "./src/components/contenttitle.tsx",
         "./src/components/maincontent.tsx",
@@ -6832,19 +6944,15 @@
         "./src/views/patients/registerfamily.tsx",
         "./src/views/patients/viewcouple.tsx"
       ],
-      "./src/views/patients/updatepatientcanalization.tsx": [
+      "./src/views/patients/report.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
-        "./node_modules/@types/react-router-dom/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
-        "./src/api/patient.tsx",
-        "./src/api/user.tsx",
+        "./src/api/report.tsx",
         "./src/components/contenttitle.tsx",
-        "./src/components/maincontent.tsx",
-        "./src/interfaces/options.js",
-        "./src/interfaces/patient.ts",
-        "./src/interfaces/psychologist.ts"
+        "./src/components/graph.tsx",
+        "./src/components/loadingspinner.tsx",
+        "./src/components/maincontent.tsx"
       ],
       "./src/views/patients/viewcouple.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
@@ -6860,9 +6968,12 @@
         "./node_modules/@types/react-router/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./src/api/forms.ts",
+        "./src/api/authenticationservice.tsx",
         "./src/api/patient.tsx",
+        "./src/components/contenttitle.tsx",
+        "./src/fixtures/roles.tsx",
         "./src/interfaces/patient.ts",
+        "./src/interfaces/user.ts",
         "./src/utils/promiseloader.tsx"
       ],
       "./src/views/users/changepassword.tsx": [
@@ -6871,11 +6982,23 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
         "./src/components/loadingspinner.tsx",
         "./src/components/maincontent.tsx",
         "./src/interfaces/user.ts"
+      ],
+      "./src/views/users/changepasswordadmin.tsx": [
+        "./node_modules/@material-ui/core/index.d.ts",
+        "./node_modules/@types/react-router-dom/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./node_modules/react-toastify/dist/index.d.ts",
+        "./src/api/user.tsx",
+        "./src/components/contenttitle.tsx",
+        "./src/components/loadingspinner.tsx",
+        "./src/components/maincontent.tsx"
       ],
       "./src/views/users/consultprofiles.tsx": [
         "./node_modules/@material-ui/core/index.d.ts",
@@ -6885,7 +7008,6 @@
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./src/api/authenticationservice.tsx",
         "./src/api/user.tsx",
-        "./src/components/contenttitle.tsx",
         "./src/components/maincontent.tsx",
         "./src/interfaces/consultprofile.tsx",
         "./src/interfaces/patientarea.ts"
@@ -6904,6 +7026,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/authenticationservice.tsx",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
@@ -6918,6 +7041,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
         "./src/components/maincontent.tsx",
@@ -6930,6 +7054,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/authenticationservice.tsx",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
@@ -6942,7 +7067,7 @@
         "./node_modules/@types/react-router/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
-        "./node_modules/react-toastify/dist/index.d.ts",
+        "./node_modules/sweetalert2/sweetalert2.d.ts",
         "./src/api/user.tsx",
         "./src/components/contenttitle.tsx",
         "./src/components/loadingspinner.tsx",
@@ -9009,8 +9134,25 @@
       "./node_modules/@types/yargs/index.d.ts": [
         "./node_modules/@types/yargs-parser/index.d.ts"
       ],
-      "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts": [
-        "./node_modules/@types/enzyme/index.d.ts"
+      "./node_modules/chart.js/types/animation.d.ts": [
+        "./node_modules/chart.js/types/basic.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts"
+      ],
+      "./node_modules/chart.js/types/element.d.ts": [
+        "./node_modules/chart.js/types/geometric.d.ts"
+      ],
+      "./node_modules/chart.js/types/index.esm.d.ts": [
+        "./node_modules/chart.js/types/adapters.d.ts",
+        "./node_modules/chart.js/types/animation.d.ts",
+        "./node_modules/chart.js/types/basic.d.ts",
+        "./node_modules/chart.js/types/color.d.ts",
+        "./node_modules/chart.js/types/element.d.ts",
+        "./node_modules/chart.js/types/geometric.d.ts",
+        "./node_modules/chart.js/types/layout.d.ts",
+        "./node_modules/chart.js/types/utils.d.ts"
+      ],
+      "./node_modules/chart.js/types/layout.d.ts": [
+        "./node_modules/chart.js/types/geometric.d.ts"
       ],
       "./node_modules/indefinite-observable/dist/indefiniteobservable.d.ts": [
         "./node_modules/indefinite-observable/dist/types.d.ts"
@@ -9043,6 +9185,20 @@
       ],
       "./node_modules/pretty-format/build/index.d.ts": [
         "./node_modules/pretty-format/build/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/chart.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/react-chartjs-2/dist/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/index.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts",
+        "./node_modules/react-chartjs-2/dist/chart.d.ts",
+        "./node_modules/react-chartjs-2/dist/types.d.ts"
+      ],
+      "./node_modules/react-chartjs-2/dist/types.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/chart.js/auto/auto.esm.d.ts"
       ],
       "./node_modules/react-fade-in/lib/fadein.d.ts": [
         "./node_modules/@types/react/index.d.ts"
@@ -9501,6 +9657,9 @@
       ],
       "./src/interfaces/patientformfield.ts": [
         "./src/interfaces/patientforms.ts"
+      ],
+      "./src/interfaces/patientforms.ts": [
+        "./src/interfaces/fieldoptions.ts"
       ],
       "./src/interfaces/record.ts": [
         "./src/interfaces/patient.ts",
@@ -9975,6 +10134,7 @@
       "./node_modules/@types/prettier/index.d.ts",
       "./node_modules/@types/prop-types/index.d.ts",
       "./node_modules/@types/q/index.d.ts",
+      "./node_modules/@types/raf/index.d.ts",
       "./node_modules/@types/react-csv/components/commonproptypes.d.ts",
       "./node_modules/@types/react-csv/components/download.d.ts",
       "./node_modules/@types/react-csv/components/link.d.ts",
@@ -10020,8 +10180,18 @@
       "./node_modules/@types/webpack/index.d.ts",
       "./node_modules/@types/yargs-parser/index.d.ts",
       "./node_modules/@types/yargs/index.d.ts",
-      "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts",
+      "./node_modules/@types/yoga-layout/index.d.ts",
       "./node_modules/axios/index.d.ts",
+      "./node_modules/chart.js/auto/auto.esm.d.ts",
+      "./node_modules/chart.js/types/adapters.d.ts",
+      "./node_modules/chart.js/types/animation.d.ts",
+      "./node_modules/chart.js/types/basic.d.ts",
+      "./node_modules/chart.js/types/color.d.ts",
+      "./node_modules/chart.js/types/element.d.ts",
+      "./node_modules/chart.js/types/geometric.d.ts",
+      "./node_modules/chart.js/types/index.esm.d.ts",
+      "./node_modules/chart.js/types/layout.d.ts",
+      "./node_modules/chart.js/types/utils.d.ts",
       "./node_modules/csstype/index.d.ts",
       "./node_modules/indefinite-observable/dist/indefiniteobservable.d.ts",
       "./node_modules/indefinite-observable/dist/index.d.ts",
@@ -10038,6 +10208,9 @@
       "./node_modules/popper.js/index.d.ts",
       "./node_modules/pretty-format/build/index.d.ts",
       "./node_modules/pretty-format/build/types.d.ts",
+      "./node_modules/react-chartjs-2/dist/chart.d.ts",
+      "./node_modules/react-chartjs-2/dist/index.d.ts",
+      "./node_modules/react-chartjs-2/dist/types.d.ts",
       "./node_modules/react-fade-in/lib/fadein.d.ts",
       "./node_modules/react-fade-in/lib/index.d.ts",
       "./node_modules/react-scripts/lib/react-app.d.ts",
@@ -10177,6 +10350,7 @@
       "./src/api/authenticationservice.tsx",
       "./src/api/forms.ts",
       "./src/api/patient.tsx",
+      "./src/api/report.tsx",
       "./src/api/user.tsx",
       "./src/app.tsx",
       "./src/components/contenttitle.tsx",
@@ -10186,6 +10360,7 @@
       "./src/components/forms/newform/addoptionfield.tsx",
       "./src/components/forms/newform/fieldrow.tsx",
       "./src/components/forms/newpatientform/generateform.tsx",
+      "./src/components/graph.tsx",
       "./src/components/index.ts",
       "./src/components/loadingspinner.tsx",
       "./src/components/maincontent.tsx",
@@ -10220,8 +10395,6 @@
       "./src/router.tsx",
       "./src/setuptests.ts",
       "./src/test/base.test.tsx",
-      "./src/test/components/patientinfo.test.tsx",
-      "./src/test/patientinfo.test.tsx",
       "./src/test/utils/haspatientareas.test.tsx",
       "./src/test/views/newform.test.tsx",
       "./src/utils/authcontext.tsx",
@@ -10246,24 +10419,39 @@
       "./src/views/dashboard/soolers.tsx",
       "./src/views/dataform.js",
       "./src/views/forms/consultpatientform.tsx",
+      "./src/views/forms/document.tsx",
       "./src/views/forms/index.ts",
       "./src/views/forms/newform.tsx",
       "./src/views/forms/newpatientform.tsx",
       "./src/views/forms/patientavailableforms.tsx",
+      "./src/views/forms/printexpediente.tsx",
+      "./src/views/forms/printform.tsx",
       "./src/views/forms/updateform.tsx",
       "./src/views/forms/updatepatientform.tsx",
       "./src/views/forms/viewforms.tsx",
       "./src/views/login.tsx",
-      "./src/views/patients/consultpatient.tsx",
       "./src/views/patients/patientcanalization.tsx",
       "./src/views/patients/recorddetail.tsx",
       "./src/views/patients/registercouple.tsx",
       "./src/views/patients/registerfamily.tsx",
       "./src/views/patients/registerpatient.tsx",
-      "./src/views/patients/updatepatientcanalization.tsx",
+      "./src/views/patients/report.tsx",
       "./src/views/patients/viewcouple.tsx",
-      "./src/views/patients/viewpatients.tsx",
+      [
+        "./src/views/patients/viewpatients.tsx",
+        [
+          {
+            "file": "./src/views/patients/viewpatients.tsx",
+            "start": 4095,
+            "length": 15,
+            "messageText": "Cannot find name 'riceFilterModel'.",
+            "category": 1,
+            "code": 2304
+          }
+        ]
+      ],
       "./src/views/users/changepassword.tsx",
+      "./src/views/users/changepasswordadmin.tsx",
       "./src/views/users/consultprofiles.tsx",
       "./src/views/users/modifyprofile.tsx",
       "./src/views/users/registerprofile.tsx",
@@ -12018,6 +12206,10 @@
         1
       ],
       [
+        "./node_modules/@types/raf/index.d.ts",
+        1
+      ],
+      [
         "./node_modules/@types/react-csv/components/commonproptypes.d.ts",
         1
       ],
@@ -12198,11 +12390,55 @@
         1
       ],
       [
+        "./node_modules/@types/yoga-layout/index.d.ts",
+        1
+      ],
+      [
         "./node_modules/@wojtekmaj/enzyme-adapter-react-17/index.d.ts",
         1
       ],
       [
         "./node_modules/axios/index.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/auto/auto.esm.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/adapters.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/animation.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/basic.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/color.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/element.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/geometric.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/index.esm.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/layout.d.ts",
+        1
+      ],
+      [
+        "./node_modules/chart.js/types/utils.d.ts",
         1
       ],
       [
@@ -12267,6 +12503,18 @@
       ],
       [
         "./node_modules/pretty-format/build/types.d.ts",
+        1
+      ],
+      [
+        "./node_modules/react-chartjs-2/dist/chart.d.ts",
+        1
+      ],
+      [
+        "./node_modules/react-chartjs-2/dist/index.d.ts",
+        1
+      ],
+      [
+        "./node_modules/react-chartjs-2/dist/types.d.ts",
         1
       ],
       [
@@ -12678,6 +12926,10 @@
         1
       ],
       [
+        "./src/api/report.tsx",
+        1
+      ],
+      [
         "./src/api/user.tsx",
         1
       ],
@@ -12711,6 +12963,10 @@
       ],
       [
         "./src/components/forms/newpatientform/generateform.tsx",
+        1
+      ],
+      [
+        "./src/components/graph.tsx",
         1
       ],
       [
@@ -12954,6 +13210,10 @@
         1
       ],
       [
+        "./src/views/forms/document.tsx",
+        1
+      ],
+      [
         "./src/views/forms/index.ts",
         1
       ],
@@ -12967,6 +13227,14 @@
       ],
       [
         "./src/views/forms/patientavailableforms.tsx",
+        1
+      ],
+      [
+        "./src/views/forms/printexpediente.tsx",
+        1
+      ],
+      [
+        "./src/views/forms/printform.tsx",
         1
       ],
       [
@@ -13010,6 +13278,10 @@
         1
       ],
       [
+        "./src/views/patients/report.tsx",
+        1
+      ],
+      [
         "./src/views/patients/updatepatientcanalization.tsx",
         1
       ],
@@ -13023,6 +13295,10 @@
       ],
       [
         "./src/views/users/changepassword.tsx",
+        1
+      ],
+      [
+        "./src/views/users/changepasswordadmin.tsx",
         1
       ],
       [
