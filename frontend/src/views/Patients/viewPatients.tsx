@@ -83,62 +83,26 @@ function PatientsTable(props: PatientsTableProps) {
       headerName: 'Especialistas',
       width: 300,
       renderCell: function createSelect(params:any) {
+        if (params.row.users.length === 0 && role !== UserRole.Administrador) {
+          return (
+            <div className={classes.listUsers}>
+              <strong>Paciente no Canalizado</strong>
+            </div>
+          );
+        }
+        if (params.row.users.length === 0 && role === UserRole.Administrador) {
+          return (
+            <Button variant="contained" color="primary" data-patientid={params.row.recordId.toString()} onClick={addUser}>
+              Canalizar
+            </Button>
+          );
+        }
         return params.row.users.map((user: User, index: number) => (
           <div className={classes.listUsers} key={user.id}>
             {user.name}
             {params.row.users.length - 1 > index ? ', ' : '' }
           </div>
         ));
-      },
-    },
-  ];
-
-  const adminColumns = [
-    {
-      field: 'recordId', headerName: 'Follio', width: 110,
-    },
-    {
-      field: 'name', headerName: 'Nombre', width: 250,
-    },
-    {
-      field: 'lastName', headerName: 'Apellido (s)', width: 350,
-    },
-    {
-      field: 'type', headerName: 'Área', width: 400,
-    },
-    {
-      field: 'consultar',
-      headerName: 'Consultar',
-      width: 145,
-      renderCell: function createSelect(params:any) {
-        return (
-          <Search data-patientid={params.row.recordId.toString()} onClick={viewRecord} fontSize="large" style={{ color: '#A3529A' }} />
-        );
-      },
-    },
-    {
-      field: 'especialistas',
-      headerName: 'Especialistas',
-      width: 300,
-      renderCell: function createSelect(params:any) {
-        return params.row.users.map((user: User, index: number) => (
-          <div className={classes.listUsers} key={user.id}>
-            {user.name}
-            {params.row.users.length - 1 > index ? ', ' : '' }
-          </div>
-        ));
-      },
-    },
-    {
-      field: 'canalizar',
-      headerName: 'Canalizar',
-      width: 300,
-      renderCell: function createSelect(params:any) {
-        return (
-          <Button variant="contained" color="primary" data-patientid={params.row.recordId.toString()} onClick={addUser}>
-            Canalizar
-          </Button>
-        );
       },
     },
   ];
@@ -153,7 +117,7 @@ function PatientsTable(props: PatientsTableProps) {
               <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
                 <DataGrid
                   rows={patients}
-                  columns={role === UserRole.Administrador ? adminColumns : columns}
+                  columns={columns}
                   pageSize={20}
                   components={{
                     Toolbar: GridToolbar,
@@ -175,7 +139,6 @@ function ViewPatients() {
   useEffect(() => {
     getPatients().then((response: any) => {
       setData(response.data);
-      console.log(response.data);
       setLoading(false);
     }).catch((error:any) => {
       console.error(error);
