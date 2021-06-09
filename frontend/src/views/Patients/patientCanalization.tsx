@@ -172,18 +172,19 @@ function PatientCanalization() {
                   {user.patientAreas.map(doctorAreas)}
                 </Typography>
                 <div className={classes.icon}>
-                  {isUserAlreadyCanalized(user.id) ? <Typography>Seleccionado</Typography> : (
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      id={user.id?.toString()}
-                      onClick={handleSubmit}
-                    >
-                      Seleccionar
-                    </Button>
-                  )}
+                  {isUserAlreadyCanalized(user.id)
+                    ? <Typography>Especialista Seleccionado</Typography> : (
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        id={user.id?.toString()}
+                        onClick={handleSubmit}
+                      >
+                        Seleccionar
+                      </Button>
+                    )}
                 </div>
               </CardContent>
             </Card>
