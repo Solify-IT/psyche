@@ -241,17 +241,22 @@ function RecordInfo(props: RecordInfoProps) {
         <Grid container spacing={2} className={classes.patientSectionRow}>
           <RecordInfoSlot label="Nombre" value={patient.name} />
           <RecordInfoSlot label="Apellidos" value={patient.lastName} />
-          <RecordInfoSlot label="Genero" value={patient.gender} />
+          <RecordInfoSlot label="Género" value={patient.gender} />
         </Grid>
         <Grid container spacing={2} className={classes.patientSectionRow}>
-          <RecordInfoSlot label="Tipo de paciente" value={patient.type} />
-          <RecordInfoSlot label="Lugar de nacimiento" value={patient.birthPlace} />
-          <RecordInfoSlot label="Fecha de inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
+          <RecordInfoSlot label="Tipo de Paciente" value={patient.type} />
+          <RecordInfoSlot label="Lugar de Nacimiento" value={patient.birthPlace} />
+          <RecordInfoSlot label="Fecha de Inicio" value={Moment(patient.startDate).format('DD-MM-YYYY')} />
         </Grid>
         <Grid container spacing={2} className={classes.patientSectionRow}>
-          <RecordInfoSlot label="Telefono" value={patient.telephone} />
-          <RecordInfoSlot label="Direccion" value={patient.address} />
-          <RecordInfoSlot label="Codigo Postal" value={patient.postalCode.toString()} />
+          <RecordInfoSlot label="Teléfono" value={patient.telephone} />
+          <RecordInfoSlot label="Dirección" value={patient.address} />
+          <RecordInfoSlot label="Código Postal" value={patient.postalCode.toString()} />
+        </Grid>
+        <Grid container spacing={2} className={classes.patientSectionRow}>
+          {patient.users?.map((user:any) => (
+            <RecordInfoSlot label="Nombre del Especialista" value={`${user.name} ${user.lastName}`} />
+          ))}
         </Grid>
       </Paper>
     );
@@ -282,7 +287,7 @@ function RecordInfo(props: RecordInfoProps) {
                   data-recordid={record.id}
                   onClick={updateCanalization}
                 >
-                  Modificar Canalización
+                  Agregar Especialista
                 </Button>,
               )}
               {'  '}

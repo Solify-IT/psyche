@@ -79,6 +79,19 @@ function PatientsTable(props: PatientsTableProps) {
         );
       },
     },
+    {
+      field: 'especialistas',
+      headerName: 'Especialistas',
+      width: 300,
+      renderCell: function createSelect(params:any) {
+        return params.row.users.map((user: User, index: number) => (
+          <div className={classes.listUsers}>
+            {user.name}
+            {params.row.users.length - 1 > index ? ', ' : '' }
+          </div>
+        ));
+      },
+    },
   ];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
