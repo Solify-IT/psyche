@@ -18,6 +18,5 @@ export default interface Patient {
   abuseAttempts: string;
   abuseMotive: string;
   recordId: number,
-  userId?: number,
-  user?:any
+  users?: any[],
 }

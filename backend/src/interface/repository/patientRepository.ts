@@ -14,9 +14,9 @@ export default class PatientRepository implements IPatientRepository {
     this.datastore = datastore;
   }
 
-  async canalize(patient: Patient[]): Promise<any> {
+  async canalize(patients: Patient[]): Promise<any> {
     const [result, error] = await wrapError(
-      this.datastore.save<Patient[]>('Patient', patient),
+      this.datastore.save('Patient', patients),
     );
     if (error) {
       throw error;
@@ -57,7 +57,7 @@ export default class PatientRepository implements IPatientRepository {
 
   async findAll(): Promise<Patient[]> {
     const [patients, error] = await wrapError(
-      this.datastore.fetchAllWhere<Patient>('Patient', { relations: ['user'] }),
+      this.datastore.fetchAll<Patient>('Patient'),
     );
 
     if (error) {

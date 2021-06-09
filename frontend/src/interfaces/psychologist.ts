@@ -1,5 +1,5 @@
 export default interface Psychologist {
-  id?:number,
+  id:number,
   username: string;
   name: string;
   address: string;
