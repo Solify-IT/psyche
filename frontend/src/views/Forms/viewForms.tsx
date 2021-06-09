@@ -4,9 +4,11 @@ import {
   Grid,
   IconButton,
   Fab,
+  ThemeProvider,
+  createMuiTheme,
 }
   from '@material-ui/core';
-import { DataGrid, GridToolbar } from '@material-ui/data-grid';
+import { DataGrid, esES, GridToolbar } from '@material-ui/data-grid';
 import Swal from 'sweetalert2';
 import {
   Edit,
@@ -124,26 +126,28 @@ function FormsTable(props: FormsTableProps) {
   return (
     <MainContent>
       <ContentTitle text="Consultar Formularios" />
-      <Grid container justify="flex-end">
-        <Fab color="primary" aria-label="add" component={Link} to="/new-form">
-          <Add />
-        </Fab>
-      </Grid>
-      <Grid container justify="center" alignItems="center">
-        <Grid item className={classes.table}>
-          <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
-            <DataGrid
-              rows={forms}
-              columns={columns}
-              pageSize={20}
-                // filterModel={riceFilterModel}
-              components={{
-                Toolbar: GridToolbar,
-              }}
-            />
-          </div>
+      <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, esES)}>
+        <Grid container justify="flex-end">
+          <Fab color="primary" aria-label="add" component={Link} to="/new-form">
+            <Add />
+          </Fab>
         </Grid>
-      </Grid>
+        <Grid container justify="center" alignItems="center">
+          <Grid item className={classes.table}>
+            <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
+              <DataGrid
+                rows={forms}
+                columns={columns}
+                pageSize={20}
+                // filterModel={riceFilterModel}
+                components={{
+                  Toolbar: GridToolbar,
+                }}
+              />
+            </div>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </MainContent>
   );
 }

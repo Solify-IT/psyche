@@ -3,9 +3,11 @@ import {
   makeStyles,
   Grid,
   Button,
+  createMuiTheme,
+  ThemeProvider,
 }
   from '@material-ui/core';
-import { DataGrid, GridToolbar } from '@material-ui/data-grid';
+import { DataGrid, GridToolbar, esES } from '@material-ui/data-grid';
 import {
   Search,
 }
@@ -16,6 +18,7 @@ import PromiseLoader from 'src/utils/promiseLoader';
 import { useHistory } from 'react-router';
 import ContentTitle from 'src/components/contentTitle';
 import User from 'src/interfaces/user';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import UserRole from 'src/fixtures/roles';
 import { authenticationService } from 'src/api/authenticationService';
 
@@ -40,6 +43,7 @@ function PatientsTable(props: PatientsTableProps) {
     },
   }));
   const classes = useStyles();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { role } = authenticationService.currentUserValue.user;
 
   const addUser = (event: React.ChangeEvent<any>) => {
@@ -77,6 +81,7 @@ function PatientsTable(props: PatientsTableProps) {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const adminColumns = [
     {
       field: 'recordId', headerName: 'Follio', width: 110,
@@ -131,21 +136,22 @@ function PatientsTable(props: PatientsTableProps) {
     <main>
       <div className={classes.heroContent}>
         <ContentTitle text="Consultar Pacientes" />
-        <Grid container justify="center" alignItems="center">
-          <Grid item className={classes.table}>
-            <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
-              <DataGrid
-                rows={patients}
-                columns={[UserRole.Administrador].includes(role) ? adminColumns : columns}
-                pageSize={20}
-                // filterModel={riceFilterModel}
-                components={{
-                  Toolbar: GridToolbar,
-                }}
-              />
-            </div>
+        <ThemeProvider theme={(outerTheme) => createMuiTheme(outerTheme, esES)}>
+          <Grid container justify="center" alignItems="center">
+            <Grid item className={classes.table}>
+              <div style={{ height: 800, width: '100%', marginTop: '20px' }}>
+                <DataGrid
+                  rows={patients}
+                  columns={columns}
+                  pageSize={20}
+                  components={{
+                    Toolbar: GridToolbar,
+                  }}
+                />
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
+        </ThemeProvider>
       </div>
     </main>
   );
