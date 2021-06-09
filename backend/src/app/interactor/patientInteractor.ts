@@ -46,7 +46,6 @@ export default class PatientInteractor {
   }
 
   async canalize(patients: Patient[]) : Promise<any> {
-    console.log(patients);
     const [result, error] = await wrapError(this.patientRepository.canalize(patients));
 
     if (error) {

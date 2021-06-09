@@ -79,7 +79,6 @@ function PatientCanalization() {
     getUsers()
       .then((response:any) => {
         setUsers(Object.values(response));
-        console.log(response);
       })
       .catch((error:any) => console.log(error));
   }, []);
@@ -92,34 +91,42 @@ function PatientCanalization() {
       .catch((error:any) => console.log(error));
   }, []);
 
+  function isUserAlreadyCanalized(userId: number) {
+    if (patients && patients.length > 0) {
+      const patientIds = patients[0].users?.map((user) => user.id);
+      return patientIds?.includes(userId);
+    } return false;
+  }
+
   function handleSubmit(event: React.ChangeEvent<any>) {
-    const { userId } = event.currentTarget.dataset;
-    const user = users.find((findUser) => (findUser.id === userId));
+    const userId = event.currentTarget.id;
+    const user = users.find((findUser) => findUser.id?.toString() === userId);
     if (user) {
       patients.forEach((patient) => {
         patient.users?.push(user);
       });
-    }
 
-    canalizePatient(patients)
-      .then((response:any) => {
-        console.log(response);
-        Swal.fire(
-          '¡Paciente Canalizado!',
-          'A partir de ahora, el paciente podrá empezar su tratamiento',
-          'success',
-        );
-        history.replace('/view-patients');
-      })
-      .catch((error:any) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Ocurrió un error interno!',
+      canalizePatient(patients)
+        .then((response:any) => {
+          console.log(response);
+          Swal.fire(
+            '¡Paciente Canalizado!',
+            'A partir de ahora, el paciente podrá empezar su tratamiento',
+            'success',
+          );
+          history.replace('/view-patients');
+        })
+        .catch((error:any) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrió un error interno!',
+          });
+          console.log(error);
         });
-        console.log(error);
-      });
-    console.error('User not found');
+    } else {
+      console.error('User not found');
+    }
   }
 
   const doctorAreas = (patientArea:any) => (
@@ -165,16 +172,18 @@ function PatientCanalization() {
                   {user.patientAreas.map(doctorAreas)}
                 </Typography>
                 <div className={classes.icon}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    data-userid={user.id}
-                    onClick={handleSubmit}
-                  >
-                    Seleccionar
-                  </Button>
+                  {isUserAlreadyCanalized(user.id) ? <Typography>Seleccionado</Typography> : (
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                      id={user.id?.toString()}
+                      onClick={handleSubmit}
+                    >
+                      Seleccionar
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

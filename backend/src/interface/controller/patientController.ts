@@ -73,14 +73,13 @@ export default class PatientController {
   }
 
   async canalizePatient(context: IContext): Promise<void> {
-    const { patients } = context.request.body;
-    const [result, error] = await wrapError(
-      this.patientInteractor.canalize(patients),
+    const [patients, error] = await wrapError(
+      this.patientInteractor.canalize(context.request.body),
     );
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [record, errorRecord] = await wrapError(
-      this.patientInteractor.updateDateAt(result[0].recordId),
+      this.patientInteractor.updateDateAt(patients[0].recordId),
     );
 
     if (error) {

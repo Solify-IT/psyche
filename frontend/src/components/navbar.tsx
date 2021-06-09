@@ -69,7 +69,7 @@ function Navbar() {
         {
           label: 'Registrar Paciente',
           icon: <AddCircle />,
-          link: '/dashboard-area',
+          link: '/dashboard-as-psic',
           rolesAllowed: [
             UserRole.Administrador,
             UserRole.Psicólogo,
@@ -78,7 +78,7 @@ function Navbar() {
         {
           label: 'Consultar Pacientes',
           icon: <ListAltOutlined />,
-          link: '/consult-patient',
+          link: '/view-patients',
           rolesAllowed: [
             UserRole.Administrador,
             UserRole.Psicólogo,

@@ -27,7 +27,6 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientCanalization from './views/Patients/patientCanalization';
-import UpdatePatientCanalization from './views/Patients/updatePatientCanalization';
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import UpdateForm from './views/Forms/updateForm';
 import ViewPatients from './views/Patients/viewPatients';
@@ -78,7 +77,6 @@ const AppRouter = () => (
     <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
-    <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} roles={[UserRole.Administrador]} />
