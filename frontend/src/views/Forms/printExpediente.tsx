@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     // marginTop: '2px',
     // marginBottom: '45px',
     borderColor: '#C94B72',
-    width: '20.5cm',
+    width: '20.2cm',
     height: '27.2cm',
     marginBottom: '3cm',
     marginTop: '0.5cm',
@@ -228,7 +228,43 @@ function PrintExpediente() {
             />
           </Grid>
         );
+      case 'Campo de texto':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'number':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'Campo de número':
         return (
           <Grid item xs={4}>
             <TextField
@@ -264,7 +300,43 @@ function PrintExpediente() {
             />
           </Grid>
         );
+      case 'Selección de fecha':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'select':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'Selección de opciones':
         return (
           <Grid item xs={4}>
             <TextField
@@ -293,7 +365,51 @@ function PrintExpediente() {
             </div>
           </Grid>
         );
+      case 'Firma':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
       case 'checkbox': {
+        return (
+          <Grid item xs={4}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                  )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl
@@ -439,7 +555,7 @@ function PrintExpediente() {
                     </Grid>
                   </Paper>
                 ))}
-                <Typography align="center" className={classes.headerSection} />
+                <Typography align="center" className={classes.aviso} />
               </Grid>
 
               {fields.map((field) => (
