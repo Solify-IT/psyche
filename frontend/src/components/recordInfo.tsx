@@ -303,7 +303,7 @@ function RecordInfo(props: RecordInfoProps) {
           )) : false}
         </Grid>
       </MainContent>
-      <CornerFab extended text="Agregar formato" link={`/expediente/${record.id}/encuestas`} />
+      <CornerFab extended text="Agregar Formulario" link={`/expediente/${record.id}/encuestas`} />
     </div>
   );
 }
