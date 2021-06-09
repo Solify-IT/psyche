@@ -225,7 +225,7 @@ function ConsultPatientForm() {
                 <EditIcon className={classes.icon} />
               </Button>
             </Grid>
-            {fields.filter((field) => field.type !== 'signature').map(createComponent)}
+            {fields.filter((field) => field.type !== 'signature' && field.type !== 'Firma').map(createComponent)}
           </Grid>
         </Container>
       </div>
