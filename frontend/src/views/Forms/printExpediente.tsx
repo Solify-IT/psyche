@@ -5,7 +5,6 @@ import {
   Grid,
   Typography,
   TextField,
-  Button,
   FormControl,
   FormLabel,
   FormGroup,
@@ -15,13 +14,12 @@ import {
   Divider,
 }
   from '@material-ui/core';
-import PrintIcon from '@material-ui/icons/Print';
 import FieldOption from 'src/interfaces/fieldOptions';
 import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import Patient from 'src/interfaces/patient';
-import './print.css';
+// import './print.css';
 import { getPatientRecord } from 'src/api/patient';
 import PatientForm from 'src/interfaces/patientForm';
 
@@ -134,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#C94B72',
     borderRadius: 20,
     padding: theme.spacing(2, 6),
-    marginTop: '2px',
+    marginTop: '30px',
     marginBottom: '7px',
   },
   divider: {
@@ -172,6 +170,12 @@ function PrintExpediente() {
     forms: Array<PatientForm>(),
     patients: Array<Patient>(),
   });
+  const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+  async function timeSensativeAction() {
+    await sleep(2000);
+    window.print();
+    history.replace(`/expediente/${recordId}`);
+  }
 
   useEffect(() => {
     getPatientRecord(recordId)
@@ -199,18 +203,14 @@ function PrintExpediente() {
           },
         ));
         setFields(preOrder);
+        timeSensativeAction();
       })
       .catch((error:any) => console.log(error));
   }, [recordId]);
 
-  function printDiv() {
-    window.print();
-    history.replace(`/expediente/${recordId}`);
-  }
-
   function createComponent(field:any) {
     switch (field.type) {
-      case 'Campo de texto':
+      case 'text':
         return (
           <Grid item xs={4}>
             <TextField
@@ -228,7 +228,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'Campo de número':
+      case 'number':
         return (
           <Grid item xs={4}>
             <TextField
@@ -246,7 +246,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'Selección de fecha':
+      case 'datepicker':
         return (
           <Grid item xs={4}>
             <TextField
@@ -264,7 +264,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'Selección de opciones':
+      case 'select':
         return (
           <Grid item xs={4}>
             <TextField
@@ -282,7 +282,7 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'Firma':
+      case 'signature':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
             <div>
@@ -293,7 +293,7 @@ function PrintExpediente() {
             </div>
           </Grid>
         );
-      case 'Selección múltiple': {
+      case 'checkbox': {
         return (
           <Grid item xs={4}>
             <FormControl
@@ -350,20 +350,6 @@ function PrintExpediente() {
   return (
     <div className={classes.heroContent}>
       <main>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={printDiv}
-            >
-              Imprimir
-              <PrintIcon className={classes.icon} />
-            </Button>
-          </Grid>
-        </Grid>
         <div>
           <Container>
             <Grid container justify="center" alignItems="center">
@@ -453,7 +439,7 @@ function PrintExpediente() {
                     </Grid>
                   </Paper>
                 ))}
-                <Typography align="center" className={classes.aviso} />
+                <Typography align="center" className={classes.headerSection} />
               </Grid>
 
               {fields.map((field) => (
@@ -500,7 +486,6 @@ function PrintExpediente() {
                     ).map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center">
-                    {/* {field.fields.map(createComponent)} */}
                     {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center" {...{ class: 'page' }}>

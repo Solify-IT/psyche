@@ -288,7 +288,7 @@ function RecordInfo(props: RecordInfoProps) {
                 onClick={printRecord}
                 className={classes.printB}
               >
-                Formato de Impresión
+                Imprimir
                 <PrintIcon className={classes.icon} />
               </Button>
             </div>

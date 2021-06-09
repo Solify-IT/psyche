@@ -209,7 +209,7 @@ function ConsultPatientForm() {
                 component={Link}
                 to={`/patient-print/${formId}`}
               >
-                Formato de impresión
+                Imprimir
                 <PrintIcon className={classes.icon} />
               </Button>
               <Button
