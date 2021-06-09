@@ -113,7 +113,7 @@ function UpdateUserAdmin() {
   };
   return (
     <MainContent>
-      <ContentTitle text="Editar Usuario" />
+      <ContentTitle text="Modificar Usuario" />
       <Grid
         container
         justify="center"

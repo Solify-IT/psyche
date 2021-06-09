@@ -141,7 +141,41 @@ function GenerateForm(props: GenerateFormProps) {
 
   function createComponent(field:any) {
     switch (field.type) {
+      case 'Campo de texto':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
       case 'text':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
+      case 'Firma':
         return (
           <Grid item xs={4}>
             <TextField
@@ -175,6 +209,24 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
+      case 'Campo de número':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              type="number"
+              id={field.id.toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
       case 'number':
         return (
           <Grid item xs={4}>
@@ -189,6 +241,27 @@ function GenerateForm(props: GenerateFormProps) {
               label={field.label}
               name={field.label.replace(/\s/g, '')}
               value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
+      case 'Selección de fecha':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              type="date"
+              id={field.id.toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              InputLabelProps={{
+                shrink: true,
+              }}
               onChange={handleChange}
             />
           </Grid>
@@ -214,6 +287,25 @@ function GenerateForm(props: GenerateFormProps) {
             />
           </Grid>
         );
+      case 'Selección de opciones':
+        return (
+          <Grid item xs={4}>
+            <div className={classes.group}>
+              <InputLabel>{field.label}</InputLabel>
+              <Select
+                required
+                fullWidth
+                label={field.label}
+                key={field.id.toString()}
+                name={field.id.toString()}
+                value={field.value}
+                onChange={handleSelect}
+              >
+                {field.options.map(createSelect)}
+              </Select>
+            </div>
+          </Grid>
+        );
       case 'select':
         return (
           <Grid item xs={4}>
@@ -233,7 +325,7 @@ function GenerateForm(props: GenerateFormProps) {
             </div>
           </Grid>
         );
-      case 'checkbox': {
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>
@@ -251,6 +343,32 @@ function GenerateForm(props: GenerateFormProps) {
                         onClick={handleCheck}
                       />
                 )}
+                    label={option.label}
+                    key={option.id}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'checkbox': {
+        return (
+          <Grid item xs={4}>
+            <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>
+              <FormLabel component="legend">{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                        onClick={handleCheck}
+                      />
+                  )}
                     label={option.label}
                     key={option.id}
                   />
@@ -288,7 +406,7 @@ function GenerateForm(props: GenerateFormProps) {
             {data.name}
           </Typography>
         </Grid>
-        {fields.filter((field) => field.type !== 'signature').map(createComponent)}
+        {fields.filter((field) => field.type !== 'signature' && field.type !== 'Firma').map(createComponent)}
 
         <Grid container alignItems="center" justify="center" direction="row">
           <Grid item>

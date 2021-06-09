@@ -5,7 +5,6 @@ import {
   Grid,
   Typography,
   TextField,
-  Button,
   FormControl,
   FormLabel,
   FormGroup,
@@ -15,13 +14,12 @@ import {
   Divider,
 }
   from '@material-ui/core';
-import PrintIcon from '@material-ui/icons/Print';
 import FieldOption from 'src/interfaces/fieldOptions';
 import { getFormId } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import Patient from 'src/interfaces/patient';
-import './print.css';
+// import './print.css';
 import { getPatientRecord } from 'src/api/patient';
 import PatientForm from 'src/interfaces/patientForm';
 
@@ -122,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     // marginTop: '2px',
     // marginBottom: '45px',
     borderColor: '#C94B72',
-    width: '20.5cm',
+    width: '20.2cm',
     height: '27.2cm',
     marginBottom: '3cm',
     marginTop: '0.5cm',
@@ -134,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#C94B72',
     borderRadius: 20,
     padding: theme.spacing(2, 6),
-    marginTop: '2px',
+    marginTop: '30px',
     marginBottom: '7px',
   },
   divider: {
@@ -172,6 +170,12 @@ function PrintExpediente() {
     forms: Array<PatientForm>(),
     patients: Array<Patient>(),
   });
+  const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+  async function timeSensativeAction() {
+    await sleep(2000);
+    window.print();
+    history.replace(`/expediente/${recordId}`);
+  }
 
   useEffect(() => {
     getPatientRecord(recordId)
@@ -199,18 +203,32 @@ function PrintExpediente() {
           },
         ));
         setFields(preOrder);
+        timeSensativeAction();
       })
       .catch((error:any) => console.log(error));
   }, [recordId]);
 
-  function printDiv() {
-    window.print();
-    history.replace(`/expediente/${recordId}`);
-  }
-
   function createComponent(field:any) {
     switch (field.type) {
       case 'text':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'Campo de texto':
         return (
           <Grid item xs={4}>
             <TextField
@@ -246,7 +264,43 @@ function PrintExpediente() {
             />
           </Grid>
         );
+      case 'Campo de número':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'datepicker':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'Selección de fecha':
         return (
           <Grid item xs={4}>
             <TextField
@@ -282,6 +336,24 @@ function PrintExpediente() {
             />
           </Grid>
         );
+      case 'Selección de opciones':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'signature':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
@@ -293,7 +365,51 @@ function PrintExpediente() {
             </div>
           </Grid>
         );
+      case 'Firma':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
       case 'checkbox': {
+        return (
+          <Grid item xs={4}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                  )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl
@@ -350,20 +466,6 @@ function PrintExpediente() {
   return (
     <div className={classes.heroContent}>
       <main>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={printDiv}
-            >
-              Imprimir
-              <PrintIcon className={classes.icon} />
-            </Button>
-          </Grid>
-        </Grid>
         <div>
           <Container>
             <Grid container justify="center" alignItems="center">
@@ -500,7 +602,6 @@ function PrintExpediente() {
                     ).map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center">
-                    {/* {field.fields.map(createComponent)} */}
                     {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center" {...{ class: 'page' }}>

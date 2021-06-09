@@ -285,6 +285,7 @@ function RecordInfo(props: RecordInfoProps) {
                   Modificar Canalización
                 </Button>,
               )}
+              {'  '}
               <Button
                 type="submit"
                 variant="contained"

@@ -5,7 +5,6 @@ import {
   Grid,
   Typography,
   TextField,
-  Button,
   FormControl,
   FormLabel,
   FormGroup,
@@ -17,7 +16,6 @@ import {
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
 import Field from 'src/interfaces/field';
-import PrintIcon from '@material-ui/icons/Print';
 import { getFormField } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
@@ -78,6 +76,14 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '15px',
     textTransform: 'none',
   },
+  subtitlesLabel: {
+    marginTop: '0px',
+    padding: '10px',
+    paddingBottom: '0px',
+    color: '#000000',
+    fontSize: '12px',
+    fontWeight: 'bold',
+  },
   icon: {
     paddingLeft: '5px',
   },
@@ -113,12 +119,21 @@ const useStyles = makeStyles((theme) => ({
     bottom: '100px',
     width: '100%',
   },
+
+  headerSection: {
+    align: 'center',
+    flexDirection: 'column',
+    borderColor: '#C94B72',
+    margin: '30px',
+    padding: '15px',
+  },
 }));
 
 function PrintForm() {
   const { formId } : any = useParams();
   const classes = useStyles();
   const history = useHistory();
+  const [fields, setFields] = useState<Field[]>([]);
   const [formInformation, setFormInformation] = useState({
     id: 0,
     name: '',
@@ -126,8 +141,12 @@ function PrintForm() {
     type: '',
     createdData: '',
   });
-  const [fields, setFields] = useState<Field[]>([]);
-
+  const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+  async function timeSensativeAction() {
+    await sleep(2000);
+    window.print();
+    history.replace(`/patient-form/${formId}`);
+  }
   useEffect(() => {
     getFormField(formId)
       .then((response:any) => {
@@ -146,18 +165,32 @@ function PrintForm() {
             return 0;
           },
         )));
+        timeSensativeAction();
         setFormInformation(response.data);
       })
       .catch((error:any) => console.log(error));
   }, [formId]);
 
-  function printDiv() {
-    window.print();
-    history.replace(`/patient-form/${formId}`);
-  }
-
   function createComponent(field:any) {
     switch (field.type) {
+      case 'Campo de texto':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'text':
         return (
           <Grid item xs={4}>
@@ -176,7 +209,43 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'Campo de número':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'number':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'Selección de fecha':
         return (
           <Grid item xs={4}>
             <TextField
@@ -212,6 +281,24 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'Selección de opciones':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'select':
         return (
           <Grid item xs={4}>
@@ -230,6 +317,17 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'Firma':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
       case 'signature':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
@@ -241,7 +339,7 @@ function PrintForm() {
             </div>
           </Grid>
         );
-      case 'checkbox': {
+      case 'Selección múltiple': {
         return (
           <Grid item xs={4}>
             <FormControl
@@ -263,6 +361,39 @@ function PrintForm() {
                         data-group={field.id.toString()}
                       />
                   )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'checkbox': {
+        return (
+          <Grid item xs={4}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                    )}
                     label={option.label}
                     key={option.id}
                     classes={{
@@ -297,47 +428,40 @@ function PrintForm() {
   return (
     <div className={classes.heroContent}>
       <main>
-        <Paper variant="outlined" className={classes.patientSection}>
-          <Grid container>
-            <Grid item>
-              <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
+
+        <Grid item xs={12} justify="center" alignItems="center">
+          <Paper variant="outlined" className={classes.patientSection}>
+            <Grid container>
+              <Grid item>
+                <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
+              </Grid>
+              <Grid item>
+                <Typography variant="h4" align="left" className={classes.subtitles1}>
+                  Patronato Psicológico Queretano I.A.P
+                </Typography>
+                <Typography align="left" className={classes.subtitles}>
+                  { formInformation.name}
+                  {' '}
+                </Typography>
+                <Typography align="left" className={classes.subtitles}>
+                  Folio: PPQ-
+                  {' '}
+                  {formInformation.recordId}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="h4" align="left" className={classes.subtitles1}>
-                Patronato Psicológico Queretano I.A.P
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                { formInformation.name}
-                {' '}
-              </Typography>
-              <Typography align="left" className={classes.subtitles}>
-                Folio: PPQ-
-                {' '}
-                {formInformation.recordId}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
+          <Typography align="center" className={classes.aviso} />
+        </Grid>
+
         <div>
           <Container>
             <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={printDiv}
-                >
-                  Imprimir
-                  <PrintIcon className={classes.icon} />
-                </Button>
+              <Grid container justify="center" alignItems="center">
+                {fields.filter((field) => field.type !== 'Firma' && field.type !== 'signature').map(createComponent)}
               </Grid>
               <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type !== 'signature').map(createComponent)}
-              </Grid>
-              <Grid container justify="center" alignItems="center">
-                {fields.filter((field) => field.type === 'signature').map(createComponent)}
+                {fields.filter((field) => field.type === 'Firma' || field.type === 'signature').map(createComponent)}
                 <Grid item xs={12}>
                   <Typography align="center" className={classes.aviso}>
                     Sirva el presente AVISO DE PRIVACIDAD DE DATOS PERSONALES para
