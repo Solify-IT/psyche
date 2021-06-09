@@ -39,6 +39,9 @@ function PatientsTable(props: PatientsTableProps) {
     table: {
       width: '85%',
     },
+    listUsers: {
+      marginRight: 10,
+    },
   }));
   const classes = useStyles();
   const { role } = authenticationService.currentUserValue.user;
@@ -107,10 +110,10 @@ function PatientsTable(props: PatientsTableProps) {
       width: 300,
       renderCell: function createSelect(params:any) {
         return params.row.users.map((user: User, index: number) => (
-          <Typography variant="h6" color="primary" display="block">
+          <div className={classes.listUsers}>
             {user.name}
-            {params.row.users.length - 1 > index ? ',  ' : '' }
-          </Typography>
+            {params.row.users.length - 1 > index ? ', ' : '' }
+          </div>
         ));
       },
     },
