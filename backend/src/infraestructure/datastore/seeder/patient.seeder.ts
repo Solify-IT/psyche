@@ -18,9 +18,7 @@ const areas = [
 
 export default class CreatePatients implements Seeder {
   public async run(factory: Factory): Promise<any> {
-    const args = process.argv.slice(2);
-    const amountArg = Number(args[4]);
-    const amount = amountArg || 50;
+    const amount = 100;
     for (let i = 0; i < amount; i += 1) {
       const record = await factory(Record)().create();
       const random = Math.floor(Math.random() * areas.length);
