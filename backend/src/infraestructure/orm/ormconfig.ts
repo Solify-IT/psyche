@@ -15,7 +15,7 @@ export = {
   entities: [
     'src/domain/model/**/*.ts',
   ],
-  migrations: ['src/infraestructure/orm/migration/*.js'],
+  migrations: ['src/infraestructure/orm/migration/*.ts'],
   cli: {
     migrationsDir: 'src/infraestructure/orm/migration',
   },

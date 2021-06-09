@@ -18,6 +18,8 @@ const patientFixture : Patient = {
   abuseAttempts: '5',
   abuseMotive: 'Nomal',
   recordId: 1,
+  users: [],
+  userId: 1,
 
 };
 

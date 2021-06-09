@@ -28,13 +28,10 @@ export default class PatientInteractor {
 
   async getAll(): Promise<Patient[]> {
     const [patients, error] = await wrapError(this.patientRepository.findAll());
-    const patientsActive: Patient[] = [];
 
     if (error) {
       throw error;
     }
-
-    console.log(patientsActive);
 
     return this.patientPresenter.findAll(patients);
   }
@@ -48,8 +45,7 @@ export default class PatientInteractor {
     return this.patientPresenter.record(record);
   }
 
-  async canalize(data: Patient) : Promise<any> {
-    const patients : Patient[] = (!Array.isArray(data)) ? [data] : data;
+  async canalize(patients: Patient[]) : Promise<any> {
     const [result, error] = await wrapError(this.patientRepository.canalize(patients));
 
     if (error) {
