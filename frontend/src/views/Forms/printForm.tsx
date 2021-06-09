@@ -153,7 +153,6 @@ function PrintForm() {
     forms: Array<PatientForm>(),
     patients: Array<Patient>(),
   });
-  console.log(info);
 
   const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
   async function timeSensativeAction() {
@@ -162,7 +161,6 @@ function PrintForm() {
     history.replace(`/patient-form/${formId}`);
   }
   const aux = formInformation.recordId;
-  console.log(aux);
   useEffect(() => {
     getPatientRecord(aux)
       .then((response:any) => {
