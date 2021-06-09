@@ -166,13 +166,23 @@ function NewForm() {
   function renderCustomForm() {
     switch (type) {
       case 'Campo de texto':
+      case 'text':
       case 'Campo de número':
+      case 'number':
       case 'Firma':
+      case 'signature':
       case 'Selección de fecha':
+        return null;
+      case 'datepicker':
         return null;
 
       case 'Selección múltiple':
+      case 'checkbox':
       case 'Selección de opciones':
+        return (
+          <AddOptionField setOptionsInForm={setOptions} />
+        );
+      case 'select':
         return (
           <AddOptionField setOptionsInForm={setOptions} />
         );

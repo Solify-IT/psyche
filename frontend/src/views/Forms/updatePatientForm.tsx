@@ -180,6 +180,23 @@ function UpdatePatientForm() {
             />
           </Grid>
         );
+      case 'text':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
       case 'Campo de número':
         return (
           <Grid item xs={4}>
@@ -198,7 +215,46 @@ function UpdatePatientForm() {
             />
           </Grid>
         );
+      case 'number':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              type="number"
+              id={field.id.toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
       case 'Selección de fecha':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              type="date"
+              id={field.id.toString()}
+              label={field.label}
+              name={field.label.replace(/\s/g, '')}
+              value={field.value}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={handleChange}
+            />
+          </Grid>
+        );
+      case 'datepicker':
         return (
           <Grid item xs={4}>
             <TextField
@@ -238,6 +294,25 @@ function UpdatePatientForm() {
             </div>
           </Grid>
         );
+      case 'select':
+        return (
+          <Grid item xs={4}>
+            <div className={classes.group}>
+              <InputLabel>{field.label}</InputLabel>
+              <Select
+                required
+                fullWidth
+                label={field.label}
+                key={field.id.toString()}
+                name={field.id.toString()}
+                value={field.value}
+                onChange={handleSelect}
+              >
+                {field.options.map(createSelect)}
+              </Select>
+            </div>
+          </Grid>
+        );
       case 'Selección múliple': {
         return (
           <Grid item xs={4}>
@@ -256,6 +331,32 @@ function UpdatePatientForm() {
                         onClick={handleCheck}
                       />
                 )}
+                    label={option.label}
+                    key={option.id}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'checkbox': {
+        return (
+          <Grid item xs={4}>
+            <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>
+              <FormLabel component="legend">{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                        onClick={handleCheck}
+                      />
+                  )}
                     label={option.label}
                     key={option.id}
                   />

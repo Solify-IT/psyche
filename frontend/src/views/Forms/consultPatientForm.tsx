@@ -10,6 +10,8 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Divider,
+  Typography,
 }
   from '@material-ui/core';
 import FieldOption from 'src/interfaces/fieldOptions';
@@ -53,6 +55,19 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     paddingLeft: '5px',
   },
+  firma: {
+    fontSize: '13px',
+    textAlign: 'center',
+    font: 'inherit',
+  },
+  gridFirma: {
+    bottom: '100px',
+    width: '100%',
+  },
+  divider: {
+    marginTop: '100px',
+    background: 'black',
+  },
 }));
 
 function ConsultPatientForm() {
@@ -92,7 +107,44 @@ function ConsultPatientForm() {
 
   function createComponent(field:any) {
     switch (field.type) {
+      case 'Firma':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
+      case 'signature':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
+          </Grid>
+        );
       case 'text':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
+        );
+      case 'Campo de texto':
         return (
           <Grid item xs={4}>
             <TextField
@@ -122,6 +174,21 @@ function ConsultPatientForm() {
             />
           </Grid>
         );
+      case 'Campo de número':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
+        );
       case 'datepicker':
         return (
           <Grid item xs={4}>
@@ -137,7 +204,37 @@ function ConsultPatientForm() {
             />
           </Grid>
         );
+      case 'Selección de fecha':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
+        );
       case 'select':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              fullWidth
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Grid>
+        );
+      case 'Selección de opciones':
         return (
           <Grid item xs={4}>
             <TextField
@@ -169,6 +266,31 @@ function ConsultPatientForm() {
                         data-group={field.id.toString()}
                       />
                 )}
+                    label={option.label}
+                    key={option.id}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        ); }
+      case 'Selección múltiple': {
+        return (
+          <Grid item xs={4}>
+            <FormControl component="fieldset" className={classes.formControl} key={field.id.toString()}>
+              <FormLabel component="legend">{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                  )}
                     label={option.label}
                     key={option.id}
                   />

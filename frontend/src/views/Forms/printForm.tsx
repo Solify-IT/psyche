@@ -191,7 +191,43 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'text':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'Campo de número':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'number':
         return (
           <Grid item xs={4}>
             <TextField
@@ -227,7 +263,43 @@ function PrintForm() {
             />
           </Grid>
         );
+      case 'datepicker':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
       case 'Selección de opciones':
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '90%', margin: '10px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+      case 'select':
         return (
           <Grid item xs={4}>
             <TextField
