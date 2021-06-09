@@ -20,6 +20,9 @@ import { getFormField } from 'src/api/forms';
 import { useHistory, useParams } from 'react-router';
 import PatientFormField from 'src/interfaces/patientFormField';
 import './print.css';
+import { getPatientRecord } from 'src/api/patient';
+import PatientForm from 'src/interfaces/patientForm';
+import Patient from 'src/interfaces';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -141,13 +144,31 @@ function PrintForm() {
     type: '',
     createdData: '',
   });
+  const [info, setInfo] = useState({
+    id: 1,
+    startDate: Date,
+    active: true,
+    forms: Array<PatientForm>(),
+    patients: Array<Patient>(),
+  });
+  console.log(info);
+
   const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
   async function timeSensativeAction() {
     await sleep(2000);
     window.print();
     history.replace(`/patient-form/${formId}`);
   }
+  const aux = formInformation.recordId;
+  console.log(aux);
   useEffect(() => {
+    getPatientRecord(aux)
+      .then((response:any) => {
+        setInfo(response.data);
+        console.log(response.data);
+      })
+      .catch((error:any) => console.log(error));
+
     getFormField(formId)
       .then((response:any) => {
         setFields(Object.values(response.data.fields.sort(
@@ -169,7 +190,7 @@ function PrintForm() {
         setFormInformation(response.data);
       })
       .catch((error:any) => console.log(error));
-  }, [formId]);
+  }, [formId, aux]);
 
   function createComponent(field:any) {
     switch (field.type) {
@@ -436,6 +457,14 @@ function PrintForm() {
                 <img src="/images/loginImage.png" alt="Logo" className={classes.image} />
               </Grid>
               <Grid item>
+                {info.patients.map((patientPrint) => (
+                  <Typography variant="h4" align="left" className={classes.subtitles1}>
+                    {patientPrint.name}
+                  </Typography>
+                ))}
+                <Typography variant="h4" align="left" className={classes.subtitles1}>
+                  {formInformation.recordId}
+                </Typography>
                 <Typography variant="h4" align="left" className={classes.subtitles1}>
                   Patronato Psicológico Queretano I.A.P
                 </Typography>
