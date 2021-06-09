@@ -1,8 +1,8 @@
 import {
-  Entity, Column, PrimaryGeneratedColumn, OneToMany,
+  Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany,
 } from 'typeorm';
+import { Patient } from '..';
 import PatientArea from './patientArea';
-import Patient from '../patient';
 
 @Entity()
 export default class User {
@@ -51,6 +51,6 @@ export default class User {
   @OneToMany(() => PatientArea, (areas) => areas.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
   patientAreas?: PatientArea[];
 
-  @OneToMany(() => Patient, (patient) => patient.user, { cascade: true, eager: true, onDelete: 'CASCADE' })
+  @ManyToMany(() => Patient, (patient: Patient) => patient.users)
   patients: Patient[];
 }

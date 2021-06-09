@@ -4,7 +4,6 @@ import RegisterProfile from 'src/views/Users/registerProfile';
 import PrivateRoute from 'src/components/PrivateRoute';
 import PrintForm from 'src/views/Forms/printForm';
 import PrintExpediente from 'src/views/Forms/printExpediente';
-import ConsultPatient from './views/Patients/consultPatient';
 import Home from './views/Dashboard/home';
 import RecordDetail from './views/Patients/recordDetail';
 
@@ -28,7 +27,6 @@ import DashboardAsesoria from './views/Dashboard/dashboardAsesoria';
 import RegisterPatient from './views/Patients/registerPatient';
 import DashboardPsic from './views/Dashboard/dashboardAsPsic';
 import PatientCanalization from './views/Patients/patientCanalization';
-import UpdatePatientCanalization from './views/Patients/updatePatientCanalization';
 import GenerateForm from './components/Forms/NewPatientForm/generateForm';
 import UpdateForm from './views/Forms/updateForm';
 import ViewPatients from './views/Patients/viewPatients';
@@ -63,7 +61,6 @@ const AppRouter = () => (
     <PrivateRoute path="/expediente/:id(\d+)/encuestas" exact component={PatientAvailableForms} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/" exact component={Home} />
     <PrivateRoute path="/read-form" exact component={GenerateForm} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
-    <PrivateRoute path="/consult-patient" exact component={ConsultPatient} />
     <PrivateRoute path="/expediente/:id(\d+)" exact component={RecordDetail} />
     <PrivateRoute path="/register-patient/:area/:group" exact component={RegisterPatient} />
     <PrivateRoute path="/home" exact component={Home} />
@@ -80,7 +77,6 @@ const AppRouter = () => (
     <PrivateRoute path="/user-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-profile/:id" exact component={ConsultProfiles} />
     <PrivateRoute path="/patient-canalization/:patientId(\d+)" exact component={PatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
-    <PrivateRoute path="/update-patient-canalization/:patientId(\d+)" exact component={UpdatePatientCanalization} roles={[UserRole.Administrador, UserRole.Psicólogo]} />
     <PrivateRoute path="/change-password" exact component={ChangePassword} />
     <PrivateRoute path="/view-users" exact component={ViewUsers} roles={[UserRole.Administrador]} />
     <PrivateRoute path="/user-update" exact component={UpdateUserAdmin} roles={[UserRole.Administrador]} />
