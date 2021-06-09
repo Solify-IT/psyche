@@ -10,7 +10,7 @@ export = {
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || '',
   database: process.env.DB_NAME || 'localhost',
-  synchronize: false,
+  synchronize: true,
   migrationsTableName: 'migration',
   entities: [
     'src/domain/model/**/*.ts',
