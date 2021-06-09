@@ -123,30 +123,27 @@ function RegisterUser() {
     let passwordError = '';
     if (password2 !== password) {
       passwordError = 'Las contraseñas no coinciden';
-    }
-    if (await emailExist(newUserV.email)) {
+    } else if (await emailExist(newUserV.email)) {
       toast.warning('El correo electrónico ya esta ocupado, intente con otro');
-    }
-    if (await usernameExist(newUserV.username)) {
+    } else if (await usernameExist(newUserV.username)) {
       toast.warning('El nombre de usuario ya esta ocupado, intente con otro');
-    }
-    if (!validPassword(newUserV.password)) {
+    } else if (!validPassword(newUserV.password)) {
       toast.warning('La contraseña debe ser mayor a 8 carácteres y contener al menos una minúscula, una mayúscula, un número y un carácter especial');
+    } else {
+      await CreateUser(newUser).then((response:any) => {
+        Swal.fire(
+          '¡Usuario Registrado!',
+          'El usuario ha sido registrado y podrá acceder a partir de este momento.',
+          'success',
+        );
+        history.replace('/view-users');
+      });
+
+      setNewUser({
+        ...newUserV,
+        errors,
+      });
     }
-
-    await CreateUser(newUser).then((response:any) => {
-      Swal.fire(
-        '¡Usuario Registrado!',
-        'El usuario ha sido registrado y podrá acceder a partir de este momento.',
-        'success',
-      );
-      history.replace('/view-users');
-    });
-
-    setNewUser({
-      ...newUserV,
-      errors,
-    });
   };
 
   return (
