@@ -176,7 +176,6 @@ function PrintExpediente() {
   useEffect(() => {
     getPatientRecord(recordId)
       .then((response:any) => {
-        console.log(response.data);
         setInfo(response.data);
       })
       .catch((error:any) => console.log(error));
