@@ -173,8 +173,8 @@ export default class FormRepository implements IFormRepository {
 
     if (record) {
     // TODO: Find way to improve this
-      const typeValue = record.patients[0].type;
-      const [result, error] = await wrapError(this.datastore.fetchAllWhere<PatientForm>('PatientForm', { type: typeValue }));
+      // const typeValue = record.patients[0].type;
+      const [result, error] = await wrapError(this.datastore.fetchAllWhere<PatientForm>('PatientForm', { recordId: id }));
       if (error) {
         throw error;
       }

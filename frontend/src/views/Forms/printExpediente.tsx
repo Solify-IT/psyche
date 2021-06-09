@@ -115,10 +115,6 @@ const useStyles = makeStyles((theme) => ({
   headerSection: {
     align: 'center',
     flexDirection: 'column',
-    // borderRadius: 20,
-    // padding: theme.spacing(2, 6),
-    // marginTop: '2px',
-    // marginBottom: '45px',
     borderColor: '#C94B72',
     width: '20.2cm',
     height: '27.2cm',
@@ -585,7 +581,7 @@ function PrintExpediente() {
                   </Grid>
                   <Grid container justify="center" alignItems="center">
                     {/* {field.fields.map(createComponent)} */}
-                    {field.fields.filter((a) => a.type !== 'signature').sort(
+                    {field.fields.filter((a) => a.type !== 'signature' && a.type !== 'Firma').sort(
                       (a, b) => {
                         if (a.id && b.id) {
                           if (a.id < b.id!) {
@@ -602,7 +598,7 @@ function PrintExpediente() {
                     ).map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center">
-                    {field.fields.filter((a) => a.type === 'signature').map(createComponent)}
+                    {field.fields.filter((a) => a.type === 'signature' || a.type === 'Firma').map(createComponent)}
                   </Grid>
                   <Grid container justify="center" alignItems="center" {...{ class: 'page' }}>
                     <Grid item xs={12}>
