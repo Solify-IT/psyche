@@ -205,30 +205,31 @@ function PrintExpediente() {
 
   function createComponent(field:any) {
     switch (field.type) {
-      case 'text':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
       case 'Campo de texto':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
@@ -241,13 +242,33 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'number':
+
+      case 'text':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString()}
+              style={{ width: '95%', margin: '5px' }}
+              id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
               InputProps={{
@@ -259,12 +280,32 @@ function PrintExpediente() {
             />
           </Grid>
         );
+
       case 'Campo de número':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '98%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -277,12 +318,32 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'datepicker':
+
+      case 'number':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -295,12 +356,32 @@ function PrintExpediente() {
             />
           </Grid>
         );
+
       case 'Selección de fecha':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -313,12 +394,32 @@ function PrintExpediente() {
             />
           </Grid>
         );
-      case 'select':
+
+      case 'datepicker':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -331,12 +432,32 @@ function PrintExpediente() {
             />
           </Grid>
         );
+
       case 'Selección de opciones':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -347,6 +468,56 @@ function PrintExpediente() {
                 },
               }}
             />
+          </Grid>
+        );
+
+      case 'select':
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
+        return (
+          <Grid item xs={4}>
+            <TextField
+              key={field.id.toString()}
+              style={{ width: '95%', margin: '5px' }}
+              id={field.id.toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+          </Grid>
+        );
+
+      case 'Firma':
+        return (
+          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
+            <div>
+              <Divider variant="middle" className={classes.divider} />
+              <Typography className={classes.firma}>
+                {field.label}
+              </Typography>
+            </div>
           </Grid>
         );
       case 'signature':
@@ -360,24 +531,115 @@ function PrintExpediente() {
             </div>
           </Grid>
         );
-      case 'Firma':
+      case 'Selección múltiple': {
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <FormControl
+                component="fieldset"
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+              >
+                <FormLabel className={classes.resize}>{field.label}</FormLabel>
+                <FormGroup>
+                  {field.options.map((option:FieldOption, index:any) => (
+                    <FormControlLabel
+                      style={{ fontSize: '20px' }}
+                      control={(
+                        <Checkbox
+                          key={option.id?.toString()}
+                          checked={option.checked}
+                          name={option.label}
+                          data-id={index}
+                          data-group={field.id.toString()}
+                        />
+                    )}
+                      label={option.label}
+                      key={option.id}
+                      classes={{
+                        label: classes.checkboxLabel,
+                      }}
+                    />
+                  ))}
+                </FormGroup>
+              </FormControl>
+            </Grid>
+          );
+        }
         return (
-          <Grid item xs={4} spacing={5} className={classes.gridFirma}>
-            <div>
-              <Divider variant="middle" className={classes.divider} />
-              <Typography className={classes.firma}>
-                {field.label}
-              </Typography>
-            </div>
+          <Grid item xs={4}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '95%', margin: '5px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                    )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
           </Grid>
         );
+      }
       case 'checkbox': {
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <FormControl
+                component="fieldset"
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+              >
+                <FormLabel className={classes.resize}>{field.label}</FormLabel>
+                <FormGroup>
+                  {field.options.map((option:FieldOption, index:any) => (
+                    <FormControlLabel
+                      style={{ fontSize: '20px' }}
+                      control={(
+                        <Checkbox
+                          key={option.id?.toString()}
+                          checked={option.checked}
+                          name={option.label}
+                          data-id={index}
+                          data-group={field.id.toString()}
+                        />
+                    )}
+                      label={option.label}
+                      key={option.id}
+                      classes={{
+                        label: classes.checkboxLabel,
+                      }}
+                    />
+                  ))}
+                </FormGroup>
+              </FormControl>
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <FormControl
               component="fieldset"
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
             >
               <FormLabel className={classes.resize}>{field.label}</FormLabel>
               <FormGroup>
@@ -392,7 +654,7 @@ function PrintExpediente() {
                         data-id={index}
                         data-group={field.id.toString()}
                       />
-                  )}
+                    )}
                     label={option.label}
                     key={option.id}
                     classes={{
@@ -403,46 +665,33 @@ function PrintExpediente() {
               </FormGroup>
             </FormControl>
           </Grid>
-        ); }
-      case 'Selección múltiple': {
-        return (
-          <Grid item xs={4}>
-            <FormControl
-              component="fieldset"
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-            >
-              <FormLabel className={classes.resize}>{field.label}</FormLabel>
-              <FormGroup>
-                {field.options.map((option:FieldOption, index:any) => (
-                  <FormControlLabel
-                    style={{ fontSize: '20px' }}
-                    control={(
-                      <Checkbox
-                        key={option.id?.toString()}
-                        checked={option.checked}
-                        name={option.label}
-                        data-id={index}
-                        data-group={field.id.toString()}
-                      />
-                  )}
-                    label={option.label}
-                    key={option.id}
-                    classes={{
-                      label: classes.checkboxLabel,
-                    }}
-                  />
-                ))}
-              </FormGroup>
-            </FormControl>
-          </Grid>
-        ); }
+        );
+      }
       default:
+        if (field.value.length > 30 || field.label.length > 25) {
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
@@ -457,7 +706,6 @@ function PrintExpediente() {
         );
     }
   }
-
   return (
     <div className={classes.heroContent}>
       <main>
