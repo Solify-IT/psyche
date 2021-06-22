@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
   },
   resize: {
-    fontSize: '12px',
-    marginTop: '7px',
+    fontSize: '10px',
+    marginTop: '0px',
   },
   resize2: {
     fontSize: '15px',
@@ -157,8 +157,8 @@ function PrintForm() {
   const sleep = (milliseconds: any) => new Promise((resolve) => setTimeout(resolve, milliseconds));
   async function timeSensativeAction() {
     await sleep(2000);
-    window.print();
-    history.replace(`/patient-form/${formId}`);
+    // //window.print();
+    // history.replace(`/patient-form/${formId}`);
   }
   const aux = formInformation.recordId;
   useEffect(() => {
@@ -195,29 +195,68 @@ function PrintForm() {
   function createComponent(field:any) {
     switch (field.type) {
       case 'Campo de texto':
-        return (
-          <Grid item xs={4}>
-            <TextField
-              key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
-              id={field.id.toString().toString()}
-              label={field.label}
-              value={field.value}
-              InputProps={{
-                readOnly: true,
-                classes: {
-                  input: classes.resize,
-                },
-              }}
-            />
-          </Grid>
-        );
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
+          return (
+            <Grid item xs={4}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '95%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        }
       case 'text':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
@@ -230,12 +269,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'Campo de número':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '98%', margin: '5px'}}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -248,12 +307,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'number':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -266,12 +345,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'Selección de fecha':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -284,12 +383,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'datepicker':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -302,12 +421,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'Selección de opciones':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -320,12 +459,32 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'select':
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+                key={field.id.toString()}
+                style={{ width: '98%', margin: '5px' }}
+                id={field.id.toString().toString()}
+                label={field.label}
+                value={field.value}
+                InputProps={{
+                  readOnly: true,
+                  classes: {
+                    input: classes.resize,
+                  },
+                }}
+              />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString()}
               label={field.label}
               value={field.value}
@@ -338,6 +497,7 @@ function PrintForm() {
             />
           </Grid>
         );
+      }
       case 'Firma':
         return (
           <Grid item xs={4} spacing={5} className={classes.gridFirma}>
@@ -361,12 +521,46 @@ function PrintForm() {
           </Grid>
         );
       case 'Selección múltiple': {
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '98%', margin: '5px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                  )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <FormControl
               component="fieldset"
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
             >
               <FormLabel className={classes.resize}>{field.label}</FormLabel>
               <FormGroup>
@@ -393,13 +587,15 @@ function PrintForm() {
             </FormControl>
           </Grid>
         ); }
+      }
       case 'checkbox': {
-        return (
-          <Grid item xs={4}>
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
             <FormControl
               component="fieldset"
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '98%', margin: '5px' }}
             >
               <FormLabel className={classes.resize}>{field.label}</FormLabel>
               <FormGroup>
@@ -414,7 +610,40 @@ function PrintForm() {
                         data-id={index}
                         data-group={field.id.toString()}
                       />
-                    )}
+                  )}
+                    label={option.label}
+                    key={option.id}
+                    classes={{
+                      label: classes.checkboxLabel,
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+          </Grid>
+          );
+        } else {
+        return (
+          <Grid item xs={4}>
+            <FormControl
+              component="fieldset"
+              key={field.id.toString()}
+              style={{ width: '95%', margin: '5px' }}
+            >
+              <FormLabel className={classes.resize}>{field.label}</FormLabel>
+              <FormGroup>
+                {field.options.map((option:FieldOption, index:any) => (
+                  <FormControlLabel
+                    style={{ fontSize: '20px' }}
+                    control={(
+                      <Checkbox
+                        key={option.id?.toString()}
+                        checked={option.checked}
+                        name={option.label}
+                        data-id={index}
+                        data-group={field.id.toString()}
+                      />
+                  )}
                     label={option.label}
                     key={option.id}
                     classes={{
@@ -426,12 +655,32 @@ function PrintForm() {
             </FormControl>
           </Grid>
         ); }
+      }
       default:
+        if(field.value.length > 30 || field.label.length > 25){
+          return (
+            <Grid item xs={12}>
+              <TextField
+              key={field.id.toString()}
+              style={{ width: '98%', margin: '5px' }}
+              id={field.id.toString().toString()}
+              label={field.label}
+              value={field.value}
+              InputProps={{
+                readOnly: true,
+                classes: {
+                  input: classes.resize,
+                },
+              }}
+            />
+            </Grid>
+          );
+        } else {
         return (
           <Grid item xs={4}>
             <TextField
               key={field.id.toString()}
-              style={{ width: '90%', margin: '10px' }}
+              style={{ width: '95%', margin: '5px' }}
               id={field.id.toString().toString()}
               label={field.label}
               value={field.value}
@@ -445,6 +694,7 @@ function PrintForm() {
           </Grid>
         );
     }
+  }
   }
   return (
     <div className={classes.heroContent}>
@@ -464,15 +714,15 @@ function PrintForm() {
                   <Typography align="left" className={classes.subtitlesLabel} noWrap>
                     Formato:
                   </Typography>
-                  <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.5rem' }} noWrap>
+                  <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.2rem' }} noWrap>
                     { formInformation.name}
                   </Typography>
                 </div>
                 <div style={{ display: 'flex' }}>
                   <Typography align="left" className={classes.subtitlesLabel} noWrap>
-                    Folio:
+                    Número de Expediente:
                   </Typography>
-                  <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.7rem' }} noWrap>
+                  <Typography align="left" className={classes.subtitles} noWrap>
                    PPQ-{ formInformation.recordId}
                   </Typography>
                 </div>
@@ -482,7 +732,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Nombre:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.6rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.3rem' }} noWrap>
                             {patientPrint.name}
                             {' '}
                             {patientPrint.lastName}
@@ -492,7 +742,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Género:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.8rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.5rem' }} noWrap>
                             {patientPrint.gender}
                           </Typography>
                         </div>
@@ -500,7 +750,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Tipo de paciente:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '1.4rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2.1rem' }} noWrap>
                             {patientPrint.type}
                           </Typography>
                         </div>
@@ -508,7 +758,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Lugar de nacimiento:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '0.7rem' }} noWrap>
                             {patientPrint.birthPlace}
                           </Typography>
                         </div>
@@ -516,7 +766,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Fecha de inicio:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2.7rem' }} noWrap>
                             {patientPrint.startDate}
                           </Typography>
                         </div>
@@ -524,7 +774,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Teléfono:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.4rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '5.1rem' }} noWrap>
                             {patientPrint.telephone}
                           </Typography>
                         </div>
@@ -532,7 +782,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Dirección:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.2rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '4.7rem' }} noWrap>
                             {patientPrint.address}
                           </Typography>
                         </div>
@@ -540,7 +790,7 @@ function PrintForm() {
                           <Typography align="left" className={classes.subtitlesLabel} noWrap>
                             Código postal:
                           </Typography>
-                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '2.6rem' }} noWrap>
+                          <Typography align="left" className={classes.subtitles} style={{ marginLeft: '3.1rem' }} noWrap>
                             {patientPrint.postalCode}
                           </Typography>
                         </div>
